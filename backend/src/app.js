@@ -1,10 +1,16 @@
-import express from 'express';
-var app = express();
+import dotenv from "dotenv";
+dotenv.config();
 
-app.get('/', function (req, res) {
-   res.send('Hello World');
-})
+import express from "express";
+import cors from "cors";
+const app = express();
 
-var server = app.listen(5000, function () {
-   console.log("Express App running at http://127.0.0.1:5000/");
-})
+app.use(cors());
+app.use(express.json());
+
+app.get("/", function (req, res) {
+  res.send("Hello World");
+});
+
+const PORT = process.env.PORT ?? 3000;
+app.listen(3000, () => console.log(`Express Server is up and running on ${PORT}`));
