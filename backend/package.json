@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for Intelligent Eats",
+  "main": "./src/app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon ./src/app.js",
+    "start": "node ./src/app.js"
+  },
+  "author": "Team Teal Turtles",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
