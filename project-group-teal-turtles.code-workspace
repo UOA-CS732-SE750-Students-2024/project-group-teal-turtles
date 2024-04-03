@@ -1,7 +1,12 @@
 {
-  "folders": [
-    {
-      "path": "."
-    }
-  ]
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+		"prettier.configPath": ".prettierrc"
+	}
 }
