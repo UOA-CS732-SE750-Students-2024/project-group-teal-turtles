@@ -1,8 +1,11 @@
+import Layout from '@/components/Layout/Layout'
 import React from 'react'
 
 function GenerationOptions() {
   return (
-    <div>GenerationOptions</div>
+    <Layout>
+      <div>GenerationOptions</div>
+    </Layout>
   )
 }
 

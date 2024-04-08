@@ -1,0 +1,23 @@
+.body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	min-height: 60px;
+	background-color: dimgrey;
+	display: flex;
+	align-items: center;
+}
+
+.headeritem {
+	height: 100%;
+	padding: 10px 20px;
+}
+
+.footer {
+	min-height: 60px;
+	margin-top: auto;
+	background-color: grey;
+}

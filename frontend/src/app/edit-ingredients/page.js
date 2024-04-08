@@ -1,8 +1,11 @@
+import Layout from '@/components/Layout/Layout'
 import React from 'react'
 
 function EditIngredients() {
   return (
-    <div>EditIngredients</div>
+    <Layout>
+      <div>EditIngredients</div>
+    </Layout>
   )
 }
 
