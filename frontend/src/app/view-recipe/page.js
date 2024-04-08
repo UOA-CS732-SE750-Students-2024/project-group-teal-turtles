@@ -1,12 +1,12 @@
-import Layout from '@/components/Layout/Layout'
-import React from 'react'
+import Layout from "@/components/Layout/Layout";
+import React from "react";
 
 function ViewRecipe() {
-  return (
-    <Layout>
-      <div>ViewRecipe</div>
-    </Layout>
-  )
+	return (
+		<Layout>
+			<div>ViewRecipe</div>
+		</Layout>
+	);
 }
 
-export default ViewRecipe
+export default ViewRecipe;
