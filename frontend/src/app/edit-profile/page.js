@@ -1,8 +1,11 @@
+import Layout from '@/components/Layout/Layout'
 import React from 'react'
 
 function EditProfile() {
   return (
-    <div>EditProfile</div>
+    <Layout>
+      <div>EditProfile</div>
+    </Layout>
   )
 }
 

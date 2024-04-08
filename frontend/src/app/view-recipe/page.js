@@ -1,8 +1,11 @@
+import Layout from '@/components/Layout/Layout'
 import React from 'react'
 
 function ViewRecipe() {
   return (
-    <div>ViewRecipe</div>
+    <Layout>
+      <div>ViewRecipe</div>
+    </Layout>
   )
 }
 
