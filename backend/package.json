@@ -1,19 +1,25 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "Backend for Intelligent Eats",
-  "main": "./src/app.js",
-  "type": "module",
-  "scripts": {
-    "dev": "nodemon ./src/app.js",
-    "start": "node ./src/app.js"
-  },
-  "author": "Team Teal Turtles",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "nodemon": "^3.1.0"
-  }
+	"name": "backend",
+	"version": "1.0.0",
+	"description": "Backend for Intelligent Eats",
+	"main": "./src/app.js",
+	"type": "module",
+	"scripts": {
+		"dev": "nodemon ./src/app.js",
+		"start": "node ./src/app.js",
+		"init-db": "node ./src/data/init-db.js",
+		"test-userdao": "node ./src/data/testing-userdao.js"
+	},
+	"author": "Team Teal Turtles",
+	"license": "ISC",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
+		"express": "^4.19.2",
+		"mongoose": "^8.3.1",
+		"nodemon": "^3.1.0"
+	},
+	"devDependencies": {
+		"prettier": "3.2.5"
+	}
 }
