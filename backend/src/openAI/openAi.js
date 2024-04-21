@@ -17,15 +17,16 @@ async function createAndRun(assistantID, body) {
 		content: body
 	});
 
-	const run = openai.beta.threads.runs
-		.stream(thread.id, {
-			assistant_id: assistantID
-		})
-		.on("textCreated", (text) => process.stdout.write("\nassistant > "))
-		.on("textDelta", (textDelta, snapshot) => {
-			process.stdout.write(textDelta.value);
-			return textDelta;
-		});
+	let run = await openai.beta.threads.runs.createAndPoll(thread.id, {
+		assistant_id: assistantID
+	});
+
+	if (run.status === "completed") {
+		const messages = await openai.beta.threads.messages.list(run.thread_id);
+		return messages.data[0].content[0].text.value;
+	} else {
+		console.log(run.status);
+	}
 }
 
 export default createAndRun;
