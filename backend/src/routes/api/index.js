@@ -2,9 +2,9 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/", function (req, res) {
+import generation from "./generation/generationRoutes.js";
+router.use("/generation", generation);
 
-	res.send("Hello World");
-});
+//Other Path for users
 
 export default router;
