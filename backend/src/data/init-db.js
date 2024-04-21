@@ -9,7 +9,7 @@ console.log("Connected to database");
 let dummyUser = new User({
 	favouriteMeals: ["Spaghetti Carbonara", "Chicken Stir-Fry"],
 	generatedMeals: ["Chicken Stir-Fry", "Quinoa Salad"],
-	pantry: {
+	ingredients: {
 		VegetablesAndFruit: ["Tomatoes", "Broccoli"],
 		Dairy: ["Milk", "Cheese"],
 		Meat: ["Chicken", "Beef"],

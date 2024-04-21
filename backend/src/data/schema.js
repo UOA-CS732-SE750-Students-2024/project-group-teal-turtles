@@ -6,7 +6,7 @@ const userSchema = new Schema({
 	_id: { type: String, required: true },
 	favouriteMeals: { type: [{ type: String }], default: [] },
 	generatedMeals: { type: [{ type: String }], default: [] },
-	pantry: {
+	ingredients: {
 		VegetablesAndFruit: { type: [{ type: String }], default: [] },
 		Dairy: { type: [{ type: String }], default: [] },
 		Meat: { type: [{ type: String }], default: [] },
