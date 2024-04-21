@@ -24,7 +24,7 @@ async function createAndRun(assistantID, body) {
 		.on("textCreated", (text) => process.stdout.write("\nassistant > "))
 		.on("textDelta", (textDelta, snapshot) => {
 			process.stdout.write(textDelta.value);
-			//can do something with textDelta from here
+			return textDelta;
 		});
 }
 
