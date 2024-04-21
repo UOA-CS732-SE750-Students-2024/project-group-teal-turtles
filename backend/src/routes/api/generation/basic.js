@@ -1,6 +1,6 @@
 import express from "express";
 
-import createAndRun from "../../../openAI/openAi";
+import createAndRun from "../../../openAI/openAi.js";
 
 const basic = express.Router();
 
