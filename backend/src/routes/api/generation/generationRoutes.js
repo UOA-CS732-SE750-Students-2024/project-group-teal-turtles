@@ -2,8 +2,11 @@ import { Router } from "express";
 
 const generation = Router();
 
-import basic from "./basic.js";
-generation.use("/basic", basic);
+import basicStrict from "./basicStrict.js";
+generation.use("/basicStrict", basicStrict);
+
+import basicLoose from "./basicLoose.js";
+generation.use("/basicLoose", basicLoose);
 
 import freeForm from "./freeForm.js";
 generation.use("/freeForm", freeForm);
