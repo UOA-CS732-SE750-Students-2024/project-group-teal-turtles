@@ -2,6 +2,7 @@ import { Typography, Stack, TextField, Card, IconButton } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 import "./../globals.css";
+import Layout from "@/components/Layout/Layout";
 
 function CircularCard({ title, body }) {
 	return (
@@ -9,21 +10,22 @@ function CircularCard({ title, body }) {
 		body && (
 			<Card
 				sx={{
-					width: "350px",
-					height: "350px",
+					width: "240px",
+					height: "240px",
 					m: "auto",
 					alignItems: "center",
 					display: "flex",
 					flexDirection: "column",
 					justifyContent: "space-evenly",
-					p: 8,
-					borderRadius: "50%"
+					p: 4,
+					borderRadius: "50%",
+					backgroundColor: "#6E528B"
 				}}
 			>
-				<Typography variant="h1" lineHeight={1}>
+				<Typography color="#FFFFFF" variant="h2" lineHeight={1}>
 					{title}
 				</Typography>
-				<Typography align="center" variant="h3">
+				<Typography color="#FFFFFF" align="center" variant="h4">
 					{body}
 				</Typography>
 			</Card>
@@ -36,48 +38,43 @@ function Landing() {
 	let recipeCount, generationTime, reviewCount;
 
 	return (
-		<Stack height="100vh" justifyContent="space-between">
-			<Stack
-				spacing={8}
-				pt={30}
-				flexGrow={1}
-				sx={{ alignItems: "center", backgroundColor: "rgba(128, 128, 128, 0.5)" }}
-			>
-				<Card sx={{ px: 4, py: 2, borderRadius: 12 }}>
-					<Typography fontSize="140px">Wanting a quick meal?</Typography>
-				</Card>
-				<Card sx={{ px: 4, py: 2, borderRadius: 6 }}>
-					<Typography variant="h1">Generate a personalised recipe in seconds.</Typography>
-				</Card>
-				<TextField
-					variant="outlined"
-					placeholder="Search for a meal..."
-					sx={{
-						"& .MuiOutlinedInput-root": {
-							borderRadius: 6,
-							outline: "none",
-							backgroundColor: "#FFFFFF",
-							"& input": {
-								fontSize: "65px",
-								ml: 5
+		<Layout>
+			<Stack height="calc(100vh - 120px)">
+				<Stack backgroundColor="#FFF7FF" spacing={6} flexGrow={1} alignItems="center" justifyContent="center">
+					<Typography variant="h1">Wanting a quick meal?</Typography>
+					<Typography variant="h3" lineHeight="0">
+						Generate a personalised recipe in seconds.
+					</Typography>
+					<TextField
+						variant="outlined"
+						placeholder="Search for a meal..."
+						sx={{
+							"& .MuiOutlinedInput-root": {
+								borderRadius: 4,
+								outline: "none",
+								backgroundColor: "#FFFFFF",
+								"& input": {
+									fontSize: "40px",
+									ml: 2
+								}
 							}
-						}
-					}}
-					InputProps={{
-						endAdornment: (
-							<IconButton mr={5}>
-								<ArrowForwardIcon sx={{ fontSize: "65px" }} />
-							</IconButton>
-						)
-					}}
-				/>
+						}}
+						InputProps={{
+							endAdornment: (
+								<IconButton>
+									<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
+								</IconButton>
+							)
+						}}
+					/>
+				</Stack>
+				<Stack direction="row" py={5} px={30} sx={{ backgroundColor: "#D0C1DA" }}>
+					<CircularCard title={recipeCount ?? "Many"} body="Recipes Generated" />
+					<CircularCard title={generationTime ?? "Fast"} body="Generation Time" />
+					<CircularCard title={reviewCount ?? "Many"} body="Trusted Reviews" />
+				</Stack>
 			</Stack>
-			<Stack direction="row" py={10} px={50}>
-				<CircularCard title={recipeCount ?? "Many"} body="Recipes Generated" />
-				<CircularCard title={generationTime ?? "Fast"} body="Generation Time" />
-				<CircularCard title={reviewCount ?? "Many"} body="Trusted Reviews" />
-			</Stack>
-		</Stack>
+		</Layout>
 	);
 }
 
