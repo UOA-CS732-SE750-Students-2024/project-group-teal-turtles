@@ -1,25 +1,46 @@
 "use client";
 
 import { Google } from "@mui/icons-material";
-import { Stack, Typography, Card, Button, TextField, IconButton } from "@mui/material";
+import { Stack, Typography, Card, Button, TextField, IconButton, Link } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 
 function CreateAccount() {
 	const [visible, setVisible] = useState(false);
+	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	return (
 		<Stack height="100vh" justifyContent="center" alignItems="center" display="flex">
 			<Card sx={{ p: 6, borderRadius: 3 }}>
 				<Stack alignItems="center" spacing={3}>
 					<Typography variant="h3">Sign Up</Typography>
-					<Typography variant="h5">No Account? We'll create one for you automatically.</Typography>
-					<TextField fullWidth label="Username" />
-					<TextField fullWidth label="Email Address" />
+					<Typography variant="h5">Don't have an account? We'll create one for you.</Typography>
+					<TextField
+						fullWidth
+						label="Username"
+						value={username}
+						onChange={(event) => {
+							setUsername(event.target.value);
+						}}
+					/>
+					<TextField
+						fullWidth
+						label="Email Address"
+						value={email}
+						onChange={(event) => {
+							setEmail(event.target.value);
+						}}
+					/>
 					<TextField
 						fullWidth
 						label="Password (8+ Characters)"
 						type={visible ? "text" : "password"}
+						value={password}
+						onChange={(event) => {
+							setPassword(event.target.value);
+						}}
 						InputProps={{
 							endAdornment: (
 								<IconButton onClick={() => setVisible(!visible)}>
@@ -37,9 +58,9 @@ function CreateAccount() {
 						<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none", py: 1.5 }}>
 							<Typography variant="h6">Sign in with Google</Typography>
 						</Button>
-						<Button fullWidth href="/login" sx={{ textTransform: "none" }}>
+						<Link href="/login" underline="hover">
 							<Typography variant="h6">Sign in to an existing account</Typography>
-						</Button>
+						</Link>
 					</Stack>
 				</Stack>
 			</Card>
