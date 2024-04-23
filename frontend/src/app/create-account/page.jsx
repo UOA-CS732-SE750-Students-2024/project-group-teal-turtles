@@ -29,7 +29,9 @@ function CreateAccount() {
 					<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none" }}>
 						Sign in with Google
 					</Button>
-					<Button sx={{ textTransform: "none" }}>Sign in to existing account</Button>
+					<Button href="/login" sx={{ textTransform: "none" }}>
+						Sign in to existing account
+					</Button>
 				</Stack>
 			</Card>
 		</Stack>
