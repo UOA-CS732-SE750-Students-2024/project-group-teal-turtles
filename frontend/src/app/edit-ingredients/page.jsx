@@ -1,13 +1,13 @@
 import Layout from "@/components/Layout/Layout";
 import React from "react";
-import PantryTabs from "@/components/PantryTabs/PantryTabs";
+import PantryTabs from "@/components/Pantry/PantryTabs";
 import { Box, Stack } from "@mui/material";
 
 function EditIngredients() {
 	return (
 		<Layout>
 			<Stack
-				height="calc(100vh - 120px)"
+				minHeight="calc(100vh - 120px)"
 				sx={{ backgroundColor: "#FFFFFF" }}
 				alignItems="center"
 				justifyContent="center"

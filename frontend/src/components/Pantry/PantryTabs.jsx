@@ -6,6 +6,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Grid, Paper } from "@mui/material";
+import PantryGrid from "./PantryGrid";
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -55,7 +57,7 @@ export default function PantryTabs() {
 				value={value}
 				onChange={handleChange}
 				aria-label="Vertical tabs example"
-				sx={{ borderRight: 1, borderColor: "divider" }}
+				sx={{ borderRight: 1, borderColor: "divider", minWidth: "180px" }}
 			>
 				<Tab label="Your Ingredients" {...a11yProps(0)} />
 				<Tab label="All" {...a11yProps(1)} />
@@ -66,25 +68,25 @@ export default function PantryTabs() {
 				<Tab label="Dairy" {...a11yProps(6)} />
 			</Tabs>
 			<TabPanel value={value} index={0}>
-				Item One
+				<PantryGrid />
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				Item Two
+				<PantryGrid />
 			</TabPanel>
 			<TabPanel value={value} index={2}>
-				Item Three
+				<PantryGrid />
 			</TabPanel>
 			<TabPanel value={value} index={3}>
-				Item Four
+				<PantryGrid />
 			</TabPanel>
 			<TabPanel value={value} index={4}>
-				Item Five
+				<PantryGrid />
 			</TabPanel>
 			<TabPanel value={value} index={5}>
-				Item Six
+				<PantryGrid />
 			</TabPanel>
 			<TabPanel value={value} index={6}>
-				Item Seven
+				<PantryGrid />
 			</TabPanel>
 		</Box>
 	);
