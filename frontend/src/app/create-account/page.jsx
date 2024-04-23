@@ -24,7 +24,7 @@ function CreateAccount() {
 					<Button fullWidth variant="contained" sx={{ textTransform: "none" }}>
 						Create account
 					</Button>
-					<Typography>Or instead:</Typography>
+					<Typography>OR</Typography>
 
 					<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none" }}>
 						Sign in with Google
