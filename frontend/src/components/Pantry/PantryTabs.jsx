@@ -1,12 +1,9 @@
-"use client";
-
 import * as React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Grid, Paper } from "@mui/material";
 import PantryGrid from "./PantryGrid";
 
 function TabPanel(props) {
@@ -50,7 +47,15 @@ export default function PantryTabs() {
 	};
 
 	return (
-		<Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex", height: "100%" }}>
+		<Box
+			sx={{
+				flexGrow: 1,
+				bgcolor: "background.paper",
+				display: "flex",
+				height: "100%",
+				minHeight: "calc(100vh - 120px)"
+			}}
+		>
 			<Tabs
 				orientation="vertical"
 				variant="scrollable"
