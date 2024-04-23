@@ -10,7 +10,7 @@ app.use("/", routes);
 
 describe("GET /basicStrict", () => {
 	it("no params", (done) => {
-		const basicStrict = {
+		const payload = {
 			favouriteMeals: ["Pancakes", "Waffles"],
 			generatedMeals: ["Cheesy Mushroom Potato Bake"],
 			ingredients: {
@@ -30,7 +30,7 @@ describe("GET /basicStrict", () => {
 		request(app)
 			.get("/api/generation/basicStrict")
 			.set("Content-Type", "application/json")
-			.send(JSON.stringify(basicStrict))
+			.send(JSON.stringify(payload))
 			.expect(200)
 			.end((err, res) => {
 				if (err) {
@@ -42,7 +42,7 @@ describe("GET /basicStrict", () => {
 	}, 15000);
 
 	it("meal type", (done) => {
-		const basicStrict = {
+		const payload = {
 			favouriteMeals: ["Pancakes", "Waffles"],
 			generatedMeals: ["Cheesy Mushroom Potato Bake, Omlete"],
 			ingredients: {
@@ -62,7 +62,7 @@ describe("GET /basicStrict", () => {
 		request(app)
 			.get("/api/generation/basicStrict")
 			.set("Content-Type", "application/json")
-			.send(JSON.stringify(basicStrict))
+			.send(JSON.stringify(payload))
 			.expect(200)
 			.end((err, res) => {
 				if (err) {
@@ -74,7 +74,7 @@ describe("GET /basicStrict", () => {
 	}, 15000);
 
 	it("cuisine", (done) => {
-		const basicStrict = {
+		const payload = {
 			favouriteMeals: [""],
 			generatedMeals: ["Cheesy Mushroom Potato Bake"],
 			ingredients: {
@@ -94,7 +94,7 @@ describe("GET /basicStrict", () => {
 		request(app)
 			.get("/api/generation/basicStrict")
 			.set("Content-Type", "application/json")
-			.send(JSON.stringify(basicStrict))
+			.send(JSON.stringify(payload))
 			.expect(200)
 			.end((err, res) => {
 				if (err) {
@@ -106,7 +106,7 @@ describe("GET /basicStrict", () => {
 	}, 15000);
 
 	it("diatary requirement", (done) => {
-		const basicStrict = {
+		const payload = {
 			favouriteMeals: ["Pancakes", "Waffles"],
 			generatedMeals: ["Cheesy Mushroom Potato Bake"],
 			ingredients: {
@@ -126,7 +126,7 @@ describe("GET /basicStrict", () => {
 		request(app)
 			.get("/api/generation/basicStrict")
 			.set("Content-Type", "application/json")
-			.send(JSON.stringify(basicStrict))
+			.send(JSON.stringify(payload))
 			.expect(200)
 			.end((err, res) => {
 				if (err) {
@@ -138,15 +138,139 @@ describe("GET /basicStrict", () => {
 	}, 15000);
 });
 
-// describe("GET /basicLoose", () => {
-// 	it("gets basic loose generation", (done) => {
-// 		request(app)
-// 			.get("/api/generation/basicLoose")
-// 			.send()
-// 			.expect(200)
-// 			.end((err, res) => {});
-// 	});
-// });
+describe("GET /basicLoose", () => {
+	it("no params", (done) => {
+		const payload = {
+			favouriteMeals: ["Pancakes", "Waffles"],
+			generatedMeals: ["Cheesy Mushroom Potato Bake"],
+			ingredients: {
+				VegetablesAndFruit: ["Raisins", "Apple", "Mushrooms"],
+				Dairy: ["Milk", "Cheese"],
+				Meat: ["Steak", "Chicken"],
+				Baking: ["Flour", "Sugar"],
+				Carbs: ["Bread", "Potato"],
+				Other: []
+			},
+			dislikedIngredients: ["Capsicum", "carrots"],
+			mealType: "",
+			cuisine: "",
+			dietaryRequirements: "",
+			numberOfAdditionalIngredients: "5"
+		};
+
+		request(app)
+			.get("/api/generation/basicLoose")
+			.set("Content-Type", "application/json")
+			.send(JSON.stringify(payload))
+			.expect(200)
+			.end((err, res) => {
+				if (err) {
+					return done(err);
+				}
+				console.log(res.text);
+				return done();
+			});
+	}, 15000);
+
+	it("meal type", (done) => {
+		const payload = {
+			favouriteMeals: ["Pancakes", "Waffles"],
+			generatedMeals: ["Cheesy Mushroom Potato Bake, Omlete"],
+			ingredients: {
+				VegetablesAndFruit: ["Raisins", "Apple", "Mushrooms"],
+				Dairy: ["Milk", "Cheese"],
+				Meat: ["Steak", "Chicken"],
+				Baking: ["Flour", "Sugar"],
+				Carbs: ["Bread", "Potato"],
+				Other: []
+			},
+			dislikedIngredients: ["Capsicum", "carrots"],
+			mealType: "Breakfast",
+			cuisine: "",
+			dietaryRequirements: "",
+			numberOfAdditionalIngredients: "5"
+		};
+
+		request(app)
+			.get("/api/generation/basicLoose")
+			.set("Content-Type", "application/json")
+			.send(JSON.stringify(payload))
+			.expect(200)
+			.end((err, res) => {
+				if (err) {
+					return done(err);
+				}
+				console.log(res.text);
+				return done();
+			});
+	}, 15000);
+
+	it("cuisine", (done) => {
+		const payload = {
+			favouriteMeals: [""],
+			generatedMeals: ["Cheesy Mushroom Potato Bake"],
+			ingredients: {
+				VegetablesAndFruit: ["Raisins", "Apple", "Mushrooms"],
+				Dairy: ["Milk", "Cheese"],
+				Meat: ["Steak", "Chicken"],
+				Baking: ["Flour", "Sugar"],
+				Carbs: ["Bread", "Potato"],
+				Other: []
+			},
+			dislikedIngredients: ["Capsicum", "carrots"],
+			mealType: "",
+			cuisine: "Asian",
+			dietaryRequirements: "",
+			numberOfAdditionalIngredients: "5"
+		};
+
+		request(app)
+			.get("/api/generation/basicLoose")
+			.set("Content-Type", "application/json")
+			.send(JSON.stringify(payload))
+			.expect(200)
+			.end((err, res) => {
+				if (err) {
+					return done(err);
+				}
+				console.log(res.text);
+				return done();
+			});
+	}, 15000);
+
+	it("diatary requirement", (done) => {
+		const payload = {
+			favouriteMeals: ["Pancakes", "Waffles"],
+			generatedMeals: ["Cheesy Mushroom Potato Bake"],
+			ingredients: {
+				VegetablesAndFruit: ["Raisins", "Apple", "Mushrooms"],
+				Dairy: ["Milk", "Cheese"],
+				Meat: ["Steak", "Chicken"],
+				Baking: ["Flour", "Sugar"],
+				Carbs: ["Bread", "Potato"],
+				Other: []
+			},
+			dislikedIngredients: ["Capsicum", "carrots"],
+			mealType: "",
+			cuisine: "",
+			dietaryRequirements: "vegetarian",
+			numberOfAdditionalIngredients: "5"
+		};
+
+		request(app)
+			.get("/api/generation/basicLoose")
+			.set("Content-Type", "application/json")
+			.send(JSON.stringify(payload))
+			.expect(200)
+			.end((err, res) => {
+				if (err) {
+					return done(err);
+				}
+				console.log(res.text);
+				return done();
+			});
+	}, 15000);
+});
 
 // describe("GET /remix", () => {
 // 	it("gets all breakfasts from server", (done) => {
