@@ -8,10 +8,6 @@ import React, { useState } from "react";
 function CreateAccount() {
 	const [visible, setVisible] = useState(false);
 
-	const handleToggle = () => {
-		setVisible(!visible);
-	};
-
 	return (
 		<Stack height="100vh" justifyContent="center" alignItems="center" display="flex">
 			<Card sx={{ p: 6, borderRadius: 3 }}>
@@ -26,17 +22,19 @@ function CreateAccount() {
 						type={visible ? "text" : "password"}
 						InputProps={{
 							endAdornment: (
-								<IconButton onClick={handleToggle}>{visible ? <VisibilityOff /> : <Visibility />}</IconButton>
+								<IconButton onClick={() => setVisible(!visible)}>
+									{visible ? <VisibilityOff /> : <Visibility />}
+								</IconButton>
 							)
 						}}
 					/>
 					<Stack width="100%" alignItems="center" spacing={1.5}>
-						<Button fullWidth variant="contained" sx={{ textTransform: "none" }}>
+						<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }}>
 							<Typography variant="h6">Create Account</Typography>
 						</Button>
 						<Typography variant="h6">OR</Typography>
 
-						<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none" }}>
+						<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none", py: 1.5 }}>
 							<Typography variant="h6">Sign in with Google</Typography>
 						</Button>
 						<Button fullWidth href="/login" sx={{ textTransform: "none" }}>

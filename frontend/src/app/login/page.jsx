@@ -8,10 +8,6 @@ import React, { useState } from "react";
 function Login() {
 	const [visible, setVisible] = useState(false);
 
-	const handleToggle = () => {
-		setVisible(!visible);
-	};
-
 	return (
 		<Stack height="100vh" justifyContent="center" alignItems="center" display="flex">
 			<Card sx={{ p: 6, borderRadius: 3 }}>
@@ -21,20 +17,22 @@ function Login() {
 					<TextField fullWidth label="Email Address" />
 					<TextField
 						fullWidth
-						label="Password"
+						label="Password (8+ Characters)"
 						type={visible ? "text" : "password"}
 						InputProps={{
 							endAdornment: (
-								<IconButton onClick={handleToggle}>{visible ? <VisibilityOff /> : <Visibility />}</IconButton>
+								<IconButton onClick={() => setVisible(!visible)}>
+									{visible ? <VisibilityOff /> : <Visibility />}
+								</IconButton>
 							)
 						}}
 					/>
 					<Stack width="100%" alignItems="center" spacing={1.5}>
-						<Button fullWidth variant="contained" sx={{ textTransform: "none" }}>
+						<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }}>
 							<Typography variant="h6">Sign In</Typography>
 						</Button>
 						<Typography variant="h6">OR</Typography>
-						<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none" }}>
+						<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none", py: 1.5 }}>
 							<Typography variant="h6">Sign in with Google</Typography>
 						</Button>
 						<Button fullWidth href="/create-account" sx={{ textTransform: "none" }}>
