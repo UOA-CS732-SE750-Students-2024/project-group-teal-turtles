@@ -1,5 +1,7 @@
+"use client";
+
 import { Google } from "@mui/icons-material";
-import { Stack, Typography, Card, Button, TextField, Divider } from "@mui/material";
+import { Stack, Typography, Card, Button, TextField } from "@mui/material";
 import React from "react";
 
 function Login() {
@@ -13,7 +15,7 @@ function Login() {
 					<TextField fullWidth size="small" label="Password" />
 					<Stack width="100%" alignItems="center" spacing={1}>
 						<Button fullWidth variant="contained" sx={{ textTransform: "none" }}>
-							Sign in
+							Sign In
 						</Button>
 						<Typography>OR</Typography>
 						<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none" }}>
