@@ -7,24 +7,24 @@ import React from "react";
 function CreateAccount() {
 	return (
 		<Stack height="100vh" justifyContent="center" alignItems="center" display="flex">
-			<Card sx={{ p: 4, borderRadius: 2 }}>
-				<Stack alignItems="center" spacing={2}>
-					<Typography variant="h4">Sign Up</Typography>
-					<Typography variant="body2">No Account? We'll create one for you automatically.</Typography>
-					<TextField fullWidth size="small" label="Username" />
-					<TextField fullWidth size="small" label="Email Address" />
-					<TextField fullWidth size="small" label="Password" />
-					<Stack width="100%" alignItems="center" spacing={1}>
+			<Card sx={{ p: 6, borderRadius: 3 }}>
+				<Stack alignItems="center" spacing={3}>
+					<Typography variant="h3">Sign Up</Typography>
+					<Typography variant="h5">No Account? We'll create one for you automatically.</Typography>
+					<TextField fullWidth label="Username" />
+					<TextField fullWidth label="Email Address" />
+					<TextField fullWidth label="Password" />
+					<Stack width="100%" alignItems="center" spacing={1.5}>
 						<Button fullWidth variant="contained" sx={{ textTransform: "none" }}>
-							Create Account
+							<Typography variant="h6">Create Account</Typography>
 						</Button>
-						<Typography alignSelf="center">OR</Typography>
+						<Typography variant="h6">OR</Typography>
 
 						<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none" }}>
-							Sign in with Google
+							<Typography variant="h6">Sign in with Google</Typography>
 						</Button>
 						<Button fullWidth href="/login" sx={{ textTransform: "none" }}>
-							Sign in to existing account
+							<Typography variant="h6">Sign in to an existing account</Typography>
 						</Button>
 					</Stack>
 				</Stack>
