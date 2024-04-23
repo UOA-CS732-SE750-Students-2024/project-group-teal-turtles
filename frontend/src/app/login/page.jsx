@@ -7,22 +7,22 @@ import React from "react";
 function Login() {
 	return (
 		<Stack height="100vh" justifyContent="center" alignItems="center" display="flex">
-			<Card sx={{ p: 4, borderRadius: 2 }}>
-				<Stack alignItems="center" spacing={2}>
-					<Typography variant="h4">Login</Typography>
-					<Typography variant="body2">Sign in to access saved data and information.</Typography>
-					<TextField fullWidth size="small" label="Email Address" />
-					<TextField fullWidth size="small" label="Password" />
-					<Stack width="100%" alignItems="center" spacing={1}>
+			<Card sx={{ p: 6, borderRadius: 3 }}>
+				<Stack alignItems="center" spacing={3}>
+					<Typography variant="h3">Login</Typography>
+					<Typography variant="h5">Sign in to access saved data and information.</Typography>
+					<TextField fullWidth label="Email Address" />
+					<TextField fullWidth label="Password" />
+					<Stack width="100%" alignItems="center" spacing={1.5}>
 						<Button fullWidth variant="contained" sx={{ textTransform: "none" }}>
-							Sign In
+							<Typography variant="h6">Sign In</Typography>
 						</Button>
-						<Typography>OR</Typography>
+						<Typography variant="h6">OR</Typography>
 						<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none" }}>
-							Sign in with Google
+							<Typography variant="h6">Sign in with Google</Typography>
 						</Button>
 						<Button fullWidth href="/create-account" sx={{ textTransform: "none" }}>
-							Create a new account
+							<Typography variant="h6">Create a new account</Typography>
 						</Button>
 					</Stack>
 				</Stack>
