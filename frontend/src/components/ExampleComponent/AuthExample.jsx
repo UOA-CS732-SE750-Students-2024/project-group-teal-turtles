@@ -36,9 +36,9 @@ function AuthExample() {
 		handleLogin("1234@gmail.com", "1234567");
 	}, []);
 
-	const fetchData = async (uid, accessToken) => {
+	const fetchData = async (accessToken) => {
 		try {
-			const res = await axios.get(`http://localhost:3000/api/users/${uid}`, {
+			const res = await axios.get("http://localhost:3000/api/users", {
 				headers: {
 					authorisation: accessToken
 				}
@@ -51,12 +51,12 @@ function AuthExample() {
 
 	return (
 		<>
-			<div className={styles.exampleCSS}>{user.uid}</div>
+			<div className={styles.exampleCSS}>{user.accessToken}</div>
 			<div>This is an example component!</div>
 			<button
 				onClick={() => {
 					console.log(user.accessToken);
-					fetchData(user.uid, user.accessToken);
+					fetchData(user.accessToken);
 				}}
 			>
 				Fetch Data

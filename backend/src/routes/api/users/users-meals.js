@@ -10,7 +10,7 @@ import {
 const router = Router();
 
 /*
- * PUT /api/users/:uid/meals/favourite/add
+ * PUT /api/users/meals/favourite/add
  * Adds a new favourite meal to the users favourite meals list
  *
  * Body JSON input:
@@ -19,7 +19,7 @@ const router = Router();
 router.put("/favourite/add", async (req, res) => {
 	try {
 		const { favMealToAdd } = req.body;
-		await addFavouriteMeal(req.params.id, favMealToAdd);
+		await addFavouriteMeal(req.uid, favMealToAdd);
 		return res.sendStatus(201);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -27,7 +27,7 @@ router.put("/favourite/add", async (req, res) => {
 });
 
 /*
- * PUT /api/users/:uid/meals/favourite/remove
+ * PUT /api/users/meals/favourite/remove
  * Removes a favourite meal from the user's favourite meals list
  *
  * Body JSON input:
@@ -36,7 +36,7 @@ router.put("/favourite/add", async (req, res) => {
 router.put("/favourite", async (req, res) => {
 	try {
 		const { favMealToDelete } = req.body;
-		await deleteFavouriteMeal(req.params.id, favMealToDelete);
+		await deleteFavouriteMeal(req.uid, favMealToDelete);
 		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -44,18 +44,18 @@ router.put("/favourite", async (req, res) => {
 });
 
 /*
- * GET /api/users/:uid/meals/favourite
+ * GET /api/users/meals/favourite
  * retrieves the users favourite meals (String list)
  */
 router.get("/favourite", async (req, res) => {
-	const favoriteMeals = await getFavouriteMeals(req.params.id);
+	const favoriteMeals = await getFavouriteMeals(req.uid);
 
 	if (favoriteMeals) return res.json(favoriteMeals);
 	return res.sendStatus(404).json(err);
 });
 
 /*
- * PUT /api/users/:uid/meals
+ * PUT /api/users/meals
  * adds a new generated meal to the users generated meal list
  *
  * Body JSON input:
@@ -64,7 +64,7 @@ router.get("/favourite", async (req, res) => {
 router.put("/", async (req, res) => {
 	try {
 		const { mealToAdd } = req.body;
-		await addGeneratedMeal(req.params.id, mealToAdd);
+		await addGeneratedMeal(req.uid, mealToAdd);
 		return res.sendStatus(201);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -72,11 +72,11 @@ router.put("/", async (req, res) => {
 });
 
 /*
- * GET /api/users/:uid/meals/favourite
+ * GET /api/users/meals/favourite
  * retrieves all the users generated meals (String list)
  */
 router.get("/", async (req, res) => {
-	const generatedMeals = await getGeneratedMeals(req.params.id);
+	const generatedMeals = await getGeneratedMeals(req.uid);
 
 	if (generatedMeals) return res.json(generatedMeals);
 	return res.sendStatus(404).json(err);

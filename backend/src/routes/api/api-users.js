@@ -10,9 +10,8 @@ const router = Router();
  * Path parameters:
  * - uid (string): The ID of the user to be retrieved
  */
-router.get("/:id", async (req, res) => {
-	console.log(req.uid);
-	const user = await retrieveUser(req.params.id);
+router.get("/", async (req, res) => {
+	const user = await retrieveUser(req.uid);
 
 	if (user) return res.json(user);
 	return res.sendStatus(404);
@@ -27,8 +26,7 @@ router.get("/:id", async (req, res) => {
  */
 router.post("/", async (req, res) => {
 	try {
-		const { uid } = req.body;
-		const user = await createUser(uid);
+		const user = await createUser(req.uid);
 		return res.status(201).json(user);
 	} catch (err) {
 		if (err.status === 409) {
@@ -46,18 +44,18 @@ router.post("/", async (req, res) => {
  * Path parameters:
  * - uid (string): The ID of the user to be deleted
  */
-router.delete("/:uid", async (req, res) => {
-	await deleteUser(req.params.id);
+router.delete("/", async (req, res) => {
+	await deleteUser(req.uid);
 	return res.sendStatus(204);
 });
 
 import mealRoutes from "./users/users-meals.js";
-router.use("/:uid/meals", mealRoutes);
+router.use("/meals", mealRoutes);
 
 import ingredientRoutes from "./users/users-ingredients.js";
-router.use("/:uid/ingredients", ingredientRoutes);
+router.use("/ingredients", ingredientRoutes);
 
 import parameterRoutes from "./users/users-parameters.js";
-router.use("/:uid/paramters", parameterRoutes);
+router.use("/paramters", parameterRoutes);
 
 export default router;
