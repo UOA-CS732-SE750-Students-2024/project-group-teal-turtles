@@ -1,5 +1,3 @@
-"use client";
-
 import MealGenerationCard from "@/components/MealGenerationPanel/MealGenerationCard/MealGenerationCard";
 import { Grid, Paper, Typography } from "@mui/material";
 import styles from "./MealGenerationPanel.module.css";
