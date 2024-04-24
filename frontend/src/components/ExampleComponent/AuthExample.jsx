@@ -12,7 +12,6 @@ function AuthExample() {
 
 	onAuthStateChanged(auth, (currentUser) => {
 		setUser(currentUser);
-		// console.log(user);
 	});
 
 	const handleAccountCreation = async (email, password) => {
