@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Middleware function to authenticate and add user id to req
+// Middleware function to authenticate and add user id to req, all requests require an authorisation header
 const authenticateUser = async (req, res, next) => {
 	const authToken = req.headers.authorisation;
 	if (!authToken) {

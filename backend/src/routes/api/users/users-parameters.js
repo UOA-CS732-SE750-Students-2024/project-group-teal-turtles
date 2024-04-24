@@ -5,7 +5,7 @@ const router = Router();
 
 /*
  * PUT /api/users/parameters
- * updates the users parameters
+ * updates the logged in users parameters
  *
  * Body JSON input:
  * - parameters(object with properties as seen in schema.js) : the users new parameters
@@ -23,7 +23,7 @@ router.put("/", async (req, res) => {
 
 /*
  * GET /api/users/parameters
- * retrieves the users parameters
+ * retrieves the logged in users parameters
  */
 router.get("/", async (req, res) => {
 	const parameters = await getParameters(req.uid);
