@@ -18,9 +18,8 @@ const router = Router();
  */
 router.put("/favourite/add", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { favMealToAdd } = req.body;
-		await addFavouriteMeal(uid, favMealToAdd);
+		await addFavouriteMeal(req.params.id, favMealToAdd);
 		return res.sendStatus(201);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -36,8 +35,8 @@ router.put("/favourite/add", async (req, res) => {
  */
 router.put("/favourite", async (req, res) => {
 	try {
-		const { uid, favMealToDelete } = req.body;
-		await deleteFavouriteMeal(uid, favMealToDelete);
+		const { favMealToDelete } = req.body;
+		await deleteFavouriteMeal(req.params.id, favMealToDelete);
 		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -49,9 +48,7 @@ router.put("/favourite", async (req, res) => {
  * retrieves the users favourite meals (String list)
  */
 router.get("/favourite", async (req, res) => {
-	const { uid } = req.params;
-
-	const favoriteMeals = await getFavouriteMeals(uid);
+	const favoriteMeals = await getFavouriteMeals(req.params.id);
 
 	if (favoriteMeals) return res.json(favoriteMeals);
 	return res.sendStatus(404).json(err);
@@ -66,9 +63,8 @@ router.get("/favourite", async (req, res) => {
  */
 router.put("/", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { mealToAdd } = req.body;
-		await addGeneratedMeal(uid, mealToAdd);
+		await addGeneratedMeal(req.params.id, mealToAdd);
 		return res.sendStatus(201);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -80,9 +76,7 @@ router.put("/", async (req, res) => {
  * retrieves all the users generated meals (String list)
  */
 router.get("/", async (req, res) => {
-	const { uid } = req.params;
-
-	const generatedMeals = await getGeneratedMeals(uid);
+	const generatedMeals = await getGeneratedMeals(req.params.id);
 
 	if (generatedMeals) return res.json(generatedMeals);
 	return res.sendStatus(404).json(err);

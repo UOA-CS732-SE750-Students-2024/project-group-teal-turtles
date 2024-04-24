@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 export async function createAccount(email, password) {
 	try {
 		const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-		console.log("user created: ", userCredential.user);
+		// console.log("user created: ", userCredential.user);
 		return userCredential.user;
 	} catch (error) {
 		throw error;
@@ -14,7 +14,7 @@ export async function createAccount(email, password) {
 export async function login(email, password) {
 	try {
 		const userCredential = await signInWithEmailAndPassword(auth, email, password);
-		console.log("user logged in: ", userCredential.user);
+		// console.log("user logged in: ", userCredential.user);
 		return userCredential.user;
 	} catch (error) {
 		throw error;

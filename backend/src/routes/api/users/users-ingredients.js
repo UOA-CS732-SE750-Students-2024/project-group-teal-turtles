@@ -69,10 +69,9 @@ router.get("/", async (req, res) => {
  */
 router.put("/disliked/add", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { dislikedIngredient } = req.body;
 
-		await addDislikedIngredient(uid, dislikedIngredient);
+		await addDislikedIngredient(req.params.id, dislikedIngredient);
 		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -87,10 +86,9 @@ router.put("/disliked/add", async (req, res) => {
  */
 router.put("/disliked/remove", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { dislikedIngredient } = req.body;
 
-		await removeDislikedIngredient(uid, dislikedIngredient);
+		await removeDislikedIngredient(req.params.id, dislikedIngredient);
 		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -101,9 +99,7 @@ router.put("/disliked/remove", async (req, res) => {
  * Retrieve all disliked ingredients for a certain user
  */
 router.get("/disliked", async (req, res) => {
-	const { uid } = req.params;
-
-	const dislikedIngredients = await getDislikedIngredients(uid);
+	const dislikedIngredients = await getDislikedIngredients(req.params.id);
 
 	if (dislikedIngredients) return res.json(dislikedIngredients);
 	return res.sendStatus(404).json(err);

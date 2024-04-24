@@ -2,15 +2,17 @@
 import React from "react";
 import styles from "./ExampleComponent.module.css";
 import { createAccount, login } from "@/app/auth-functions";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/app/firebase-config";
+import axios from "axios";
 
 function AuthExample() {
-	const [user, setUser] = useState({ email: "loading" });
+	const [user, setUser] = useState(false);
 
 	onAuthStateChanged(auth, (currentUser) => {
 		setUser(currentUser);
+		// console.log(user);
 	});
 
 	const handleAccountCreation = async (email, password) => {
@@ -24,19 +26,41 @@ function AuthExample() {
 	const handleLogin = async (email, password) => {
 		try {
 			await login(email, password);
-			// console.log(user);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	// handleAccountCreation("123@gmail.com", "123456");
-	handleLogin("123@gmail.com", "123456");
+	// handleAccountCreation("1234@gmail.com", "1234567");
+	useEffect(() => {
+		handleLogin("1234@gmail.com", "1234567");
+	}, []);
+
+	const fetchData = async (uid, accessToken) => {
+		try {
+			const res = await axios.get(`http://localhost:3000/api/users/${uid}`, {
+				headers: {
+					authorisation: accessToken
+				}
+			});
+			console.log("User data:", res.data);
+		} catch (error) {
+			console.error("Error fetching data:", error);
+		}
+	};
 
 	return (
 		<>
-			<div className={styles.exampleCSS}>{user.email}</div>
+			<div className={styles.exampleCSS}>{user.uid}</div>
 			<div>This is an example component!</div>
+			<button
+				onClick={() => {
+					console.log(user.accessToken);
+					fetchData(user.uid, user.accessToken);
+				}}
+			>
+				Fetch Data
+			</button>
 		</>
 	);
 }

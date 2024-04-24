@@ -10,10 +10,9 @@ const router = Router();
  * Path parameters:
  * - uid (string): The ID of the user to be retrieved
  */
-router.get("/:uid", async (req, res) => {
-	const { uid } = req.params;
-
-	const user = await retrieveUser(uid);
+router.get("/:id", async (req, res) => {
+	console.log(req.uid);
+	const user = await retrieveUser(req.params.id);
 
 	if (user) return res.json(user);
 	return res.sendStatus(404);
@@ -48,8 +47,7 @@ router.post("/", async (req, res) => {
  * - uid (string): The ID of the user to be deleted
  */
 router.delete("/:uid", async (req, res) => {
-	const { uid } = req.params;
-	await deleteUser(uid);
+	await deleteUser(req.params.id);
 	return res.sendStatus(204);
 });
 

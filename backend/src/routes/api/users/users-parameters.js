@@ -12,10 +12,9 @@ const router = Router();
  */
 router.put("/", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { parameters } = req.body;
 
-		await setUserParameters(uid, parameters);
+		await setUserParameters(req.params.id, parameters);
 		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -27,9 +26,7 @@ router.put("/", async (req, res) => {
  * retrieves the users parameters
  */
 router.get("/", async (req, res) => {
-	const { uid } = req.params;
-
-	const parameters = await getParameters(uid);
+	const parameters = await getParameters(req.params.id);
 
 	if (parameters) return res.json(parameters);
 	return res.sendStatus(404).json(err);
