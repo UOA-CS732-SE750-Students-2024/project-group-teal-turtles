@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
 import styles from "./ExampleComponent.module.css";
-import { createAccount, login } from "@/app/auth-functions";
+import { createAccount, login, logout } from "@/app/auth-functions";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/app/firebase-config";
 import axios from "axios";
 
 function AuthExample() {
+	//this needs to be known by all pages, so need to add to an appcontext somehow
 	const [user, setUser] = useState(false);
-
 	onAuthStateChanged(auth, (currentUser) => {
 		setUser(currentUser);
 	});
@@ -30,10 +30,13 @@ function AuthExample() {
 		}
 	};
 
-	// handleAccountCreation("1234@gmail.com", "1234567");
-	useEffect(() => {
-		handleLogin("1234@gmail.com", "1234567");
-	}, []);
+	const handleLogout = async () => {
+		try {
+			await logout();
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const fetchData = async (accessToken) => {
 		try {
@@ -47,11 +50,39 @@ function AuthExample() {
 			console.error("Error fetching data:", error);
 		}
 	};
-
+	//reason for logging in is to retrieve the accesstoken so that we can put it in headers for requests to backend
 	return (
 		<>
-			<div className={styles.exampleCSS}>{user.accessToken}</div>
+			<div className={styles.exampleCSS}>{user ? user.accessToken : "logged out"}</div>
 			<div>This is an example component!</div>
+
+			<button
+				onClick={() => {
+					console.log("logging in ");
+					handleLogin("1234@gmail.com", "1234567");
+				}}
+			>
+				Login
+			</button>
+
+			<button
+				onClick={() => {
+					console.log("creating account");
+					handleAccountCreation("1234@gmail.com", "1234567");
+				}}
+			>
+				createAccount
+			</button>
+
+			<button
+				onClick={() => {
+					console.log("logging out");
+					handleLogout();
+				}}
+			>
+				logout
+			</button>
+
 			<button
 				onClick={() => {
 					console.log(user.accessToken);
