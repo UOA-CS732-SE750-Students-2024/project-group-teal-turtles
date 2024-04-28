@@ -4,16 +4,11 @@ import { createUser, retrieveUser, deleteUser } from "../../data/user-dao.js";
 const router = Router();
 
 /*
- * GET /api/users/:uid
- * retrieves a user
- *
- * Path parameters:
- * - uid (string): The ID of the user to be retrieved
+ * GET /api/users
+ * retrieves a user object using the authtoken in the header
  */
-router.get("/:uid", async (req, res) => {
-	const { uid } = req.params;
-
-	const user = await retrieveUser(uid);
+router.get("/", async (req, res) => {
+	const user = await retrieveUser(req.uid);
 
 	if (user) return res.json(user);
 	return res.sendStatus(404);
@@ -21,15 +16,11 @@ router.get("/:uid", async (req, res) => {
 
 /*
  * POST /api/users
- * creates a new user in MongoDB
- *
- * Body JSON input:
- * - uid (string): The ID of the user to create which would have first been retrieved from firebase authentication
+ * creates a new user in MongoDB using the authToken in the header
  */
 router.post("/", async (req, res) => {
 	try {
-		const { uid } = req.body;
-		const user = await createUser(uid);
+		const user = await createUser(req.uid);
 		return res.status(201).json(user);
 	} catch (err) {
 		if (err.status === 409) {
@@ -41,25 +32,21 @@ router.post("/", async (req, res) => {
 });
 
 /*
- * DELETE /api/users/:uid
- * deletes a user account
- *
- * Path parameters:
- * - uid (string): The ID of the user to be deleted
+ * DELETE /api/users
+ * deletes a user account thats auth token is in the header
  */
-router.delete("/:uid", async (req, res) => {
-	const { uid } = req.params;
-	await deleteUser(uid);
+router.delete("/", async (req, res) => {
+	await deleteUser(req.uid);
 	return res.sendStatus(204);
 });
 
 import mealRoutes from "./users/users-meals.js";
-router.use("/:uid/meals", mealRoutes);
+router.use("/meals", mealRoutes);
 
 import ingredientRoutes from "./users/users-ingredients.js";
-router.use("/:uid/ingredients", ingredientRoutes);
+router.use("/ingredients", ingredientRoutes);
 
 import parameterRoutes from "./users/users-parameters.js";
-router.use("/:uid/paramters", parameterRoutes);
+router.use("/paramters", parameterRoutes);
 
 export default router;
