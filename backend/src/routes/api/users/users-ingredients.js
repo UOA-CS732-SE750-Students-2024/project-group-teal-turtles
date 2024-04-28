@@ -11,7 +11,7 @@ import {
 const router = Router();
 
 /*
- * PUT /api/users/:uid/ingredients
+ * PUT /api/users/ingredients
  * sets ingredients of a user
  *
  * Body JSON input:
@@ -19,10 +19,9 @@ const router = Router();
  */
 router.put("/", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { ingredients } = req.body;
 
-		await setIngredients(uid, ingredients);
+		await setIngredients(req.uid, ingredients);
 		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(422).json(err);
@@ -30,7 +29,7 @@ router.put("/", async (req, res) => {
 });
 
 /*
- * PUT /api/users/:uid/ingredients/type
+ * PUT /api/users/ingredients/type
  * Set ingredient list of a certain type for a user
  *
  * Body JSON inputs:
@@ -39,29 +38,26 @@ router.put("/", async (req, res) => {
  */
 router.put("/type", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { ingredientType, ingredients } = req.body;
 
-		await setIngredientTypeList(uid, ingredientType, ingredients);
+		await setIngredientTypeList(req.uid, ingredientType, ingredients);
 		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(422).json(err);
 	}
 });
 /*
- * GET /api/users/:uid/ingredients
+ * GET /api/users/ingredients
  * retrieves all the users ingredients
  */
 router.get("/", async (req, res) => {
-	const { uid } = req.params;
-
-	const ingredients = await getIngredients(uid);
+	const ingredients = await getIngredients(req.uid);
 
 	if (ingredients) return res.json(ingredients);
 	return res.sendStatus(404).json(err);
 });
 /*
- * PUT /api/users/:uid/ingredients/favourite/add
+ * PUT /api/users/ingredients/favourite/add
  * Add one disliked ingredient for a user
  *
  * Body JSON input:
@@ -69,17 +65,16 @@ router.get("/", async (req, res) => {
  */
 router.put("/disliked/add", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { dislikedIngredient } = req.body;
 
-		await addDislikedIngredient(uid, dislikedIngredient);
+		await addDislikedIngredient(req.uid, dislikedIngredient);
 		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(422).json(err);
 	}
 });
 /*
- * PUT /api/users/:uid/ingredients/favourite
+ * PUT /api/users/ingredients/favourite
  * Remove one disliked ingredient for a user
  *
  * Body JSON input:
@@ -87,23 +82,20 @@ router.put("/disliked/add", async (req, res) => {
  */
 router.put("/disliked/remove", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { dislikedIngredient } = req.body;
 
-		await removeDislikedIngredient(uid, dislikedIngredient);
+		await removeDislikedIngredient(req.uid, dislikedIngredient);
 		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(422).json(err);
 	}
 });
 /*
- * GET /api/users/:uid/ingredients/disliked
+ * GET /api/users/ingredients/disliked
  * Retrieve all disliked ingredients for a certain user
  */
 router.get("/disliked", async (req, res) => {
-	const { uid } = req.params;
-
-	const dislikedIngredients = await getDislikedIngredients(uid);
+	const dislikedIngredients = await getDislikedIngredients(req.uid);
 
 	if (dislikedIngredients) return res.json(dislikedIngredients);
 	return res.sendStatus(404).json(err);
