@@ -72,13 +72,22 @@ export default function PantryTabs() {
 				<Tab label="Dairy" {...a11yProps(5)} />
 			</Tabs>
 			<TabPanel value={value} index={0}>
+				<Typography variant="h6">Your Ingredients</Typography>
 				<PantryGrid itemData={itemData[0]} />
 			</TabPanel>
 			<TabPanel value={value} index={1}>
+				<Typography variant="h6">Bread</Typography>
 				<PantryGrid itemData={itemData[1]} />
+				<Typography variant="h6">Pasta</Typography>
+				<Typography variant="h6">Other</Typography>
 			</TabPanel>
 			<TabPanel value={value} index={2}>
+				<Typography variant="h6">Beef</Typography>
 				<PantryGrid itemData={itemData[2]} />
+				<Typography variant="h6">Chicken</Typography>
+				<Typography variant="h6">Pork</Typography>
+				<Typography variant="h6">Processed</Typography>
+				<Typography variant="h6">Other</Typography>
 			</TabPanel>
 			<TabPanel value={value} index={3}>
 				<PantryGrid itemData={itemData[3]} />
