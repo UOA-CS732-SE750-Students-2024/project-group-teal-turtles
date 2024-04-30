@@ -1,4 +1,5 @@
-import { Stack, Typography } from "@mui/material";
+import CategoryCard from "@/components/CategoryCard/CategoryCard";
+import { Grid, Stack, Typography } from "@mui/material";
 
 function Meals() {
 	return (
@@ -7,6 +8,9 @@ function Meals() {
 			<Typography variant="h6">
 				Select Meals below that you love, in order to aid with recipe recommendation.
 			</Typography>
+			<Grid>
+				<CategoryCard text="Pizza" src="vercel.svg" onClick={() => {}} />
+			</Grid>
 		</Stack>
 	);
 }
