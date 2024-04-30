@@ -1,33 +1,78 @@
 import request from "supertest";
-import axios from "axios";
 import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
-const app = require("../../../../app.js");
-var authToken;
-var badAuthToken;
+const app = require("./middleware.js");
+const authToken = "user1";
+const authToken2 = "user2";
+const authToken3 = "user3";
+const badAuthToken = "user4";
+
+let mongod;
+
+const user1 = {
+	_id: "user1",
+	favouriteMeals: [],
+	generatedMeals: [],
+	ingredients: {
+		VegetablesAndFruit: ["Carrot", "Cucumber"],
+		Dairy: ["Yogurt"],
+		Meat: ["Pork"],
+		Baking: ["Butter"],
+		Carbs: ["Quinoa"],
+		Other: ["Pepper"]
+	},
+	dislikedIngredients: [],
+	parameters: { numberOfPeople: { $numberInt: "4" }, mealType: "dinner", cuisine: "", dietaryRequirements: [] }
+};
+
+const user2 = {
+	_id: "user2",
+	favouriteMeals: [],
+	generatedMeals: [],
+	ingredients: {
+		VegetablesAndFruit: ["Carrot", "Cucumber"],
+		Dairy: ["Yogurt"],
+		Meat: ["Pork"],
+		Baking: ["Butter"],
+		Carbs: ["Quinoa"],
+		Other: ["Pepper"]
+	},
+	dislikedIngredients: [],
+	parameters: { numberOfPeople: { $numberInt: "4" }, mealType: "dinner", cuisine: "", dietaryRequirements: [] }
+};
+const user3 = {
+	_id: "user3",
+	favouriteMeals: [],
+	generatedMeals: [],
+	ingredients: {
+		VegetablesAndFruit: ["Carrot", "Cucumber"],
+		Dairy: ["Yogurt"],
+		Meat: ["Pork"],
+		Baking: ["Butter"],
+		Carbs: ["Quinoa"],
+		Other: ["Pepper"]
+	},
+	dislikedIngredients: ["Olives"],
+	parameters: { numberOfPeople: { $numberInt: "4" }, mealType: "dinner", cuisine: "", dietaryRequirements: [] }
+};
+
+const users = [user1, user2, user3];
+
 beforeAll(async () => {
-	const API_KEY = process.env.TESTING_FIREBASE_API_KEY;
-	const response = await axios.post(
-		"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY,
-		{
-			email: "1234@gmail.com",
-			password: "1234567",
-			returnSecureToken: true
-		}
-	);
-	authToken = response.data.idToken;
+	mongod = await MongoMemoryServer.create();
 
-	const response2 = await axios.post(
-		"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY,
-		{
-			email: "12345@gmail.com",
-			password: "1234567",
-			returnSecureToken: true
-		}
-	);
-	badAuthToken = response2.data.idToken;
-	await mongoose.connect(process.env.DB_URL);
-}, 15000);
+	const connectionString = mongod.getUri();
+	await mongoose.connect(connectionString);
+	await mongoose.connection.db.dropDatabase();
+});
+
+beforeEach(async () => {
+	// Drop existing db
+	await mongoose.connection.db.dropDatabase();
+	const coll = await mongoose.connection.db.createCollection("Users");
+	await coll.insertMany(users);
+});
 
 describe("API: /api/users/ingredients", () => {
 	describe("GET /api/users/ingredients", () => {
@@ -64,7 +109,7 @@ describe("API: /api/users/ingredients", () => {
 			request(app)
 				.put("/api/users/ingredients")
 				.send({ ingredients: updatedIngredients })
-				.set("Authorization", authToken)
+				.set("Authorization", authToken2)
 				.expect(204, done);
 		}, 15000);
 
@@ -111,7 +156,7 @@ describe("API: /api/users/ingredients", () => {
 			request(app)
 				.put("/api/users/ingredients/disliked/add")
 				.send({ dislikedIngredientToAdd })
-				.set("Authorization", authToken)
+				.set("Authorization", authToken2)
 				.expect(204, done);
 		}, 15000);
 
@@ -131,7 +176,7 @@ describe("API: /api/users/ingredients", () => {
 			request(app)
 				.put("/api/users/ingredients/disliked/remove")
 				.send({ dislikedIngredientToRemove })
-				.set("Authorization", authToken)
+				.set("Authorization", authToken3)
 				.expect(204, done);
 		}, 15000);
 
