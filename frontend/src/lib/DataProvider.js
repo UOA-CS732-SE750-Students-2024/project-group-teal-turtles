@@ -6,15 +6,31 @@ import { DataContext } from "./DataContext";
 
 export const DataProvider = ({ children }) => {
 	// initialize new states here
-	const [dataOne, setDataOne] = useState({ value: "this is data one" });
-	const [dataTwo, setDataTwo] = useState({ value: "this is data two" });
+	const [userFavouriteMeals, setuserFavouriteMeals] = useState([]);
+	const [userGeneratedMeals, setuserGeneratedMeals] = useState([]);
+	const [userIngredients, setuserIngredients] = useState([]);
+	const [userDislikedIngredients, setuserDislikedIngredients] = useState([]);
+	const [userParameters, setuserParameters] = useState([]);
+	const [userEmail, setUserEmail] = useState("");
+	const [authToken, setAuthToken] = useState("");
 
-  // pass the states to the context here
+	// pass the states to the context here
 	const contextValue = {
-		dataOne,
-		setDataOne,
-		dataTwo,
-		setDataTwo
+		userFavouriteMeals,
+		setuserFavouriteMeals,
+		userIngredients,
+		userGeneratedMeals,
+		setuserGeneratedMeals,
+		userIngredients,
+		setuserIngredients,
+		userDislikedIngredients,
+		setuserDislikedIngredients,
+		userParameters,
+		setuserParameters,
+		userEmail,
+		setUserEmail,
+		authToken,
+		setAuthToken
 	};
 
 	return <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>;
