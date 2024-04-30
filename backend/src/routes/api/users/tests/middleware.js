@@ -17,7 +17,6 @@ const authenticateUser = async (req, res, next) => {
 	}
 	try {
 		req.uid = authToken;
-		console.log(req.uid);
 		return next();
 	} catch (error) {
 		return res.status(401).json({ message: "Invalid authorisation token." });

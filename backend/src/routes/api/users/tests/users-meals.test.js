@@ -1,33 +1,78 @@
 import request from "supertest";
-import axios from "axios";
 import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
-const app = require("../../../../app.js");
-var authToken;
-var badAuthToken;
+const app = require("./middleware.js");
+const authToken = "user1";
+const authToken2 = "user2";
+const authToken3 = "user3";
+const badAuthToken = "user4";
+
+let mongod;
+
+const user1 = {
+	_id: "user1",
+	favouriteMeals: [],
+	generatedMeals: ["Chicken Curry", "Quinoa Salad"],
+	ingredients: {
+		VegetablesAndFruit: ["Carrot", "Cucumber"],
+		Dairy: ["Yogurt"],
+		Meat: ["Pork"],
+		Baking: ["Butter"],
+		Carbs: ["Quinoa"],
+		Other: ["Pepper"]
+	},
+	dislikedIngredients: [],
+	parameters: { numberOfPeople: { $numberInt: "4" }, mealType: "dinner", cuisine: "", dietaryRequirements: [] }
+};
+
+const user2 = {
+	_id: "user2",
+	favouriteMeals: ["Chicken Curry"],
+	generatedMeals: [],
+	ingredients: {
+		VegetablesAndFruit: ["Carrot", "Cucumber"],
+		Dairy: ["Yogurt"],
+		Meat: ["Pork"],
+		Baking: ["Butter"],
+		Carbs: ["Quinoa"],
+		Other: ["Pepper"]
+	},
+	dislikedIngredients: [],
+	parameters: { numberOfPeople: { $numberInt: "4" }, mealType: "dinner", cuisine: "", dietaryRequirements: [] }
+};
+const user3 = {
+	_id: "user3",
+	favouriteMeals: [],
+	generatedMeals: [],
+	ingredients: {
+		VegetablesAndFruit: ["Carrot", "Cucumber"],
+		Dairy: ["Yogurt"],
+		Meat: ["Pork"],
+		Baking: ["Butter"],
+		Carbs: ["Quinoa"],
+		Other: ["Pepper"]
+	},
+	dislikedIngredients: ["Olives"],
+	parameters: { numberOfPeople: { $numberInt: "4" }, mealType: "dinner", cuisine: "", dietaryRequirements: [] }
+};
+
+const users = [user1, user2, user3];
+
 beforeAll(async () => {
-	const API_KEY = process.env.TESTING_FIREBASE_API_KEY;
-	const response = await axios.post(
-		"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY,
-		{
-			email: "1234@gmail.com",
-			password: "1234567",
-			returnSecureToken: true
-		}
-	);
-	authToken = response.data.idToken;
+	mongod = await MongoMemoryServer.create();
 
-	const response2 = await axios.post(
-		"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY,
-		{
-			email: "12345@gmail.com",
-			password: "1234567",
-			returnSecureToken: true
-		}
-	);
-	badAuthToken = response2.data.idToken;
-	await mongoose.connect(process.env.DB_URL);
-}, 15000);
+	const connectionString = mongod.getUri();
+	await mongoose.connect(connectionString);
+	await mongoose.connection.db.dropDatabase();
+});
+
+beforeEach(async () => {
+	// Drop existing db
+	await mongoose.connection.db.dropDatabase();
+	const coll = await mongoose.connection.db.createCollection("Users");
+	await coll.insertMany(users);
+});
 
 describe("API: /api/users/meals", () => {
 	describe("PUT /api/users/meals/favourite/add", () => {
@@ -58,7 +103,7 @@ describe("API: /api/users/meals", () => {
 
 			request(app)
 				.put("/api/users/meals/favourite/remove")
-				.set("Authorization", authToken)
+				.set("Authorization", authToken2)
 				.send({ favMealToDelete })
 				.expect(204)
 				.end((err, res) => {
@@ -96,7 +141,7 @@ describe("API: /api/users/meals", () => {
 
 	describe("PUT /api/users/meals", () => {
 		it("should add a new generated meal", (done) => {
-			const mealToAdd = "Spaghetti Carbonara" + Math.random();
+			const mealToAdd = "Spaghetti Carbonara";
 
 			request(app)
 				.put("/api/users/meals")
