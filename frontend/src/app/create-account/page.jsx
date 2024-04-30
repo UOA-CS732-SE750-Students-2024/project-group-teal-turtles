@@ -1,8 +1,8 @@
 "use client";
 
-import { Stack, Card } from "@mui/material";
 import React, { useState } from "react";
 import Register from "./register";
+import CardWrapper from "@/components/CardWrapper/CardWrapper";
 
 function CreateAccount() {
 	const [username, setUsername] = useState("");
@@ -10,18 +10,16 @@ function CreateAccount() {
 	const [password, setPassword] = useState("");
 
 	return (
-		<Stack height="100vh" justifyContent="center" alignItems="center" display="flex">
-			<Card sx={{ p: 6, borderRadius: 3 }}>
-				<Register
-					username={username}
-					email={email}
-					password={password}
-					setUsername={setUsername}
-					setEmail={setEmail}
-					setPassword={setPassword}
-				/>
-			</Card>
-		</Stack>
+		<CardWrapper>
+			<Register
+				username={username}
+				email={email}
+				password={password}
+				setUsername={setUsername}
+				setEmail={setEmail}
+				setPassword={setPassword}
+			/>
+		</CardWrapper>
 	);
 }
 

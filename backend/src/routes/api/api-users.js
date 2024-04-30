@@ -8,10 +8,15 @@ const router = Router();
  * retrieves a user object using the authtoken in the header
  */
 router.get("/", async (req, res) => {
-	const user = await retrieveUser(req.uid);
-
-	if (user) return res.json(user);
-	return res.sendStatus(404);
+	try {
+		const user = await retrieveUser(req.uid);
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
+		}
+		return res.json(user);
+	} catch (err) {
+		return res.status(500).json({ error: "Internal server error" });
+	}
 });
 
 /*
@@ -21,13 +26,10 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
 	try {
 		const user = await createUser(req.uid);
+		console.log("created");
 		return res.status(201).json(user);
 	} catch (err) {
-		if (err.status === 409) {
-			return res.json(err);
-		} else {
-			return res.status(422).json(err);
-		}
+		return res.status(err.status).json({ error: err.error });
 	}
 });
 
@@ -36,8 +38,12 @@ router.post("/", async (req, res) => {
  * deletes a user account thats auth token is in the header
  */
 router.delete("/", async (req, res) => {
-	await deleteUser(req.uid);
-	return res.sendStatus(204);
+	try {
+		await deleteUser(req.uid);
+		return res.sendStatus(204);
+	} catch (err) {
+		return res.status(err.status).json({ error: err.error });
+	}
 });
 
 import mealRoutes from "./users/users-meals.js";
@@ -47,6 +53,6 @@ import ingredientRoutes from "./users/users-ingredients.js";
 router.use("/ingredients", ingredientRoutes);
 
 import parameterRoutes from "./users/users-parameters.js";
-router.use("/paramters", parameterRoutes);
+router.use("/parameters", parameterRoutes);
 
 export default router;

@@ -12,8 +12,8 @@ export default function Layout({ children }) {
 				<a href="/edit-profile" className={styles.headeritem}>
 					Edit Profile
 				</a>
-				<a href="/edit-ingredients" className={styles.headeritem}>
-					Edit Ingredients
+				<a href="/pantry" className={styles.headeritem}>
+					Pantry
 				</a>
 				<a href="/generation-options" className={styles.headeritem}>
 					Generation Options
