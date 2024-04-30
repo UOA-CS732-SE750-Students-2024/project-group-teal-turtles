@@ -45,7 +45,6 @@ function Register({ username, email, password, setUsername, setEmail, setPasswor
 					<Typography variant="h6">Create Account</Typography>
 				</Button>
 				<Typography variant="h6">OR</Typography>
-
 				<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none", py: 1.5 }}>
 					<Typography variant="h6">Sign in with Google</Typography>
 				</Button>

@@ -1,5 +1,5 @@
 import CategoryCard from "@/components/CategoryCard/CategoryCard";
-import { Grid, Stack, Typography } from "@mui/material";
+import { Grid, Stack, Typography, Button } from "@mui/material";
 
 function Meals() {
 	return (
@@ -11,6 +11,9 @@ function Meals() {
 			<Grid>
 				<CategoryCard text="Pizza" src="vercel.svg" onClick={() => {}} />
 			</Grid>
+			<Button variant="contained" sx={{ textTransform: "none", py: 1.5 }}>
+				<Typography variant="h6">Continue</Typography>
+			</Button>
 		</Stack>
 	);
 }
