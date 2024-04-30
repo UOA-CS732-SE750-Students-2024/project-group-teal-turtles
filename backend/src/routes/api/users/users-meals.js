@@ -10,82 +10,95 @@ import {
 const router = Router();
 
 /*
- * PUT /api/users/:uid/meals/favourite/add
+ * PUT /api/users/meals/favourite/add
  * Adds a new favourite meal to the users favourite meals list
  *
- * Body JSON input:
- * - favMealToAdd(String) : the new favourite meal name
+ * Body JSON example:
+ * {
+ * "favMealToAdd": "Chicken Curry"
+ * }
  */
 router.put("/favourite/add", async (req, res) => {
 	try {
-		const { uid } = req.params;
 		const { favMealToAdd } = req.body;
-		await addFavouriteMeal(uid, favMealToAdd);
+		if (!favMealToAdd) {
+			return res.status(400).json({ error: "favMealToAdd is missing" });
+		}
+		await addFavouriteMeal(req.uid, favMealToAdd);
 		return res.sendStatus(201);
 	} catch (err) {
-		return res.status(422).json(err);
+		return res.status(err.status).json({ error: err.error });
 	}
 });
 
 /*
- * PUT /api/users/:uid/meals/favourite/remove
+ * PUT /api/users/meals/favourite/remove
  * Removes a favourite meal from the user's favourite meals list
  *
- * Body JSON input:
- * - favMealToDelete (String) : the favourite meal to be removed from the users favourite meal list
+ * Body JSON example:
+ * {
+ * "favMealToDelete": "Chicken Curry"
+ * }
  */
-router.put("/favourite", async (req, res) => {
+router.put("/favourite/remove", async (req, res) => {
 	try {
-		const { uid, favMealToDelete } = req.body;
-		await deleteFavouriteMeal(uid, favMealToDelete);
+		const { favMealToDelete } = req.body;
+		if (!favMealToDelete) {
+			return res.status(400).json({ error: "favMealToDelete is missing" });
+		}
+		await deleteFavouriteMeal(req.uid, favMealToDelete);
 		return res.sendStatus(204);
 	} catch (err) {
-		return res.status(422).json(err);
+		return res.status(err.status).json({ error: err.error });
 	}
 });
 
 /*
- * GET /api/users/:uid/meals/favourite
+ * GET /api/users/meals/favourite
  * retrieves the users favourite meals (String list)
  */
 router.get("/favourite", async (req, res) => {
-	const { uid } = req.params;
-
-	const favoriteMeals = await getFavouriteMeals(uid);
-
-	if (favoriteMeals) return res.json(favoriteMeals);
-	return res.sendStatus(404).json(err);
-});
-
-/*
- * PUT /api/users/:uid/meals
- * adds a new generated meal to the users generated meal list
- *
- * Body JSON input:
- * - mealToAdd(String) : the new generated meal name
- */
-router.put("/", async (req, res) => {
 	try {
-		const { uid } = req.params;
-		const { mealToAdd } = req.body;
-		await addGeneratedMeal(uid, mealToAdd);
-		return res.sendStatus(201);
+		const favoriteMeals = await getFavouriteMeals(req.uid);
+		return res.json(favoriteMeals);
 	} catch (err) {
-		return res.status(422).json(err);
+		return res.status(err.status).json({ error: err.error });
 	}
 });
 
 /*
- * GET /api/users/:uid/meals/favourite
+ * PUT /api/users/meals
+ * adds a new generated meal to the users generated meal list
+ *
+ * Body JSON example:
+ * {
+ * "mealToAdd": "Spaghetti Carbonara"
+ * }
+ */
+router.put("/", async (req, res) => {
+	try {
+		const { mealToAdd } = req.body;
+		if (!mealToAdd) {
+			return res.status(400).json({ error: "Meal to add is missing" });
+		}
+		await addGeneratedMeal(req.uid, mealToAdd);
+		return res.sendStatus(201);
+	} catch (err) {
+		return res.status(err.status).json({ error: err.error });
+	}
+});
+
+/*
+ * GET /api/users/meals/
  * retrieves all the users generated meals (String list)
  */
 router.get("/", async (req, res) => {
-	const { uid } = req.params;
-
-	const generatedMeals = await getGeneratedMeals(uid);
-
-	if (generatedMeals) return res.json(generatedMeals);
-	return res.sendStatus(404).json(err);
+	try {
+		const generatedMeals = await getGeneratedMeals(req.uid);
+		return res.json(generatedMeals);
+	} catch (err) {
+		return res.status(err.status).json({ error: err.error });
+	}
 });
 
 export default router;
