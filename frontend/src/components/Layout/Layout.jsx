@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Layout.module.css";
+import ResponsiveAppBar from "../ResponsiveAppBar/ResponsiveAppBar";
 
 export default function Layout({ children }) {
 	return (
 		<div className={styles.body}>
-			<header className={styles.header}>
+			{/* <header className={styles.header}>
 				This is a Header
 				<a href="/dashboard" className={styles.headeritem}>
 					Dashboard
@@ -24,7 +25,8 @@ export default function Layout({ children }) {
 				<a href="/view-recipe" className={styles.headeritem}>
 					View Recipe
 				</a>
-			</header>
+			</header> */}
+			<ResponsiveAppBar />
 			<main>{children}</main>
 			<footer className={styles.footer}>This is a Footer</footer>
 		</div>
