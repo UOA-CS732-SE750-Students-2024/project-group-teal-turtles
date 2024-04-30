@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Layout.module.css";
 import ResponsiveAppBar from "../ResponsiveAppBar/ResponsiveAppBar";
+import { Box } from "@mui/material";
 
 export default function Layout({ children }) {
 	return (
-		<div className={styles.body}>
+		<Box>
 			{/* <header className={styles.header}>
 				This is a Header
 				<a href="/dashboard" className={styles.headeritem}>
@@ -27,8 +28,8 @@ export default function Layout({ children }) {
 				</a>
 			</header> */}
 			<ResponsiveAppBar />
-			<main>{children}</main>
+			<Box sx={{ mt: 0 }}>{children}</Box>
 			<footer className={styles.footer}>This is a Footer</footer>
-		</div>
+		</Box>
 	);
 }

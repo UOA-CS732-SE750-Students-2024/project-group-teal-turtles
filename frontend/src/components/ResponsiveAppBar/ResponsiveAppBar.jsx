@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import Image from "next/image";
 
 const pages = ["Products", "Pricing", "Blog"];
@@ -37,7 +36,7 @@ function ResponsiveAppBar() {
 	};
 
 	return (
-		<AppBar position="static">
+		<AppBar position="sticky" sx={{ top: 0, justifyContent: "flex-start" }}>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
