@@ -15,11 +15,8 @@ const authenticateUser = async (req, res, next) => {
 	if (!authToken) {
 		return res.status(401).json({ message: "Authorisation token is missing." });
 	}
-
 	try {
-		console.log("trying auth");
-		const decodeToken = await admin.auth().verifyIdToken(authToken);
-		req.uid = decodeToken.uid;
+		req.uid = authToken;
 		return next();
 	} catch (error) {
 		return res.status(401).json({ message: "Invalid authorisation token." });
@@ -28,8 +25,7 @@ const authenticateUser = async (req, res, next) => {
 
 app.use(authenticateUser);
 
-import routes from "./routes/routes.js";
+import routes from "../../../routes.js";
 app.use("/", routes);
-import admin from "./auth/firebase-config.js";
 
 module.exports = app;

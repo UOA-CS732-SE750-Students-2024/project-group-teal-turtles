@@ -5,6 +5,8 @@ import createAndRun from "../../../openAI/openAi.js";
 const basicStrict = express.Router();
 
 basicStrict.get("/", async (req, res) => {
+	const ingredients = Object.values(req.body.ingredients).flat();
+	req.body.ingredients = ingredients;
 	res.send(await createAndRun(process.env.ASSISTANT_BASIC_STRICT_ID, JSON.stringify(req.body)));
 });
 

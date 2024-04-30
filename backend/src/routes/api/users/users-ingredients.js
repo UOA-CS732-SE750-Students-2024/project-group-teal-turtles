@@ -76,6 +76,7 @@ router.put("/type", async (req, res) => {
 		await setIngredientTypeList(req.uid, ingredientType, ingredients);
 		return res.sendStatus(204);
 	} catch (err) {
+		console.log(err);
 		return res.status(err.status).json({ error: err.error });
 	}
 });

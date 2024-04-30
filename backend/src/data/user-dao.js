@@ -89,7 +89,7 @@ export async function setIngredientTypeList(uid, ingredientType, ingredients) {
 	if (!user) {
 		throw { error: "User not found", status: 404 };
 	}
-	return await user.findByIdAndUpdate(uid, { $set: { [`ingredients.${ingredientType}`]: ingredients } });
+	return await User.findByIdAndUpdate(uid, { $set: { [`ingredients.${ingredientType}`]: ingredients } });
 }
 
 //not currently used
