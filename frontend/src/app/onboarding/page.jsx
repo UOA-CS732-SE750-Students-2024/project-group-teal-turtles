@@ -1,7 +1,7 @@
 import CategoryCard from "@/components/CategoryCard/CategoryCard";
 import { Grid, Stack, Typography, Button } from "@mui/material";
 
-function Meals() {
+function Onboarding() {
 	return (
 		<Stack alignItems="center">
 			<Typography variant="h2">Add Favourite Meals</Typography>
@@ -11,11 +11,11 @@ function Meals() {
 			<Grid>
 				<CategoryCard text="Pizza" src="vercel.svg" onClick={() => {}} />
 			</Grid>
-			<Button variant="contained" sx={{ textTransform: "none", py: 1.5 }}>
+			<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }}>
 				<Typography variant="h6">Continue</Typography>
 			</Button>
 		</Stack>
 	);
 }
 
-export default Meals;
+export default Onboarding;
