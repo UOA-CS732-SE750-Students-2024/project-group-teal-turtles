@@ -73,41 +73,59 @@ export default function PantryTabs() {
 			</Tabs>
 			<TabPanel value={value} index={0}>
 				<Typography variant="h6">Your Ingredients</Typography>
-				<PantryGrid itemData={itemData[0]} />
+				<PantryGrid itemData={itemData.pantry} />
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				<Typography variant="h6">Bread</Typography>
-				<PantryGrid itemData={itemData[1]} />
-				<Typography variant="h6">Pasta</Typography>
-				<Typography variant="h6">Other</Typography>
+				<PantryGrid itemData={itemData.bread} />
+				<Typography variant="h6" sx={{ mt: 3 }}>
+					Pasta
+				</Typography>
+				<PantryGrid itemData={itemData.pasta} />
+				<Typography variant="h6" sx={{ mt: 3 }}>
+					Other
+				</Typography>
+				<PantryGrid itemData={itemData.carbsMisc} />
 			</TabPanel>
 			<TabPanel value={value} index={2}>
 				<Typography variant="h6">Beef</Typography>
-				<PantryGrid itemData={itemData[2]} />
-				<Typography variant="h6">Chicken</Typography>
-				<Typography variant="h6">Pork</Typography>
-				<Typography variant="h6">Processed</Typography>
-				<Typography variant="h6">Other</Typography>
+				<PantryGrid itemData={itemData.beef} />
+				<Typography variant="h6" sx={{ mt: 3 }}>
+					Chicken
+				</Typography>
+				<PantryGrid itemData={itemData.chicken} />
+				<Typography variant="h6" sx={{ mt: 3 }}>
+					Pork
+				</Typography>
+				<PantryGrid itemData={itemData.pork} />
+				<Typography variant="h6" sx={{ mt: 3 }}>
+					Processed
+				</Typography>
+				<PantryGrid itemData={itemData.processed} />
+				<Typography variant="h6" sx={{ mt: 3 }}>
+					Other
+				</Typography>
+				<PantryGrid itemData={itemData.proteinMisc} />
 			</TabPanel>
 			<TabPanel value={value} index={3}>
-				<PantryGrid itemData={itemData[3]} />
+				<Typography variant="h6">Vegetables</Typography>
+				<PantryGrid itemData={itemData.vegetables} />
 			</TabPanel>
 			<TabPanel value={value} index={4}>
-				<PantryGrid itemData={itemData[4]} />
+				<Typography variant="h6">Fruit</Typography>
+				<PantryGrid itemData={itemData.fruit} />
 			</TabPanel>
 			<TabPanel value={value} index={5}>
-				<PantryGrid itemData={itemData[5]} />
+				<Typography variant="h6">Dairy</Typography>
+				<PantryGrid itemData={itemData.dairy} />
 			</TabPanel>
 		</Box>
 	);
 }
 
-const itemData = [
-	// Your ingredients
-	[],
-	// Carbs
-	[
-		// Bread
+const itemData = {
+	pantry: [],
+	bread: [
 		{
 			img: "/images/pantry-icons/carbohydrates/bread/bagel.png",
 			title: "Bagel"
@@ -135,8 +153,9 @@ const itemData = [
 		{
 			img: "/images/pantry-icons/carbohydrates/bread/wrap.png",
 			title: "Wrap"
-		},
-		// Pasta
+		}
+	],
+	pasta: [
 		{
 			img: "/images/pantry-icons/carbohydrates/pasta/farfalle.png",
 			title: "Farfalle"
@@ -160,8 +179,9 @@ const itemData = [
 		{
 			img: "/images/pantry-icons/carbohydrates/pasta/spaghetti.png",
 			title: "Spaghetti"
-		},
-		// Misc
+		}
+	],
+	carbsMisc: [
 		{
 			img: "/images/pantry-icons/carbohydrates/cereal.png",
 			title: "Cereal"
@@ -183,12 +203,7 @@ const itemData = [
 			title: "Rice"
 		}
 	],
-	// Protein
-	[
-		{
-			img: "/images/pantry-icons/protein/bacon.png",
-			title: "Bacon"
-		},
+	beef: [
 		{
 			img: "/images/pantry-icons/protein/beefpatty.png",
 			title: "Beef patty"
@@ -197,6 +212,12 @@ const itemData = [
 			img: "/images/pantry-icons/protein/beefribs.png",
 			title: "Beef ribs"
 		},
+		{
+			img: "/images/pantry-icons/protein/steak.png",
+			title: "Steak"
+		}
+	],
+	chicken: [
 		{
 			img: "/images/pantry-icons/protein/chickenbreast.png",
 			title: "Chicken breast"
@@ -212,30 +233,16 @@ const itemData = [
 		{
 			img: "/images/pantry-icons/protein/chickenwing.png",
 			title: "Chicken wing"
-		},
+		}
+	],
+	pork: [
 		{
-			img: "/images/pantry-icons/protein/eggs.png",
-			title: "Eggs"
-		},
-		{
-			img: "/images/pantry-icons/protein/fish.png",
-			title: "Fish"
+			img: "/images/pantry-icons/protein/bacon.png",
+			title: "Bacon"
 		},
 		{
 			img: "/images/pantry-icons/protein/ham.png",
 			title: "Ham"
-		},
-		{
-			img: "/images/pantry-icons/protein/lambchop.png",
-			title: "Lamb chop"
-		},
-		{
-			img: "/images/pantry-icons/protein/legham.png",
-			title: "Leg ham"
-		},
-		{
-			img: "/images/pantry-icons/protein/pepperoni.png",
-			title: "Pepperoni"
 		},
 		{
 			img: "/images/pantry-icons/protein/pork.png",
@@ -246,24 +253,43 @@ const itemData = [
 			title: "Pork chop"
 		},
 		{
+			img: "/images/pantry-icons/protein/legham.png",
+			title: "Leg ham"
+		}
+	],
+	processed: [
+		{
+			img: "/images/pantry-icons/protein/pepperoni.png",
+			title: "Pepperoni"
+		},
+		{
 			img: "/images/pantry-icons/protein/salami.png",
 			title: "Salami"
 		},
 		{
 			img: "/images/pantry-icons/protein/sausage.png",
 			title: "Sausage"
+		}
+	],
+	proteinMisc: [
+		{
+			img: "/images/pantry-icons/protein/eggs.png",
+			title: "Eggs"
 		},
 		{
-			img: "/images/pantry-icons/protein/steak.png",
-			title: "Steak"
+			img: "/images/pantry-icons/protein/fish.png",
+			title: "Fish"
+		},
+		{
+			img: "/images/pantry-icons/protein/lambchop.png",
+			title: "Lamb chop"
 		},
 		{
 			img: "/images/pantry-icons/protein/tofu.png",
 			title: "Tofu"
 		}
 	],
-	// Vegetables
-	[
+	vegetables: [
 		{
 			img: "/images/pantry-icons/vegetables/asparagus.png",
 			title: "Asparagus"
@@ -341,8 +367,7 @@ const itemData = [
 			title: "Turnip"
 		}
 	],
-	// Fruit
-	[
+	fruit: [
 		{
 			img: "/images/pantry-icons/fruit/apple.png",
 			title: "Apple"
@@ -432,8 +457,7 @@ const itemData = [
 			title: "Watermelon"
 		}
 	],
-	// Dairy
-	[
+	dairy: [
 		{
 			img: "/images/pantry-icons/dairy/butter.png",
 			title: "Butter"
@@ -463,4 +487,4 @@ const itemData = [
 			title: "Yogurt"
 		}
 	]
-];
+};
