@@ -2,11 +2,11 @@
 	"name": "backend",
 	"version": "1.0.0",
 	"description": "Backend for Intelligent Eats",
-	"main": "./src/app.js",
+	"main": "./src/server.js",
 	"type": "module",
 	"scripts": {
-		"dev": "nodemon ./src/app.js",
-		"start": "node ./src/app.js",
+		"dev": "nodemon ./src/server.js",
+		"start": "node ./src/server.js",
 		"init-db": "node ./src/data/init-db.js",
 		"test-userdao": "node ./src/data/testing-userdao.js",
 		"test": "jest"
@@ -26,6 +26,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.24.4",
+		"@babel/plugin-syntax-import-attributes": "^7.24.1",
 		"@babel/preset-env": "^7.24.4",
 		"@types/jest": "^29.5.12",
 		"babel-jest": "^29.7.0",
