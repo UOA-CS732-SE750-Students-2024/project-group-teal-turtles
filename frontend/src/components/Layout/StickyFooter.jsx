@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
+import { grey } from "@mui/material/colors";
 
 function Copyright() {
 	return (
@@ -22,13 +23,17 @@ export default function StickyFooter() {
 		<Box
 			component="footer"
 			sx={{
-				py: 4,
-				px: 2,
-				mt: "auto",
-				backgroundColor: (theme) => (theme.palette.mode === "light" ? theme.palette.grey[200] : theme.palette.grey[800])
+				mt: "auto"
 			}}
 		>
-			<Container maxWidth="lg">
+			<Box sx={{ backgroundColor: grey[300], height: "1px" }} />
+			<Container
+				maxWidth="lg"
+				sx={{
+					py: 4,
+					px: 2
+				}}
+			>
 				<Copyright />
 			</Container>
 		</Box>
