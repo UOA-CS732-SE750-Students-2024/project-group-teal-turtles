@@ -5,7 +5,7 @@ function GlobalStateExample() {
 	const { dataOne, setDataOne } = useDataContext();
 
 	const handleClick = () => {
-		setDataOne({ value: "this is updated data one" });
+		setDataOne({ value: "new value - this should persist between pages" });
 	};
 
 	return <div onClick={handleClick}>{JSON.stringify(dataOne)}</div>;
