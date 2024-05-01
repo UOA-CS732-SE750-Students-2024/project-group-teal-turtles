@@ -1,12 +1,12 @@
 "use client";
 
-import ExampleComponent from "@/components/Examples/ExampleComponent";
 import React from "react";
+import GlobalStateExample from "@/components/Examples/GlobalStateExample";
 
 function Page() {
 	return (
 		<>
-			<ExampleComponent />
+			<GlobalStateExample />
 		</>
 	);
 }

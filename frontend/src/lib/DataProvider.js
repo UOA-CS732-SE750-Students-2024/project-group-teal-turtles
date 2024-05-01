@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 
 import { DataContext } from "./DataContext";
+import { useLocalStorageState } from "./useLocalStorageState";
 
 export const DataProvider = ({ children }) => {
 	// initialize new states here
@@ -14,6 +15,10 @@ export const DataProvider = ({ children }) => {
 	const [userEmail, setUserEmail] = useState(null);
 	const [authToken, setAuthToken] = useState(null);
 	const [dataOne, setDataOne] = useState("hi");
+	// const [dataOne, setDataOne] = useState({ value: "old value - this should persist between pages" });
+	const [dataTwo, setDataTwo] = useLocalStorageState("dataThree", {
+		value: "old value - this should persist over refreshes"
+	});
 
 	// pass the states to the context here
 	const contextValue = {
