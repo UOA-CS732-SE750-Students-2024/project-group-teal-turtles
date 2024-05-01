@@ -4,62 +4,47 @@ import { createUser, retrieveUser, deleteUser } from "../../data/user-dao.js";
 const router = Router();
 
 /*
- * GET /api/users/:uid
- * retrieves a user
- *
- * Path parameters:
- * - uid (string): The ID of the user to be retrieved
+ * GET /api/users
+ * retrieves a user object using the authtoken in the header
  */
-router.get("/:uid", async (req, res) => {
-	const { uid } = req.params;
-
-	const user = await retrieveUser(uid);
-
-	if (user) return res.json(user);
-	return res.sendStatus(404);
-});
-
-/*
- * POST /api/users
- * creates a new user in MongoDB
- *
- * Body JSON input:
- * - uid (string): The ID of the user to create which would have first been retrieved from firebase authentication
- */
-router.post("/", async (req, res) => {
+router.get("/", async (req, res) => {
 	try {
-		const { uid } = req.body;
-		const user = await createUser(uid);
-		return res.status(201).json(user);
-	} catch (err) {
-		if (err.status === 409) {
-			return res.json(err);
-		} else {
-			return res.status(422).json(err);
+		const user = await retrieveUser(req.uid);
+		if (!user) {
+			return res.status(404).json({ error: "User not found" });
 		}
+		return res.json(user);
+	} catch (err) {
+		return res.status(500).json({ error: "Internal server error" });
 	}
 });
 
-/*
- * DELETE /api/users/:uid
- * deletes a user account
- *
- * Path parameters:
- * - uid (string): The ID of the user to be deleted
- */
-router.delete("/:uid", async (req, res) => {
-	const { uid } = req.params;
-	await deleteUser(uid);
-	return res.sendStatus(204);
+router.post("/", async (req, res) => {
+	try {
+		const user = await createUser(req.uid);
+		console.log("created");
+		return res.status(201).json(user);
+	} catch (err) {
+		return res.status(err.status).json({ error: err.error });
+	}
+});
+
+router.delete("/", async (req, res) => {
+	try {
+		await deleteUser(req.uid);
+		return res.sendStatus(204);
+	} catch (err) {
+		return res.status(err.status).json({ error: err.error });
+	}
 });
 
 import mealRoutes from "./users/users-meals.js";
-router.use("/:uid/meals", mealRoutes);
+router.use("/meals", mealRoutes);
 
 import ingredientRoutes from "./users/users-ingredients.js";
-router.use("/:uid/ingredients", ingredientRoutes);
+router.use("/ingredients", ingredientRoutes);
 
 import parameterRoutes from "./users/users-parameters.js";
-router.use("/:uid/paramters", parameterRoutes);
+router.use("/parameters", parameterRoutes);
 
 export default router;

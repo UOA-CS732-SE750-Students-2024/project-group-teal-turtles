@@ -8,7 +8,6 @@ import React from "react";
 function Dashboard() {
 	return (
 		<Layout>
-			<div>Dashboard</div>
 			<MealGenerationPanel/>
 			<IngredientSelector/>
 		</Layout>

@@ -8,13 +8,13 @@ generation.use("/basicStrict", basicStrict);
 import basicLoose from "./basicLoose.js";
 generation.use("/basicLoose", basicLoose);
 
-import freeForm from "./freeForm.js";
-generation.use("/freeForm", freeForm);
-
 import remix from "./remix.js";
 generation.use("/remix", remix);
 
 import prompt from "./prompt.js";
 generation.use("/prompt", prompt);
+
+import recipe from "./recipe.js";
+generation.use("/recipe", recipe);
 
 export default generation;
