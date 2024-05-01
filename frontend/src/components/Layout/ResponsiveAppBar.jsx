@@ -19,7 +19,7 @@ import { Link } from "@mui/material";
 const pages = [
 	{ name: "Dashboard", url: "/dashboard" },
 	{ name: "Generate", url: "/generation-options" },
-	{ name: "Create account", url: "/create-account" } // for testing
+	{ name: "Create account (Temp)", url: "/create-account" } // for testing
 ];
 const settings = [
 	{ name: "Profile", url: "/profile" },
