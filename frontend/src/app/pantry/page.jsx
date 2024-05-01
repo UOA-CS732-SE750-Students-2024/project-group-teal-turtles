@@ -9,7 +9,7 @@ function EditIngredients() {
 	return (
 		<Layout>
 			<Stack
-				sx={{ backgroundColor: "#FFFFFF", minHeight: "calc(100vh - 120px)" }}
+				sx={{ backgroundColor: "#FFFFFF", minHeight: "calc(100vh - 70px)" }}
 				alignItems="center"
 				justifyContent="center"
 			>
@@ -18,7 +18,7 @@ function EditIngredients() {
 						backgroundColor: "#FFF0FF",
 						height: "100%",
 						width: "100%",
-						minHeight: "calc(100vh - 120px)",
+						minHeight: "calc(100vh - 70px)",
 						maxWidth: 1000
 					}}
 				>

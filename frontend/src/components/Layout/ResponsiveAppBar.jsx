@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -17,7 +19,7 @@ import { Link } from "@mui/material";
 const pages = [
 	{ name: "Dashboard", url: "/dashboard" },
 	{ name: "Generate", url: "/generation-options" },
-	{ name: "Create account", url: "/create-account" }
+	{ name: "Create account", url: "/create-account" } // for testing
 ];
 const settings = [
 	{ name: "Profile", url: "/profile" },
@@ -45,7 +47,7 @@ function ResponsiveAppBar() {
 	};
 
 	return (
-		<AppBar position="sticky" sx={{ top: 0, justifyContent: "flex-start" }}>
+		<AppBar position="sticky" sx={{ top: 0, justifyContent: "flex-start", height: 70 }}>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
@@ -60,7 +62,7 @@ function ResponsiveAppBar() {
 							variant="h6"
 							noWrap
 							component="a"
-							href="#app-bar-with-responsive-menu"
+							href="/landing"
 							sx={{
 								my: "auto",
 								ml: 1,
@@ -118,7 +120,7 @@ function ResponsiveAppBar() {
 							variant="h6"
 							noWrap
 							component="a"
-							href="#app-bar-with-responsive-menu"
+							href="/landing"
 							sx={{
 								my: "auto",
 								ml: 1,
