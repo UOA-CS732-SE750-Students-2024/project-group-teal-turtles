@@ -1,33 +1,49 @@
 import * as React from "react";
-import { Card, Grid, Typography } from "@mui/material";
+import { Card, CardActionArea, Checkbox, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 
-export default function PantryGrid({ itemData }) {
+export default function PantryGrid({ itemData, variant, onClick, selected }) {
 	return (
-		<Grid sx={{ flexGrow: 1 }} container spacing={2}>
+		<Grid
+			sx={{ flexGrow: 1, justifyContent: variant === "onboarding" ? "space-evenly" : "auto" }}
+			container
+			spacing={2}
+		>
 			{itemData.map((item) => (
-				<Grid item>
-					<Card
-						sx={{
-							height: 150,
-							width: 150,
-							backgroundColor: "#fff",
-							alignItems: "center",
-							justifyContent: "center",
-							display: "flex",
-							flexDirection: "column",
-							gap: "5",
-							transition: "background-color 0.3s",
-							"&:hover": {
-								cursor: "pointer",
-								backgroundColor: "#f0f0f0"
-							}
-						}}
-					>
-						<Image src={`${item.img}`} alt={item.title} width={100} height={100} priority />
-						<Typography color="#000" variant="body1" lineHeight={1}>
-							{item.title}
-						</Typography>
+				<Grid item key={item.title}>
+					<Card sx={{ position: "relative" }}>
+						<CardActionArea
+							onClick={() => onClick(item.title)}
+							sx={{
+								height: 150,
+								width: 150,
+								backgroundColor: "#FFFFFF",
+								alignItems: "center",
+								justifyContent: "center",
+								display: "flex",
+								flexDirection: "column",
+								gap: "5"
+							}}
+						>
+							<Image src={`${item.img}`} alt={item.title} width={100} height={100} priority />
+							<Typography color="#000" variant="body1" lineHeight={1}>
+								{item.title}
+							</Typography>
+						</CardActionArea>
+						<Checkbox
+							checked={selected.includes(item.title) ?? false}
+							disableRipple
+							sx={{
+								position: "absolute",
+								top: 0,
+								right: 0,
+								color: "#000",
+								"&.Mui-checked": {
+									color: "auto"
+								},
+								"& .MuiSvgIcon-root": { fontSize: 28 }
+							}}
+						/>
 					</Card>
 				</Grid>
 			))}

@@ -1,16 +1,16 @@
 "use client";
 
+import CardWrapper from "@/components/CardWrapper/CardWrapper";
 import { Google } from "@mui/icons-material";
-import { Stack, Typography, Card, Button, TextField, IconButton, Link } from "@mui/material";
+import { Stack, Typography, Button, TextField, IconButton, Link } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
-import CardWrapper from "@/components/CardWrapper/CardWrapper";
 
 function CreateAccount() {
-	const [visible, setVisible] = useState(false);
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [visible, setVisible] = useState(false);
 
 	return (
 		<CardWrapper>
@@ -54,7 +54,6 @@ function CreateAccount() {
 						<Typography variant="h6">Create Account</Typography>
 					</Button>
 					<Typography variant="h6">OR</Typography>
-
 					<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none", py: 1.5 }}>
 						<Typography variant="h6">Sign in with Google</Typography>
 					</Button>
