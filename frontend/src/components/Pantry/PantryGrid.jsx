@@ -17,12 +17,7 @@ export default function PantryGrid({ itemData }) {
 								justifyContent: "center",
 								display: "flex",
 								flexDirection: "column",
-								gap: "5",
-								transition: "background-color 0.3s",
-								"&:hover": {
-									cursor: "pointer",
-									backgroundColor: "#f0f0f0"
-								}
+								gap: "5"
 							}}
 						>
 							<Image src={`${item.img}`} alt={item.title} width={100} height={100} priority />
