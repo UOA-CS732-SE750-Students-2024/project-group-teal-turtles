@@ -8,7 +8,7 @@ import { useState } from "react";
 
 function Onboarding() {
 	const [favouriteMeals, setFavouriteMeals] = useState([]);
-	const [ingredients, setIngredients] = useState([]);
+	const [availableIngredients, setAvailableIngredients] = useState([]);
 	const [page, setPage] = useState("meals");
 
 	const handleMealsChange = (item) => {
@@ -21,11 +21,11 @@ function Onboarding() {
 	};
 
 	const handleIngredientsChange = (item) => {
-		if (ingredients.includes(item)) {
-			const newIngredients = ingredients.filter((ingredient) => ingredient !== item);
-			setIngredients(newIngredients);
+		if (availableIngredients.includes(item)) {
+			const newIngredients = availableIngredients.filter((ingredient) => ingredient !== item);
+			setAvailableIngredients(newIngredients);
 		} else {
-			setIngredients([...ingredients, item]);
+			setAvailableIngredients([...availableIngredients, item]);
 		}
 	};
 
@@ -54,10 +54,10 @@ function Onboarding() {
 						</Stack>
 						<Stack marginY="30px">
 							<PantryGrid
-								itemData={meals}
+								itemData={ingredients}
 								variant="onboarding"
 								onClick={handleIngredientsChange}
-								selected={ingredients}
+								selected={availableIngredients}
 							/>
 						</Stack>
 						<Button variant="contained" sx={{ textTransform: "none", py: 1.5, width: "50%" }}>
@@ -140,6 +140,57 @@ const meals = [
 	{
 		img: "/images/pantry-icons/fruit/durian.png",
 		title: "Spicy Curry"
+	}
+];
+
+const ingredients = [
+	{
+		img: "/images/pantry-icons/carbohydrates/flour.png",
+		title: "Flour"
+	},
+	{
+		img: "/images/pantry-icons/protein/eggs.png",
+		title: "Eggs"
+	},
+	{
+		img: "/images/pantry-icons/vegetables/lettuce.png",
+		title: "Lettuce"
+	},
+	{
+		img: "/images/pantry-icons/vegetables/onion.png",
+		title: "Onion"
+	},
+	{
+		img: "/images/pantry-icons/dairy/milk.png",
+		title: "Milk"
+	},
+	{
+		img: "/images/pantry-icons/fruit/tomato.png",
+		title: "Tomatos"
+	},
+	{
+		img: "/images/pantry-icons/vegetables/garlic.png",
+		title: "Garlic"
+	},
+	{
+		img: "/images/pantry-icons/vegetables/carrot.png",
+		title: "Carrot"
+	},
+	{
+		img: "/images/pantry-icons/dairy/butter.png",
+		title: "Butter"
+	},
+	{
+		img: "/images/pantry-icons/carbohydrates/pasta/penne.png",
+		title: "Pasta"
+	},
+	{
+		img: "/images/pantry-icons/protein/beefpatty.png",
+		title: "Beef Mince"
+	},
+	{
+		img: "/images/pantry-icons/protein/chickenwhole.png",
+		title: "Chicken"
 	}
 ];
 
