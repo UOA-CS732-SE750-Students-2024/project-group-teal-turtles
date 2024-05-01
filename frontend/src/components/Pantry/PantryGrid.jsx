@@ -2,7 +2,7 @@ import * as React from "react";
 import { Card, CardActionArea, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 
-export default function PantryGrid({ itemData, variant }) {
+export default function PantryGrid({ itemData, variant, onClick }) {
 	return (
 		<Grid
 			sx={{ flexGrow: 1, justifyContent: variant === "onboarding" ? "space-evenly" : "auto" }}
@@ -10,9 +10,10 @@ export default function PantryGrid({ itemData, variant }) {
 			spacing={2}
 		>
 			{itemData.map((item) => (
-				<Grid item>
+				<Grid item key={item.title}>
 					<Card>
 						<CardActionArea
+							onClick={() => onClick(item.title)}
 							sx={{
 								height: 150,
 								width: 150,

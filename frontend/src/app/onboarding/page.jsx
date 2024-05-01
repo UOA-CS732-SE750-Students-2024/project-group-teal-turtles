@@ -1,8 +1,17 @@
+"use client";
+
 import CardWrapper from "@/components/CardWrapper/CardWrapper";
 import PantryGrid from "@/components/Pantry/PantryGrid";
 import { Stack, Typography, Button } from "@mui/material";
+import { useState } from "react";
 
 function Onboarding() {
+	const [favouriteMeals, setFavouriteMeals] = useState([]);
+
+	const handleAdd = (item) => {
+		setFavouriteMeals([...favouriteMeals, item]);
+	};
+
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" width="700px">
@@ -13,7 +22,7 @@ function Onboarding() {
 					</Typography>
 				</Stack>
 				<Stack marginY="30px">
-					<PantryGrid itemData={meals} variant="onboarding" />
+					<PantryGrid itemData={meals} variant="onboarding" onClick={handleAdd} />
 				</Stack>
 				<Button variant="contained" sx={{ textTransform: "none", py: 1.5, width: "50%" }}>
 					<Typography variant="h6">Continue</Typography>
@@ -63,15 +72,15 @@ const meals = [
 	},
 	{
 		img: "/images/pantry-icons/fruit/coconut.png",
-		title: "Sushi"
+		title: "Shepherd's Pie"
 	},
 	{
 		img: "/images/pantry-icons/fruit/dragonfruit.png",
-		title: "Lasagna"
+		title: "Beef Ribs"
 	},
 	{
 		img: "/images/pantry-icons/fruit/durian.png",
-		title: "Fried Chicken"
+		title: "Spicy Curry"
 	}
 ];
 
