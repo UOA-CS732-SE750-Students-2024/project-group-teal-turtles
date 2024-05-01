@@ -2,31 +2,90 @@
 
 import CardWrapper from "@/components/CardWrapper/CardWrapper";
 import PantryGrid from "@/components/Pantry/PantryGrid";
-import { Stack, Typography, Button } from "@mui/material";
+import { ChevronLeft } from "@mui/icons-material";
+import { Stack, Typography, Button, IconButton } from "@mui/material";
 import { useState } from "react";
 
 function Onboarding() {
 	const [favouriteMeals, setFavouriteMeals] = useState([]);
+	const [ingredients, setIngredients] = useState([]);
+	const [page, setPage] = useState("meals");
 
-	const handleAdd = (item) => {
-		setFavouriteMeals([...favouriteMeals, item]);
+	const handleMealsChange = (item) => {
+		if (favouriteMeals.includes(item)) {
+			const newMeals = favouriteMeals.filter((meal) => meal !== item);
+			setFavouriteMeals(newMeals);
+		} else {
+			setFavouriteMeals([...favouriteMeals, item]);
+		}
+	};
+
+	const handleIngredientsChange = (item) => {
+		if (ingredients.includes(item)) {
+			const newIngredients = ingredients.filter((ingredient) => ingredient !== item);
+			setIngredients(newIngredients);
+		} else {
+			setIngredients([...ingredients, item]);
+		}
 	};
 
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" width="700px">
-				<Stack alignItems="center">
-					<Typography variant="h2">Add Favourite Meals</Typography>
-					<Typography variant="h6" textAlign="center">
-						Select Meals below that you love, in order to aid with recipe recommendation.
-					</Typography>
-				</Stack>
-				<Stack marginY="30px">
-					<PantryGrid itemData={meals} variant="onboarding" onClick={handleAdd} />
-				</Stack>
-				<Button variant="contained" sx={{ textTransform: "none", py: 1.5, width: "50%" }}>
-					<Typography variant="h6">Continue</Typography>
-				</Button>
+				{page === "ingredients" ? (
+					<>
+						<Stack alignItems="center">
+							<Stack direction="row" alignItems="center" width="100%" justifyContent="center">
+								<IconButton
+									sx={{ height: "56px", position: "relative" }}
+									onClick={() => {
+										setPage("meals");
+									}}
+								>
+									<ChevronLeft sx={{ fontSize: "40px", color: "#000" }} />
+								</IconButton>
+								<Typography variant="h2" marginRight="56px">
+									Add Ingredients
+								</Typography>
+							</Stack>
+							<Typography variant="h6" textAlign="center">
+								Add ingredients that you have, in order to aid with recipe recommendation.
+							</Typography>
+						</Stack>
+						<Stack marginY="30px">
+							<PantryGrid
+								itemData={meals}
+								variant="onboarding"
+								onClick={handleIngredientsChange}
+								selected={ingredients}
+							/>
+						</Stack>
+						<Button variant="contained" sx={{ textTransform: "none", py: 1.5, width: "50%" }}>
+							<Typography variant="h6">Continue</Typography>
+						</Button>
+					</>
+				) : (
+					<>
+						<Stack alignItems="center">
+							<Typography variant="h2">Add Favourite Meals</Typography>
+							<Typography variant="h6" textAlign="center">
+								Select Meals below that you love, in order to aid with recipe recommendation.
+							</Typography>
+						</Stack>
+						<Stack marginY="30px">
+							<PantryGrid itemData={meals} variant="onboarding" onClick={handleMealsChange} selected={favouriteMeals} />
+						</Stack>
+						<Button
+							variant="contained"
+							sx={{ textTransform: "none", py: 1.5, width: "50%" }}
+							onClick={() => {
+								setPage("ingredients");
+							}}
+						>
+							<Typography variant="h6">Continue</Typography>
+						</Button>
+					</>
+				)}
 			</Stack>
 		</CardWrapper>
 	);
