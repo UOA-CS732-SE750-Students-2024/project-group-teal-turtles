@@ -1,8 +1,8 @@
 import request from "supertest";
 import axios from "axios";
 import mongoose from "mongoose";
+import app from "../../../../app.js";
 
-const app = require("../../../../app.js");
 var authToken;
 var badAuthToken;
 beforeAll(async () => {
@@ -45,13 +45,13 @@ describe("GET /", () => {
 	}, 15000);
 
 	it("should return 404 when the user is not found", async () => {
-		const res = await request(app).get("/").set("Authorization", badAuthToken);
+		const res = await request(app).get("/api/users/").set("Authorization", badAuthToken);
 
 		expect(404);
 	}, 15000);
 
 	it("should return 401 for bad token", async () => {
-		const res = await request(app).get("/").set("Authorization", "Bearer error_trigger_token");
+		const res = await request(app).get("/api/users/").set("Authorization", "Bearer error_trigger_token");
 
 		expect(401);
 	}, 15000);

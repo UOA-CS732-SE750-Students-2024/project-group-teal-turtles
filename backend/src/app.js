@@ -32,4 +32,4 @@ import routes from "./routes/routes.js";
 app.use("/", routes);
 import admin from "./auth/firebase-config.js";
 
-module.exports = app;
+export default app;
