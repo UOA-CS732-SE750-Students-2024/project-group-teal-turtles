@@ -5,15 +5,17 @@ import { Stack, Typography, Button } from "@mui/material";
 function Onboarding() {
 	return (
 		<CardWrapper>
-			<Stack alignItems="center" spacing="30px">
+			<Stack alignItems="center" width="700px">
 				<Stack alignItems="center">
 					<Typography variant="h2">Add Favourite Meals</Typography>
-					<Typography variant="h6">
+					<Typography variant="h6" textAlign="center">
 						Select Meals below that you love, in order to aid with recipe recommendation.
 					</Typography>
 				</Stack>
-				<PantryGrid itemData={meals} />
-				<Button variant="contained" sx={{ textTransform: "none", py: 1.5, minWidth: "50%" }}>
+				<Stack marginY="30px">
+					<PantryGrid itemData={meals} variant="onboarding" />
+				</Stack>
+				<Button variant="contained" sx={{ textTransform: "none", py: 1.5, width: "50%" }}>
 					<Typography variant="h6">Continue</Typography>
 				</Button>
 			</Stack>
@@ -46,6 +48,18 @@ const meals = [
 	{
 		img: "/images/pantry-icons/fruit/cherry.png",
 		title: "Pad Thai"
+	},
+	{
+		img: "/images/pantry-icons/fruit/coconut.png",
+		title: "Sushi"
+	},
+	{
+		img: "/images/pantry-icons/fruit/dragonfruit.png",
+		title: "Lasagna"
+	},
+	{
+		img: "/images/pantry-icons/fruit/durian.png",
+		title: "Fried Chicken"
 	},
 	{
 		img: "/images/pantry-icons/fruit/coconut.png",
