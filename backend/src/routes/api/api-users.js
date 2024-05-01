@@ -19,10 +19,6 @@ router.get("/", async (req, res) => {
 	}
 });
 
-/*
- * POST /api/users
- * creates a new user in MongoDB using the authToken in the header
- */
 router.post("/", async (req, res) => {
 	try {
 		const user = await createUser(req.uid);
@@ -33,10 +29,6 @@ router.post("/", async (req, res) => {
 	}
 });
 
-/*
- * DELETE /api/users
- * deletes a user account thats auth token is in the header
- */
 router.delete("/", async (req, res) => {
 	try {
 		await deleteUser(req.uid);
