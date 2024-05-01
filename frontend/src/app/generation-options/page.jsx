@@ -5,7 +5,7 @@ import React from "react";
 import useDataStore from "@/lib/store";
 
 function GenerationOptions() {
-	const { userParameters, setUserParameters } = useDataStore();
+	const { userParameters, setUserParameters, userAuth } = useDataStore();
 	return (
 		<Layout>
 			<div>GenerationOptions</div>
