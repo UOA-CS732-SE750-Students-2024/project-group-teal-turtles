@@ -1,24 +1,64 @@
 import CardWrapper from "@/components/CardWrapper/CardWrapper";
-import CategoryCard from "@/components/CategoryCard/CategoryCard";
-import { Grid, Stack, Typography, Button } from "@mui/material";
+import PantryGrid from "@/components/Pantry/PantryGrid";
+import { Stack, Typography, Button } from "@mui/material";
 
 function Onboarding() {
 	return (
 		<CardWrapper>
-			<Stack alignItems="center">
-				<Typography variant="h2">Add Favourite Meals</Typography>
-				<Typography variant="h6">
-					Select Meals below that you love, in order to aid with recipe recommendation.
-				</Typography>
-				<Grid>
-					<CategoryCard text="Pizza" src="vercel.svg" onClick={() => {}} />
-				</Grid>
-				<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }}>
+			<Stack alignItems="center" spacing="30px">
+				<Stack alignItems="center">
+					<Typography variant="h2">Add Favourite Meals</Typography>
+					<Typography variant="h6">
+						Select Meals below that you love, in order to aid with recipe recommendation.
+					</Typography>
+				</Stack>
+				<PantryGrid itemData={meals} />
+				<Button variant="contained" sx={{ textTransform: "none", py: 1.5, minWidth: "50%" }}>
 					<Typography variant="h6">Continue</Typography>
 				</Button>
 			</Stack>
 		</CardWrapper>
 	);
 }
+
+// TODO: Update images here
+const meals = [
+	{
+		img: "/images/pantry-icons/fruit/apple.png",
+		title: "Pizza"
+	},
+	{
+		img: "/images/pantry-icons/fruit/avocado.png",
+		title: "Ramen"
+	},
+	{
+		img: "/images/pantry-icons/fruit/banana.png",
+		title: "Hamburger"
+	},
+	{
+		img: "/images/pantry-icons/fruit/blueberry.png",
+		title: "Paella"
+	},
+	{
+		img: "/images/pantry-icons/fruit/cantaloupe.png",
+		title: "Chicken Tikka"
+	},
+	{
+		img: "/images/pantry-icons/fruit/cherry.png",
+		title: "Pad Thai"
+	},
+	{
+		img: "/images/pantry-icons/fruit/coconut.png",
+		title: "Sushi"
+	},
+	{
+		img: "/images/pantry-icons/fruit/dragonfruit.png",
+		title: "Lasagna"
+	},
+	{
+		img: "/images/pantry-icons/fruit/durian.png",
+		title: "Fried Chicken"
+	}
+];
 
 export default Onboarding;
