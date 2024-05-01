@@ -1,14 +1,14 @@
-"use client";
+// "use client";
 
-import React from "react";
-import GlobalStateExample from "@/components/Examples/GlobalStateExample";
+// import React from "react";
+// import GlobalStateExample from "@/components/Examples/GlobalStateExample";
 
-function Page() {
-	return (
-		<>
-			<GlobalStateExample />
-		</>
-	);
-}
+// function Page() {
+// 	return (
+// 		<>
+// 			<GlobalStateExample />
+// 		</>
+// 	);
+// }
 
-export default Page;
+// export default Page;

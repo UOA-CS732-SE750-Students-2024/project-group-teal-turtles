@@ -11,18 +11,16 @@ const useDataStore = create(
 			userParameters: null,
 			userEmail: null,
 			authToken: null,
-			dataOne: null,
 			setUserFavouriteMeals: (meals) => set({ userFavouriteMeals: meals }),
 			setUserGeneratedMeals: (meals) => set({ userGeneratedMeals: meals }),
 			setUserIngredients: (ingredients) => set({ userIngredients: ingredients }),
 			setUserDislikedIngredients: (ingredients) => set({ userDislikedIngredients: ingredients }),
 			setUserParameters: (parameters) => set({ userParameters: parameters }),
 			setUserEmail: (email) => set({ userEmail: email }),
-			setAuthToken: (token) => set({ authToken: token }),
-			setDataOne: (data) => set({ dataOne: data })
+			setAuthToken: (token) => set({ authToken: token })
 		}),
 		{
-			name: "data-store"
+			name: "data-store3"
 		}
 	)
 );

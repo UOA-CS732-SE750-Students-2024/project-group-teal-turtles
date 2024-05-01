@@ -1,7 +1,7 @@
-import { createContext, useContext } from "react";
+// import { createContext, useContext } from "react";
 
-export const DataContext = createContext();
+// export const DataContext = createContext();
 
-export const useDataContext = () => {
-	return useContext(DataContext);
-};
+// export const useDataContext = () => {
+// 	return useContext(DataContext);
+// };

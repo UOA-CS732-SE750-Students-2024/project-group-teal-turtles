@@ -1,14 +1,14 @@
-"use client";
+// "use client";
 
-import React from "react";
-import PersistantGlobalStateExample from "@/components/Examples/PersistantGlobalStateExample";
+// import React from "react";
+// import PersistantGlobalStateExample from "@/components/Examples/PersistantGlobalStateExample";
 
-function Page() {
-	return (
-		<>
-			<PersistantGlobalStateExample />
-		</>
-	);
-}
+// function Page() {
+// 	return (
+// 		<>
+// 			<PersistantGlobalStateExample />
+// 		</>
+// 	);
+// }
 
-export default Page;
+// export default Page;

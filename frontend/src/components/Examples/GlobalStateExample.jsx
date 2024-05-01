@@ -1,17 +1,15 @@
-"use client";
-import React from "react";
-// import { useDataContext } from "@/lib/DataContext";
-import useDataStore from "@/lib/store";
+// "use client";
+// import React from "react";
+// import useDataStore from "@/lib/store";
 
-function GlobalStateExample() {
-	// const { dataOne, setDataOne } = useDataContext();
-	const { dataOne, setDataOne } = useDataStore();
+// function GlobalStateExample() {
+// 	const { dataOne, setDataOne } = useDataStore();
 
-	const handleClick = () => {
-		setDataOne(dataOne === "hi" ? "hello" : "hi");
-	};
+// 	const handleClick = () => {
+// 		setDataOne(dataOne === "hi" ? "hello" : "hi");
+// 	};
 
-	return <div onClick={handleClick}>{dataOne}</div>;
-}
+// 	return <div onClick={handleClick}>{dataOne}</div>;
+// }
 
-export default GlobalStateExample;
+// export default GlobalStateExample;

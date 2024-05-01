@@ -5,11 +5,10 @@ import { Stack, Typography, Card, Button, TextField, IconButton, Link } from "@m
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import CardWrapper from "@/components/CardWrapper/CardWrapper";
-import { createAccount, login, logout } from "@/app/auth-functions";
-import { useDataContext } from "@/lib/DataContext";
-import { onAuthStateChanged } from "firebase/auth";
+import { login } from "@/app/auth-functions";
 import { auth } from "@/app/firebase-config";
 import axios from "axios";
+import useDataStore from "@/lib/store";
 
 function Login() {
 	const [visible, setVisible] = useState(false);
@@ -24,20 +23,8 @@ function Login() {
 		userParameters,
 		setUserEmail,
 		setAuthToken,
-		authToken,
-		setDataOne,
-		dataOne
-	} = useDataContext();
-
-	onAuthStateChanged(auth, async (currentUser) => {
-		if (currentUser) {
-			setAuthToken(currentUser.accessToken);
-			setUserEmail(currentUser.email);
-		} else {
-			setAuthToken(null);
-			setUserEmail("");
-		}
-	});
+		authToken
+	} = useDataStore();
 
 	async function fetchUser() {
 		try {
@@ -47,14 +34,11 @@ function Login() {
 				}
 			});
 			console.log(response.data);
-			console.log(response.data.dislikedIngredients);
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
 			setUserGeneratedMeals(response.data.generatedMeals);
 			setUserIngredients(response.data.ingredients);
 			setUserParameters(response.data.parameters);
-			setDataOne("hello");
-			console.log("dataOne" + dataOne);
 			console.log(userParameters);
 		} catch (error) {
 			console.log("Error:", error);
@@ -64,7 +48,8 @@ function Login() {
 	async function handleSignIn() {
 		try {
 			await login(email, password);
-			console.log(authToken);
+			setAuthToken(auth.currentUser.accessToken);
+			setUserEmail(auth.currentUser.email);
 			fetchUser();
 		} catch (error) {
 			if (error.code === "auth/invalid-credential") {
