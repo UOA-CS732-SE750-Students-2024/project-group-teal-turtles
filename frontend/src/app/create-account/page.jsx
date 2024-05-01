@@ -5,7 +5,6 @@ import { Google } from "@mui/icons-material";
 import { Stack, Typography, Button, TextField, IconButton, Link } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
-import CardWrapper from "@/components/CardWrapper/CardWrapper";
 import { createAccount } from "@/app/auth-functions";
 import { auth } from "@/app/firebase-config";
 import useDataStore from "@/lib/store";
