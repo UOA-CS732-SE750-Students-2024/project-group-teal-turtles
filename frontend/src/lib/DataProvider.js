@@ -1,36 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { DataContext } from "./DataContext";
 
 export const DataProvider = ({ children }) => {
 	// initialize new states here
-	const [userFavouriteMeals, setuserFavouriteMeals] = useState([]);
-	const [userGeneratedMeals, setuserGeneratedMeals] = useState([]);
-	const [userIngredients, setuserIngredients] = useState([]);
-	const [userDislikedIngredients, setuserDislikedIngredients] = useState([]);
-	const [userParameters, setuserParameters] = useState([]);
-	const [userEmail, setUserEmail] = useState("");
-	const [authToken, setAuthToken] = useState("");
+	const [userFavouriteMeals, setUserFavouriteMeals] = useState(null);
+	const [userGeneratedMeals, setUserGeneratedMeals] = useState(null);
+	const [userIngredients, setUserIngredients] = useState(null);
+	const [userDislikedIngredients, setUserDislikedIngredients] = useState(null);
+	const [userParameters, setUserParameters] = useState(null);
+	const [userEmail, setUserEmail] = useState(null);
+	const [authToken, setAuthToken] = useState(null);
+	const [dataOne, setDataOne] = useState("hi");
 
 	// pass the states to the context here
 	const contextValue = {
 		userFavouriteMeals,
-		setuserFavouriteMeals,
+		setUserFavouriteMeals,
 		userIngredients,
 		userGeneratedMeals,
-		setuserGeneratedMeals,
+		setUserGeneratedMeals,
 		userIngredients,
-		setuserIngredients,
+		setUserIngredients,
 		userDislikedIngredients,
-		setuserDislikedIngredients,
+		setUserDislikedIngredients,
 		userParameters,
-		setuserParameters,
+		setUserParameters,
 		userEmail,
 		setUserEmail,
 		authToken,
-		setAuthToken
+		setAuthToken,
+		dataOne,
+		setDataOne
 	};
 
 	return <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>;

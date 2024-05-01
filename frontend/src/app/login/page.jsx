@@ -24,40 +24,60 @@ function Login() {
 		userParameters,
 		setUserEmail,
 		setAuthToken,
-		authToken
+		authToken,
+		setDataOne,
+		dataOne
 	} = useDataContext();
 
-	onAuthStateChanged(auth, (currentUser) => {
+	onAuthStateChanged(auth, async (currentUser) => {
 		if (currentUser) {
 			setAuthToken(currentUser.accessToken);
 			setUserEmail(currentUser.email);
 		} else {
-			// Handle case where currentUser is null
-			setAuthToken(null); // Reset authToken
-			setUserEmail(""); // Reset userEmail
+			setAuthToken(null);
+			setUserEmail("");
 		}
 	});
 
-	const handleSignIn = async () => {
+	async function fetchUser() {
 		try {
-			await login(email, password);
-			console.log(authToken);
-			const userDataResponse = await axios.get("/api/users/", {
+			const response = await axios.get("http://localhost:3000/api/users", {
 				headers: {
 					Authorization: authToken
 				}
 			});
-			const userData = userDataResponse.data;
-			setUserFavouriteMeals(userData.favouriteMeals);
-			setUserGeneratedMeals(userData.generatedMeals);
-			setUserIngredients(userData.ingredients);
-			setUserDislikedIngredients(userData.dislikedIngredients);
-			setUserParameters(userData.parameters);
+			console.log(response.data);
+			console.log(response.data.dislikedIngredients);
+			setUserDislikedIngredients(response.data.dislikedIngredients);
+			setUserFavouriteMeals(response.data.favouriteMeals);
+			setUserGeneratedMeals(response.data.generatedMeals);
+			setUserIngredients(response.data.ingredients);
+			setUserParameters(response.data.parameters);
+			setDataOne("hello");
+			console.log("dataOne" + dataOne);
 			console.log(userParameters);
 		} catch (error) {
-			console.log("Error signing in:", error);
+			console.log("Error:", error);
 		}
-	};
+	}
+
+	async function handleSignIn() {
+		try {
+			await login(email, password);
+			console.log(authToken);
+			fetchUser();
+		} catch (error) {
+			if (error.code === "auth/invalid-credential") {
+				console.log("Invalid credential. Please check your email and password.");
+			} else if (error.code === "auth/too-many-requests") {
+				console.log(
+					"Access to this account has been temporarily disabled due to many failed login attempts. Please try again later."
+				);
+			} else {
+				console.log("An error occurred while signing in:", error.message);
+			}
+		}
+	}
 
 	return (
 		<CardWrapper>
@@ -99,6 +119,7 @@ function Login() {
 					<Link href="/create-account" underline="hover">
 						<Typography variant="h6">Create a new account</Typography>
 					</Link>
+					<a href="/generation-options">Generation Options</a>
 				</Stack>
 			</Stack>
 		</CardWrapper>
