@@ -1,10 +1,12 @@
 import React from "react";
-import styles from "./Layout.module.css";
+import ResponsiveAppBar from "./ResponsiveAppBar";
+import { BottomNavigation, Box } from "@mui/material";
+import StickyFooter from "./StickyFooter";
 
 export default function Layout({ children }) {
 	return (
-		<div className={styles.body}>
-			<header className={styles.header}>
+		<Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+			{/* <header className={styles.header}>
 				This is a Header
 				<a href="/dashboard" className={styles.headeritem}>
 					Dashboard
@@ -24,9 +26,11 @@ export default function Layout({ children }) {
 				<a href="/view-recipe" className={styles.headeritem}>
 					View Recipe
 				</a>
-			</header>
-			<main>{children}</main>
-			<footer className={styles.footer}>This is a Footer</footer>
-		</div>
+			</header> */}
+			<ResponsiveAppBar />
+			<Box sx={{ flexGrow: "1" }}>{children}</Box>
+			{/* <BottomNavigation sx={{ flexGrow: "0" }}>This is a bottom navigation</BottomNavigation> */}
+			<StickyFooter />
+		</Box>
 	);
 }

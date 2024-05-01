@@ -1,3 +1,5 @@
+"use client";
+
 import { Typography, Stack, TextField, Card, IconButton } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
@@ -39,9 +41,11 @@ function Landing() {
 
 	return (
 		<Layout>
-			<Stack height="calc(100vh - 120px)">
+			<Stack height="calc(100vh - 70px)">
 				<Stack backgroundColor="#FFF7FF" spacing={6} flexGrow={1} alignItems="center" justifyContent="center">
-					<Typography variant="h1">Wanting a quick meal?</Typography>
+					<Typography variant="h1" fontWeight={500}>
+						Want a quick meal?
+					</Typography>
 					<Typography variant="h3" lineHeight="0">
 						Generate a personalised recipe in seconds.
 					</Typography>
@@ -50,6 +54,7 @@ function Landing() {
 						placeholder="Search for a meal..."
 						sx={{
 							"& .MuiOutlinedInput-root": {
+								mt: 4,
 								borderRadius: 4,
 								outline: "none",
 								backgroundColor: "#FFFFFF",

@@ -17,11 +17,7 @@ function TabPanel(props) {
 			aria-labelledby={`vertical-tab-${index}`}
 			{...other}
 		>
-			{value === index && (
-				<Box sx={{ p: 3 }}>
-					<Typography>{children}</Typography>
-				</Box>
-			)}
+			{value === index && <Box sx={{ p: 3 }}>{children}</Box>}
 		</div>
 	);
 }
@@ -53,7 +49,7 @@ export default function PantryTabs() {
 				bgcolor: "background.paper",
 				display: "flex",
 				height: "100%",
-				minHeight: "calc(100vh - 120px)"
+				minHeight: "calc(100vh - 70px)"
 			}}
 		>
 			<Tabs
@@ -124,7 +120,12 @@ export default function PantryTabs() {
 }
 
 const itemData = {
-	pantry: [],
+	pantry: [
+		{
+			img: "/images/pantry-icons/carbohydrates/bread/bagel.png",
+			title: "Bagel"
+		}
+	],
 	bread: [
 		{
 			img: "/images/pantry-icons/carbohydrates/bread/bagel.png",
