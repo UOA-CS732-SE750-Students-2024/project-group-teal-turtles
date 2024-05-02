@@ -16,7 +16,15 @@ function CreateAccount() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const { setUserEmail, setAuthToken, authToken } = useDataStore();
+	const {
+		setUserFavouriteMeals,
+		setUserGeneratedMeals,
+		setUserIngredients,
+		setUserDislikedIngredients,
+		setUserParameters,
+		setUserEmail,
+		setAuthToken
+	} = useDataStore();
 
 	async function createUserInDatabase(userAuthToken) {
 		try {
@@ -30,6 +38,11 @@ function CreateAccount() {
 				}
 			);
 			console.log("User created:", response.data);
+			setUserDislikedIngredients(response.data.dislikedIngredients);
+			setUserFavouriteMeals(response.data.favouriteMeals);
+			setUserGeneratedMeals(response.data.generatedMeals);
+			setUserIngredients(response.data.ingredients);
+			setUserParameters(response.data.parameters);
 			return response.data;
 		} catch (error) {
 			console.error("Error creating user:", error);

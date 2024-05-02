@@ -5,7 +5,7 @@ import { Stack, Typography, Card, Button, TextField, IconButton, Link } from "@m
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import CardWrapper from "@/components/CardWrapper/CardWrapper";
-import { login } from "@/app/auth-functions";
+import { handleGoogleLogin, login } from "@/app/auth-functions";
 import { auth } from "@/app/firebase-config";
 import axios from "axios";
 import useDataStore from "@/lib/store";
@@ -33,7 +33,9 @@ function Login() {
 					Authorization: authToken
 				}
 			});
+
 			console.log(response.data);
+			console.log(authToken);
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
 			setUserGeneratedMeals(response.data.generatedMeals);
@@ -41,7 +43,35 @@ function Login() {
 			setUserParameters(response.data.parameters);
 			console.log(userParameters);
 		} catch (error) {
-			console.log("Error:", error);
+			if (error.response && error.response.data.error === "User not found") {
+				console.log("hi");
+			} else {
+				console.log("Error:", error);
+			}
+		}
+	}
+
+	async function createUserInDatabase() {
+		try {
+			const response = await axios.post(
+				"http://localhost:3000/api/users",
+				{},
+				{
+					headers: {
+						Authorization: authToken
+					}
+				}
+			);
+			console.log("User created:", response.data);
+			setUserDislikedIngredients(response.data.dislikedIngredients);
+			setUserFavouriteMeals(response.data.favouriteMeals);
+			setUserGeneratedMeals(response.data.generatedMeals);
+			setUserIngredients(response.data.ingredients);
+			setUserParameters(response.data.parameters);
+			return response.data;
+		} catch (error) {
+			console.error("Error creating user:", error);
+			throw error;
 		}
 	}
 
@@ -61,6 +91,24 @@ function Login() {
 			} else {
 				console.log("An error occurred while signing in:", error.message);
 			}
+		}
+	}
+
+	async function handleGoogleSignIn() {
+		try {
+			await handleGoogleLogin();
+			setAuthToken(auth.currentUser.accessToken);
+			setUserEmail(auth.currentUser.email);
+			console.log(auth.currentUser);
+			const metadata = auth.currentUser.metadata;
+			if (metadata.creationTime === metadata.lastSignInTime) {
+				createUserInDatabase();
+			} else {
+				console.log("returning user");
+				fetchUser();
+			}
+		} catch (error) {
+			console.log("An error occurred while signing in:", error.message);
 		}
 	}
 
@@ -98,7 +146,13 @@ function Login() {
 						<Typography variant="h6">Sign In</Typography>
 					</Button>
 					<Typography variant="h6">OR</Typography>
-					<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none", py: 1.5 }}>
+					<Button
+						fullWidth
+						variant="contained"
+						endIcon={<Google />}
+						sx={{ textTransform: "none", py: 1.5 }}
+						onClick={handleGoogleSignIn}
+					>
 						<Typography variant="h6">Sign in with Google</Typography>
 					</Button>
 					<Link href="/create-account" underline="hover">
