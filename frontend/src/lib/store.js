@@ -4,10 +4,10 @@ import { persist } from "zustand/middleware";
 const useDataStore = create(
 	persist(
 		(set) => ({
-			userFavouriteMeals: null,
-			userGeneratedMeals: null,
-			userIngredients: null,
-			userDislikedIngredients: null,
+			userFavouriteMeals: [],
+			userGeneratedMeals: [],
+			userIngredients: [],
+			userDislikedIngredients: [],
 			userParameters: null,
 			userEmail: null,
 			authToken: null,
