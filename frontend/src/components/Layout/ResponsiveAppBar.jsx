@@ -15,21 +15,25 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { Link } from "@mui/material";
-
-const pages = [
-	{ name: "Dashboard", url: "/dashboard" },
-	{ name: "Generate", url: "/generation-options" },
-	{ name: "Create account (Temp)", url: "/create-account" } // for testing
-];
-const settings = [
-	{ name: "Profile", url: "/profile" },
-	{ name: "Pantry", url: "/pantry" },
-	{ name: "Logout", url: "/logout" }
-];
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const pages = [
+		{ name: "Dashboard", url: "/dashboard" },
+		{ name: "Generate", url: "/generation-options" },
+		{ name: "Create account (Temp)", url: "/create-account" }
+	];
+
+	const currentUrl = usePathname();
+
+	const settings = [
+		{ name: "Profile", url: "/profile" },
+		{ name: "Pantry", url: "/pantry" },
+		{ name: "Logout", url: "/logout" }
+	];
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -105,8 +109,8 @@ function ResponsiveAppBar() {
 								display: { xs: "block", md: "none" }
 							}}
 						>
-							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
+							{pages.map((page, idx) => (
+								<MenuItem key={idx} onClick={handleCloseNavMenu}>
 									<Link textAlign="center" href={page.url} sx={{ textDecoration: "none", color: "black" }}>
 										{page.name}
 									</Link>
@@ -132,49 +136,63 @@ function ResponsiveAppBar() {
 							Intelligent Eats
 						</Typography>
 					</Box>
-					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-						{pages.map((page) => (
-							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
-								href={page.url}
-								sx={{ my: 2, color: "white", display: "block" }}
-							>
-								{page.name}
-							</Button>
-						))}
-					</Box>
-					<Box sx={{ flexGrow: 0 }}>
-						<Tooltip title="Open settings">
-							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-							</IconButton>
-						</Tooltip>
-						<Menu
-							sx={{ mt: "45px" }}
-							id="menu-appbar"
-							anchorEl={anchorElUser}
-							anchorOrigin={{
-								vertical: "top",
-								horizontal: "right"
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: "top",
-								horizontal: "right"
-							}}
-							open={Boolean(anchorElUser)}
-							onClose={handleCloseUserMenu}
-						>
-							{settings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Link textAlign="center" href={setting.url} sx={{ textDecoration: "none", color: "black" }}>
-										{setting.name}
-									</Link>
-								</MenuItem>
+					{currentUrl !== "/landing" ? (
+						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+							{pages.map((page, idx) => (
+								<Button
+									key={idx}
+									onClick={handleCloseNavMenu}
+									href={page.url}
+									sx={{ my: 2, color: "white", display: "block" }}
+								>
+									{page.name}
+								</Button>
 							))}
-						</Menu>
-					</Box>
+						</Box>
+					) : null}
+
+					{currentUrl !== "/landing" ? (
+						<Box sx={{ flexGrow: 0 }}>
+							<Tooltip title="Open settings">
+								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+									<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+								</IconButton>
+							</Tooltip>
+							<Menu
+								sx={{ mt: "45px" }}
+								id="menu-appbar"
+								anchorEl={anchorElUser}
+								anchorOrigin={{
+									vertical: "top",
+									horizontal: "right"
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: "top",
+									horizontal: "right"
+								}}
+								open={Boolean(anchorElUser)}
+								onClose={handleCloseUserMenu}
+							>
+								{settings.map((setting, idx) => (
+									<MenuItem key={idx} onClick={handleCloseUserMenu}>
+										<Link textAlign="center" href={setting.url} sx={{ textDecoration: "none", color: "black" }}>
+											{setting.name}
+										</Link>
+									</MenuItem>
+								))}
+							</Menu>
+						</Box>
+					) : (
+						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto" }}>
+							<Button href="/login" sx={{ my: 2, color: "white", display: "block" }}>
+								Sign In
+							</Button>
+							<Button href="/create-account" sx={{ my: 2, color: "white", display: "block" }}>
+								Create Account
+							</Button>
+						</Box>
+					)}
 				</Toolbar>
 			</Container>
 		</AppBar>
