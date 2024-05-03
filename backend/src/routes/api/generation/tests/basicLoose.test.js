@@ -27,7 +27,7 @@ describe("GET /basicLoose", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicLoose")
+			.post("/api/generation/basicLoose")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -60,7 +60,7 @@ describe("GET /basicLoose", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicLoose")
+			.post("/api/generation/basicLoose")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -93,7 +93,7 @@ describe("GET /basicLoose", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicLoose")
+			.post("/api/generation/basicLoose")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -126,7 +126,7 @@ describe("GET /basicLoose", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicLoose")
+			.post("/api/generation/basicLoose")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)

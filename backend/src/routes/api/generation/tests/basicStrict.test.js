@@ -26,7 +26,7 @@ describe("GET /basicStrict", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicStrict")
+			.post("/api/generation/basicStrict")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -58,7 +58,7 @@ describe("GET /basicStrict", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicStrict")
+			.post("/api/generation/basicStrict")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -90,7 +90,7 @@ describe("GET /basicStrict", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicStrict")
+			.post("/api/generation/basicStrict")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -122,7 +122,7 @@ describe("GET /basicStrict", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicStrict")
+			.post("/api/generation/basicStrict")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)

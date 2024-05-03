@@ -13,7 +13,7 @@ describe("GET /remix", () => {
 		};
 
 		request(app)
-			.get("/api/generation/prompt")
+			.post("/api/generation/prompt")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -31,7 +31,7 @@ describe("GET /remix", () => {
 		};
 
 		request(app)
-			.get("/api/generation/prompt")
+			.post("/api/generation/prompt")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
