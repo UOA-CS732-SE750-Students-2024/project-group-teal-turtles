@@ -31,7 +31,7 @@ export default function PantryGrid({ itemData, variant, onClick, selected }) {
 							</Typography>
 						</CardActionArea>
 						<Checkbox
-							checked={selected.includes(item.title) ?? false}
+							checked={selected ? selected.includes(item.title) : false}
 							disableRipple
 							sx={{
 								position: "absolute",
