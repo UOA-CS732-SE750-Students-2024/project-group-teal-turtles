@@ -28,7 +28,7 @@ function Login() {
 
 	async function fetchUser() {
 		try {
-			const response = await axios.get("http://localhost:3000/api/users", {
+			const response = await axios.get("https://intelligent-eats.ts.r.appspot.com/api/users", {
 				headers: {
 					Authorization: authToken
 				}
@@ -54,7 +54,7 @@ function Login() {
 	async function createUserInDatabase() {
 		try {
 			const response = await axios.post(
-				"http://localhost:3000/api/users",
+				"https://intelligent-eats.ts.r.appspot.com/api/users",
 				{},
 				{
 					headers: {

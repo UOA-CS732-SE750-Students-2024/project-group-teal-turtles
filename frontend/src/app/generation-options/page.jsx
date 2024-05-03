@@ -9,7 +9,7 @@ function GenerationOptions() {
 	return (
 		<Layout>
 			<div>GenerationOptions</div>
-			<div>{userParameters.numberOfPeople}</div>
+			<div>{userParameters ? userParameters.numberOfPeople : "loading"}</div>
 			<button onClick={() => setUserParameters({ numberOfPeople: 5 })}>set user params to 5</button>
 		</Layout>
 	);

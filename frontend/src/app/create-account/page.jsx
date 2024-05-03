@@ -29,7 +29,7 @@ function CreateAccount() {
 	async function createUserInDatabase(userAuthToken) {
 		try {
 			const response = await axios.post(
-				"http://localhost:3000/api/users",
+				"https://intelligent-eats.ts.r.appspot.com/api/users",
 				{},
 				{
 					headers: {
