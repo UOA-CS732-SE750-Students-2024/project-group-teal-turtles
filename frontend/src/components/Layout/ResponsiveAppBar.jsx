@@ -1,5 +1,4 @@
 "use client";
-
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,15 +15,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { Link } from "@mui/material";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
-		{ name: "Generate", url: "/generation-options" },
-		{ name: "Create account (Temp)", url: "/create-account" }
+		{ name: "Generate", url: "/generation-options" }
 	];
 
 	const currentUrl = usePathname();
@@ -79,45 +76,46 @@ function ResponsiveAppBar() {
 							Intelligent Eats
 						</Typography>
 					</Box>
-
-					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-						<IconButton
-							size="large"
-							aria-label="account of current user"
-							aria-controls="menu-appbar"
-							aria-haspopup="true"
-							onClick={handleOpenNavMenu}
-							color="inherit"
-						>
-							<MenuIcon />
-						</IconButton>
-						<Menu
-							id="menu-appbar"
-							anchorEl={anchorElNav}
-							anchorOrigin={{
-								vertical: "bottom",
-								horizontal: "left"
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: "top",
-								horizontal: "left"
-							}}
-							open={Boolean(anchorElNav)}
-							onClose={handleCloseNavMenu}
-							sx={{
-								display: { xs: "block", md: "none" }
-							}}
-						>
-							{pages.map((page, idx) => (
-								<MenuItem key={idx} onClick={handleCloseNavMenu}>
-									<Link textAlign="center" href={page.url} sx={{ textDecoration: "none", color: "black" }}>
-										{page.name}
-									</Link>
-								</MenuItem>
-							))}
-						</Menu>
-					</Box>
+					{currentUrl !== "/landing" ? (
+						<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+							<IconButton
+								size="large"
+								aria-label="account of current user"
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								onClick={handleOpenNavMenu}
+								color="inherit"
+							>
+								<MenuIcon />
+							</IconButton>
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorElNav}
+								anchorOrigin={{
+									vertical: "bottom",
+									horizontal: "left"
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: "top",
+									horizontal: "left"
+								}}
+								open={Boolean(anchorElNav)}
+								onClose={handleCloseNavMenu}
+								sx={{
+									display: { xs: "block", md: "none" }
+								}}
+							>
+								{pages.map((page, idx) => (
+									<MenuItem key={idx} onClick={handleCloseNavMenu}>
+										<Link textAlign="center" href={page.url} sx={{ textDecoration: "none", color: "black" }}>
+											{page.name}
+										</Link>
+									</MenuItem>
+								))}
+							</Menu>
+						</Box>
+					) : null}
 					<Box sx={{ display: { xs: "flex", md: "none", flexGrow: 1 }, mr: 1 }}>
 						<Image src={"/logo.png"} alt={"Logo"} width={50} height={50} />
 						<Typography
