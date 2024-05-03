@@ -93,51 +93,63 @@ export default function PantryTabs() {
 				<Tab label="Dairy" {...a11yProps(5)} />
 			</Tabs>
 			<TabPanel value={value} index={0}>
-				<Typography variant="h6">Your Ingredients</Typography>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+					Your Ingredients
+				</Typography>
 				<PantryGrid itemData={itemData.pantry} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				<Typography variant="h6">Bread</Typography>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+					Bread
+				</Typography>
 				<PantryGrid itemData={itemData.bread} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
 					Pasta
 				</Typography>
 				<PantryGrid itemData={itemData.pasta} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
 					Other
 				</Typography>
 				<PantryGrid itemData={itemData.carbsMisc} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 			<TabPanel value={value} index={2}>
-				<Typography variant="h6">Beef</Typography>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+					Beef
+				</Typography>
 				<PantryGrid itemData={itemData.beef} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
 					Chicken
 				</Typography>
 				<PantryGrid itemData={itemData.chicken} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
 					Pork
 				</Typography>
 				<PantryGrid itemData={itemData.pork} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
 					Processed
 				</Typography>
 				<PantryGrid itemData={itemData.processed} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
 					Other
 				</Typography>
 				<PantryGrid itemData={itemData.proteinMisc} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 			<TabPanel value={value} index={3}>
-				<Typography variant="h6">Vegetables</Typography>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+					Vegetables
+				</Typography>
 				<PantryGrid itemData={itemData.vegetables} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 			<TabPanel value={value} index={4}>
-				<Typography variant="h6">Fruit</Typography>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+					Fruit
+				</Typography>
 				<PantryGrid itemData={itemData.fruit} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 			<TabPanel value={value} index={5}>
-				<Typography variant="h6">Dairy</Typography>
+				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+					Dairy
+				</Typography>
 				<PantryGrid itemData={itemData.dairy} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 		</Box>
@@ -349,7 +361,7 @@ const itemData = {
 			title: "Chilli"
 		},
 		{
-			img: "/images/pantry-icons/vegetables/corn.png", // do we want corn in vegetables or carbohydrates (probably vegetables? same with potatoes)
+			img: "/images/pantry-icons/carbohydrates/corn.png", // do we want corn in vegetables or carbohydrates or both? (probably vegetables? same with potatoes)
 			title: "Corn"
 		},
 		{
@@ -381,8 +393,8 @@ const itemData = {
 			title: "Peas"
 		},
 		{
-			img: "/images/pantry-icons/vegetables/potato.png",
-			title: "Potato"
+			img: "/images/pantry-icons/carbohydrates/potatoes.png",
+			title: "Potatoes"
 		},
 		{
 			img: "/images/pantry-icons/vegetables/tomato.png",
@@ -473,10 +485,6 @@ const itemData = {
 		{
 			img: "/images/pantry-icons/fruit/strawberry.png",
 			title: "Strawberry"
-		},
-		{
-			img: "/images/pantry-icons/fruit/tomato.png",
-			title: "Tomato"
 		},
 		{
 			img: "/images/pantry-icons/fruit/watermelon.png",
