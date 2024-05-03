@@ -21,7 +21,7 @@ function ResponsiveAppBar() {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
-		{ name: "Generate", url: "/generation-options" }
+		{ name: "Generate", url: "/generation-options?generateOption=Basic" }
 	];
 
 	const currentUrl = usePathname();

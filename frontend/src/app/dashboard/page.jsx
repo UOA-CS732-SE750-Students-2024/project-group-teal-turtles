@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import IngredientSelector from "@/components/IngredientSelector/IngredientSelector";
 import Layout from "@/components/Layout/Layout";
@@ -8,8 +8,8 @@ import React from "react";
 function Dashboard() {
 	return (
 		<Layout>
-			<MealGenerationPanel/>
-			<IngredientSelector/>
+			<MealGenerationPanel />
+			<IngredientSelector />
 		</Layout>
 	);
 }

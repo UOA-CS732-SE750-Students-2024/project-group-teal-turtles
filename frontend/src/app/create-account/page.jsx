@@ -9,6 +9,7 @@ import { createAccount } from "@/app/auth-functions";
 import { auth } from "@/app/firebase-config";
 import useDataStore from "@/lib/store";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 function CreateAccount() {
 	const [passwordVisible, setPasswordVisible] = useState(false);
@@ -25,6 +26,7 @@ function CreateAccount() {
 		setUserEmail,
 		setAuthToken
 	} = useDataStore();
+	const router = useRouter();
 
 	async function createUserInDatabase(userAuthToken) {
 		try {
@@ -43,6 +45,7 @@ function CreateAccount() {
 			setUserGeneratedMeals(response.data.generatedMeals);
 			setUserIngredients(response.data.ingredients);
 			setUserParameters(response.data.parameters);
+			router.push("/dashboard");
 			return response.data;
 		} catch (error) {
 			console.error("Error creating user:", error);
