@@ -21,6 +21,7 @@ function GenerationPreferences({ generateOptionParam }) {
 	const cuisines = ["Italian", "Mexican", "Chinese", "Indian"];
 	const dietaryRequirements = ["none", "Vegetarian", "Vegan", "Gluten-free", "Dairy-free"];
 	const numberOfPeopleOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
+	const { setUserParameters, userParameters, authToken } = useDataStore();
 
 	return generateOptionParam === "Prompt" ? (
 		<Box className={styles.centeredBox}>
@@ -56,8 +57,7 @@ function GenerationPreferences({ generateOptionParam }) {
 					Number of People:
 				</Typography>
 				<FormControl variant="outlined" sx={{ width: "8%", ml: "2vh" }}>
-					<InputLabel id="number-of-people-label">Select</InputLabel>
-					<Select labelId="number-of-people-label" label="Select" defaultValue={1}>
+					<Select value={userParameters !== null ? userParameters.numberOfPeople : ""}>
 						{numberOfPeopleOptions.map((number, index) => (
 							<MenuItem key={index} value={number}>
 								{number}

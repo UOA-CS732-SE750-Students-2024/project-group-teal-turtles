@@ -1,8 +1,11 @@
 import { Box } from "@mui/material";
 import styles from "./MealTypeButtons.module.css";
+import useDataStore from "@/lib/store";
 
-function MealTypeButtons({ selectedMealType, onSelectMealType }) {
+function MealTypeButtons({}) {
 	const mealTypes = ["Breakfast", "Lunch", "Dinner"];
+	const { setUserParameters, userParameters } = useDataStore();
+	console.log(userParameters);
 
 	const handleBoxClick = (mealType) => {
 		//handle click
@@ -14,7 +17,11 @@ function MealTypeButtons({ selectedMealType, onSelectMealType }) {
 				<Box
 					key={index}
 					onClick={() => handleBoxClick(mealType)}
-					className={mealType === selectedMealType ? `${styles.button} ${styles.selected}` : styles.button}
+					className={
+						userParameters && mealType.toLocaleLowerCase() === userParameters.mealType.toLowerCase()
+							? `${styles.button} ${styles.selected}`
+							: styles.button
+					}
 				>
 					{mealType}
 				</Box>
