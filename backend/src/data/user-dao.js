@@ -84,6 +84,7 @@ export async function getIngredients(uid) {
 	return user.ingredients;
 }
 
+//not used
 export async function setIngredientTypeList(uid, ingredientType, ingredients) {
 	const user = await User.findByIdAndUpdate(uid, { $set: {} });
 	if (!user) {

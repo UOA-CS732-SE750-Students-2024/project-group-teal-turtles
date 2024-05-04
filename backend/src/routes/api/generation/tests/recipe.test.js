@@ -15,7 +15,7 @@ describe("GET /recipe", () => {
 		};
 
 		request(app)
-			.get("/api/generation/recipe")
+			.post("/api/generation/recipe")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)

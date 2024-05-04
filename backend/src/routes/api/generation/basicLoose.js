@@ -1,13 +1,10 @@
 import express from "express";
 
 import createAndRun from "../../../openAI/openAi.js";
-
 const basicLoose = express.Router();
 
-basicLoose.get("/", async (req, res) => {
-	const ingredients = Object.values(req.body.ingredients).flat();
-	req.body.ingredients = ingredients;
-	res.send(await createAndRun(process.env.ASSISTANT_BASIC_LOOSE_ID, JSON.stringify(req.body)));
+basicLoose.post("/", async (req, res) => {
+	res.send(await createAndRun("asst_VcVcT36h8rrnjcEjKMASTf9p", JSON.stringify(req.body)));
 });
 
 export default basicLoose;

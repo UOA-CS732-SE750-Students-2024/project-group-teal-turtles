@@ -11,14 +11,19 @@ describe("GET /basicLoose", () => {
 		const payload = {
 			favouriteMeals: ["Pancakes", "Waffles"],
 			generatedMeals: ["Cheesy Mushroom Potato Bake"],
-			ingredients: {
-				VegetablesAndFruit: ["Raisins", "Apple", "Mushrooms"],
-				Dairy: ["Milk", "Cheese"],
-				Meat: ["Steak", "Chicken"],
-				Baking: ["Flour", "Sugar"],
-				Carbs: ["Bread", "Potato"],
-				Other: []
-			},
+			ingredients: [
+				"Raisins",
+				"Apple",
+				"Mushrooms",
+				"Milk",
+				"Cheese",
+				"Steak",
+				"Chicken",
+				"Flour",
+				"Sugar",
+				"Bread",
+				"Potato"
+			],
 			dislikedIngredients: ["Capsicum", "carrots"],
 			mealType: "",
 			cuisine: "",
@@ -27,7 +32,7 @@ describe("GET /basicLoose", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicLoose")
+			.post("/api/generation/basicLoose")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -44,14 +49,19 @@ describe("GET /basicLoose", () => {
 		const payload = {
 			favouriteMeals: ["Pancakes", "Waffles"],
 			generatedMeals: ["Cheesy Mushroom Potato Bake, Omlete"],
-			ingredients: {
-				VegetablesAndFruit: ["Raisins", "Apple", "Mushrooms"],
-				Dairy: ["Milk", "Cheese"],
-				Meat: ["Steak", "Chicken"],
-				Baking: ["Flour", "Sugar"],
-				Carbs: ["Bread", "Potato"],
-				Other: []
-			},
+			ingredients: [
+				"Raisins",
+				"Apple",
+				"Mushrooms",
+				"Milk",
+				"Cheese",
+				"Steak",
+				"Chicken",
+				"Flour",
+				"Sugar",
+				"Bread",
+				"Potato"
+			],
 			dislikedIngredients: ["Capsicum", "carrots"],
 			mealType: "Breakfast",
 			cuisine: "",
@@ -60,7 +70,7 @@ describe("GET /basicLoose", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicLoose")
+			.post("/api/generation/basicLoose")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -77,14 +87,19 @@ describe("GET /basicLoose", () => {
 		const payload = {
 			favouriteMeals: [""],
 			generatedMeals: ["Cheesy Mushroom Potato Bake"],
-			ingredients: {
-				VegetablesAndFruit: ["Raisins", "Apple", "Mushrooms"],
-				Dairy: ["Milk", "Cheese"],
-				Meat: ["Steak", "Chicken"],
-				Baking: ["Flour", "Sugar"],
-				Carbs: ["Bread", "Potato"],
-				Other: []
-			},
+			ingredients: [
+				"Raisins",
+				"Apple",
+				"Mushrooms",
+				"Milk",
+				"Cheese",
+				"Steak",
+				"Chicken",
+				"Flour",
+				"Sugar",
+				"Bread",
+				"Potato"
+			],
 			dislikedIngredients: ["Capsicum", "carrots"],
 			mealType: "",
 			cuisine: "Asian",
@@ -93,7 +108,7 @@ describe("GET /basicLoose", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicLoose")
+			.post("/api/generation/basicLoose")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)
@@ -110,14 +125,19 @@ describe("GET /basicLoose", () => {
 		const payload = {
 			favouriteMeals: ["Pancakes", "Waffles"],
 			generatedMeals: ["Cheesy Mushroom Potato Bake"],
-			ingredients: {
-				VegetablesAndFruit: ["Raisins", "Apple", "Mushrooms"],
-				Dairy: ["Milk", "Cheese"],
-				Meat: ["Steak", "Chicken"],
-				Baking: ["Flour", "Sugar"],
-				Carbs: ["Bread", "Potato"],
-				Other: []
-			},
+			ingredients: [
+				"Raisins",
+				"Apple",
+				"Mushrooms",
+				"Milk",
+				"Cheese",
+				"Steak",
+				"Chicken",
+				"Flour",
+				"Sugar",
+				"Bread",
+				"Potato"
+			],
 			dislikedIngredients: ["Capsicum", "carrots"],
 			mealType: "",
 			cuisine: "",
@@ -126,7 +146,7 @@ describe("GET /basicLoose", () => {
 		};
 
 		request(app)
-			.get("/api/generation/basicLoose")
+			.post("/api/generation/basicLoose")
 			.set("Content-Type", "application/json")
 			.send(JSON.stringify(payload))
 			.expect(200)

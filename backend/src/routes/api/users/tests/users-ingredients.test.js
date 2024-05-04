@@ -14,14 +14,7 @@ const user1 = {
 	_id: "user1",
 	favouriteMeals: [],
 	generatedMeals: [],
-	ingredients: {
-		VegetablesAndFruit: ["Carrot", "Cucumber"],
-		Dairy: ["Yogurt"],
-		Meat: ["Pork"],
-		Baking: ["Butter"],
-		Carbs: ["Quinoa"],
-		Other: ["Pepper"]
-	},
+	ingredients: ["Broccoli", "Spinach", "Tomato"],
 	dislikedIngredients: [],
 	parameters: { numberOfPeople: { $numberInt: "4" }, mealType: "dinner", cuisine: "", dietaryRequirements: [] }
 };
@@ -30,14 +23,7 @@ const user2 = {
 	_id: "user2",
 	favouriteMeals: [],
 	generatedMeals: [],
-	ingredients: {
-		VegetablesAndFruit: ["Carrot", "Cucumber"],
-		Dairy: ["Yogurt"],
-		Meat: ["Pork"],
-		Baking: ["Butter"],
-		Carbs: ["Quinoa"],
-		Other: ["Pepper"]
-	},
+	ingredients: ["Broccoli", "Spinach", "Tomato"],
 	dislikedIngredients: [],
 	parameters: { numberOfPeople: { $numberInt: "4" }, mealType: "dinner", cuisine: "", dietaryRequirements: [] }
 };
@@ -45,14 +31,7 @@ const user3 = {
 	_id: "user3",
 	favouriteMeals: [],
 	generatedMeals: [],
-	ingredients: {
-		VegetablesAndFruit: ["Carrot", "Cucumber"],
-		Dairy: ["Yogurt"],
-		Meat: ["Pork"],
-		Baking: ["Butter"],
-		Carbs: ["Quinoa"],
-		Other: ["Pepper"]
-	},
+	ingredients: ["Broccoli", "Spinach", "Tomato"],
 	dislikedIngredients: ["Olives"],
 	parameters: { numberOfPeople: { $numberInt: "4" }, mealType: "dinner", cuisine: "", dietaryRequirements: [] }
 };
@@ -85,7 +64,7 @@ describe("API: /api/users/ingredients", () => {
 					if (err) {
 						return done(err);
 					}
-					expect(res.body).toHaveProperty("VegetablesAndFruit");
+					expect(res.body);
 					return done();
 				});
 		}, 15000);
@@ -97,56 +76,13 @@ describe("API: /api/users/ingredients", () => {
 
 	describe("PUT /api/users/ingredients", () => {
 		it("should update the user's ingredients", (done) => {
-			const updatedIngredients = {
-				VegetablesAndFruit: ["Carrot", "Cucumber"],
-				Dairy: ["Yogurt"],
-				Meat: ["Pork"],
-				Baking: ["Butter"],
-				Carbs: ["Quinoa"],
-				Other: ["Pepper"]
-			};
+			const updatedIngredients = ["Carrot", "Cucumber", "Spinach", "Broccoli"];
 
 			request(app)
 				.put("/api/users/ingredients")
 				.send({ ingredients: updatedIngredients })
 				.set("Authorization", authToken2)
 				.expect(204, done);
-		}, 15000);
-
-		it("should return 400 when required fields are missing", (done) => {
-			const incompleteIngredients = {
-				VegetablesAndFruit: ["Carrot"]
-			};
-
-			request(app)
-				.put("/api/users/ingredients")
-				.send({ ingredients: incompleteIngredients })
-				.set("Authorization", authToken)
-				.expect(400)
-				.end((err, res) => {
-					if (err) {
-						return done(err);
-					}
-					expect(res.body.error).toBeDefined();
-					return done();
-				});
-		}, 15000);
-	});
-	describe("PUT /api/users/ingredients/type", () => {
-		it("should set specific ingredient type list", (done) => {
-			const payload = {
-				ingredientType: "VegetablesAndFruit",
-				ingredients: ["Tomato", "Spinach", "Broccoli"]
-			};
-			request(app).put("/api/users/ingredients/type").set("Authorization", authToken).send(payload).expect(204, done);
-		}, 15000);
-
-		it("should return 400 for invalid ingredient type", (done) => {
-			request(app)
-				.put("/api/users/ingredients/type")
-				.send({ ingredientType: "InvalidType", ingredients: ["Something"] })
-				.set("Authorization", authToken)
-				.expect(400, done);
 		}, 15000);
 	});
 	describe("PUT /api/users/ingredients/disliked/add", () => {
