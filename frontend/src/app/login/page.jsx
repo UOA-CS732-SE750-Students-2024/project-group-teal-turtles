@@ -10,7 +10,6 @@ import { auth } from "@/app/firebase-config";
 import axios from "axios";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 function Login() {
 	const [visible, setVisible] = useState(false);

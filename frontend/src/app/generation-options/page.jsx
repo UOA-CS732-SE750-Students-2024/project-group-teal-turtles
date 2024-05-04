@@ -7,9 +7,11 @@ import GenerationButtons from "@/components/Generation/GenerationButtons";
 import GenerationPreferences from "@/components/Generation/GenerationPreferences";
 import { Stack, Typography, Container, Button, TextField, IconButton, Box } from "@mui/material";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 function GenerationOptions() {
 	const { userParameters, setUserParameters, userAuth } = useDataStore();
+	const [selectedNumIngredientsExtra, setSelectedNumIngredientsExtra] = useState(4);
 
 	const searchParams = useSearchParams();
 
@@ -26,11 +28,9 @@ function GenerationOptions() {
 					generateOptionParam={generateOptionParam}
 					userParameters={userParameters}
 					setUserParameters={setUserParameters}
+					selectedNumIngredientsExtra={selectedNumIngredientsExtra}
+					setSelectedNumIngredientsExtra={setSelectedNumIngredientsExtra}
 				/>
-				{/* 
-				<div>Generation Preferences</div>
-				<div>{userParameters ? userParameters.numberOfPeople : "loading"}</div>
-				<button onClick={() => setUserParameters({ numberOfPeople: 5 })}>set user params to 5</button> */}
 			</Container>
 		</Layout>
 	);
