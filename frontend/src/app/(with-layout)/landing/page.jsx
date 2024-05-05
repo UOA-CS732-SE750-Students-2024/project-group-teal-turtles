@@ -43,8 +43,6 @@ function CircularCard({ title, body }) {
 }
 
 function Landing() {
-	// TODO: fetch these params
-	let recipeCount, generationTime, reviewCount;
 	const { authToken } = useDataStore();
 	const router = useRouter();
 	if (authToken !== null) {
@@ -63,7 +61,7 @@ function Landing() {
 	}, []);
 
 	return (
-		<Stack height="calc(100vh - 70px)">
+		<Stack height="calc(100vh)">
 			{showContent && (
 				<>
 					<Stack
@@ -113,6 +111,7 @@ function Landing() {
 						/>
 					</Stack>
 					<Stack direction="row" pt={5} px={30} sx={{ backgroundColor: "background.default" }}>
+						{/* TODO: Put something meaningful here */}
 						<CircularCard title="Many" body="Recipes Generated" />
 						<CircularCard title="Fast" body="Generation Time" />
 						<CircularCard title="Many" body="Trusted Reviews" />
