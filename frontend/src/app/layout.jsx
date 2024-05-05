@@ -1,7 +1,6 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@/lib/theme";
 
 export const metadata = {
 	title: "Intelligent Eats",
@@ -11,7 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>{children}</body>
+			<body>
+				<ThemeProvider theme={theme}>{children}</ThemeProvider>
+			</body>
 		</html>
 	);
 }
