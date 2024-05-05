@@ -23,20 +23,18 @@ function Login() {
 		setUserParameters,
 		userParameters,
 		setUserEmail,
-		setAuthToken,
-		authToken
+		setAuthToken
 	} = useDataStore();
 	const router = useRouter();
-	async function fetchUser() {
+	async function fetchUser(userAuthToken) {
 		try {
 			const response = await axios.get("https://intelligent-eats.ts.r.appspot.com/api/users", {
 				headers: {
-					Authorization: authToken
+					Authorization: userAuthToken
 				}
 			});
 
 			console.log(response.data);
-			console.log(authToken);
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
 			setUserGeneratedMeals(response.data.generatedMeals);
@@ -52,14 +50,14 @@ function Login() {
 		}
 	}
 
-	async function createUserInDatabase() {
+	async function createUserInDatabase(userAuthToken) {
 		try {
 			const response = await axios.post(
 				"https://intelligent-eats.ts.r.appspot.com/api/users",
 				{},
 				{
 					headers: {
-						Authorization: authToken
+						Authorization: userAuthToken
 					}
 				}
 			);
@@ -82,7 +80,8 @@ function Login() {
 			await login(email, password);
 			setAuthToken(auth.currentUser.accessToken);
 			setUserEmail(auth.currentUser.email);
-			fetchUser();
+			console.log(auth.currentUser.accessToken);
+			fetchUser(auth.currentUser.accessToken);
 		} catch (error) {
 			if (error.code === "auth/invalid-credential") {
 				console.log("Invalid credential. Please check your email and password.");
@@ -104,10 +103,10 @@ function Login() {
 			console.log(auth.currentUser);
 			const metadata = auth.currentUser.metadata;
 			if (metadata.creationTime === metadata.lastSignInTime) {
-				createUserInDatabase();
+				createUserInDatabase(auth.currentUser.accessToken);
 			} else {
 				console.log("returning user");
-				fetchUser();
+				fetchUser(auth.currentUser.accessToken);
 			}
 		} catch (error) {
 			console.log("An error occurred while signing in:", error.message);
