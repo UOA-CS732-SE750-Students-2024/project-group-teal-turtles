@@ -12,6 +12,7 @@ export default function ViewMealCard() {
 		userFavouriteMeals,
 		userDislikedIngredients,
 		userGeneratedMeals,
+		setUserGeneratedMeals,
 		userParameters,
 		userIngredients,
 		numIngredients,
@@ -48,6 +49,7 @@ export default function ViewMealCard() {
 					.then((response) => {
 						setMealName(response.data.mealName);
 						setIngredientsUser(response.data.ingredients);
+						setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
 					});
 			} else if (searchParams.get("generateOption") === "Prompt") {
 				axios
@@ -65,6 +67,7 @@ export default function ViewMealCard() {
 					.then((response) => {
 						setMealName(response.data.mealName);
 						setIngredientsUser(response.data.ingredients);
+						setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
 					});
 			} else if (searchParams.get("generateOption") === "Basic") {
 				axios
@@ -90,6 +93,7 @@ export default function ViewMealCard() {
 						setMealName(response.data.mealName);
 						setIngredientsUser(response.data.ingredientsUser);
 						setIngredientsNeeded(response.data.ingredientsNeeded);
+						setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
 					});
 			} else if (searchParams.get("generateOption") === "Strict") {
 				axios
@@ -113,6 +117,7 @@ export default function ViewMealCard() {
 					.then((response) => {
 						setMealName(response.data.mealName);
 						setIngredientsUser(response.data.ingredientsUser);
+						setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
 					});
 			}
 		};

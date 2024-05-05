@@ -7,7 +7,7 @@ import { Stack } from "@mui/material";
 export default function ViewMeal() {
 	return (
 		<Stack sx={{ backgroundColor: "#FFFFFF", minHeight: "calc(100vh - 70px)" }} alignItems="center">
-			<ViewMealCard></ViewMealCard>;
+			<ViewMealCard></ViewMealCard>
 		</Stack>
 	);
 }
