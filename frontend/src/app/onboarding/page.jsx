@@ -48,7 +48,7 @@ function Onboarding() {
 									Add Ingredients
 								</Typography>
 							</Stack>
-							<Typography variant="h6" textAlign="center" sx={{ color: "secondary.main" }}>
+							<Typography variant="h6" textAlign="center">
 								Add ingredients that you have, in order to aid with recipe recommendation.
 							</Typography>
 						</Stack>
