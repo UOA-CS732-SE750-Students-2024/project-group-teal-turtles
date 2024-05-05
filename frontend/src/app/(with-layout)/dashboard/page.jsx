@@ -1,7 +1,8 @@
 "use client";
 
-import IngredientSelector from "@/components/IngredientSelector/IngredientSelector";
 import MealGenerationPanel from "@/components/MealGenerationPanel/MealGenerationPanel";
+import UserPantryGrid from "@/components/PantryDash/UserPantryGrid";
+import { Stack } from "@mui/material";
 import React from "react";
 import { Button } from "@mui/material";
 import { logout } from "@/app/auth-functions";
@@ -37,11 +38,16 @@ function Dashboard() {
 	};
 
 	return (
-		<>
-			<Button onClick={handleLogout}>Logout</Button>
+			
+		<Stack
+			sx={{ backgroundColor: "#FFFFFF", minHeight: "calc(100vh - 70px)" }}
+			alignItems="center"
+			justifyContent="center"
+		>
+        <Button onClick={handleLogout}>Logout</Button>
 			<MealGenerationPanel />
-			<IngredientSelector />
-		</>
+			<UserPantryGrid />
+		</Stack>
 	);
 }
 
