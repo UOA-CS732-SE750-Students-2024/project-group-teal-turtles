@@ -36,14 +36,14 @@ function MealGenerationPanel() {
 					<Grid item xs={6}>
 						<MealGenerationCard
 							header="Basic"
-							description="Will only use the ingredients from your pantry to generate a delicious meal"
+							description="Will use ingredients from your pantry in addition to a number of additional ingredients to generate a delicious meal"
 							onClick={() => handleButtonPress("Basic")}
 						/>
 					</Grid>
 					<Grid item xs={6}>
 						<MealGenerationCard
-							header="Free-Form"
-							description="To step outside your comfort zone allow us to generate a meal using some additional ingredients"
+							header="Strict"
+							description="Will only use the ingredients from your pantry to generate a delicious meal"
 							onClick={() => handleButtonPress("Strict")}
 						/>
 					</Grid>
