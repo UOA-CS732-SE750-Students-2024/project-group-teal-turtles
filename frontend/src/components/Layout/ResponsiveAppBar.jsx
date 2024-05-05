@@ -25,109 +25,96 @@ function ResponsiveAppBar() {
 	const currentUrl = usePathname();
 	const router = useRouter();
 
-	const [showContent, setShowContent] = useState(false);
-
-	useEffect(() => {
-		const delayToShowContent = setTimeout(() => {
-			setShowContent(true);
-		}, 50);
-
-		return () => clearTimeout(delayToShowContent);
-	}, []);
-
 	return (
-		<>
-			{showContent && (
-				<AppBar position="sticky" sx={{ top: 0, justifyContent: "flex-start", height: 70 }}>
-					<Container maxWidth="xl">
-						<Toolbar disableGutters>
-							<Link href="/dashboard">
-								<Box sx={{ display: { xs: "none", md: "flex" }, mr: 1, alignItems: "center" }}>
-									<Image
-										src={"/logo.png"}
-										alt={"Logo"}
-										width={50}
-										height={50}
-										sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-									/>
-									<Typography
-										variant="h6"
-										noWrap
-										component="a"
-										onClick={() => router.push("/landing")}
-										sx={{
-											my: "auto",
-											ml: 1,
-											mr: 2,
-											fontWeight: 700,
-											color: "inherit",
-											textDecoration: "none"
-										}}
-									>
-										Intelligent Eats
-									</Typography>
-								</Box>
-							</Link>
-							<Link href="/landing">
-								<Box sx={{ display: { xs: "flex", md: "none", flexGrow: 1 }, mr: 1 }}>
-									<Image src={"/logo.png"} alt={"Logo"} width={50} height={50} />
-									<Typography
-										variant="h6"
-										noWrap
-										component="a"
-										onClick={() => router.push("/landing")}
-										sx={{
-											my: "auto",
-											ml: 1,
-											fontWeight: 700,
-											color: "inherit",
-											textDecoration: "none"
-										}}
-									>
-										Intelligent Eats
-									</Typography>
-								</Box>
-							</Link>
-							{currentUrl !== "/landing" ? (
-								<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-									{pages.map((page, idx) => (
-										<Button
-											key={idx}
-											onClick={() => router.push(page.url)}
-											sx={{ my: 2, color: "white", display: "block" }}
-										>
-											{page.name}
-										</Button>
-									))}
-								</Box>
-							) : null}
+		// <>
+		// 	{showContent && (
+		<AppBar
+			position={currentUrl !== "/landing" ? "sticky" : "absolute"}
+			elevation={currentUrl !== "/landing" ? 1 : 0}
+			sx={{
+				top: 0,
+				justifyContent: "flex-start",
+				height: 70,
+				backgroundColor: currentUrl !== "/landing" ? "primary.main" : "transparent"
+			}}
+		>
+			<Container maxWidth="xl">
+				<Toolbar disableGutters>
+					<Box
+						onClick={() => router.push(currentUrl !== "/landing" ? "/dashboard" : "/landing")}
+						sx={{
+							display: {
+								xs: "none",
+								md: "flex",
+								"&:hover": {
+									cursor: "pointer"
+								}
+							},
+							mr: 1,
+							alignItems: "center"
+						}}
+					>
+						<Image
+							src={"/logo.png"}
+							alt={"Logo"}
+							width={50}
+							height={50}
+							sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+						/>
+						<Typography
+							variant="h6"
+							noWrap
+							component="a"
+							sx={{
+								my: "auto",
+								ml: 1,
+								mr: 2,
+								fontWeight: 700,
+								color: "inherit",
+								textDecoration: "none"
+							}}
+						>
+							Intelligent Eats
+						</Typography>
+					</Box>
 
-							{currentUrl !== "/landing" ? (
-								<Box sx={{ flexGrow: 0 }}>
-									<Tooltip title="Open Profile">
-										<IconButton onClick={() => router.push("/profile")} sx={{ p: 0 }}>
-											<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-										</IconButton>
-									</Tooltip>
-								</Box>
-							) : (
-								<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto" }}>
-									<Button onClick={() => router.push("/login")} sx={{ my: 2, color: "white", display: "block" }}>
-										Sign In
-									</Button>
-									<Button
-										onClick={() => router.push("/create-account")}
-										sx={{ my: 2, color: "white", display: "block" }}
-									>
-										Create Account
-									</Button>
-								</Box>
-							)}
-						</Toolbar>
-					</Container>
-				</AppBar>
-			)}
-		</>
+					{currentUrl !== "/landing" && (
+						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+							{pages.map((page, idx) => (
+								<Button
+									key={idx}
+									onClick={() => router.push(page.url)}
+									sx={{ my: 2, color: "white", display: "block" }}
+								>
+									{page.name}
+								</Button>
+							))}
+						</Box>
+					)}
+
+					{currentUrl !== "/landing" ? (
+						<Box sx={{ flexGrow: 0 }}>
+							<Tooltip title="Open Profile">
+								<IconButton onClick={() => router.push("/profile")} sx={{ p: 0 }}>
+									<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+								</IconButton>
+							</Tooltip>
+						</Box>
+					) : (
+						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto" }}>
+							<Button onClick={() => router.push("/login")} sx={{ my: 2, color: "white", display: "block" }}>
+								Sign In
+							</Button>
+							<Button onClick={() => router.push("/create-account")} sx={{ my: 2, color: "white", display: "block" }}>
+								Create Account
+							</Button>
+						</Box>
+					)}
+				</Toolbar>
+			</Container>
+		</AppBar>
+		// 	)}
+		// </>
 	);
 }
 export default ResponsiveAppBar;

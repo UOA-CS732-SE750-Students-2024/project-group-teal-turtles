@@ -77,7 +77,9 @@ function CreateAccount() {
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
-				<Typography variant="h3">Sign Up</Typography>
+				<Typography variant="h3" fontWeight="700">
+					Sign Up
+				</Typography>
 				<Typography variant="h5">Don't have an account? We'll create one for you.</Typography>
 
 				<TextField
@@ -124,7 +126,9 @@ function CreateAccount() {
 					<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }} onClick={handleCreateAccount}>
 						<Typography variant="h6">Create Account</Typography>
 					</Button>
-					<Typography variant="h6">OR</Typography>
+					<Typography variant="h6" fontWeight="700">
+						OR
+					</Typography>
 					<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none", py: 1.5 }}>
 						<Typography variant="h6">Sign in with Google</Typography>
 					</Button>

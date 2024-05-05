@@ -115,7 +115,9 @@ function Login() {
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
-				<Typography variant="h3">Login</Typography>
+				<Typography variant="h3" fontWeight="700">
+					Login
+				</Typography>
 				<Typography variant="h5">Sign in to access saved recipes and information.</Typography>
 				<TextField
 					fullWidth
@@ -143,9 +145,13 @@ function Login() {
 				/>
 				<Stack width="100%" alignItems="center" spacing={1.5}>
 					<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }} onClick={handleSignIn}>
-						<Typography variant="h6">Sign In</Typography>
+						<Typography variant="h6" fontWeight="bold">
+							Sign in
+						</Typography>
 					</Button>
-					<Typography variant="h6">OR</Typography>
+					<Typography variant="h6" fontWeight="700">
+						OR
+					</Typography>
 					<Button
 						fullWidth
 						variant="contained"
@@ -153,7 +159,9 @@ function Login() {
 						sx={{ textTransform: "none", py: 1.5 }}
 						onClick={handleGoogleSignIn}
 					>
-						<Typography variant="h6">Sign in with Google</Typography>
+						<Typography variant="h6" fontWeight="bold">
+							Sign in with Google
+						</Typography>
 					</Button>
 					<Link href="/create-account" underline="hover">
 						<Typography variant="h6">Create a new account</Typography>

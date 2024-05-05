@@ -37,14 +37,14 @@ function Onboarding() {
 						<Stack alignItems="center">
 							<Stack direction="row" alignItems="center" width="100%" justifyContent="center">
 								<IconButton
-									sx={{ height: "56px", position: "relative" }}
+									sx={{ height: "56px", marginRight: "44px", position: "relative" }}
 									onClick={() => {
 										setPage("meals");
 									}}
 								>
 									<ChevronLeft sx={{ fontSize: "40px", color: "#000" }} />
 								</IconButton>
-								<Typography variant="h2" marginRight="56px">
+								<Typography variant="h2" marginRight="100px" fontWeight="700" sx={{ color: "primary.main" }}>
 									Add Ingredients
 								</Typography>
 							</Stack>
@@ -67,9 +67,11 @@ function Onboarding() {
 				) : (
 					<>
 						<Stack alignItems="center">
-							<Typography variant="h2">Add Favourite Meals</Typography>
+							<Typography variant="h2" fontWeight="700" sx={{ color: "primary.main" }}>
+								Add Favourite Meals
+							</Typography>
 							<Typography variant="h6" textAlign="center">
-								Select Meals below that you love, in order to aid with recipe recommendation.
+								Select some meals below that you love, in order to aid with recipe generation.
 							</Typography>
 						</Stack>
 						<Stack marginY="30px">
