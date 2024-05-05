@@ -47,8 +47,19 @@ function ResponsiveAppBar() {
 		setAnchorElUser(null);
 	};
 
+	const isNotLanding = currentUrl !== "/landing";
+
 	return (
-		<AppBar position="sticky" sx={{ top: 0, justifyContent: "flex-start", height: 70 }}>
+		<AppBar
+			position={isNotLanding ? "sticky" : "absolute"}
+			elevation={isNotLanding ? 1 : 0}
+			sx={{
+				top: 0,
+				justifyContent: "flex-start",
+				height: 70,
+				backgroundColor: isNotLanding ? "primary.main" : "transparent"
+			}}
+		>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
@@ -64,19 +75,17 @@ function ResponsiveAppBar() {
 							noWrap
 							component="a"
 							href="/landing"
+							alignSelf="center"
 							sx={{
-								my: "auto",
+								fontWeight: 900,
 								ml: 1,
-								mr: 2,
-								fontWeight: 700,
-								color: "inherit",
-								textDecoration: "none"
+								color: "background.paper"
 							}}
 						>
 							Intelligent Eats
 						</Typography>
 					</Box>
-					{currentUrl !== "/landing" ? (
+					{isNotLanding ? (
 						<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 							<IconButton
 								size="large"
@@ -127,7 +136,6 @@ function ResponsiveAppBar() {
 								my: "auto",
 								ml: 1,
 								fontWeight: 700,
-								color: "inherit",
 								textDecoration: "none"
 							}}
 						>
@@ -141,7 +149,7 @@ function ResponsiveAppBar() {
 									key={idx}
 									onClick={handleCloseNavMenu}
 									href={page.url}
-									sx={{ my: 2, color: "white", display: "block" }}
+									sx={{ display: "flex", color: "background.paper" }}
 								>
 									{page.name}
 								</Button>
@@ -174,7 +182,11 @@ function ResponsiveAppBar() {
 							>
 								{settings.map((setting, idx) => (
 									<MenuItem key={idx} onClick={handleCloseUserMenu}>
-										<Link textAlign="center" href={setting.url} sx={{ textDecoration: "none", color: "black" }}>
+										<Link
+											textAlign="center"
+											href={setting.url}
+											sx={{ textDecoration: "none", color: "background.paper" }}
+										>
 											{setting.name}
 										</Link>
 									</MenuItem>
@@ -183,10 +195,10 @@ function ResponsiveAppBar() {
 						</Box>
 					) : (
 						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto" }}>
-							<Button href="/login" sx={{ my: 2, color: "white", display: "block" }}>
+							<Button href="/login" sx={{ display: "flex", color: "background.paper", alignItems: "center" }}>
 								Sign In
 							</Button>
-							<Button href="/create-account" sx={{ my: 2, color: "white", display: "block" }}>
+							<Button href="/create-account" sx={{ display: "flex", color: "background.paper", alignItems: "center" }}>
 								Create Account
 							</Button>
 						</Box>
