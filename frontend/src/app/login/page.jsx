@@ -9,6 +9,7 @@ import { handleGoogleLogin, login } from "@/app/auth-functions";
 import { auth } from "@/app/firebase-config";
 import axios from "axios";
 import useDataStore from "@/lib/store";
+import { useRouter } from "next/navigation";
 
 function Login() {
 	const [visible, setVisible] = useState(false);
@@ -25,7 +26,7 @@ function Login() {
 		setAuthToken,
 		authToken
 	} = useDataStore();
-
+	const router = useRouter();
 	async function fetchUser() {
 		try {
 			const response = await axios.get("https://intelligent-eats.ts.r.appspot.com/api/users", {
@@ -42,9 +43,9 @@ function Login() {
 			setUserIngredients(response.data.ingredients);
 			setUserParameters(response.data.parameters);
 			console.log(userParameters);
+			router.push("/dashboard");
 		} catch (error) {
 			if (error.response && error.response.data.error === "User not found") {
-				console.log("hi");
 			} else {
 				console.log("Error:", error);
 			}
@@ -68,6 +69,7 @@ function Login() {
 			setUserGeneratedMeals(response.data.generatedMeals);
 			setUserIngredients(response.data.ingredients);
 			setUserParameters(response.data.parameters);
+			router.push("/dashboard");
 			return response.data;
 		} catch (error) {
 			console.error("Error creating user:", error);
@@ -111,7 +113,6 @@ function Login() {
 			console.log("An error occurred while signing in:", error.message);
 		}
 	}
-
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
@@ -158,7 +159,6 @@ function Login() {
 					<Link href="/create-account" underline="hover">
 						<Typography variant="h6">Create a new account</Typography>
 					</Link>
-					<a href="/generation-options">Generation Options</a>
 				</Stack>
 			</Stack>
 		</CardWrapper>

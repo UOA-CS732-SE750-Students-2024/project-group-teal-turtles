@@ -16,7 +16,6 @@ const useDataStore = create(
 			setUserIngredients: (ingredients) => set({ userIngredients: ingredients }),
 			setUserDislikedIngredients: (ingredients) => set({ userDislikedIngredients: ingredients }),
 			setUserParameters: (parameters) => {
-				console.log(parameters);
 				set({ userParameters: parameters });
 			},
 			setUserEmail: (email) => set({ userEmail: email }),
