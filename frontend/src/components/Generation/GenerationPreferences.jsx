@@ -17,19 +17,34 @@ import MealTypeButtons from "./MealTypeButtons";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
 
-function GenerationPreferences({ generateOptionParam, setSelectedNumIngredientsExtra, selectedNumIngredientsExtra }) {
+function GenerationPreferences({ generateOptionParam }) {
 	const cuisines = ["Italian", "Mexican", "Chinese", "Indian", "Any"];
 	const dietaryRequirements = ["none", "Vegetarian", "Vegan", "Gluten-free", "Dairy-free"];
 	const numberOfPeopleOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
 	const numberOfIngredientsOptions = ["3", "4", "5", "6+"];
-	const { setUserParameters, userParameters, authToken } = useDataStore();
+	const {
+		setUserParameters,
+		userParameters,
+		authToken,
+		setPrompt,
+		prompt,
+		numIngredients,
+		setNumIngredients,
+		mealToRemix,
+		setMealToRemix
+	} = useDataStore();
 	const router = useRouter();
 
+	const handleGenerate = () => {
+		router.push(`/view-meal?generateOption=${generateOptionParam}`);
+	};
 	return generateOptionParam === "Prompt" ? (
 		<Box className={styles.centeredBox}>
 			<TextField
 				variant="outlined"
 				placeholder="Search for a meal..."
+				onChange={(e) => setPrompt(e.target.value)}
+				value={prompt !== "" ? prompt : ""}
 				sx={{
 					width: "100%",
 					"& .MuiOutlinedInput-root": {
@@ -54,7 +69,14 @@ function GenerationPreferences({ generateOptionParam, setSelectedNumIngredientsE
 		</Box>
 	) : (
 		<Box className={styles.preferenceBox}>
-			{generateOptionParam === "Remix" && <TextField sx={{ width: "75%", mb: "2vh" }} label="Meal to remix" />}
+			{generateOptionParam === "Remix" && (
+				<TextField
+					sx={{ width: "75%", mb: "2vh" }}
+					label="Meal to remix"
+					value={mealToRemix !== "" ? mealToRemix : ""}
+					onChange={(e) => setMealToRemix(e.target.value)}
+				/>
+			)}
 
 			<Box sx={{ display: "flex", alignItems: "center" }}>
 				<Typography variant="h5" gutterBottom>
@@ -120,8 +142,8 @@ function GenerationPreferences({ generateOptionParam, setSelectedNumIngredientsE
 					</Typography>
 					<FormControl variant="outlined" sx={{ width: "8%", ml: "2vh" }}>
 						<Select
-							value={selectedNumIngredientsExtra}
-							onChange={(event) => setSelectedNumIngredientsExtra(event.target.value)}
+							value={numIngredients !== "" ? numIngredients : ""}
+							onChange={(event) => setNumIngredients(event.target.value)}
 						>
 							{numberOfIngredientsOptions.map((number, index) => (
 								<MenuItem key={index} value={number}>
@@ -147,7 +169,7 @@ function GenerationPreferences({ generateOptionParam, setSelectedNumIngredientsE
 				</Button>
 			</Box>
 
-			<Button variant="contained" sx={{ pr: "7vh", pl: "7vh", mt: "3vh" }}>
+			<Button variant="contained" sx={{ pr: "7vh", pl: "7vh", mt: "3vh" }} onClick={handleGenerate}>
 				Generate
 			</Button>
 		</Box>
