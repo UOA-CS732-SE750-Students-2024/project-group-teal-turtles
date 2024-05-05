@@ -28,7 +28,16 @@ function ResponsiveAppBar() {
 	return (
 		// <>
 		// 	{showContent && (
-		<AppBar position="sticky" sx={{ top: 0, justifyContent: "flex-start", height: 70 }}>
+		<AppBar
+			position={currentUrl !== "/landing" ? "sticky" : "absolute"}
+			elevation={currentUrl !== "/landing" ? 1 : 0}
+			sx={{
+				top: 0,
+				justifyContent: "flex-start",
+				height: 70,
+				backgroundColor: currentUrl !== "/landing" ? "primary.main" : "transparent"
+			}}
+		>
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Box
