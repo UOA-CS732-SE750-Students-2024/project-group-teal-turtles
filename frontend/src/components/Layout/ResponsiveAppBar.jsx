@@ -15,6 +15,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { Link } from "@mui/material";
 import { usePathname } from "next/navigation";
+import useDataStore from "@/lib/store";
+import { useRouter } from "next/navigation";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -31,7 +33,7 @@ function ResponsiveAppBar() {
 		{ name: "Pantry", url: "/pantry" },
 		{ name: "Logout", url: "/logout" }
 	];
-
+	// router.push("/pantry")
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
 	};
@@ -46,6 +48,9 @@ function ResponsiveAppBar() {
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
+	const router = useRouter();
+
+	const { userParameters, setUserParameters, userAuth } = useDataStore();
 
 	return (
 		<AppBar position="sticky" sx={{ top: 0, justifyContent: "flex-start", height: 70 }}>
@@ -139,8 +144,8 @@ function ResponsiveAppBar() {
 							{pages.map((page, idx) => (
 								<Button
 									key={idx}
-									onClick={handleCloseNavMenu}
-									href={page.url}
+									onClick={() => router.push(page.url)}
+									// href={page.url}
 									sx={{ my: 2, color: "white", display: "block" }}
 								>
 									{page.name}
@@ -174,7 +179,11 @@ function ResponsiveAppBar() {
 							>
 								{settings.map((setting, idx) => (
 									<MenuItem key={idx} onClick={handleCloseUserMenu}>
-										<Link textAlign="center" href={setting.url} sx={{ textDecoration: "none", color: "black" }}>
+										<Link
+											textAlign="center"
+											onClick={() => router.push(setting.url)}
+											sx={{ textDecoration: "none", color: "black" }}
+										>
 											{setting.name}
 										</Link>
 									</MenuItem>
