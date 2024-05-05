@@ -21,13 +21,7 @@ function GenerationOptions() {
 				</Typography>
 				<GenerationButtons generateOptionParam={generateOptionParam} />
 
-				<GenerationPreferences
-					generateOptionParam={generateOptionParam}
-					userParameters={userParameters}
-					setUserParameters={setUserParameters}
-					selectedNumIngredientsExtra={selectedNumIngredientsExtra}
-					setSelectedNumIngredientsExtra={setSelectedNumIngredientsExtra}
-				/>
+				<GenerationPreferences generateOptionParam={generateOptionParam} />
 			</Container>
 		);
 	}
