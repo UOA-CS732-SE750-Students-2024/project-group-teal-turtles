@@ -27,6 +27,7 @@ function GenerationPreferences({ generateOptionParam }) {
 		userParameters,
 		authToken,
 		setPrompt,
+		prompt,
 		numIngredients,
 		setNumIngredients,
 		mealToRemix,
@@ -43,6 +44,7 @@ function GenerationPreferences({ generateOptionParam }) {
 				variant="outlined"
 				placeholder="Search for a meal..."
 				onChange={(e) => setPrompt(e.target.value)}
+				value={prompt !== "" ? prompt : ""}
 				sx={{
 					width: "100%",
 					"& .MuiOutlinedInput-root": {
