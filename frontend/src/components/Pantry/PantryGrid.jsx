@@ -1,10 +1,8 @@
 import * as React from "react";
-import { Card, CardActionArea, Grid, Typography, alpha, useTheme } from "@mui/material";
+import { Card, CardActionArea, Grid, Typography, alpha } from "@mui/material";
 import Image from "next/image";
 
 export default function PantryGrid({ itemData, variant, onClick, selected }) {
-	const theme = useTheme();
-
 	return (
 		<Grid
 			sx={{ flexGrow: 1, justifyContent: variant === "onboarding" ? "space-evenly" : "auto" }}
@@ -16,11 +14,7 @@ export default function PantryGrid({ itemData, variant, onClick, selected }) {
 					<Card
 						sx={{
 							position: "relative",
-							backgroundColor: selected
-								? selected.includes(item.title)
-									? theme.palette.primary.main
-									: "#fff"
-								: "#fff",
+							backgroundColor: selected ? (selected.includes(item.title) ? "primary.main" : "#fff") : "#fff",
 							color: selected ? (selected.includes(item.title) ? "#fff" : "#000") : "#000"
 						}}
 					>
@@ -49,20 +43,6 @@ export default function PantryGrid({ itemData, variant, onClick, selected }) {
 								{item.title}
 							</Typography>
 						</CardActionArea>
-						{/* <Checkbox
-							checked={selected ? selected.includes(item.title) : false}
-							disableRipple
-							sx={{
-								position: "absolute",
-								top: 0,
-								right: 0,
-								color: "#000",
-								"&.Mui-checked": {
-									color: "auto"
-								},
-								"& .MuiSvgIcon-root": { fontSize: 28 }
-							}}
-						/> */}
 					</Card>
 				</Grid>
 			))}
