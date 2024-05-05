@@ -1,49 +1,124 @@
 import { Button, Paper, Typography, Stack } from "@mui/material";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useDataStore from "@/lib/store";
 import { useSearchParams } from "next/navigation";
 
 export default function ViewMealCard() {
-	const { authToken, numberOfPeople, mealToRemix, userFavouriteMeals, userDislikedIngredients, userParameters } =
-		useDataStore();
+	const {
+		authToken,
+		numberOfPeople,
+		mealToRemix,
+		userFavouriteMeals,
+		userDislikedIngredients,
+		userGeneratedMeals,
+		userParameters,
+		userIngredients,
+		numIngredients,
+		prompt
+	} = useDataStore();
 	const [recipeLoaded, setLoaded] = useState(false);
-	const [recipe, setRecipe] = useState("");
+	const [recipe, setRecipe] = useState([]);
+	const [ingredientQuantities, setIngredientQuantities] = useState([]);
 	const [mealName, setMealName] = useState("");
-	const [ingredientsUser, setIngredientsUser] = useState("");
-	const [ingredientsNeeded, setIngredientsNeeded] = useState("");
+	const [ingredientsUser, setIngredientsUser] = useState([]);
+	const [ingredientsNeeded, setIngredientsNeeded] = useState([]);
 	const searchParams = useSearchParams();
 
-	// const mealName = "Chicken and Leak Cheese Bake";
-	// const ingredientsUser = "Chicken, Cheese, Milk, Leaks, Flour, Sugar";
-	// const ingredientsNeeded = "Cream";
+	useEffect(() => {
+		const fetchData = async () => {
+			if (searchParams.get("generateOption") === "Remix") {
+				axios
+					.post(
+						`https://intelligent-eats.ts.r.appspot.com/api/generation/remix`,
+						{
+							mealToRemix: mealToRemix,
+							favouriteMeals: userFavouriteMeals,
+							dislikedIngredients: userDislikedIngredients,
+							mealType: userParameters.mealType,
+							cuisine: userParameters.cuisine,
+							dietaryRequirements: userParameters.dietaryRequirements
+						},
+						{
+							headers: {
+								Authorization: authToken
+							}
+						}
+					)
+					.then((response) => {
+						setMealName(response.data.mealName);
+						setIngredientsUser(response.data.ingredients);
+					});
+			} else if (searchParams.get("generateOption") === "Prompt") {
+				axios
+					.post(
+						`https://intelligent-eats.ts.r.appspot.com/api/generation/prompt`,
+						{
+							prompt: prompt
+						},
+						{
+							headers: {
+								Authorization: authToken
+							}
+						}
+					)
+					.then((response) => {
+						setMealName(response.data.mealName);
+						setIngredientsUser(response.data.ingredients);
+					});
+			} else if (searchParams.get("generateOption") === "Basic") {
+				axios
+					.post(
+						`https://intelligent-eats.ts.r.appspot.com/api/generation/basicLoose`,
+						{
+							favouriteMeals: userFavouriteMeals,
+							generatedMeals: userGeneratedMeals,
+							ingredients: userIngredients,
+							dislikedIngredients: userDislikedIngredients,
+							mealType: userParameters.mealType,
+							cuisine: userParameters.cuisine,
+							dietaryRequirements: userParameters.dietaryRequirements,
+							numberOfAdditionalIngredients: numIngredients
+						},
+						{
+							headers: {
+								Authorization: authToken
+							}
+						}
+					)
+					.then((response) => {
+						setMealName(response.data.mealName);
+						setIngredientsUser(response.data.ingredientsUser);
+						setIngredientsNeeded(response.data.ingredientsNeeded);
+					});
+			} else if (searchParams.get("generateOption") === "Strict") {
+				axios
+					.post(
+						`https://intelligent-eats.ts.r.appspot.com/api/generation/basicStrict`,
+						{
+							favouriteMeals: userFavouriteMeals,
+							generatedMeals: userGeneratedMeals,
+							ingredients: userIngredients,
+							dislikedIngredients: userDislikedIngredients,
+							mealType: userParameters.mealType,
+							cuisine: userParameters.cuisine,
+							dietaryRequirements: userParameters.dietaryRequirements
+						},
+						{
+							headers: {
+								Authorization: authToken
+							}
+						}
+					)
+					.then((response) => {
+						setMealName(response.data.mealName);
+						setIngredientsUser(response.data.ingredientsUser);
+					});
+			}
+		};
 
-	if (searchParams.get("generateOption") === "Remix") {
-		axios
-			.post(
-				`https://intelligent-eats.ts.r.appspot.com/api/generation/remix`,
-				{
-					mealToRemix: mealToRemix,
-					favouriteMeals: userFavouriteMeals,
-					dislikedIngredients: userDislikedIngredients,
-					mealType: userParameters.mealType,
-					cuisine: userParameters.cuisine,
-					dietaryRequirements: userParameters.dietaryRequirements
-				},
-				{
-					headers: {
-						Authorization: authToken
-					}
-				}
-			)
-			.then((response) => {
-				setMealName(response.data.mealName);
-				setIngredientsUser(response.data.ingredientsNeeded);
-			});
-	} else if (searchParams.get("generateOption") === "Prompt") {
-	} else if (searchParams.get("generateOption") === "Basic") {
-	} else if (searchParams.get("generateOption") === "Strict") {
-	}
+		fetchData();
+	}, []);
 
 	function loadRecipe() {
 		setLoaded(true);
@@ -62,7 +137,8 @@ export default function ViewMealCard() {
 				}
 			)
 			.then((response) => {
-				setRecipe(response.data);
+				setRecipe(response.data.steps);
+				setIngredientQuantities(response.data.ingredientQuantities);
 			});
 	}
 	return (
@@ -70,8 +146,12 @@ export default function ViewMealCard() {
 			<Typography variant="h2">{mealName}</Typography>
 			<Stack alignItems={"flex-start"} sx={{ mt: 4 }}>
 				<Typography variant="h4">Ingredients</Typography>
-				<Typography variant="h6">User: {ingredientsUser}</Typography>
-				{ingredientsNeeded.length > 0 && <Typography variant="h6">Needed: {ingredientsNeeded}</Typography>}
+				<Typography variant="h6">User: {ingredientsUser.join(", ")}</Typography>
+				{ingredientsNeeded.length > 0 && (
+					<Typography variant="h6">
+						Needed: {ingredientsNeeded.join(", ")} {}
+					</Typography>
+				)}
 			</Stack>
 			{!recipeLoaded && (
 				<Button variant="contained" sx={{ mt: 4 }} size="large" onClick={loadRecipe}>
@@ -81,7 +161,12 @@ export default function ViewMealCard() {
 			{recipeLoaded && (
 				<Stack alignItems={"flex-start"} sx={{ mt: 4 }}>
 					<Typography variant="h4">Recipe Generated</Typography>
-					<Typography variant="h6">Recipe: {recipe}</Typography>
+					<Typography variant="h6">Ingredient Quantities: {ingredientQuantities.join(", ")}</Typography>
+					{recipe.map((step, index) => (
+						<Typography key={index} variant="h6">
+							{step}
+						</Typography>
+					))}
 				</Stack>
 			)}
 		</Paper>
