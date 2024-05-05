@@ -2,8 +2,6 @@
 
 import React from "react";
 
-function ViewRecipe() {
+export default function ViewMeal() {
 	return <div>ViewRecipe</div>;
 }
-
-export default ViewRecipe;
