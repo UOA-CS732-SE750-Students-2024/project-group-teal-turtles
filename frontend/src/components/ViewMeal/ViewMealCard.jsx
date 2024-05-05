@@ -150,7 +150,7 @@ export default function ViewMealCard() {
 		<Paper elevation={4} align="center" sx={{ p: 4, m: 8, mt: 4, width: "50%" }}>
 			<Typography variant="h2">{mealName}</Typography>
 			<Stack alignItems={"flex-start"} sx={{ mt: 4 }}>
-				<Typography variant="h5">Ingredients</Typography>
+				<Typography variant="h4">Ingredients</Typography>
 				<Typography variant="h6">User: {ingredientsUser.join(", ")}</Typography>
 				{ingredientsNeeded.length > 0 && (
 					<Typography variant="h6">
@@ -164,11 +164,17 @@ export default function ViewMealCard() {
 				</Button>
 			)}
 			{recipeLoaded && (
-				<Stack alignItems={"flex-start"} sx={{ mt: 4 }}>
-					<Typography variant="h5">Quantities</Typography>
-					<Typography variant="h6">{ingredientQuantities.join(", ")}</Typography>
-					<Stack alignItems={"flex-start"} sx={{ mt: 4 }}>
-						<Typography variant="h5">Instructions</Typography>
+				<Stack alignItems={"flex-start"} sx={{ mt: 4 }} direction={"row"}>
+					<Stack alignItems={"flex-start"} sx={{ mr: 4 }}>
+						<Typography variant="h4">Quantities</Typography>
+						{ingredientQuantities.map((ingredient, index) => (
+							<Typography key={index} variant="h6">
+								{ingredient}
+							</Typography>
+						))}
+					</Stack>
+					<Stack alignItems={"flex-start"}>
+						<Typography variant="h4">Instructions</Typography>
 						{recipe.map((step, index) => (
 							<Typography key={index} variant="h6">
 								{step}
