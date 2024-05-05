@@ -14,9 +14,6 @@ function GenerationOptions() {
 	const searchParams = useSearchParams();
 
 	const generateOptionParam = searchParams.get("generateOption");
-	if (!userParameters) {
-		return null;
-	}
 	return (
 		<Container>
 			<Typography variant="h2" align="center" gutterBottom sx={{ mt: "4vh" }}>
