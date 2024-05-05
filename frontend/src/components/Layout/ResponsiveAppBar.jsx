@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { Link } from "@mui/material";
 import { usePathname } from "next/navigation";
-import useDataStore from "@/lib/store";
+// import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
 
 function ResponsiveAppBar() {
@@ -23,34 +23,35 @@ function ResponsiveAppBar() {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
-		{ name: "Generate", url: "/generation-options?generateOption=Basic" }
+		{ name: "Generate", url: "/generation-options?generateOption=Basic" },
+		{ name: "Pantry", url: "/pantry" }
 	];
 
 	const currentUrl = usePathname();
 
-	const settings = [
-		{ name: "Profile", url: "/profile" },
-		{ name: "Pantry", url: "/pantry" },
-		{ name: "Logout", url: "/logout" }
-	];
+	// const settings = [
+	// 	{ name: "Profile", url: "/profile" },
+	// 	// { name: "Pantry", url: "/pantry" },
+	// 	{ name: "Logout", url: "/logout" }
+	// ];
 	// router.push("/pantry")
-	const handleOpenNavMenu = (event) => {
-		setAnchorElNav(event.currentTarget);
-	};
-	const handleOpenUserMenu = (event) => {
-		setAnchorElUser(event.currentTarget);
-	};
+	// const handleOpenNavMenu = (event) => {
+	// 	setAnchorElNav(event.currentTarget);
+	// };
+	// const handleOpenUserMenu = (event) => {
+	// 	setAnchorElUser(event.currentTarget);
+	// };
 
-	const handleCloseNavMenu = () => {
-		setAnchorElNav(null);
-	};
+	// const handleCloseNavMenu = () => {
+	// 	setAnchorElNav(null);
+	// };
 
-	const handleCloseUserMenu = () => {
-		setAnchorElUser(null);
-	};
+	// const handleCloseUserMenu = () => {
+	// 	setAnchorElUser(null);
+	// };
 	const router = useRouter();
 
-	const { userParameters, setUserParameters, userAuth } = useDataStore();
+	// const { userParameters, setUserParameters, userAuth } = useDataStore();
 
 	return (
 		<AppBar position="sticky" sx={{ top: 0, justifyContent: "flex-start", height: 70 }}>
@@ -83,17 +84,17 @@ function ResponsiveAppBar() {
 					</Box>
 					{currentUrl !== "/landing" ? (
 						<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-							<IconButton
+							{/* <IconButton
 								size="large"
 								aria-label="account of current user"
 								aria-controls="menu-appbar"
 								aria-haspopup="true"
-								onClick={handleOpenNavMenu}
+								// onClick={handleOpenNavMenu}
 								color="inherit"
 							>
 								<MenuIcon />
-							</IconButton>
-							<Menu
+							</IconButton> */}
+							{/* <Menu
 								id="menu-appbar"
 								anchorEl={anchorElNav}
 								anchorOrigin={{
@@ -106,7 +107,7 @@ function ResponsiveAppBar() {
 									horizontal: "left"
 								}}
 								open={Boolean(anchorElNav)}
-								onClose={handleCloseNavMenu}
+								// onClose={handleCloseNavMenu}
 								sx={{
 									display: { xs: "block", md: "none" }
 								}}
@@ -118,7 +119,7 @@ function ResponsiveAppBar() {
 										</Link>
 									</MenuItem>
 								))}
-							</Menu>
+							</Menu> */}
 						</Box>
 					) : null}
 					<Box sx={{ display: { xs: "flex", md: "none", flexGrow: 1 }, mr: 1 }}>
@@ -145,7 +146,6 @@ function ResponsiveAppBar() {
 								<Button
 									key={idx}
 									onClick={() => router.push(page.url)}
-									// href={page.url}
 									sx={{ my: 2, color: "white", display: "block" }}
 								>
 									{page.name}
@@ -156,12 +156,12 @@ function ResponsiveAppBar() {
 
 					{currentUrl !== "/landing" ? (
 						<Box sx={{ flexGrow: 0 }}>
-							<Tooltip title="Open settings">
-								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+							<Tooltip title="Open Profile">
+								<IconButton onClick={() => router.push("/profile")} sx={{ p: 0 }}>
 									<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
 								</IconButton>
 							</Tooltip>
-							<Menu
+							{/* <Menu
 								sx={{ mt: "45px" }}
 								id="menu-appbar"
 								anchorEl={anchorElUser}
@@ -176,8 +176,8 @@ function ResponsiveAppBar() {
 								}}
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
-							>
-								{settings.map((setting, idx) => (
+							> */}
+							{/* {settings.map((setting, idx) => (
 									<MenuItem key={idx} onClick={handleCloseUserMenu}>
 										<Link
 											textAlign="center"
@@ -187,15 +187,15 @@ function ResponsiveAppBar() {
 											{setting.name}
 										</Link>
 									</MenuItem>
-								))}
-							</Menu>
+								))} */}
+							{/* </Menu> */}
 						</Box>
 					) : (
 						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto" }}>
-							<Button href="/login" sx={{ my: 2, color: "white", display: "block" }}>
+							<Button onClick={() => router.push("/login")} sx={{ my: 2, color: "white", display: "block" }}>
 								Sign In
 							</Button>
-							<Button href="/create-account" sx={{ my: 2, color: "white", display: "block" }}>
+							<Button onClick={() => router.push("/create-account")} sx={{ my: 2, color: "white", display: "block" }}>
 								Create Account
 							</Button>
 						</Box>
