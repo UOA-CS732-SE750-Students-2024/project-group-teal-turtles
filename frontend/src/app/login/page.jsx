@@ -28,7 +28,7 @@ function Login() {
 	const router = useRouter();
 	async function fetchUser(userAuthToken) {
 		try {
-			const response = await axios.get("https://intelligent-eats.ts.r.appspot.com/api/users", {
+			const response = await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL + "/users", {
 				headers: {
 					Authorization: userAuthToken
 				}
@@ -53,7 +53,7 @@ function Login() {
 	async function createUserInDatabase(userAuthToken) {
 		try {
 			const response = await axios.post(
-				"https://intelligent-eats.ts.r.appspot.com/api/users",
+				process.env.NEXT_PUBLIC_BACKEND_URL + "/users",
 				{},
 				{
 					headers: {

@@ -31,7 +31,7 @@ function CreateAccount() {
 	async function createUserInDatabase(userAuthToken) {
 		try {
 			const response = await axios.post(
-				"https://intelligent-eats.ts.r.appspot.com/api/users",
+				process.env.NEXT_PUBLIC_BACKEND_URL + "/users",
 				{},
 				{
 					headers: {

@@ -60,7 +60,7 @@ function GenerationPreferences({ generateOptionParam }) {
 				}}
 				InputProps={{
 					endAdornment: (
-						<IconButton>
+						<IconButton onClick={handleGenerate}>
 							<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
 						</IconButton>
 					)
