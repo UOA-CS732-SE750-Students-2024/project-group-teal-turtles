@@ -4,11 +4,11 @@ import styles from "./MealGenerationCard.module.css";
 
 function MealGenerationCard({ header, description, onClick }) {
 	return (
-		<Card>
+		<Card sx={{ p: "2vh", borderRadius: 2 }}>
 			<CardActionArea onClick={onClick}>
-				<CardHeader title={header} />
+				<Typography variant="h4">{header}</Typography>
 				<CardContent>
-					<Typography variant="body2">{description}</Typography>
+					<Typography variant="h5">{description}</Typography>
 				</CardContent>
 			</CardActionArea>
 		</Card>

@@ -21,18 +21,8 @@ function GenerationPreferences({ generateOptionParam }) {
 	const cuisines = ["Italian", "Mexican", "Chinese", "Indian", "Any"];
 	const dietaryRequirements = ["none", "Vegetarian", "Vegan", "Gluten-free", "Dairy-free"];
 	const numberOfPeopleOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
-	const numberOfIngredientsOptions = ["3", "4", "5", "6+"];
-	const {
-		setUserParameters,
-		userParameters,
-		authToken,
-		setPrompt,
-		prompt,
-		numIngredients,
-		setNumIngredients,
-		mealToRemix,
-		setMealToRemix
-	} = useDataStore();
+	const { setUserParameters, userParameters, authToken, setPrompt, prompt, mealToRemix, setMealToRemix } =
+		useDataStore();
 	const router = useRouter();
 
 	const handleGenerate = () => {
@@ -134,31 +124,6 @@ function GenerationPreferences({ generateOptionParam }) {
 					))}
 				</Select>
 			</FormControl>
-
-			{generateOptionParam === "Basic" && (
-				<Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-					<Typography variant="h5" sx={{ marginRight: 2 }}>
-						Number of Additional Ingredients:
-					</Typography>
-					<FormControl variant="outlined" sx={{ width: "8%", ml: "2vh" }}>
-						<Select
-							value={numIngredients !== "" ? numIngredients : ""}
-							onChange={(event) => setNumIngredients(event.target.value)}
-						>
-							{numberOfIngredientsOptions.map((number, index) => (
-								<MenuItem key={index} value={number}>
-									{number}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-					<Tooltip title="How many ingredients can the meal use that you don't have in your pantry">
-						<IconButton>
-							<InfoIcon />
-						</IconButton>
-					</Tooltip>
-				</Box>
-			)}
 
 			<Box sx={{ display: "flex", alignItems: "center", mt: "3vh" }}>
 				<Typography variant="h5" sx={{ marginRight: 2 }}>

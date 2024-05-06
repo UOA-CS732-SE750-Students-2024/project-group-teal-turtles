@@ -3,7 +3,7 @@
 import PantryGrid from "../Pantry/PantryGrid";
 import useDataStore from "@/lib/store";
 import ingredients from "../../ingredients.json";
-import { Stack, Typography, Fab } from "@mui/material";
+import { Stack, Typography, Fab, Box } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 export default function UserPantryGrid() {
@@ -35,18 +35,21 @@ export default function UserPantryGrid() {
 
 	return (
 		<Stack
-			sx={{ backgroundColor: "#FFFFFF", maxWidth: "calc(100vw - 560px)" }}
+			sx={{ backgroundColor: "#FFFFFF", maxWidth: "calc(100vw - 560px)", mb: "2vh" }}
 			alignItems="center"
 			justifyContent="center"
 		>
-			<Typography variant="h3" sx={{ mt: 3, mb: 1 }}>
-				Your Pantry
-			</Typography>
+			<Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", mb: "2vh" }}>
+				<Typography variant="h3" sx={{ mr: "2vh" }}>
+					Your Pantry:
+				</Typography>
+				<Fab color="primary" aria-label="add" variant="extended" href="/pantry" sx={{}}>
+					<AddIcon sx={{ mr: 1 }} />
+					Add Ingredients
+				</Fab>
+			</Box>
+
 			<PantryGrid itemData={ingredientsPantry} onClick={handleIngredientsChange} selected={userIngredients} />
-			<Fab color="primary" aria-label="add" variant="extended" href="/pantry">
-				<AddIcon sx={{ mr: 1 }} />
-				Add Ingredients
-			</Fab>
 		</Stack>
 	);
 }
