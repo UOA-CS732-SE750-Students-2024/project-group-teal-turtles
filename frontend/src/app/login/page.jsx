@@ -23,7 +23,6 @@ function Login() {
 		setUserParameters,
 		userParameters,
 		setUserEmail,
-		// setAuthToken,
 		setAuthorisedUser,
 		authorisedUser
 	} = useDataStore();

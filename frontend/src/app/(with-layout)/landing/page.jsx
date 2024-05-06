@@ -43,12 +43,11 @@ function CircularCard({ title, body }) {
 }
 
 function Landing() {
-	const { authToken } = useDataStore();
+	const { authorisedUser } = useDataStore();
 	const router = useRouter();
-	if (authToken !== null) {
+	if (authorisedUser !== null) {
 		router.push("/dashboard");
 	}
-	console.log(authToken);
 
 	const [showContent, setShowContent] = useState(false);
 

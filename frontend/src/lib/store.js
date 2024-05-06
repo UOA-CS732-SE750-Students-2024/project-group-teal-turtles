@@ -11,7 +11,6 @@ const useDataStore = create(
 			userParameters: null,
 			userEmail: null,
 			authorisedUser: null,
-			authToken: null,
 			prompt: "",
 			mealToRemix: "",
 			setUserFavouriteMeals: (meals) => set({ userFavouriteMeals: meals }),
@@ -22,7 +21,6 @@ const useDataStore = create(
 				set({ userParameters: parameters });
 			},
 			setUserEmail: (email) => set({ userEmail: email }),
-			setAuthToken: (token) => set({ authToken: token }),
 			setPrompt: (prompt) => set({ prompt }),
 			setMealToRemix: (mealToRemix) => set({ mealToRemix }),
 			setAuthorisedUser: (authorisedUser) => set({ authorisedUser })
