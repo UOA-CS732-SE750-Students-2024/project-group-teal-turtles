@@ -10,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body>
+			<body style={{ minWidth: "600px" }}>
 				<ThemeProvider theme={theme}>{children}</ThemeProvider>
 			</body>
 		</html>

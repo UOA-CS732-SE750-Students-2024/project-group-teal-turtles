@@ -43,6 +43,23 @@ function ResponsiveAppBar() {
 		setAnchorElUser(null);
 	};
 
+	const handleLogout = async () => {
+		try {
+			await logout();
+			setUserGeneratedMeals([]);
+			setUserDislikedIngredients([]);
+			setUserEmail(null);
+			setUserFavouriteMeals([]);
+			setUserIngredients([]);
+			setUserParameters(null);
+			setAuthorisedUser(null);
+			router.push("/landing");
+			console.log("logout successful");
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<AppBar
 			position={currentUrl !== "/landing" ? "sticky" : "absolute"}
@@ -125,11 +142,11 @@ function ResponsiveAppBar() {
 								}}
 							>
 								{pages.map((page, idx) => (
-									<MenuItem key={idx} onClick={handleCloseNavMenu}>
+									<MenuItem key={idx} onClick={handleCloseNavMenu} sx={{ p: 0 }}>
 										<Button
 											key={idx}
 											onClick={() => router.push(page.url)}
-											sx={{ textDecoration: "none", color: "black" }}
+											sx={{ color: "black", px: 2, py: 1, width: "100%" }}
 										>
 											{page.name}
 										</Button>
@@ -138,6 +155,45 @@ function ResponsiveAppBar() {
 							</Menu>
 						</Box>
 					) : null}
+
+					<Box
+						onClick={() => router.push(currentUrl !== "/landing" ? "/dashboard" : "/landing")}
+						sx={{
+							display: {
+								xs: "flex",
+								md: "none",
+								"&:hover": {
+									cursor: "pointer"
+								}
+							},
+							flexGrow: 1,
+							mr: 1,
+							alignItems: "center"
+						}}
+					>
+						<Image
+							src={"/logo.png"}
+							alt={"Logo"}
+							width={50}
+							height={50}
+							sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+						/>
+						<Typography
+							variant="h6"
+							noWrap
+							component="a"
+							sx={{
+								my: "auto",
+								ml: 1,
+								mr: 2,
+								fontWeight: 700,
+								color: "inherit",
+								textDecoration: "none"
+							}}
+						>
+							Intelligent Eats
+						</Typography>
+					</Box>
 
 					{currentUrl !== "/landing" && (
 						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -155,11 +211,41 @@ function ResponsiveAppBar() {
 
 					{currentUrl !== "/landing" ? (
 						<Box sx={{ flexGrow: 0 }}>
-							<Tooltip title="Open Profile">
-								<IconButton onClick={() => router.push("/edit-profile")} sx={{ p: 0 }}>
+							<Tooltip title="Username">
+								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 									<Avatar src="/broken-image.jpg" />
 								</IconButton>
 							</Tooltip>
+							<Menu
+								sx={{ mt: "45px" }}
+								id="menu-appbar"
+								anchorEl={anchorElUser}
+								anchorOrigin={{
+									vertical: "top",
+									horizontal: "right"
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: "top",
+									horizontal: "right"
+								}}
+								open={Boolean(anchorElUser)}
+								onClose={handleCloseUserMenu}
+							>
+								<MenuItem onClick={handleCloseUserMenu} sx={{ p: 0 }}>
+									<Button
+										onClick={() => router.push("/edit-profile")}
+										sx={{ color: "black", px: 2, py: 1, width: "100%" }}
+									>
+										Profile
+									</Button>
+								</MenuItem>
+								<MenuItem sx={{ p: 0 }}>
+									<Button onClick={handleLogout} sx={{ color: "red", px: 2, py: 1 }}>
+										Log out
+									</Button>
+								</MenuItem>
+							</Menu>
 						</Box>
 					) : (
 						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto" }}>

@@ -1,6 +1,5 @@
 import MealGenerationCard from "@/components/MealGenerationPanel/MealGenerationCard/MealGenerationCard";
 import { Grid, Paper, Typography, Box } from "@mui/material";
-import styles from "./MealGenerationPanel.module.css";
 import { useRouter } from "next/navigation";
 
 function MealGenerationPanel() {
