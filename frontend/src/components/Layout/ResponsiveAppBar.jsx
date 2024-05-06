@@ -1,5 +1,4 @@
 "use client";
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,12 +13,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
 
 function ResponsiveAppBar() {
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
-	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const [anchorElNav, setAnchorElNav] = useState(null);
+	const [anchorElUser, setAnchorElUser] = useState(null);
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
 		{ name: "Generate", url: "/generation-options?generateOption=Basic" },
