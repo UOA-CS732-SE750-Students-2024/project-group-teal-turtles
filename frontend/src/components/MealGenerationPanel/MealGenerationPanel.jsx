@@ -1,5 +1,5 @@
 import MealGenerationCard from "@/components/MealGenerationPanel/MealGenerationCard/MealGenerationCard";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Typography, Box } from "@mui/material";
 import styles from "./MealGenerationPanel.module.css";
 import { useRouter } from "next/navigation";
 
@@ -28,41 +28,43 @@ function MealGenerationPanel() {
 
 	return (
 		<>
-			<Paper>
-				<Typography variant="h2" align="center" gutterBottom>
-					Generate a Meal
-				</Typography>
-				<Grid container spacing={2}>
-					<Grid item xs={6}>
-						<MealGenerationCard
-							header="Basic"
-							description="Will use ingredients from your pantry in addition to a number of additional ingredients to generate a delicious meal"
-							onClick={() => handleButtonPress("Basic")}
-						/>
-					</Grid>
-					<Grid item xs={6}>
-						<MealGenerationCard
-							header="Strict"
-							description="Will only use the ingredients from your pantry to generate a delicious meal"
-							onClick={() => handleButtonPress("Strict")}
-						/>
-					</Grid>
-					<Grid item xs={6}>
-						<MealGenerationCard
-							header="Remix"
-							description="Input a favourite meal and let us surprise you with a creative twist using ingredients you already have"
-							onClick={() => handleButtonPress("Remix")}
-						/>
-					</Grid>
-					<Grid item xs={6}>
-						<MealGenerationCard
-							header="Prompt"
-							description="Pass a prompt that the intelligent engine will use to design a delectable meal."
-							onClick={() => handleButtonPress("Prompt")}
-						/>
-					</Grid>
+			<Typography variant="h2" align="center" gutterBottom>
+				Generate a Meal
+			</Typography>
+			{/* <Box sx={{ mb: "2vh", ml: "30vh", mr: "30vh" }}> */}
+			{/* <Box sx={{ pl: "5vh", pr: "5vh" }}> */}
+			<Grid container spacing={2} sx={{ mb: "2vh" }}>
+				<Grid item xs={6}>
+					<MealGenerationCard
+						header="Basic"
+						description="Will use ingredients from your pantry as well as other ingredients to generate a delicious meal"
+						onClick={() => handleButtonPress("Basic")}
+					/>
 				</Grid>
-			</Paper>
+				<Grid item xs={6}>
+					<MealGenerationCard
+						header="Strict"
+						description="Will only use the ingredients from your pantry to generate a delicious meal"
+						onClick={() => handleButtonPress("Strict")}
+					/>
+				</Grid>
+				<Grid item xs={6}>
+					<MealGenerationCard
+						header="Remix"
+						description="Input a favourite meal and let us surprise you with a creative twist using your ingredients"
+						onClick={() => handleButtonPress("Remix")}
+					/>
+				</Grid>
+				<Grid item xs={6}>
+					<MealGenerationCard
+						header="Prompt"
+						description="Pass a prompt that the intelligent engine will use to design a delectable meal."
+						onClick={() => handleButtonPress("Prompt")}
+					/>
+				</Grid>
+			</Grid>
+			{/* </Box> */}
+			{/* </Box> */}
 		</>
 	);
 }

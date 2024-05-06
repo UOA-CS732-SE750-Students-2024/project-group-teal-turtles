@@ -9,8 +9,6 @@ import { useState, Suspense } from "react";
 
 function GenerationOptions() {
 	function Generation() {
-		const { userParameters, setUserParameters, userAuth } = useDataStore();
-		const [selectedNumIngredientsExtra, setSelectedNumIngredientsExtra] = useState(4);
 		const searchParams = useSearchParams();
 		const generateOptionParam = searchParams.get("generateOption");
 

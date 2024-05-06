@@ -4,7 +4,7 @@ import MealGenerationPanel from "@/components/MealGenerationPanel/MealGeneration
 import UserPantryGrid from "@/components/PantryDash/UserPantryGrid";
 import { Stack } from "@mui/material";
 import React from "react";
-import { Button } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { logout } from "@/app/auth-functions";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
@@ -38,15 +38,16 @@ function Dashboard() {
 	};
 
 	return (
-			
 		<Stack
 			sx={{ backgroundColor: "#FFFFFF", minHeight: "calc(100vh - 70px)" }}
 			alignItems="center"
 			justifyContent="center"
 		>
-        <Button onClick={handleLogout}>Logout</Button>
-			<MealGenerationPanel />
-			<UserPantryGrid />
+			<Container>
+				<Button onClick={handleLogout}>Logout</Button>
+				<MealGenerationPanel />
+				<UserPantryGrid />
+			</Container>
 		</Stack>
 	);
 }

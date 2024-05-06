@@ -16,7 +16,6 @@ export default function ViewMealCard() {
 			setUserGeneratedMeals,
 			userParameters,
 			userIngredients,
-			numIngredients,
 			prompt
 		} = useDataStore();
 		const [recipe, setRecipe] = useState([]);
@@ -85,8 +84,7 @@ export default function ViewMealCard() {
 								dislikedIngredients: userDislikedIngredients,
 								mealType: userParameters.mealType,
 								cuisine: userParameters.cuisine,
-								dietaryRequirements: userParameters.dietaryRequirements,
-								numberOfAdditionalIngredients: numIngredients
+								dietaryRequirements: userParameters.dietaryRequirements
 							},
 							{
 								headers: {
