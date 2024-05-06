@@ -258,11 +258,17 @@ function ResponsiveAppBar() {
 							</Menu>
 						</Box>
 					) : (
-						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto" }}>
-							<Button onClick={() => router.push("/login")} sx={{ my: 2, color: "white", display: "block" }}>
+						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto", height: "100%" }}>
+							<Button
+								onClick={() => router.push("/login")}
+								sx={{ px: 2, mx: 1, color: "white", display: "block", height: "100%", alignSelf: "stretch" }}
+							>
 								Sign In
 							</Button>
-							<Button onClick={() => router.push("/create-account")} sx={{ my: 2, color: "white", display: "block" }}>
+							<Button
+								onClick={() => router.push("/create-account")}
+								sx={{ px: 2, mx: 1, color: "white", display: "block", height: "100%", alignSelf: "stretch" }}
+							>
 								Create Account
 							</Button>
 						</Box>
