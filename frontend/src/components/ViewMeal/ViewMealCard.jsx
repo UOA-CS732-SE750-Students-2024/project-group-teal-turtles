@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 export default function ViewMealCard() {
 	function MealCard() {
 		const {
-			authToken,
+			authorisedUser,
 			numberOfPeople,
 			mealToRemix,
 			userFavouriteMeals,
@@ -31,6 +31,7 @@ export default function ViewMealCard() {
 		useEffect(() => {
 			async function fetchMeal() {
 				if (searchParams.get("generateOption") === "Remix") {
+					const authToken = await authorisedUser.getIdToken();
 					axios
 						.post(
 							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/remix",
@@ -55,6 +56,7 @@ export default function ViewMealCard() {
 							setMealLoaded(true);
 						});
 				} else if (searchParams.get("generateOption") === "Prompt") {
+					const authToken = await authorisedUser.getIdToken();
 					axios
 						.post(
 							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/prompt",
@@ -74,6 +76,7 @@ export default function ViewMealCard() {
 							setMealLoaded(true);
 						});
 				} else if (searchParams.get("generateOption") === "Basic") {
+					const authToken = await authorisedUser.getIdToken();
 					axios
 						.post(
 							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicLoose",
@@ -100,6 +103,7 @@ export default function ViewMealCard() {
 							setMealLoaded(true);
 						});
 				} else if (searchParams.get("generateOption") === "Strict") {
+					const authToken = await authorisedUser.getIdToken();
 					axios
 						.post(
 							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicStrict",
@@ -130,8 +134,9 @@ export default function ViewMealCard() {
 			fetchMeal();
 		}, []);
 
-		function loadRecipe() {
+		async function loadRecipe() {
 			setRecipeLoadedStarted(true);
+			const authToken = await authorisedUser.getIdToken();
 			axios
 				.post(
 					process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/recipe",

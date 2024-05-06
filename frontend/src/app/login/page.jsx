@@ -23,7 +23,9 @@ function Login() {
 		setUserParameters,
 		userParameters,
 		setUserEmail,
-		setAuthToken
+		// setAuthToken,
+		setAuthorisedUser,
+		authorisedUser
 	} = useDataStore();
 	const router = useRouter();
 	async function fetchUser(userAuthToken) {
@@ -78,9 +80,9 @@ function Login() {
 	async function handleSignIn() {
 		try {
 			await login(email, password);
-			setAuthToken(auth.currentUser.accessToken);
+			setAuthorisedUser(auth.currentUser);
+
 			setUserEmail(auth.currentUser.email);
-			console.log(auth.currentUser.accessToken);
 			fetchUser(auth.currentUser.accessToken);
 		} catch (error) {
 			if (error.code === "auth/invalid-credential") {
@@ -98,9 +100,9 @@ function Login() {
 	async function handleGoogleSignIn() {
 		try {
 			await handleGoogleLogin();
-			setAuthToken(auth.currentUser.accessToken);
 			setUserEmail(auth.currentUser.email);
-			console.log(auth.currentUser);
+			setAuthorisedUser(auth.currentUser);
+
 			const metadata = auth.currentUser.metadata;
 			if (metadata.creationTime === metadata.lastSignInTime) {
 				createUserInDatabase(auth.currentUser.accessToken);
