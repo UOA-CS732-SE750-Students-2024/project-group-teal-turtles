@@ -24,7 +24,7 @@ function CreateAccount() {
 		setUserDislikedIngredients,
 		setUserParameters,
 		setUserEmail,
-		setAuthToken
+		setAuthorisedUser
 	} = useDataStore();
 	const router = useRouter();
 
@@ -57,7 +57,7 @@ function CreateAccount() {
 		try {
 			if (password === confirmPassword) {
 				await createAccount(email, password);
-				setAuthToken(auth.currentUser.accessToken);
+				setAuthorisedUser(auth.currentUser);
 				setUserEmail(auth.currentUser.email);
 				createUserInDatabase(auth.currentUser.accessToken);
 			} else {

@@ -21,8 +21,7 @@ function GenerationPreferences({ generateOptionParam }) {
 	const cuisines = ["Italian", "Mexican", "Chinese", "Indian", "Any"];
 	const dietaryRequirements = ["none", "Vegetarian", "Vegan", "Gluten-free", "Dairy-free"];
 	const numberOfPeopleOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
-	const { setUserParameters, userParameters, authToken, setPrompt, prompt, mealToRemix, setMealToRemix } =
-		useDataStore();
+	const { setUserParameters, userParameters, setPrompt, prompt, mealToRemix, setMealToRemix } = useDataStore();
 	const router = useRouter();
 
 	const handleGenerate = () => {

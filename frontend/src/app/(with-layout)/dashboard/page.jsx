@@ -17,7 +17,7 @@ function Dashboard() {
 		setUserFavouriteMeals,
 		setUserIngredients,
 		setUserParameters,
-		setAuthToken
+		setAuthorisedUser
 	} = useDataStore();
 	const router = useRouter();
 	const handleLogout = async () => {
@@ -29,7 +29,7 @@ function Dashboard() {
 			setUserFavouriteMeals([]);
 			setUserIngredients([]);
 			setUserParameters(null);
-			setAuthToken(null);
+			setAuthorisedUser(null);
 			router.push("/landing");
 			console.log("logout successful");
 		} catch (error) {

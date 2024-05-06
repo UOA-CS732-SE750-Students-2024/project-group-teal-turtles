@@ -10,7 +10,7 @@ const useDataStore = create(
 			userDislikedIngredients: [],
 			userParameters: null,
 			userEmail: null,
-			authToken: null,
+			authorisedUser: null,
 			prompt: "",
 			mealToRemix: "",
 			setUserFavouriteMeals: (meals) => set({ userFavouriteMeals: meals }),
@@ -21,9 +21,9 @@ const useDataStore = create(
 				set({ userParameters: parameters });
 			},
 			setUserEmail: (email) => set({ userEmail: email }),
-			setAuthToken: (token) => set({ authToken: token }),
 			setPrompt: (prompt) => set({ prompt }),
-			setMealToRemix: (mealToRemix) => set({ mealToRemix })
+			setMealToRemix: (mealToRemix) => set({ mealToRemix }),
+			setAuthorisedUser: (authorisedUser) => set({ authorisedUser })
 		}),
 		{
 			name: "data-store3"
