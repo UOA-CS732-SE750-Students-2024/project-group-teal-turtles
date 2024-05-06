@@ -136,7 +136,7 @@ function Login() {
 				/>
 				<TextField
 					fullWidth
-					label="Password (8+ Characters)"
+					label="Password (6+ Characters)"
 					type={visible ? "text" : "password"}
 					value={password}
 					onChange={(event) => {

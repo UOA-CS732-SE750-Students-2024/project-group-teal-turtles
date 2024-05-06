@@ -19,23 +19,6 @@ function Dashboard() {
 		setUserParameters,
 		setAuthorisedUser
 	} = useDataStore();
-	const router = useRouter();
-	const handleLogout = async () => {
-		try {
-			await logout();
-			setUserGeneratedMeals([]);
-			setUserDislikedIngredients([]);
-			setUserEmail(null);
-			setUserFavouriteMeals([]);
-			setUserIngredients([]);
-			setUserParameters(null);
-			setAuthorisedUser(null);
-			router.push("/landing");
-			console.log("logout successful");
-		} catch (error) {
-			console.log(error);
-		}
-	};
 
 	return (
 		<Stack
@@ -44,7 +27,6 @@ function Dashboard() {
 			justifyContent="center"
 		>
 			<Container>
-				<Button onClick={handleLogout}>Logout</Button>
 				<MealGenerationPanel />
 				<UserPantryGrid />
 			</Container>
