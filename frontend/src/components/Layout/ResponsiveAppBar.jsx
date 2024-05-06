@@ -9,13 +9,17 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
+import MenuIcon from "@mui/icons-material/Menu";
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Menu, MenuItem } from "@mui/material";
 
 function ResponsiveAppBar() {
+	const [anchorElNav, setAnchorElNav] = React.useState(null);
+	const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
 		{ name: "Generate", url: "/generation-options?generateOption=Basic" },
@@ -24,9 +28,22 @@ function ResponsiveAppBar() {
 	const currentUrl = usePathname();
 	const router = useRouter();
 
+	const handleOpenNavMenu = (event) => {
+		setAnchorElNav(event.currentTarget);
+	};
+	const handleOpenUserMenu = (event) => {
+		setAnchorElUser(event.currentTarget);
+	};
+
+	const handleCloseNavMenu = () => {
+		setAnchorElNav(null);
+	};
+
+	const handleCloseUserMenu = () => {
+		setAnchorElUser(null);
+	};
+
 	return (
-		// <>
-		// 	{showContent && (
 		<AppBar
 			position={currentUrl !== "/landing" ? "sticky" : "absolute"}
 			elevation={currentUrl !== "/landing" ? 1 : 0}
@@ -77,6 +94,51 @@ function ResponsiveAppBar() {
 						</Typography>
 					</Box>
 
+					{currentUrl !== "/landing" ? (
+						<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+							<IconButton
+								size="large"
+								aria-label="account of current user"
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								onClick={handleOpenNavMenu}
+								color="inherit"
+							>
+								<MenuIcon />
+							</IconButton>
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorElNav}
+								anchorOrigin={{
+									vertical: "bottom",
+									horizontal: "left"
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: "top",
+									horizontal: "left"
+								}}
+								open={Boolean(anchorElNav)}
+								onClose={handleCloseNavMenu}
+								sx={{
+									display: { xs: "block", md: "none" }
+								}}
+							>
+								{pages.map((page, idx) => (
+									<MenuItem key={idx} onClick={handleCloseNavMenu}>
+										<Button
+											key={idx}
+											onClick={() => router.push(page.url)}
+											sx={{ textDecoration: "none", color: "black" }}
+										>
+											{page.name}
+										</Button>
+									</MenuItem>
+								))}
+							</Menu>
+						</Box>
+					) : null}
+
 					{currentUrl !== "/landing" && (
 						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 							{pages.map((page, idx) => (
@@ -112,8 +174,6 @@ function ResponsiveAppBar() {
 				</Toolbar>
 			</Container>
 		</AppBar>
-		// 	)}
-		// </>
 	);
 }
 export default ResponsiveAppBar;
