@@ -126,10 +126,18 @@ function GenerationPreferences({ generateOptionParam }) {
 
 			<Box sx={{ display: "flex", alignItems: "center", mt: "3vh" }}>
 				<Typography variant="h5" sx={{ marginRight: 2 }}>
-					Edit your ingredients in your Pantry:
+					Edit your ingredients from your Pantry:
 				</Typography>
 				<Button variant="contained" onClick={() => router.push("/pantry")}>
 					Pantry
+				</Button>
+			</Box>
+			<Box sx={{ display: "flex", alignItems: "center", mt: "3vh" }}>
+				<Typography variant="h5" sx={{ marginRight: 2 }}>
+					Edit your disliked ingredients from your profile:
+				</Typography>
+				<Button variant="contained" onClick={() => router.push("/edit-profile")}>
+					Profile
 				</Button>
 			</Box>
 

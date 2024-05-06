@@ -9,7 +9,6 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import Link from "next/link";
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -95,8 +94,8 @@ function ResponsiveAppBar() {
 					{currentUrl !== "/landing" ? (
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="Open Profile">
-								<IconButton onClick={() => router.push("/profile")} sx={{ p: 0 }}>
-									<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+								<IconButton onClick={() => router.push("/edit-profile")} sx={{ p: 0 }}>
+									<Avatar src="/broken-image.jpg" />
 								</IconButton>
 							</Tooltip>
 						</Box>
