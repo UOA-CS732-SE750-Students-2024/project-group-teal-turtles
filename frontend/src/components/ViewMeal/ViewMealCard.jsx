@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect, Suspense } from "react";
 import useDataStore from "@/lib/store";
 import { useSearchParams } from "next/navigation";
+import { getAuth } from "firebase/auth";
 
 export default function ViewMealCard() {
 	function MealCard() {
@@ -30,8 +31,10 @@ export default function ViewMealCard() {
 
 		useEffect(() => {
 			async function fetchMeal() {
+				const auth = getAuth();
+				const user = auth.currentUser;
+				const authToken = await user.getIdToken();
 				if (searchParams.get("generateOption") === "Remix") {
-					const authToken = await authorisedUser.getIdToken();
 					axios
 						.post(
 							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/remix",
@@ -56,7 +59,6 @@ export default function ViewMealCard() {
 							setMealLoaded(true);
 						});
 				} else if (searchParams.get("generateOption") === "Prompt") {
-					const authToken = await authorisedUser.getIdToken();
 					axios
 						.post(
 							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/prompt",
@@ -76,7 +78,6 @@ export default function ViewMealCard() {
 							setMealLoaded(true);
 						});
 				} else if (searchParams.get("generateOption") === "Basic") {
-					const authToken = await authorisedUser.getIdToken();
 					axios
 						.post(
 							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicLoose",
@@ -103,7 +104,6 @@ export default function ViewMealCard() {
 							setMealLoaded(true);
 						});
 				} else if (searchParams.get("generateOption") === "Strict") {
-					const authToken = await authorisedUser.getIdToken();
 					axios
 						.post(
 							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicStrict",
@@ -135,8 +135,10 @@ export default function ViewMealCard() {
 		}, []);
 
 		async function loadRecipe() {
+			const auth = getAuth();
+			const user = auth.currentUser;
+			const authToken = await user.getIdToken();
 			setRecipeLoadedStarted(true);
-			const authToken = await authorisedUser.getIdToken();
 			axios
 				.post(
 					process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/recipe",
