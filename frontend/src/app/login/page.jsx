@@ -15,6 +15,7 @@ function Login() {
 	const [visible, setVisible] = useState(false);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [errorToPrint, setErrorToPrint] = useState(null);
 	const {
 		setUserFavouriteMeals,
 		setUserGeneratedMeals,
@@ -23,8 +24,7 @@ function Login() {
 		setUserParameters,
 		userParameters,
 		setUserEmail,
-		setAuthorisedUser,
-		authorisedUser
+		setAuthorisedUser
 	} = useDataStore();
 	const router = useRouter();
 	async function fetchUser(userAuthToken) {
@@ -85,13 +85,18 @@ function Login() {
 			fetchUser(auth.currentUser.accessToken);
 		} catch (error) {
 			if (error.code === "auth/invalid-credential") {
-				console.log("Invalid credential. Please check your email and password.");
+				console.log("Invalid credentials. Please check your email and password.");
+				setErrorToPrint("Invalid credentials. Please check your email and password");
 			} else if (error.code === "auth/too-many-requests") {
 				console.log(
 					"Access to this account has been temporarily disabled due to many failed login attempts. Please try again later."
 				);
+				setErrorToPrint(
+					"Access to this account has been temporarily disabled due to many failed login attempts. Please try again later"
+				);
 			} else {
 				console.log("An error occurred while signing in:", error.message);
+				setErrorToPrint("An error has occurred please try again");
 			}
 		}
 	}
@@ -111,6 +116,7 @@ function Login() {
 			}
 		} catch (error) {
 			console.log("An error occurred while signing in:", error.message);
+			setErrorToPrint("An error occurred while signing in. Please try again");
 		}
 	}
 	return (
@@ -144,6 +150,7 @@ function Login() {
 						)
 					}}
 				/>
+				{errorToPrint && <p style={{ color: "red" }}>{errorToPrint}</p>}
 				<Stack width="100%" alignItems="center" spacing={1.5}>
 					<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }} onClick={handleSignIn}>
 						<Typography variant="h6" fontWeight="bold">

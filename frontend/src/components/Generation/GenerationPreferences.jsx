@@ -1,21 +1,21 @@
 import {
 	Box,
 	TextField,
-	IconButton,
 	Typography,
 	Button,
 	MenuItem,
 	FormControl,
 	Select,
 	InputLabel,
+	IconButton,
 	Tooltip
 } from "@mui/material";
 import styles from "./GenerationPreferences.module.css";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import InfoIcon from "@mui/icons-material/Info";
 import MealTypeButtons from "./MealTypeButtons";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 function GenerationPreferences({ generateOptionParam }) {
 	const cuisines = ["Italian", "Mexican", "Chinese", "Indian", "Any"];
@@ -126,11 +126,24 @@ function GenerationPreferences({ generateOptionParam }) {
 
 			<Box sx={{ display: "flex", alignItems: "center", mt: "3vh" }}>
 				<Typography variant="h5" sx={{ marginRight: 2 }}>
-					Edit your ingredients in your Pantry:
+					Edit your ingredients from your Pantry:
 				</Typography>
 				<Button variant="contained" onClick={() => router.push("/pantry")}>
 					Pantry
 				</Button>
+			</Box>
+			<Box sx={{ display: "flex", alignItems: "center", mt: "3vh" }}>
+				<Typography variant="h5" sx={{ marginRight: 2 }}>
+					Edit your disliked ingredients from your profile:
+				</Typography>
+				<Button variant="contained" onClick={() => router.push("/edit-profile")}>
+					Profile
+				</Button>
+				<Tooltip title="Disliked ingaredients will not be included in the generated meal">
+					<IconButton color="primary" aria-label="more info">
+						<InfoOutlinedIcon />
+					</IconButton>
+				</Tooltip>
 			</Box>
 
 			<Button variant="contained" sx={{ pr: "7vh", pl: "7vh", mt: "3vh" }} onClick={handleGenerate}>
