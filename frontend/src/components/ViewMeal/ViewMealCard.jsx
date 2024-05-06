@@ -31,9 +31,10 @@ export default function ViewMealCard() {
 	useEffect(() => {
 		const fetchData = async () => {
 			if (searchParams.get("generateOption") === "Remix") {
+				console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
 				axios
 					.post(
-						`https://intelligent-eats.ts.r.appspot.com/api/generation/remix`,
+						process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/remix",
 						{
 							mealToRemix: mealToRemix,
 							favouriteMeals: userFavouriteMeals,
@@ -57,7 +58,7 @@ export default function ViewMealCard() {
 			} else if (searchParams.get("generateOption") === "Prompt") {
 				axios
 					.post(
-						`https://intelligent-eats.ts.r.appspot.com/api/generation/prompt`,
+						process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/prompt",
 						{
 							prompt: prompt
 						},
@@ -76,7 +77,7 @@ export default function ViewMealCard() {
 			} else if (searchParams.get("generateOption") === "Basic") {
 				axios
 					.post(
-						`https://intelligent-eats.ts.r.appspot.com/api/generation/basicLoose`,
+						process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicLoose",
 						{
 							favouriteMeals: userFavouriteMeals,
 							generatedMeals: userGeneratedMeals,
@@ -103,7 +104,7 @@ export default function ViewMealCard() {
 			} else if (searchParams.get("generateOption") === "Strict") {
 				axios
 					.post(
-						`https://intelligent-eats.ts.r.appspot.com/api/generation/basicStrict`,
+						process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicStrict",
 						{
 							favouriteMeals: userFavouriteMeals,
 							generatedMeals: userGeneratedMeals,
@@ -135,7 +136,7 @@ export default function ViewMealCard() {
 		setRecipeLoadedStarted(true);
 		axios
 			.post(
-				`https://intelligent-eats.ts.r.appspot.com/api/generation/recipe`,
+				process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/recipe",
 				{
 					mealName: mealName,
 					ingredients: ingredientsUser + ingredientsNeeded,
