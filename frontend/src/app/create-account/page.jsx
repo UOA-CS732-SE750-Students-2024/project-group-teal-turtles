@@ -10,6 +10,7 @@ import { auth } from "@/app/firebase-config";
 import useDataStore from "@/lib/store";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { handleGoogleLogin } from "@/app/auth-functions";
 
 function CreateAccount() {
 	const [passwordVisible, setPasswordVisible] = useState(false);
@@ -17,6 +18,7 @@ function CreateAccount() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [errorToPrint, setErrorToPrint] = useState(null);
 	const {
 		setUserFavouriteMeals,
 		setUserGeneratedMeals,
@@ -27,6 +29,54 @@ function CreateAccount() {
 		setAuthorisedUser
 	} = useDataStore();
 	const router = useRouter();
+
+	async function fetchUser(userAuthToken) {
+		try {
+			const response = await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL + "/users", {
+				headers: {
+					Authorization: userAuthToken
+				}
+			});
+
+			console.log(response.data);
+			setUserDislikedIngredients(response.data.dislikedIngredients);
+			setUserFavouriteMeals(response.data.favouriteMeals);
+			setUserGeneratedMeals(response.data.generatedMeals);
+			setUserIngredients(response.data.ingredients);
+			setUserParameters(response.data.parameters);
+			router.push("/dashboard");
+		} catch (error) {
+			if (error.response && error.response.data.error === "User not found") {
+			} else {
+				console.log("Error:", error);
+			}
+		}
+	}
+
+	async function createUserInDatabase(userAuthToken) {
+		try {
+			const response = await axios.post(
+				process.env.NEXT_PUBLIC_BACKEND_URL + "/users",
+				{},
+				{
+					headers: {
+						Authorization: userAuthToken
+					}
+				}
+			);
+			console.log("User created:", response.data);
+			setUserDislikedIngredients(response.data.dislikedIngredients);
+			setUserFavouriteMeals(response.data.favouriteMeals);
+			setUserGeneratedMeals(response.data.generatedMeals);
+			setUserIngredients(response.data.ingredients);
+			setUserParameters(response.data.parameters);
+			router.push("/dashboard");
+			return response.data;
+		} catch (error) {
+			console.error("Error creating user:", error);
+			throw error;
+		}
+	}
 
 	async function createUserInDatabase(userAuthToken) {
 		try {
@@ -61,19 +111,37 @@ function CreateAccount() {
 				setUserEmail(auth.currentUser.email);
 				createUserInDatabase(auth.currentUser.accessToken);
 			} else {
-				console.log("Passwords do not match");
+				setErrorToPrint("Passwords do not match");
 			}
 		} catch (error) {
 			if (error.code === "auth/weak-password") {
-				console.log("Firebase: Password should be at least 6 characters");
+				setErrorToPrint("Firebase: Password should be at least 6 characters");
 			} else if (error.code === "auth/email-already-in-use") {
-				console.log("Email already in use");
+				setErrorToPrint("Email already in use");
 			} else {
-				console.log("An error occurred while signing in:", error.message);
+				console.log("An error occurred while signing up:", error.message);
+				setErrorToPrint("An error occurred while signing up please try again");
 			}
 		}
 	}
+	async function handleGoogleSignIn() {
+		try {
+			await handleGoogleLogin();
+			setUserEmail(auth.currentUser.email);
+			setAuthorisedUser(auth.currentUser);
 
+			const metadata = auth.currentUser.metadata;
+			if (metadata.creationTime === metadata.lastSignInTime) {
+				createUserInDatabase(auth.currentUser.accessToken);
+			} else {
+				console.log("returning user");
+				fetchUser(auth.currentUser.accessToken);
+			}
+		} catch (error) {
+			console.log("An error occurred while signing in:", error.message);
+			setErrorToPrint("An error occurred while signing in. Please try again");
+		}
+	}
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
@@ -122,6 +190,8 @@ function CreateAccount() {
 						)
 					}}
 				/>
+
+				{errorToPrint && <p style={{ color: "red" }}>{errorToPrint}</p>}
 				<Stack width="100%" alignItems="center" spacing={1.5}>
 					<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }} onClick={handleCreateAccount}>
 						<Typography variant="h6">Create Account</Typography>
@@ -129,7 +199,13 @@ function CreateAccount() {
 					<Typography variant="h6" fontWeight="700">
 						OR
 					</Typography>
-					<Button fullWidth variant="contained" endIcon={<Google />} sx={{ textTransform: "none", py: 1.5 }}>
+					<Button
+						fullWidth
+						variant="contained"
+						onClick={handleGoogleSignIn}
+						endIcon={<Google />}
+						sx={{ textTransform: "none", py: 1.5 }}
+					>
 						<Typography variant="h6">Sign in with Google</Typography>
 					</Button>
 					<Link href="/login" underline="hover">
