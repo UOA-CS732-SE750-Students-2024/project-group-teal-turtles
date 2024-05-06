@@ -29,7 +29,7 @@ export default function ViewMealCard() {
 	const [recipeLoaded, setRecipeLoaded] = useState(false);
 
 	useEffect(() => {
-		const fetchData = async () => {
+		async () => {
 			if (searchParams.get("generateOption") === "Remix") {
 				console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
 				axios
@@ -128,8 +128,6 @@ export default function ViewMealCard() {
 					});
 			}
 		};
-
-		fetchData();
 	}, []);
 
 	function loadRecipe() {
