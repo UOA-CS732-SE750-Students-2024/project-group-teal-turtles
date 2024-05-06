@@ -1,4 +1,4 @@
-import { Button, Paper, Typography, Stack } from "@mui/material";
+import { Button, Paper, Typography, Stack, LinearProgress, CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import useDataStore from "@/lib/store";
@@ -18,13 +18,15 @@ export default function ViewMealCard() {
 		numIngredients,
 		prompt
 	} = useDataStore();
-	const [recipeLoaded, setLoaded] = useState(false);
 	const [recipe, setRecipe] = useState([]);
 	const [ingredientQuantities, setIngredientQuantities] = useState([]);
 	const [mealName, setMealName] = useState("");
 	const [ingredientsUser, setIngredientsUser] = useState([]);
 	const [ingredientsNeeded, setIngredientsNeeded] = useState([]);
 	const searchParams = useSearchParams();
+	const [mealLoaded, setMealLoaded] = useState(false);
+	const [recipeLoadedStarted, setRecipeLoadedStarted] = useState(false);
+	const [recipeLoaded, setRecipeLoaded] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -50,6 +52,7 @@ export default function ViewMealCard() {
 						setMealName(response.data.mealName);
 						setIngredientsUser(response.data.ingredients);
 						setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
+						setMealLoaded(true);
 					});
 			} else if (searchParams.get("generateOption") === "Prompt") {
 				axios
@@ -68,6 +71,7 @@ export default function ViewMealCard() {
 						setMealName(response.data.mealName);
 						setIngredientsUser(response.data.ingredients);
 						setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
+						setMealLoaded(true);
 					});
 			} else if (searchParams.get("generateOption") === "Basic") {
 				axios
@@ -94,6 +98,7 @@ export default function ViewMealCard() {
 						setIngredientsUser(response.data.ingredientsUser);
 						setIngredientsNeeded(response.data.ingredientsNeeded);
 						setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
+						setMealLoaded(true);
 					});
 			} else if (searchParams.get("generateOption") === "Strict") {
 				axios
@@ -118,6 +123,7 @@ export default function ViewMealCard() {
 						setMealName(response.data.mealName);
 						setIngredientsUser(response.data.ingredientsUser);
 						setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
+						setMealLoaded(true);
 					});
 			}
 		};
@@ -126,7 +132,7 @@ export default function ViewMealCard() {
 	}, []);
 
 	function loadRecipe() {
-		setLoaded(true);
+		setRecipeLoadedStarted(true);
 		axios
 			.post(
 				`https://intelligent-eats.ts.r.appspot.com/api/generation/recipe`,
@@ -144,25 +150,41 @@ export default function ViewMealCard() {
 			.then((response) => {
 				setRecipe(response.data.steps);
 				setIngredientQuantities(response.data.ingredientQuantities);
+				setRecipeLoaded(true);
 			});
 	}
 	return (
 		<Paper elevation={4} align="center" sx={{ p: 4, m: 8, mt: 4, width: "50%" }}>
-			<Typography variant="h2">{mealName}</Typography>
-			<Stack alignItems={"flex-start"} sx={{ mt: 4 }}>
-				<Typography variant="h4">Ingredients</Typography>
-				<Typography variant="h6">User: {ingredientsUser.join(", ")}</Typography>
-				{ingredientsNeeded.length > 0 && (
-					<Typography variant="h6">
-						Needed: {ingredientsNeeded.join(", ")} {}
+			{!mealLoaded && (
+				<>
+					<Typography variant="h4" align="center">
+						Generating a delicious meal...
 					</Typography>
-				)}
-			</Stack>
-			{!recipeLoaded && (
+					<LinearProgress sx={{ mt: 4 }} />
+				</>
+			)}
+			{mealLoaded && (
+				<>
+					<Typography variant="h2">{mealName}</Typography>
+					<Stack alignItems={"flex-start"} sx={{ mt: 4 }}>
+						<Typography variant="h4">Ingredients</Typography>
+						<Typography variant="h6">User: {ingredientsUser.join(", ")}</Typography>
+						{ingredientsNeeded.length > 0 && (
+							<Typography variant="h6">
+								Needed: {ingredientsNeeded.join(", ")} {}
+							</Typography>
+						)}
+					</Stack>
+				</>
+			)}
+
+			{!recipeLoadedStarted && mealLoaded && (
 				<Button variant="contained" sx={{ mt: 4 }} size="large" onClick={loadRecipe}>
 					Generate Recipe
 				</Button>
 			)}
+			{recipeLoadedStarted && !recipeLoaded && <CircularProgress sx={{ mt: 4 }} size={50} />}
+
 			{recipeLoaded && (
 				<Stack alignItems={"flex-start"} sx={{ mt: 4 }} direction={"row"}>
 					<Stack alignItems={"flex-start"} sx={{ mr: 4 }}>
