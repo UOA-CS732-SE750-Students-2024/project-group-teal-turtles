@@ -71,8 +71,8 @@ function ResponsiveAppBar() {
 				backgroundColor: currentUrl !== "/landing" ? "primary.main" : "transparent"
 			}}
 		>
-			<Container maxWidth="xl">
-				<Toolbar disableGutters>
+			<Container maxWidth="xl" sx={{ height: "100%" }}>
+				<Toolbar disableGutters sx={{ height: "100%" }}>
 					<Box
 						onClick={() => router.push(currentUrl !== "/landing" ? "/dashboard" : "/landing")}
 						sx={{
@@ -196,12 +196,12 @@ function ResponsiveAppBar() {
 					</Box>
 
 					{currentUrl !== "/landing" && (
-						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, height: "100%", ml: 2 }}>
 							{pages.map((page, idx) => (
 								<Button
 									key={idx}
 									onClick={() => router.push(page.url)}
-									sx={{ my: 2, color: "white", display: "block" }}
+									sx={{ px: 2, mx: 1, color: "white", display: "block", height: "100%", alignSelf: "stretch" }}
 								>
 									{page.name}
 								</Button>
