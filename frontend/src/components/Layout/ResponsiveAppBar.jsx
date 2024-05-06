@@ -14,8 +14,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
+import useDataStore from "@/lib/store";
+import { logout } from "@/app/auth-functions";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -27,6 +28,15 @@ function ResponsiveAppBar() {
 	];
 	const currentUrl = usePathname();
 	const router = useRouter();
+	const {
+		setUserGeneratedMeals,
+		setUserDislikedIngredients,
+		setUserEmail,
+		setUserFavouriteMeals,
+		setUserIngredients,
+		setUserParameters,
+		setAuthorisedUser
+	} = useDataStore();
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
