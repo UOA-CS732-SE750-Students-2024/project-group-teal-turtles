@@ -29,9 +29,8 @@ export default function ViewMealCard() {
 	const [recipeLoaded, setRecipeLoaded] = useState(false);
 
 	useEffect(() => {
-		async () => {
+		async function fetchMeal() {
 			if (searchParams.get("generateOption") === "Remix") {
-				console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
 				axios
 					.post(
 						process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/remix",
@@ -127,7 +126,9 @@ export default function ViewMealCard() {
 						setMealLoaded(true);
 					});
 			}
-		};
+		}
+
+		fetchMeal();
 	}, []);
 
 	function loadRecipe() {
