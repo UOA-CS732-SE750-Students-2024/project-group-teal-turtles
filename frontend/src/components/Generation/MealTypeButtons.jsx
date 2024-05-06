@@ -13,7 +13,7 @@ function MealTypeButtons() {
 					key={index}
 					onClick={() => setUserParameters({ ...userParameters, mealType: mealType })}
 					className={
-						userParameters && mealType.toLocaleLowerCase() === userParameters.mealType.toLowerCase()
+						userParameters !== null && mealType.toLocaleLowerCase() === userParameters.mealType.toLowerCase()
 							? `${styles.button} ${styles.selected}`
 							: styles.button
 					}
