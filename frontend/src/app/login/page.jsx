@@ -125,6 +125,13 @@ function Login() {
 			setErrorToPrint("An error occurred while signing in. Please try again");
 		}
 	}
+
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter" && email && password) {
+			handleSignIn();
+		}
+	};
+
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
@@ -136,6 +143,7 @@ function Login() {
 					fullWidth
 					label="Email Address"
 					value={email}
+					onKeyDown={handleKeyPress}
 					onChange={(event) => {
 						setEmail(event.target.value);
 					}}
@@ -145,6 +153,7 @@ function Login() {
 					label="Password (6+ Characters)"
 					type={visible ? "text" : "password"}
 					value={password}
+					onKeyDown={handleKeyPress}
 					onChange={(event) => {
 						setPassword(event.target.value);
 					}}
