@@ -5,7 +5,6 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -27,7 +26,8 @@ function ResponsiveAppBar() {
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
 		{ name: "Generate", url: "/generation-options?generateOption=Basic" },
-		{ name: "Pantry", url: "/pantry" }
+		{ name: "Pantry", url: "/pantry" },
+		{ name: "Previous Recipe", url: "/view-meal" }
 	];
 	const currentUrl = usePathname();
 	const router = useRouter();
@@ -41,7 +41,12 @@ function ResponsiveAppBar() {
 		setUserParameters,
 		setAuthorisedUser,
 		setMealToRemix,
-		setPrompt
+		setPrompt,
+		setLastMeal,
+		setLastRecipe,
+		setLastIngredientQuantities,
+		setLastIngredientsNeeded,
+		setLastIngredientsUser
 	} = useDataStore();
 
 	const handleOpenNavMenu = (event) => {
@@ -73,6 +78,11 @@ function ResponsiveAppBar() {
 			setAuthorisedUser(null);
 			setMealToRemix("");
 			setPrompt("");
+			setLastMeal("");
+			setLastRecipe("");
+			setLastIngredientQuantities([]);
+			setLastIngredientsNeeded([]);
+			setLastIngredientsUser([]);
 
 			router.push("/landing");
 			console.log("logout successful");
@@ -232,7 +242,7 @@ function ResponsiveAppBar() {
 
 					{currentUrl !== "/landing" ? (
 						<Box sx={{ flexGrow: 0 }}>
-							<Tooltip title="Username">
+							<Tooltip title="Profile">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 									<Image src={"/user.png"} alt={"User"} width={45} height={45} />
 								</IconButton>

@@ -25,9 +25,7 @@ function GenerationPreferences({ generateOptionParam }) {
 	const router = useRouter();
 
 	const handleGenerate = () => {
-		if (prompt !== "") {
-			router.push(`/view-meal?generateOption=${generateOptionParam}`);
-		}
+		router.push(`/view-meal?generateOption=${generateOptionParam}&from=generation`);
 	};
 
 	const handleKeyPress = (e) => {
