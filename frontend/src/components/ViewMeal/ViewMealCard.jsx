@@ -1,14 +1,21 @@
 import { Button, Paper, Typography, Stack, LinearProgress, CircularProgress } from "@mui/material";
-import axios from "axios";
 import { useState, useEffect, Suspense } from "react";
 import useDataStore from "@/lib/store";
 import { useSearchParams } from "next/navigation";
+import { getAuth } from "firebase/auth";
+import {
+	addGeneratedMeal,
+	saveParameters,
+	generateMealLoose,
+	generateRecipe,
+	generateMealPrompt,
+	generateMealRemix,
+	generateMealStrict
+} from "@/helpers/dbCalls";
 
 export default function ViewMealCard() {
 	function MealCard() {
 		const {
-			authorisedUser,
-			numberOfPeople,
 			mealToRemix,
 			userFavouriteMeals,
 			userDislikedIngredients,
@@ -25,136 +32,99 @@ export default function ViewMealCard() {
 		const [ingredientsNeeded, setIngredientsNeeded] = useState([]);
 		const searchParams = useSearchParams();
 		const [mealLoaded, setMealLoaded] = useState(false);
-		const [recipeLoadedStarted, setRecipeLoadedStarted] = useState(false);
 		const [recipeLoaded, setRecipeLoaded] = useState(false);
 
 		useEffect(() => {
-			async function fetchMeal() {
-				if (searchParams.get("generateOption") === "Remix") {
-					const authToken = await authorisedUser.getIdToken();
-					axios
-						.post(
-							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/remix",
-							{
-								mealToRemix: mealToRemix,
-								favouriteMeals: userFavouriteMeals,
-								dislikedIngredients: userDislikedIngredients,
-								mealType: userParameters.mealType,
-								cuisine: userParameters.cuisine,
-								dietaryRequirements: userParameters.dietaryRequirements
-							},
-							{
-								headers: {
-									Authorization: authToken
-								}
-							}
-						)
-						.then((response) => {
-							setMealName(response.data.mealName);
-							setIngredientsUser(response.data.ingredients);
-							setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
-							setMealLoaded(true);
-						});
-				} else if (searchParams.get("generateOption") === "Prompt") {
-					const authToken = await authorisedUser.getIdToken();
-					axios
-						.post(
-							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/prompt",
-							{
-								prompt: prompt
-							},
-							{
-								headers: {
-									Authorization: authToken
-								}
-							}
-						)
-						.then((response) => {
-							setMealName(response.data.mealName);
-							setIngredientsUser(response.data.ingredients);
-							setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
-							setMealLoaded(true);
-						});
-				} else if (searchParams.get("generateOption") === "Basic") {
-					const authToken = await authorisedUser.getIdToken();
-					axios
-						.post(
-							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicLoose",
-							{
-								favouriteMeals: userFavouriteMeals,
-								generatedMeals: userGeneratedMeals,
-								ingredients: userIngredients,
-								dislikedIngredients: userDislikedIngredients,
-								mealType: userParameters.mealType,
-								cuisine: userParameters.cuisine,
-								dietaryRequirements: userParameters.dietaryRequirements
-							},
-							{
-								headers: {
-									Authorization: authToken
-								}
-							}
-						)
-						.then((response) => {
-							setMealName(response.data.mealName);
-							setIngredientsUser(response.data.ingredientsUser);
-							setIngredientsNeeded(response.data.ingredientsNeeded);
-							setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
-							setMealLoaded(true);
-						});
-				} else if (searchParams.get("generateOption") === "Strict") {
-					const authToken = await authorisedUser.getIdToken();
-					axios
-						.post(
-							process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicStrict",
-							{
-								favouriteMeals: userFavouriteMeals,
-								generatedMeals: userGeneratedMeals,
-								ingredients: userIngredients,
-								dislikedIngredients: userDislikedIngredients,
-								mealType: userParameters.mealType,
-								cuisine: userParameters.cuisine,
-								dietaryRequirements: userParameters.dietaryRequirements
-							},
-							{
-								headers: {
-									Authorization: authToken
-								}
-							}
-						)
-						.then((response) => {
-							setMealName(response.data.mealName);
-							setIngredientsUser(response.data.ingredientsUser);
-							setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
-							setMealLoaded(true);
-						});
+			try {
+				async function fetchMeal() {
+					const authToken = await getAuth().currentUser.getIdToken();
+					if (searchParams.get("generateOption") === "Remix") {
+						generateMealRemix(authToken, mealToRemix)
+							.then((res) => {
+								afterResult(res.data.mealName, res.data.ingredients);
+								fetchRecipe(res.data.mealName, res.data.ingredients);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					} else if (searchParams.get("generateOption") === "Prompt") {
+						generateMealPrompt(authToken, prompt)
+							.then((res) => {
+								afterResult(res.data.mealName, res.data.ingredients);
+								fetchRecipe(res.data.mealName, res.data.ingredients);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					} else if (searchParams.get("generateOption") === "Basic") {
+						const body = {
+							favouriteMeals: userFavouriteMeals,
+							generatedMeals: userGeneratedMeals,
+							ingredients: userIngredients,
+							dislikedIngredients: userDislikedIngredients,
+							mealType: userParameters.mealType,
+							cuisine: userParameters.cuisine,
+							dietaryRequirements: userParameters.dietaryRequirements
+						};
+						generateMealLoose(authToken, body)
+							.then((res) => {
+								setIngredientsNeeded(res.data.ingredientsNeeded);
+								afterResult(res.data.mealName, res.data.ingredientsUser);
+								fetchRecipe(res.data.mealName, res.data.ingredientsUser + res.data.ingredientsNeeded);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					} else if (searchParams.get("generateOption") === "Strict") {
+						const body = {
+							favouriteMeals: userFavouriteMeals,
+							generatedMeals: userGeneratedMeals,
+							ingredients: userIngredients,
+							dislikedIngredients: userDislikedIngredients,
+							mealType: userParameters.mealType,
+							cuisine: userParameters.cuisine,
+							dietaryRequirements: userParameters.dietaryRequirements
+						};
+						generateMealStrict(authToken, body)
+							.then((res) => {
+								afterResult(res.data.mealName, res.data.ingredientsUser);
+								fetchRecipe(res.data.mealName, res.data.ingredientsUser);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					}
 				}
+				fetchMeal();
+			} catch (err) {
+				console.log(err);
 			}
-
-			fetchMeal();
 		}, []);
 
-		async function loadRecipe() {
-			setRecipeLoadedStarted(true);
-			const authToken = await authorisedUser.getIdToken();
-			axios
-				.post(
-					process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/recipe",
-					{
-						mealName: mealName,
-						ingredients: ingredientsUser + ingredientsNeeded,
-						numberOfPeople: numberOfPeople
-					},
-					{
-						headers: {
-							Authorization: authToken
-						}
-					}
-				)
-				.then((response) => {
-					setRecipe(response.data.steps);
-					setIngredientQuantities(response.data.ingredientQuantities);
+		async function afterResult(mealName, userIngredients) {
+			const authToken = await getAuth().currentUser.getIdToken();
+
+			setMealName(mealName);
+			setIngredientsUser(userIngredients);
+
+			saveParameters(authToken, userParameters);
+			addGeneratedMeal(authToken, mealName);
+
+			setUserGeneratedMeals([...userGeneratedMeals, mealName]);
+			setMealLoaded(true);
+		}
+
+		async function fetchRecipe(mealName, ingredients) {
+			const authToken = await getAuth().currentUser.getIdToken();
+			const body = { mealName: mealName, ingredients: ingredients, numberOfPeople: userParameters.numberOfPeople };
+			generateRecipe(authToken, body)
+				.then((res) => {
+					setRecipe(res.data.steps);
+					setIngredientQuantities(res.data.ingredientQuantities);
 					setRecipeLoaded(true);
+				})
+				.catch((err) => {
+					console.log(err);
 				});
 		}
 
@@ -182,13 +152,7 @@ export default function ViewMealCard() {
 						</Stack>
 					</>
 				)}
-
-				{!recipeLoadedStarted && mealLoaded && (
-					<Button variant="contained" sx={{ mt: 4 }} size="large" onClick={loadRecipe}>
-						Generate Recipe
-					</Button>
-				)}
-				{recipeLoadedStarted && !recipeLoaded && <CircularProgress sx={{ mt: 4 }} size={50} />}
+				{mealLoaded && !recipeLoaded && <CircularProgress sx={{ mt: 4 }} size={50} />}
 
 				{recipeLoaded && (
 					<Stack alignItems={"flex-start"} sx={{ mt: 4 }} direction={"row"}>

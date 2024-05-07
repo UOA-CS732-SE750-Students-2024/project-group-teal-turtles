@@ -17,6 +17,9 @@ import { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
 import useDataStore from "@/lib/store";
 import { logout } from "@/app/auth-functions";
+import { getAuth } from "firebase/auth";
+
+import { saveIngredients } from "@/helpers/dbCalls";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -34,8 +37,11 @@ function ResponsiveAppBar() {
 		setUserEmail,
 		setUserFavouriteMeals,
 		setUserIngredients,
+		userIngredients,
 		setUserParameters,
-		setAuthorisedUser
+		setAuthorisedUser,
+		setMealToRemix,
+		setPrompt
 	} = useDataStore();
 
 	const handleOpenNavMenu = (event) => {
@@ -55,6 +61,8 @@ function ResponsiveAppBar() {
 
 	const handleLogout = async () => {
 		try {
+			const authToken = await getAuth().currentUser.getIdToken();
+			saveIngredients(authToken, userIngredients);
 			await logout();
 			setUserGeneratedMeals([]);
 			setUserDislikedIngredients([]);
@@ -63,6 +71,9 @@ function ResponsiveAppBar() {
 			setUserIngredients([]);
 			setUserParameters(null);
 			setAuthorisedUser(null);
+			setMealToRemix("");
+			setPrompt("");
+
 			router.push("/landing");
 			console.log("logout successful");
 		} catch (error) {
