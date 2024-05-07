@@ -1,11 +1,10 @@
 "use client";
 
-import useDataStore from "@/lib/store";
 import GenerationButtons from "@/components/Generation/GenerationButtons";
 import GenerationPreferences from "@/components/Generation/GenerationPreferences";
-import { Typography, Container } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import { useState, Suspense } from "react";
+import { Suspense } from "react";
 
 function GenerationOptions() {
 	function Generation() {
@@ -13,14 +12,13 @@ function GenerationOptions() {
 		const generateOptionParam = searchParams.get("generateOption");
 
 		return (
-			<Container>
-				<Typography variant="h2" align="center" gutterBottom sx={{ mt: "4vh" }}>
+			<Stack height="calc(100vh - 70px)" justifyContent="space-between">
+				<Typography variant="h2" align="center" fontWeight="700">
 					Generation Type
 				</Typography>
 				<GenerationButtons generateOptionParam={generateOptionParam} />
-
 				<GenerationPreferences generateOptionParam={generateOptionParam} />
-			</Container>
+			</Stack>
 		);
 	}
 

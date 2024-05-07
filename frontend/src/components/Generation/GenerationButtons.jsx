@@ -1,5 +1,4 @@
-import { Box, Button } from "@mui/material";
-import styles from "./GenerationButtons.module.css";
+import { Stack, Button, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 function GenerationButtons({ generateOptionParam }) {
@@ -12,17 +11,21 @@ function GenerationButtons({ generateOptionParam }) {
 	};
 
 	return (
-		<Box className={styles.buttonContainer}>
+		<Stack direction="row" justifyContent="space-between" spacing="20px">
 			{options.map((option, index) => (
-				<Box
+				<Button
+					fullWidth
+					variant={option === generateOptionParam ? "contained" : "outlined"}
 					key={index}
 					onClick={() => handleButtonClick(option)}
-					className={option === generateOptionParam ? `${styles.button} ${styles.selected}` : styles.button}
+					sx={{ borderRadius: "20px", height: "80px" }}
 				>
-					{option}
-				</Box>
+					<Typography variant="h5" fontWeight="bold" textTransform="none">
+						{option}
+					</Typography>
+				</Button>
 			))}
-		</Box>
+		</Stack>
 	);
 }
 
