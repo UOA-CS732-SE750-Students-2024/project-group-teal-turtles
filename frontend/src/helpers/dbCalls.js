@@ -65,21 +65,17 @@ export function generateRecipe(authToken, mealName, ingredients, numberOfPeople)
 }
 
 export function generateMealRemix(authToken, body) {
-	return axios
-		.post(
-			process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/remix",
-			{
-				body
-			},
-			{
-				headers: {
-					Authorization: authToken
-				}
+	return axios.post(
+		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/remix",
+		{
+			body
+		},
+		{
+			headers: {
+				Authorization: authToken
 			}
-		)
-		.then((response) => {
-			return response.data;
-		});
+		}
+	);
 }
 
 export function generateMealPrompt(authToken, prompt) {

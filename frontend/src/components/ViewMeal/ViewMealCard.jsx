@@ -37,70 +37,72 @@ export default function ViewMealCard() {
 		const [recipeLoaded, setRecipeLoaded] = useState(false);
 
 		useEffect(() => {
-			async function fetchMeal() {
-				const authToken = await getAuth().currentUser.getIdToken();
-				if (searchParams.get("generateOption") === "Remix") {
-					generateMealRemix(authToken, mealToRemix).then((res) => {
-						afterResult(res.data.mealName, userParameters);
-					});
-				} else if (searchParams.get("generateOption") === "Prompt") {
-					generateMealPrompt(authToken, prompt).then((res) => {
-						afterResult(res.data.mealName, userParameters);
-					});
-				} else if (searchParams.get("generateOption") === "Basic") {
-					const body = {
-						favouriteMeals: userFavouriteMeals,
-						generatedMeals: userGeneratedMeals,
-						ingredients: userIngredients,
-						dislikedIngredients: userDislikedIngredients,
-						mealType: userParameters.mealType,
-						cuisine: userParameters.cuisine,
-						dietaryRequirements: userParameters.dietaryRequirements
-					};
-					generateMealLoose(authToken, body).then((res) => {
-						setIngredientsNeeded(res.data.ingredientsNeeded);
-						afterResult(res.data.mealName, userParameters);
-					});
-				} else if (searchParams.get("generateOption") === "Strict") {
-					const body = {
-						favouriteMeals: userFavouriteMeals,
-						generatedMeals: userGeneratedMeals,
-						ingredients: userIngredients,
-						dislikedIngredients: userDislikedIngredients,
-						mealType: userParameters.mealType,
-						cuisine: userParameters.cuisine,
-						dietaryRequirements: userParameters.dietaryRequirements
-					};
-					generateMealStrict(authToken, body).then((res) => {
-						afterResult(res.data.mealName, userParameters);
-					});
+			try {
+				async function fetchMeal() {
+					const authToken = await getAuth().currentUser.getIdToken();
+					if (searchParams.get("generateOption") === "Remix") {
+						generateMealRemix(authToken, mealToRemix).then((res) => {
+							afterResult(res.data.mealName, res.data.ingredients, userParameters);
+						});
+					} else if (searchParams.get("generateOption") === "Prompt") {
+						generateMealPrompt(authToken, prompt).then((res) => {
+							afterResult(res.data.mealName, res.data.ingredients, userParameters);
+						});
+					} else if (searchParams.get("generateOption") === "Basic") {
+						const body = {
+							favouriteMeals: userFavouriteMeals,
+							generatedMeals: userGeneratedMeals,
+							ingredients: userIngredients,
+							dislikedIngredients: userDislikedIngredients,
+							mealType: userParameters.mealType,
+							cuisine: userParameters.cuisine,
+							dietaryRequirements: userParameters.dietaryRequirements
+						};
+						generateMealLoose(authToken, body).then((res) => {
+							setIngredientsNeeded(res.data.ingredientsNeeded);
+							afterResult(res.data.mealName, res.data.ingredientsUser, userParameters);
+						});
+					} else if (searchParams.get("generateOption") === "Strict") {
+						const body = {
+							favouriteMeals: userFavouriteMeals,
+							generatedMeals: userGeneratedMeals,
+							ingredients: userIngredients,
+							dislikedIngredients: userDislikedIngredients,
+							mealType: userParameters.mealType,
+							cuisine: userParameters.cuisine,
+							dietaryRequirements: userParameters.dietaryRequirements
+						};
+						generateMealStrict(authToken, body).then((res) => {
+							afterResult(res.data.mealName, res.data.ingredientsUser, userParameters);
+						});
+					}
 				}
+				fetchMeal();
+			} catch (err) {
+				console.log(err);
 			}
-
-			fetchMeal();
 		}, []);
 
+		async function afterResult(mealName, userIngredients, userParameters) {
+			const authToken = await getAuth().currentUser.getIdToken();
+
+			setMealName(mealName);
+			setIngredientsUser(userIngredients);
+
+			saveParameters(authToken, userParameters);
+			addGeneratedMeal(authToken, mealName);
+
+			setUserGeneratedMeals([...userGeneratedMeals, mealName]);
+			setMealLoaded(true);
+		}
 		async function loadRecipe() {
 			const authToken = await getAuth().currentUser.getIdToken();
 			setRecipeLoadedStarted(true);
-			generateRecipe(authToken, mealName, ingredientsUser + ingredientsNeeded, numberOfPeople).then((data) => {
-				setRecipe(data.steps);
-				setIngredientQuantities(data.ingredientQuantities);
+			generateRecipe(authToken, mealName, ingredientsUser + ingredientsNeeded, numberOfPeople).then((res) => {
+				setRecipe(res.data.steps);
+				setIngredientQuantities(res.data.ingredientQuantities);
 				setRecipeLoaded(true);
 			});
-		}
-
-		async function afterResult(data, userParameters) {
-			const authToken = await getAuth().currentUser.getIdToken();
-
-			setMealName(data.mealName);
-			setIngredientsUser(data.ingredientsUser);
-
-			saveParameters(authToken, userParameters);
-			addGeneratedMeal(authToken, generatedMeal);
-
-			setUserGeneratedMeals([...userGeneratedMeals, data.mealName]);
-			setMealLoaded(true);
 		}
 
 		return (

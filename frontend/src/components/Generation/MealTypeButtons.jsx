@@ -11,7 +11,7 @@ function MealTypeButtons() {
 			{mealTypes.map((mealType, index) => (
 				<Box
 					key={index}
-					onClick={() => setUserParameters({ ...userParameters, mealType: mealType })}
+					onClick={() => setUserParameters({ ...userParameters, mealType: mealType.toLowerCase() })}
 					className={
 						userParameters !== null && mealType.toLocaleLowerCase() === userParameters.mealType.toLowerCase()
 							? `${styles.button} ${styles.selected}`
