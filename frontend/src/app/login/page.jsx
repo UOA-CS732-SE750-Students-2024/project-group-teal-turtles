@@ -1,7 +1,7 @@
 "use client";
 
 import { Google } from "@mui/icons-material";
-import { Stack, Typography, Card, Button, TextField, IconButton, Link } from "@mui/material";
+import { Stack, Typography, Card, Button, TextField, IconButton, Link, CircularProgress } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import CardWrapper from "@/components/CardWrapper/CardWrapper";
@@ -16,6 +16,8 @@ function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorToPrint, setErrorToPrint] = useState(null);
+	const [loading, setLoading] = useState(false);
+	const [googleLoading, setGoogleLoading] = useState(false);
 	const {
 		setUserFavouriteMeals,
 		setUserGeneratedMeals,
@@ -78,12 +80,14 @@ function Login() {
 
 	async function handleSignIn() {
 		try {
+			setLoading(true);
 			await login(email, password);
 			setAuthorisedUser(auth.currentUser);
 
 			setUserEmail(auth.currentUser.email);
 			fetchUser(auth.currentUser.accessToken);
 		} catch (error) {
+			setLoading(false);
 			if (error.code === "auth/invalid-credential") {
 				console.log("Invalid credentials. Please check your email and password.");
 				setErrorToPrint("Invalid credentials. Please check your email and password");
@@ -96,13 +100,14 @@ function Login() {
 				);
 			} else {
 				console.log("An error occurred while signing in:", error.message);
-				setErrorToPrint("An error has occurred please try again");
+				setErrorToPrint("An error has occurred while signing in. Please try again");
 			}
 		}
 	}
 
 	async function handleGoogleSignIn() {
 		try {
+			setGoogleLoading(true);
 			await handleGoogleLogin();
 			setUserEmail(auth.currentUser.email);
 			setAuthorisedUser(auth.currentUser);
@@ -115,6 +120,7 @@ function Login() {
 				fetchUser(auth.currentUser.accessToken);
 			}
 		} catch (error) {
+			setGoogleLoading(false);
 			console.log("An error occurred while signing in:", error.message);
 			setErrorToPrint("An error occurred while signing in. Please try again");
 		}
@@ -150,10 +156,24 @@ function Login() {
 						)
 					}}
 				/>
-				{errorToPrint && <p style={{ color: "red" }}>{errorToPrint}</p>}
+				{errorToPrint && !loading && !googleLoading && (
+					<Typography fontWeight="700" sx={{ color: "primary.main" }}>
+						{errorToPrint}
+					</Typography>
+				)}
 				<Stack width="100%" alignItems="center" spacing={1.5}>
-					<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }} onClick={handleSignIn}>
-						<Typography variant="h6" fontWeight="bold">
+					<Button
+						disabled={loading || googleLoading}
+						fullWidth
+						variant="contained"
+						sx={{
+							textTransform: "none",
+							py: 1.5
+						}}
+						onClick={handleSignIn}
+					>
+						{loading && <CircularProgress size="25px" sx={{ color: "background.paper", mr: "15px" }} />}
+						<Typography variant="h6" fontWeight="bold" mr={loading ? "40px" : "0px"}>
 							Sign in
 						</Typography>
 					</Button>
@@ -161,12 +181,17 @@ function Login() {
 						OR
 					</Typography>
 					<Button
+						disabled={loading || googleLoading}
 						fullWidth
 						variant="contained"
-						endIcon={<Google />}
-						sx={{ textTransform: "none", py: 1.5 }}
+						endIcon={<Google sx={{ mr: googleLoading ? "40px" : "0px" }} />}
+						sx={{
+							textTransform: "none",
+							py: 1.5
+						}}
 						onClick={handleGoogleSignIn}
 					>
+						{googleLoading && <CircularProgress size="25px" sx={{ color: "background.paper", mr: "15px" }} />}
 						<Typography variant="h6" fontWeight="bold">
 							Sign in with Google
 						</Typography>
