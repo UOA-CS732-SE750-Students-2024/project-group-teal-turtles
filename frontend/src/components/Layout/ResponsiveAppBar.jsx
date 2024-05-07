@@ -81,7 +81,7 @@ function ResponsiveAppBar() {
 				backgroundColor: currentUrl !== "/landing" ? "primary.main" : "transparent"
 			}}
 		>
-			<Container maxWidth="xl" sx={{ height: "100%" }}>
+			<Container sx={{ height: "100%" }}>
 				<Toolbar disableGutters sx={{ height: "100%" }}>
 					<Box
 						onClick={() => router.push(currentUrl !== "/landing" ? "/dashboard" : "/landing")}
@@ -261,13 +261,29 @@ function ResponsiveAppBar() {
 						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto", height: "100%" }}>
 							<Button
 								onClick={() => router.push("/login")}
-								sx={{ px: 2, mx: 1, color: "white", display: "block", height: "100%", alignSelf: "stretch" }}
+								sx={{
+									px: 2,
+									mx: 1,
+									color: "white",
+									display: "block",
+									height: "100%",
+									alignSelf: "stretch",
+									fontWeight: "bold"
+								}}
 							>
 								Sign In
 							</Button>
 							<Button
 								onClick={() => router.push("/create-account")}
-								sx={{ px: 2, mx: 1, color: "white", display: "block", height: "100%", alignSelf: "stretch" }}
+								sx={{
+									px: 2,
+									mx: 1,
+									color: "white",
+									display: "block",
+									height: "100%",
+									alignSelf: "stretch",
+									fontWeight: "bold"
+								}}
 							>
 								Create Account
 							</Button>

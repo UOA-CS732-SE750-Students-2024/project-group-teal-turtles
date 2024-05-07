@@ -40,8 +40,8 @@ export default function UserPantryGrid() {
 			justifyContent="center"
 		>
 			<Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", mb: "2vh" }}>
-				<Typography variant="h3" sx={{ mr: "2vh" }}>
-					Your Pantry:
+				<Typography variant="h2" sx={{ mr: "2vh" }}>
+					Your Pantry
 				</Typography>
 				<Fab color="primary" aria-label="add" variant="extended" href="/pantry" sx={{}}>
 					<AddIcon sx={{ mr: 1 }} />
