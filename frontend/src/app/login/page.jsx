@@ -70,7 +70,7 @@ function Login() {
 			setUserGeneratedMeals(response.data.generatedMeals);
 			setUserIngredients(response.data.ingredients);
 			setUserParameters(response.data.parameters);
-			router.push("/dashboard");
+			router.push("/onboarding");
 			return response.data;
 		} catch (error) {
 			console.error("Error creating user:", error);

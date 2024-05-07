@@ -5,27 +5,29 @@ import PantryGrid from "@/components/Pantry/PantryGrid";
 import { ChevronLeft } from "@mui/icons-material";
 import { Stack, Typography, Button, IconButton } from "@mui/material";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import useDataStore from "@/lib/store";
 
 function Onboarding() {
-	const [favouriteMeals, setFavouriteMeals] = useState([]);
-	const [availableIngredients, setAvailableIngredients] = useState([]);
 	const [page, setPage] = useState("meals");
+	const router = useRouter();
+	const { userIngredients, setUserIngredients, setUserFavouriteMeals, userFavouriteMeals } = useDataStore();
 
 	const handleMealsChange = (item) => {
-		if (favouriteMeals.includes(item)) {
-			const newMeals = favouriteMeals.filter((meal) => meal !== item);
-			setFavouriteMeals(newMeals);
+		if (userFavouriteMeals.includes(item)) {
+			const newMeals = userFavouriteMeals.filter((meal) => meal !== item);
+			setUserFavouriteMeals(newMeals);
 		} else {
-			setFavouriteMeals([...favouriteMeals, item]);
+			setUserFavouriteMeals([...userFavouriteMeals, item]);
 		}
 	};
 
 	const handleIngredientsChange = (item) => {
-		if (availableIngredients.includes(item)) {
-			const newIngredients = availableIngredients.filter((ingredient) => ingredient !== item);
-			setAvailableIngredients(newIngredients);
+		if (userIngredients.includes(item)) {
+			const newIngredients = userIngredients.filter((ingredient) => ingredient !== item);
+			setUserIngredients(newIngredients);
 		} else {
-			setAvailableIngredients([...availableIngredients, item]);
+			setUserIngredients([...userIngredients, item]);
 		}
 	};
 
@@ -57,10 +59,14 @@ function Onboarding() {
 								itemData={ingredients}
 								variant="onboarding"
 								onClick={handleIngredientsChange}
-								selected={availableIngredients}
+								selected={userIngredients}
 							/>
 						</Stack>
-						<Button variant="contained" sx={{ textTransform: "none", py: 1.5, width: "50%" }}>
+						<Button
+							variant="contained"
+							sx={{ textTransform: "none", py: 1.5, width: "50%" }}
+							onClick={() => router.push("/dashboard")}
+						>
 							<Typography variant="h6">Continue</Typography>
 						</Button>
 					</>
@@ -75,7 +81,12 @@ function Onboarding() {
 							</Typography>
 						</Stack>
 						<Stack marginY="30px">
-							<PantryGrid itemData={meals} variant="onboarding" onClick={handleMealsChange} selected={favouriteMeals} />
+							<PantryGrid
+								itemData={meals}
+								variant="onboarding"
+								onClick={handleMealsChange}
+								selected={userFavouriteMeals}
+							/>
 						</Stack>
 						<Button
 							variant="contained"
@@ -96,59 +107,59 @@ function Onboarding() {
 // TODO: Update images here
 const meals = [
 	{
-		img: "/images/pantry-icons/fruit/apple.png",
+		img: "/images/pantry-icons/meals/pizza.png",
 		title: "Pizza"
 	},
 	{
-		img: "/images/pantry-icons/fruit/avocado.png",
+		img: "/images/pantry-icons/meals/ramen.png",
 		title: "Ramen"
 	},
 	{
-		img: "/images/pantry-icons/fruit/banana.png",
+		img: "/images/pantry-icons/meals/hamburger.png",
 		title: "Hamburger"
 	},
 	{
-		img: "/images/pantry-icons/fruit/blueberry.png",
+		img: "/images/pantry-icons/meals/paella.png",
 		title: "Paella"
 	},
 	{
-		img: "/images/pantry-icons/fruit/cantaloupe.png",
+		img: "/images/pantry-icons/meals/chickenTikka.png",
 		title: "Chicken Tikka"
 	},
 	{
-		img: "/images/pantry-icons/fruit/cherry.png",
-		title: "Pad Thai"
+		img: "/images/pantry-icons/meals/taco.png",
+		title: "Tacos"
 	},
 	{
-		img: "/images/pantry-icons/fruit/coconut.png",
+		img: "/images/pantry-icons/meals/sushi.png",
 		title: "Sushi"
 	},
 	{
-		img: "/images/pantry-icons/fruit/dragonfruit.png",
+		img: "/images/pantry-icons/meals/lasagna.png",
 		title: "Lasagna"
 	},
 	{
-		img: "/images/pantry-icons/fruit/durian.png",
+		img: "/images/pantry-icons/meals/fried-chicken.png",
 		title: "Fried Chicken"
 	},
 	{
-		img: "/images/pantry-icons/fruit/coconut.png",
+		img: "/images/pantry-icons/meals/pie.png",
 		title: "Shepherd's Pie"
 	},
 	{
-		img: "/images/pantry-icons/fruit/dragonfruit.png",
+		img: "/images/pantry-icons/meals/ribs.png",
 		title: "Beef Ribs"
 	},
 	{
-		img: "/images/pantry-icons/fruit/durian.png",
+		img: "/images/pantry-icons/meals/curry.png",
 		title: "Spicy Curry"
 	}
 ];
 
 const ingredients = [
 	{
-		img: "/images/pantry-icons/carbohydrates/flour.png",
-		title: "Flour"
+		img: "/images/pantry-icons/carbohydrates/bread/bun.png",
+		title: "Bun"
 	},
 	{
 		img: "/images/pantry-icons/protein/eggs.png",
@@ -168,7 +179,7 @@ const ingredients = [
 	},
 	{
 		img: "/images/pantry-icons/fruit/tomato.png",
-		title: "Tomatos"
+		title: "Tomato"
 	},
 	{
 		img: "/images/pantry-icons/vegetables/garlic.png",
@@ -184,15 +195,15 @@ const ingredients = [
 	},
 	{
 		img: "/images/pantry-icons/carbohydrates/pasta/penne.png",
-		title: "Pasta"
+		title: "Spaghetti"
 	},
 	{
 		img: "/images/pantry-icons/protein/beefpatty.png",
-		title: "Beef Mince"
+		title: "Beef patty"
 	},
 	{
 		img: "/images/pantry-icons/protein/chickenwhole.png",
-		title: "Chicken"
+		title: "Chicken drum"
 	}
 ];
 

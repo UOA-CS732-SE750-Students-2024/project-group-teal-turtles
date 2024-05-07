@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography, Stack, TextField, Card, IconButton, CardActionArea } from "@mui/material";
+import { Typography, Stack, TextField, Card, IconButton, CardActionArea, Box } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 import "./../../globals.css";
@@ -87,10 +87,11 @@ function Landing() {
 						<Typography
 							variant="h3"
 							fontWeight="700"
-							sx={{ color: "secondary.dark", backgroundColor: "primary.light", px: 4, py: 2 }}
+							sx={{ color: "secondary.dark", backgroundColor: "primary.light", px: 4, py: 2, borderRadius: "20px" }}
 						>
 							Generate a personalised recipe in seconds.
 						</Typography>
+
 						<TextField
 							variant="outlined"
 							autoComplete="off"
@@ -118,6 +119,35 @@ function Landing() {
 								)
 							}}
 						/>
+						<Box
+							sx={{
+								backgroundColor: "primary.light",
+								px: 4,
+								py: 2,
+								borderRadius: "20px",
+								height: "100px",
+								display: "flex"
+							}}
+						>
+							<Typography variant="h3" fontWeight="700" sx={{ color: "secondary.dark" }}>
+								Start your chef journey now
+							</Typography>
+							<Box
+								sx={{
+									bgcolor: "white",
+									borderRadius: "20px",
+									ml: "5vh",
+									border: "3px solid black",
+									alignItems: "center",
+									justifyContent: "center",
+									display: "flex"
+								}}
+							>
+								<IconButton onClick={() => router.push("/create-account")}>
+									<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
+								</IconButton>
+							</Box>
+						</Box>
 					</Stack>
 					<Stack direction="row" pt={5} px={30} sx={{ backgroundColor: "background.default" }}>
 						{/* TODO: Put something meaningful here */}

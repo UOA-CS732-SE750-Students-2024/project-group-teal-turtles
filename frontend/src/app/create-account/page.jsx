@@ -72,32 +72,7 @@ function CreateAccount() {
 			setUserGeneratedMeals(response.data.generatedMeals);
 			setUserIngredients(response.data.ingredients);
 			setUserParameters(response.data.parameters);
-			router.push("/dashboard");
-			return response.data;
-		} catch (error) {
-			console.error("Error creating user:", error);
-			throw error;
-		}
-	}
-
-	async function createUserInDatabase(userAuthToken) {
-		try {
-			const response = await axios.post(
-				process.env.NEXT_PUBLIC_BACKEND_URL + "/users",
-				{},
-				{
-					headers: {
-						Authorization: userAuthToken
-					}
-				}
-			);
-			console.log("User created:", response.data);
-			setUserDislikedIngredients(response.data.dislikedIngredients);
-			setUserFavouriteMeals(response.data.favouriteMeals);
-			setUserGeneratedMeals(response.data.generatedMeals);
-			setUserIngredients(response.data.ingredients);
-			setUserParameters(response.data.parameters);
-			router.push("/dashboard");
+			router.push("/onboarding");
 			return response.data;
 		} catch (error) {
 			console.error("Error creating user:", error);
@@ -114,7 +89,8 @@ function CreateAccount() {
 				setUserEmail(auth.currentUser.email);
 				createUserInDatabase(auth.currentUser.accessToken);
 			} else {
-				setErrorToPrint("Passwords do not match.");
+				setLoading(false);
+				setErrorToPrint("Passwords do not match");
 			}
 		} catch (error) {
 			setLoading(false);
@@ -205,7 +181,7 @@ function CreateAccount() {
 					}}
 				/>
 
-				{errorToPrint && !loading && !googleLoading && (
+				{errorToPrint && !googleLoading && (
 					<Typography variant="h6" fontWeight="700" sx={{ color: "primary.main" }}>
 						{errorToPrint}
 					</Typography>

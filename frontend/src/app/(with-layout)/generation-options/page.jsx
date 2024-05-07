@@ -143,7 +143,6 @@ function GenerationOptions() {
 										<MenuItem
 											key={index}
 											value={mealType}
-											onClick={(event) => setUserParameters({ ...userParameters, mealType: event.target.value })}
 											sx={{
 												color:
 													userParameters !== null && userParameters.mealType === mealType
