@@ -39,15 +39,23 @@ export default function ViewMealCard() {
 				async function fetchMeal() {
 					const authToken = await getAuth().currentUser.getIdToken();
 					if (searchParams.get("generateOption") === "Remix") {
-						generateMealRemix(authToken, mealToRemix).then((res) => {
-							afterResult(res.data.mealName, res.data.ingredients);
-							fetchRecipe(res.data.mealName, res.data.ingredients);
-						});
+						generateMealRemix(authToken, mealToRemix)
+							.then((res) => {
+								afterResult(res.data.mealName, res.data.ingredients);
+								fetchRecipe(res.data.mealName, res.data.ingredients);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
 					} else if (searchParams.get("generateOption") === "Prompt") {
-						generateMealPrompt(authToken, prompt).then((res) => {
-							afterResult(res.data.mealName, res.data.ingredients);
-							fetchRecipe(res.data.mealName, res.data.ingredients);
-						});
+						generateMealPrompt(authToken, prompt)
+							.then((res) => {
+								afterResult(res.data.mealName, res.data.ingredients);
+								fetchRecipe(res.data.mealName, res.data.ingredients);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
 					} else if (searchParams.get("generateOption") === "Basic") {
 						const body = {
 							favouriteMeals: userFavouriteMeals,
@@ -58,11 +66,15 @@ export default function ViewMealCard() {
 							cuisine: userParameters.cuisine,
 							dietaryRequirements: userParameters.dietaryRequirements
 						};
-						generateMealLoose(authToken, body).then((res) => {
-							setIngredientsNeeded(res.data.ingredientsNeeded);
-							afterResult(res.data.mealName, res.data.ingredientsUser);
-							fetchRecipe(res.data.mealName, res.data.ingredientsUser + res.data.ingredientsNeeded);
-						});
+						generateMealLoose(authToken, body)
+							.then((res) => {
+								setIngredientsNeeded(res.data.ingredientsNeeded);
+								afterResult(res.data.mealName, res.data.ingredientsUser);
+								fetchRecipe(res.data.mealName, res.data.ingredientsUser + res.data.ingredientsNeeded);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
 					} else if (searchParams.get("generateOption") === "Strict") {
 						const body = {
 							favouriteMeals: userFavouriteMeals,
@@ -73,10 +85,14 @@ export default function ViewMealCard() {
 							cuisine: userParameters.cuisine,
 							dietaryRequirements: userParameters.dietaryRequirements
 						};
-						generateMealStrict(authToken, body).then((res) => {
-							afterResult(res.data.mealName, res.data.ingredientsUser);
-							fetchRecipe(res.data.mealName, res.data.ingredientsUser);
-						});
+						generateMealStrict(authToken, body)
+							.then((res) => {
+								afterResult(res.data.mealName, res.data.ingredientsUser);
+								fetchRecipe(res.data.mealName, res.data.ingredientsUser);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
 					}
 				}
 				fetchMeal();
@@ -101,11 +117,15 @@ export default function ViewMealCard() {
 		async function fetchRecipe(mealName, ingredients) {
 			const authToken = await getAuth().currentUser.getIdToken();
 			const body = { mealName: mealName, ingredients: ingredients, numberOfPeople: userParameters.numberOfPeople };
-			generateRecipe(authToken, body).then((res) => {
-				setRecipe(res.data.steps);
-				setIngredientQuantities(res.data.ingredientQuantities);
-				setRecipeLoaded(true);
-			});
+			generateRecipe(authToken, body)
+				.then((res) => {
+					setRecipe(res.data.steps);
+					setIngredientQuantities(res.data.ingredientQuantities);
+					setRecipeLoaded(true);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		}
 
 		return (
