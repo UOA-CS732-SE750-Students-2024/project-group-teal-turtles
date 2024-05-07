@@ -2,7 +2,7 @@
 
 import CardWrapper from "@/components/CardWrapper/CardWrapper";
 import { Google } from "@mui/icons-material";
-import { Stack, Typography, Button, TextField, IconButton, Link } from "@mui/material";
+import { Stack, Typography, Button, TextField, IconButton, Link, CircularProgress } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import { createAccount } from "@/app/auth-functions";
@@ -19,6 +19,8 @@ function CreateAccount() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorToPrint, setErrorToPrint] = useState(null);
+	const [loading, setLoading] = useState(false);
+	const [googleLoading, setGoogleLoading] = useState(false);
 	const {
 		setUserFavouriteMeals,
 		setUserGeneratedMeals,
@@ -105,6 +107,7 @@ function CreateAccount() {
 
 	async function handleCreateAccount() {
 		try {
+			setLoading(true);
 			if (password === confirmPassword) {
 				await createAccount(email, password);
 				setAuthorisedUser(auth.currentUser);
@@ -114,18 +117,20 @@ function CreateAccount() {
 				setErrorToPrint("Passwords do not match");
 			}
 		} catch (error) {
+			setLoading(false);
 			if (error.code === "auth/weak-password") {
 				setErrorToPrint("Firebase: Password should be at least 6 characters");
 			} else if (error.code === "auth/email-already-in-use") {
 				setErrorToPrint("Email already in use");
 			} else {
 				console.log("An error occurred while signing up:", error.message);
-				setErrorToPrint("An error occurred while signing up please try again");
+				setErrorToPrint("An error occurred while signing up. Please try again");
 			}
 		}
 	}
 	async function handleGoogleSignIn() {
 		try {
+			setGoogleLoading(true);
 			await handleGoogleLogin();
 			setUserEmail(auth.currentUser.email);
 			setAuthorisedUser(auth.currentUser);
@@ -138,6 +143,7 @@ function CreateAccount() {
 				fetchUser(auth.currentUser.accessToken);
 			}
 		} catch (error) {
+			setGoogleLoading(false);
 			console.log("An error occurred while signing in:", error.message);
 			setErrorToPrint("An error occurred while signing in. Please try again");
 		}
@@ -191,22 +197,42 @@ function CreateAccount() {
 					}}
 				/>
 
-				{errorToPrint && <p style={{ color: "red" }}>{errorToPrint}</p>}
+				{errorToPrint && !loading && !googleLoading && (
+					<Typography variant="h6" fontWeight="700" sx={{ color: "primary.main" }}>
+						{errorToPrint}
+					</Typography>
+				)}
 				<Stack width="100%" alignItems="center" spacing={1.5}>
-					<Button fullWidth variant="contained" sx={{ textTransform: "none", py: 1.5 }} onClick={handleCreateAccount}>
-						<Typography variant="h6">Create Account</Typography>
+					<Button
+						disabled={loading || googleLoading}
+						fullWidth
+						variant="contained"
+						sx={{ textTransform: "none", py: 1.5 }}
+						onClick={handleCreateAccount}
+					>
+						{loading && <CircularProgress size="25px" sx={{ color: "background.paper", mr: "15px" }} />}
+						<Typography variant="h6" fontWeight="bold" mr={loading ? "40px" : "0px"}>
+							Create Account
+						</Typography>
 					</Button>
 					<Typography variant="h6" fontWeight="700">
 						OR
 					</Typography>
 					<Button
+						disabled={loading || googleLoading}
 						fullWidth
 						variant="contained"
+						endIcon={<Google sx={{ mr: googleLoading ? "40px" : "0px" }} />}
+						sx={{
+							textTransform: "none",
+							py: 1.5
+						}}
 						onClick={handleGoogleSignIn}
-						endIcon={<Google />}
-						sx={{ textTransform: "none", py: 1.5 }}
 					>
-						<Typography variant="h6">Sign in with Google</Typography>
+						{googleLoading && <CircularProgress size="25px" sx={{ color: "background.paper", mr: "15px" }} />}
+						<Typography variant="h6" fontWeight="bold">
+							Sign in with Google
+						</Typography>
 					</Button>
 					<Link href="/login" underline="hover">
 						<Typography variant="h6">Sign in to an existing account</Typography>

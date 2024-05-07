@@ -156,7 +156,11 @@ function Login() {
 						)
 					}}
 				/>
-				{errorToPrint && <Typography sx={{ color: "primary.main" }}>{errorToPrint}</Typography>}
+				{errorToPrint && !loading && !googleLoading && (
+					<Typography fontWeight="700" sx={{ color: "primary.main" }}>
+						{errorToPrint}
+					</Typography>
+				)}
 				<Stack width="100%" alignItems="center" spacing={1.5}>
 					<Button
 						disabled={loading || googleLoading}
