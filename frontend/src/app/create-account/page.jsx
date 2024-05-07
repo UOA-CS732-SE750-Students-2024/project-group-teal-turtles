@@ -107,21 +107,21 @@ function CreateAccount() {
 
 	async function handleCreateAccount() {
 		try {
-			setLoading(true);
 			if (password === confirmPassword) {
+				setLoading(true);
 				await createAccount(email, password);
 				setAuthorisedUser(auth.currentUser);
 				setUserEmail(auth.currentUser.email);
 				createUserInDatabase(auth.currentUser.accessToken);
 			} else {
-				setErrorToPrint("Passwords do not match");
+				setErrorToPrint("Passwords do not match.");
 			}
 		} catch (error) {
 			setLoading(false);
 			if (error.code === "auth/weak-password") {
 				setErrorToPrint("Firebase: Password should be at least 6 characters");
 			} else if (error.code === "auth/email-already-in-use") {
-				setErrorToPrint("Email already in use");
+				setErrorToPrint("Email is already in use.");
 			} else {
 				console.log("An error occurred while signing up:", error.message);
 				setErrorToPrint("An error occurred while signing up. Please try again");
@@ -148,6 +148,11 @@ function CreateAccount() {
 			setErrorToPrint("An error occurred while signing in. Please try again");
 		}
 	}
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter" && email && password && confirmPassword) {
+			handleCreateAccount();
+		}
+	};
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
@@ -160,6 +165,7 @@ function CreateAccount() {
 					fullWidth
 					label="Email Address"
 					value={email}
+					onKeyDown={handleKeyPress}
 					onChange={(event) => {
 						setEmail(event.target.value);
 					}}
@@ -169,6 +175,7 @@ function CreateAccount() {
 					label="Password (6+ Characters)"
 					type={passwordVisible ? "text" : "password"}
 					value={password}
+					onKeyDown={handleKeyPress}
 					onChange={(event) => {
 						setPassword(event.target.value);
 					}}
@@ -185,6 +192,7 @@ function CreateAccount() {
 					label="Confirm Password"
 					value={confirmPassword}
 					type={confirmPasswordVisible ? "text" : "password"}
+					onKeyDown={handleKeyPress}
 					onChange={(event) => {
 						setConfirmPassword(event.target.value);
 					}}
