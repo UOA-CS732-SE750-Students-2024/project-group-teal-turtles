@@ -1,24 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import {
-	Box,
-	TextField,
-	Typography,
-	Button,
-	MenuItem,
-	FormControl,
-	Select,
-	InputLabel,
-	IconButton,
-	Stack,
-	Tooltip
-} from "@mui/material";
+import { TextField, Typography, Button, MenuItem, Select, IconButton, Stack, Tooltip, Card } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import useDataStore from "@/lib/store";
 import { Suspense } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { ExpandMore } from "@mui/icons-material";
 
 function GenerationOptions() {
 	function Generation() {
@@ -29,8 +18,8 @@ function GenerationOptions() {
 
 		const options = ["Basic", "Strict", "Remix", "Prompt"];
 		const mealTypes = ["Breakfast", "Lunch", "Dinner"];
-		const cuisines = ["Italian", "Mexican", "Chinese", "Indian", "Any"];
-		const dietaryRequirements = ["none", "Vegetarian", "Vegan", "Gluten-free", "Dairy-free"];
+		const cuisines = ["Any", "Italian", "Mexican", "Chinese", "Indian"];
+		const dietaryRequirements = ["None", "Vegetarian", "Vegan", "Gluten-free", "Dairy-free"];
 		const numberOfPeopleOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
 
 		const handleButtonClick = (option) => {
@@ -51,169 +40,221 @@ function GenerationOptions() {
 
 		return (
 			<Stack height="calc(100vh - 70px)" justifyContent="space-between" paddingX="20vw">
-				<Typography variant="h2" align="center" fontWeight="700">
-					Recipe Generator
-				</Typography>
-				<Stack direction="row" justifyContent="space-between" spacing="20px">
-					{options.map((option, index) => (
-						<Button
-							fullWidth
-							variant={option === generateOptionParam ? "contained" : "outlined"}
-							key={index}
-							onClick={() => handleButtonClick(option)}
-							sx={{ borderRadius: "20px", height: "80px" }}
-						>
-							<Typography variant="h5" fontWeight="bold" textTransform="none">
-								{option}
-							</Typography>
-						</Button>
-					))}
+				<Stack alignItems="center">
+					<Typography variant="h2" align="center" fontWeight="700" mt="10vh" mb="2vh">
+						Recipe Generator
+					</Typography>
+					<Stack direction="row" justifyContent="space-between" spacing="20px">
+						{options.map((option, index) => (
+							<Button
+								fullWidth
+								variant={option === generateOptionParam ? "contained" : "outlined"}
+								key={index}
+								onClick={() => handleButtonClick(option)}
+								sx={{
+									borderRadius: "30px",
+									height: "60px",
+									width: "200px"
+								}}
+							>
+								<Typography variant="h5" fontWeight="bold" textTransform="none">
+									{option}
+								</Typography>
+							</Button>
+						))}
+					</Stack>
 				</Stack>
-				{generateOptionParam === "Prompt" ? (
-					<Box>
-						<TextField
-							variant="outlined"
-							placeholder="Search for a meal..."
-							onChange={(e) => setPrompt(e.target.value)}
-							onKeyDown={handleKeyPress}
-							value={prompt ?? ""}
-							sx={{
-								width: "100%",
-								"& .MuiOutlinedInput-root": {
-									mt: "6vh",
-									borderRadius: 4,
-									outline: "none",
-									backgroundColor: "#FFFFFF",
-									"& input": {
-										fontSize: "40px",
-										ml: 2
-									}
-								}
-							}}
-							InputProps={{
-								endAdornment: (
-									<IconButton onClick={handleGenerate}>
-										<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
-									</IconButton>
-								)
-							}}
-						/>
-					</Box>
-				) : (
-					<Box>
-						{generateOptionParam === "Remix" && (
-							<TextField
-								sx={{ width: "75%", mb: "2vh" }}
-								label="Meal to remix"
-								value={mealToRemix !== "" ? mealToRemix : ""}
-								onChange={(e) => setMealToRemix(e.target.value)}
-							/>
-						)}
-
-						<Box sx={{ display: "flex", alignItems: "center" }}>
-							<Typography variant="h5" gutterBottom>
-								Number of People:
+				<Card
+					elevation={5}
+					sx={{
+						borderRadius: "80px 80px 0px 0px",
+						height: "60vh"
+					}}
+				>
+					{generateOptionParam === "Prompt" ? (
+						<Stack alignItems="center" spacing="25px" mt="25px">
+							<Typography
+								variant="h6"
+								fontWeight="bold"
+								width="75%"
+								textAlign="center"
+								sx={{ color: "secondary.main" }}
+							>
+								Prompt Mode allows you to generate a recipe for a meal based on a prompt. <br />
+								Make sure to point out ingredients that you want to include or exclude.
 							</Typography>
-							<FormControl variant="outlined" sx={{ width: "8%", ml: "2vh" }}>
+							<TextField
+								variant="outlined"
+								placeholder="Generate a meal..."
+								onChange={(e) => setPrompt(e.target.value)}
+								onKeyDown={handleKeyPress}
+								value={prompt ?? ""}
+								sx={{
+									width: "75%",
+									"& .MuiOutlinedInput-root": {
+										borderRadius: 4,
+										outline: "none",
+										backgroundColor: "#FFFFFF",
+										"& input": {
+											fontSize: "24px",
+											ml: 2
+										}
+									}
+								}}
+								InputProps={{
+									endAdornment: (
+										<IconButton onClick={handleGenerate}>
+											<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
+										</IconButton>
+									)
+								}}
+							/>
+						</Stack>
+					) : (
+						<Stack alignItems="center" mb="10vh" mt="25px" spacing="25px">
+							<Typography
+								variant="h6"
+								fontWeight="bold"
+								width="75%"
+								textAlign="center"
+								sx={{ color: "secondary.main" }}
+							>
+								{generateOptionParam === "Basic"
+									? "Basic Mode allows you to generate recipes based on your pantry and cuisine type."
+									: generateOptionParam === "Strict"
+									? "Strict Mode will not add new ingredients outside of your pantry list."
+									: "Remix Mode takes a meal, figures out the ingredients in it and will generate you a new meal based on those ingredients."}
+							</Typography>
+							<Typography fontWeight="700" variant="h4">
+								I want a{" "}
 								<Select
-									value={userParameters !== null ? userParameters.numberOfPeople : ""}
-									onChange={(event) => setUserParameters({ ...userParameters, numberOfPeople: event.target.value })}
+									value={userParameters !== null ? userParameters.mealType : ""}
+									onChange={(event) => setUserParameters({ ...userParameters, mealType: event.target.value })}
+									IconComponent={() => <ExpandMore sx={{ height: "36px", width: "36px" }} />}
+									sx={{
+										backgroundColor: "transparent",
+										color: "primary.main",
+										".MuiOutlinedInput-notchedOutline": { borderStyle: "none" },
+										".MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.css-jcfq8n-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input":
+											{ padding: 0 }
+									}}
 								>
-									{numberOfPeopleOptions.map((number, index) => (
-										<MenuItem key={index} value={number}>
-											{number}
+									{mealTypes.map((mealType, index) => (
+										<MenuItem
+											key={index}
+											value={mealType}
+											onClick={(event) => setUserParameters({ ...userParameters, mealType: event.target.value })}
+											sx={{
+												color:
+													userParameters !== null && userParameters.mealType === mealType
+														? "primary.main"
+														: "secondary.dark"
+											}}
+										>
+											<Typography variant="h4" fontWeight="bold">
+												{mealType}
+											</Typography>
 										</MenuItem>
 									))}
 								</Select>
-							</FormControl>
-						</Box>
-
-						<Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-							<Typography variant="h5" sx={{ marginRight: 2 }}>
-								Meal Type:
+								Meal, for{" "}
+								<Select
+									value={userParameters !== null ? userParameters.numberOfPeople : ""}
+									onChange={(event) => setUserParameters({ ...userParameters, numberOfPeople: event.target.value })}
+									IconComponent={() => <ExpandMore sx={{ height: "36px", width: "36px" }} />}
+									sx={{
+										backgroundColor: "transparent",
+										color: "primary.main",
+										".MuiOutlinedInput-notchedOutline": { borderStyle: "none" },
+										".MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.css-jcfq8n-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input":
+											{ padding: 0 }
+									}}
+								>
+									{numberOfPeopleOptions.map((number, index) => (
+										<MenuItem key={index} value={number}>
+											<Typography variant="h4" fontWeight="bold">
+												{number}
+											</Typography>
+										</MenuItem>
+									))}
+								</Select>
+								people.
 							</Typography>
-							<Stack direction="row" justifyContent="space-between" spacing="20px">
-								{mealTypes.map((mealType, index) => (
-									<Button
-										fullWidth
-										variant={
-											userParameters !== null && mealType.toLocaleLowerCase() === userParameters.mealType.toLowerCase()
-												? "contained"
-												: "outlined"
+							{generateOptionParam === "Remix" && (
+								<TextField
+									placeholder="Meal to Remix"
+									value={mealToRemix !== "" ? mealToRemix : ""}
+									onChange={(e) => setMealToRemix(e.target.value)}
+									InputProps={{
+										sx: {
+											borderRadius: "30px",
+											fontSize: "24px",
+											height: "60px",
+											borderRadius: "30px",
+											paddingX: "20px"
 										}
-										key={index}
-										onClick={() => setUserParameters({ ...userParameters, mealType: mealType })}
-										sx={{ borderRadius: "20px", height: "80px" }}
-									>
-										<Typography variant="h5" fontWeight="bold" textTransform="none">
-											{mealType}
+									}}
+									sx={{ width: "75%" }}
+								/>
+							)}
+							<Stack direction="row" width="75%" spacing="25px">
+								<Select
+									value={userParameters && userParameters.cuisine !== "" ? userParameters.cuisine : ""}
+									onChange={(event) => setUserParameters({ ...userParameters, cuisine: event.target.value })}
+									IconComponent={() => <ExpandMore sx={{ height: "36px", width: "36px" }} />}
+									sx={{ width: "75%", height: "60px", borderRadius: "30px", paddingX: "20px", fontSize: "24px" }}
+								>
+									{cuisines.map((cuisine, index) => (
+										<MenuItem key={index} value={cuisine}>
+											{cuisine}
+										</MenuItem>
+									))}
+								</Select>
+								<Select
+									value={
+										userParameters && userParameters.dietaryRequirements !== ""
+											? userParameters.dietaryRequirements
+											: ""
+									}
+									onChange={(event) =>
+										setUserParameters({ ...userParameters, dietaryRequirements: event.target.value })
+									}
+									IconComponent={() => <ExpandMore sx={{ height: "36px", width: "36px" }} />}
+									sx={{ width: "75%", height: "60px", borderRadius: "30px", paddingX: "20px", fontSize: "24px" }}
+								>
+									{dietaryRequirements.map((requirement, index) => (
+										<MenuItem key={index} value={requirement}>
+											{requirement}
+										</MenuItem>
+									))}
+								</Select>
+							</Stack>
+							<Stack alignItems="center">
+								<Button onClick={() => router.push("/pantry")}>
+									<Typography variant="h6" textTransform="none">
+										Edit your ingredients from your Pantry:
+									</Typography>
+								</Button>
+								<Tooltip title="Disliked ingaredients will not be included in the generated meal">
+									<Button onClick={() => router.push("/edit-profile")}>
+										<Typography variant="h6" textTransform="none">
+											Edit your disliked ingredients from your Profile
 										</Typography>
 									</Button>
-								))}
+								</Tooltip>
 							</Stack>
-						</Box>
-
-						<FormControl variant="outlined" sx={{ width: "75%", mt: "2vh" }}>
-							<InputLabel id="cuisine-type-label">Cuisine Type</InputLabel>
-							<Select
-								labelId="cuisine-type-label"
-								label="Cuisine Type"
-								value={userParameters && userParameters.cuisine !== "" ? userParameters.cuisine : ""}
-								onChange={(event) => setUserParameters({ ...userParameters, cuisine: event.target.value })}
+							<Button
+								variant="contained"
+								onClick={handleGenerate}
+								sx={{ width: "200px", height: "60px", borderRadius: "30px" }}
 							>
-								{cuisines.map((cuisine, index) => (
-									<MenuItem key={index} value={cuisine}>
-										{cuisine}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-
-						<FormControl variant="outlined" sx={{ width: "75%", mt: "2vh" }}>
-							<InputLabel id="dietary-requirements-label">Dietary Requirements</InputLabel>
-							<Select
-								labelId="dietary-requirements-label"
-								label="Dietary Requirements"
-								value={
-									userParameters && userParameters.dietaryRequirements !== "" ? userParameters.dietaryRequirements : ""
-								}
-								onChange={(event) => setUserParameters({ ...userParameters, dietaryRequirements: event.target.value })}
-							>
-								{dietaryRequirements.map((requirement, index) => (
-									<MenuItem key={index} value={requirement}>
-										{requirement}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-
-						<Box sx={{ display: "flex", alignItems: "center", mt: "3vh" }}>
-							<Typography variant="h5" sx={{ marginRight: 2 }}>
-								Edit your ingredients from your Pantry:
-							</Typography>
-							<Button variant="contained" onClick={() => router.push("/pantry")}>
-								Pantry
+								<Typography textTransform="none" variant="h6">
+									Generate Meal!
+								</Typography>
 							</Button>
-						</Box>
-						<Box sx={{ display: "flex", alignItems: "center", mt: "3vh" }}>
-							<Typography variant="h5" sx={{ marginRight: 2 }}>
-								Edit your disliked ingredients from your profile:
-							</Typography>
-							<Button variant="contained" onClick={() => router.push("/edit-profile")}>
-								Profile
-							</Button>
-							<Tooltip title="Disliked ingaredients will not be included in the generated meal">
-								<IconButton color="primary" aria-label="more info">
-									<InfoOutlinedIcon />
-								</IconButton>
-							</Tooltip>
-						</Box>
-
-						<Button variant="contained" sx={{ pr: "7vh", pl: "7vh", mt: "3vh" }} onClick={handleGenerate}>
-							Generate
-						</Button>
-					</Box>
-				)}
+						</Stack>
+					)}
+				</Card>
 			</Stack>
 		);
 	}
