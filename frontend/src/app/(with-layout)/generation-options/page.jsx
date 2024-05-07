@@ -169,7 +169,7 @@ function GenerationOptions() {
 								</Select>
 								Meal, for
 								<Select
-									value={userParameters !== null ? userParameters.numberOfPeople : ""}
+									value={userParameters != null ? userParameters.numberOfPeople : ""}
 									onChange={(event) => setUserParameters({ ...userParameters, numberOfPeople: event.target.value })}
 									IconComponent={() => (
 										<ExpandMore
@@ -196,7 +196,7 @@ function GenerationOptions() {
 										</MenuItem>
 									))}
 								</Select>
-								people.
+								{userParameters != null && userParameters.numberOfPeople === "1" ? "person." : "people."}
 							</Typography>
 							{generateOptionParam === "Remix" && (
 								<TextField
