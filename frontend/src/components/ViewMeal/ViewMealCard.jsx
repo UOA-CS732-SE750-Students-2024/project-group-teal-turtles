@@ -160,34 +160,6 @@ export default function ViewMealCard() {
 				});
 		}
 
-		async function saveToDB(generatedMeal, userParameters) {
-			const auth = getAuth();
-			const user = auth.currentUser;
-			const authToken = await user.getIdToken();
-			axios.put(
-				process.env.NEXT_PUBLIC_BACKEND_URL + "/users/parameters",
-				{ userParameters },
-				{
-					headers: {
-						Authorization: authToken
-					}
-				}
-			);
-			axios
-				.put(
-					process.env.NEXT_PUBLIC_BACKEND_URL + "/users/meals",
-					{ generatedMeal },
-					{
-						headers: {
-							Authorization: authToken
-						}
-					}
-				)
-				.then((response) => {
-					setUserGeneratedMeals([...userGeneratedMeals, generatedMeal]);
-				});
-		}
-
 		return (
 			<Paper elevation={4} align="center" sx={{ p: 4, m: 8, mt: 4, width: "50%" }}>
 				{!mealLoaded && (
@@ -248,4 +220,32 @@ export default function ViewMealCard() {
 			<MealCard />
 		</Suspense>
 	);
+}
+
+async function saveToDB(generatedMeal, userParameters) {
+	const auth = getAuth();
+	const user = auth.currentUser;
+	const authToken = await user.getIdToken();
+	console.log(userParameters);
+	console.log(generatedMeal);
+	axios.put(
+		process.env.NEXT_PUBLIC_BACKEND_URL + "/users/parameters",
+		{ parameters: userParameters },
+		{
+			headers: {
+				Authorization: authToken
+			}
+		}
+	);
+	axios
+		.put(
+			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/meals",
+			{ mealToAdd: generatedMeal },
+			{
+				headers: { Authorization: authToken }
+			}
+		)
+		.then((response) => {
+			setUserGeneratedMeals([...userGeneratedMeals, generatedMeal]);
+		});
 }
