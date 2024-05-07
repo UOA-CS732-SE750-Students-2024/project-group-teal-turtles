@@ -17,6 +17,9 @@ import { useRouter } from "next/navigation";
 import { Menu, MenuItem } from "@mui/material";
 import useDataStore from "@/lib/store";
 import { logout } from "@/app/auth-functions";
+import { getAuth } from "firebase/auth";
+
+import { saveIngredients } from "@/helpers/dbCalls";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -34,6 +37,7 @@ function ResponsiveAppBar() {
 		setUserEmail,
 		setUserFavouriteMeals,
 		setUserIngredients,
+		userIngredients,
 		setUserParameters,
 		setAuthorisedUser,
 		setMealToRemix,
@@ -57,8 +61,9 @@ function ResponsiveAppBar() {
 
 	const handleLogout = async () => {
 		try {
+			const authToken = await getAuth().currentUser.getIdToken();
+			saveIngredients(authToken, userIngredients);
 			await logout();
-
 			setUserGeneratedMeals([]);
 			setUserDislikedIngredients([]);
 			setUserEmail(null);
