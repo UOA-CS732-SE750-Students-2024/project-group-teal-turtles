@@ -107,51 +107,51 @@ function Onboarding() {
 // TODO: Update images here
 const meals = [
 	{
-		img: "/images/pantry-icons/fruit/apple.png",
+		img: "/images/pantry-icons/meals/pizza.png",
 		title: "Pizza"
 	},
 	{
-		img: "/images/pantry-icons/fruit/avocado.png",
+		img: "/images/pantry-icons/meals/ramen.png",
 		title: "Ramen"
 	},
 	{
-		img: "/images/pantry-icons/fruit/banana.png",
+		img: "/images/pantry-icons/meals/hamburger.png",
 		title: "Hamburger"
 	},
 	{
-		img: "/images/pantry-icons/fruit/blueberry.png",
+		img: "/images/pantry-icons/meals/paella.png",
 		title: "Paella"
 	},
 	{
-		img: "/images/pantry-icons/fruit/cantaloupe.png",
+		img: "/images/pantry-icons/meals/chickenTikka.png",
 		title: "Chicken Tikka"
 	},
 	{
-		img: "/images/pantry-icons/fruit/cherry.png",
-		title: "Pad Thai"
+		img: "/images/pantry-icons/meals/taco.png",
+		title: "Tacos"
 	},
 	{
-		img: "/images/pantry-icons/fruit/coconut.png",
+		img: "/images/pantry-icons/meals/sushi.png",
 		title: "Sushi"
 	},
 	{
-		img: "/images/pantry-icons/fruit/dragonfruit.png",
+		img: "/images/pantry-icons/meals/lasagna.png",
 		title: "Lasagna"
 	},
 	{
-		img: "/images/pantry-icons/fruit/durian.png",
+		img: "/images/pantry-icons/meals/fried-chicken.png",
 		title: "Fried Chicken"
 	},
 	{
-		img: "/images/pantry-icons/fruit/coconut.png",
+		img: "/images/pantry-icons/meals/pie.png",
 		title: "Shepherd's Pie"
 	},
 	{
-		img: "/images/pantry-icons/fruit/dragonfruit.png",
+		img: "/images/pantry-icons/meals/ribs.png",
 		title: "Beef Ribs"
 	},
 	{
-		img: "/images/pantry-icons/fruit/durian.png",
+		img: "/images/pantry-icons/meals/curry.png",
 		title: "Spicy Curry"
 	}
 ];
