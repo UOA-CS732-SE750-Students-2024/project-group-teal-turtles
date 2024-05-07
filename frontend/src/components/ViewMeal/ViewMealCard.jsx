@@ -36,14 +36,8 @@ export default function ViewMealCard() {
 			lastIngredientsNeeded,
 			setLastIngredientsNeeded
 		} = useDataStore();
-		// const [recipe, setRecipe] = useState([]);
-		// const [ingredientQuantities, setIngredientQuantities] = useState([]);
-		// const [mealName, setMealName] = useState("");
-		// const [ingredientsUser, setIngredientsUser] = useState([]);
-		// const [ingredientsNeeded, setIngredientsNeeded] = useState([]);
+
 		const searchParams = useSearchParams();
-		// const [mealLoaded, setMealLoaded] = useState(false);
-		// const [recipeLoaded, setRecipeLoaded] = useState(false);
 		const router = useRouter();
 		const [mealCurrentlyGenerating, setMealCurrentlyGenerating] = useState(false);
 
@@ -89,7 +83,6 @@ export default function ViewMealCard() {
 							};
 							generateMealLoose(authToken, body)
 								.then((res) => {
-									// setIngredientsNeeded(res.data.ingredientsNeeded);
 									setLastIngredientsNeeded(res.data.ingredientsNeeded);
 									afterResult(res.data.mealName, res.data.ingredientsUser);
 									fetchRecipe(res.data.mealName, res.data.ingredientsUser + res.data.ingredientsNeeded);
@@ -127,14 +120,10 @@ export default function ViewMealCard() {
 		async function afterResult(mealName, userIngredients) {
 			const authToken = await getAuth().currentUser.getIdToken();
 
-			// setMealName(mealName);
-			// setIngredientsUser(userIngredients);
-
 			saveParameters(authToken, userParameters);
 			addGeneratedMeal(authToken, mealName);
 
 			setUserGeneratedMeals([...userGeneratedMeals, mealName]);
-			// setMealLoaded(true);
 
 			setLastMeal(mealName);
 			setLastIngredientsUser(userIngredients);
@@ -146,9 +135,6 @@ export default function ViewMealCard() {
 			generateRecipe(authToken, body)
 				.then((res) => {
 					router.replace(`/view-meal?generateOption=${searchParams.get("generateOption")}`);
-					// setRecipe(res.data.steps);
-					// setIngredientQuantities(res.data.ingredientQuantities);
-					// setRecipeLoaded(true);
 					setLastRecipe(res.data.steps);
 					setLastIngredientQuantities(res.data.ingredientQuantities);
 				})
