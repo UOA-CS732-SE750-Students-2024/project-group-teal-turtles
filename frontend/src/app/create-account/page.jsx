@@ -72,32 +72,7 @@ function CreateAccount() {
 			setUserGeneratedMeals(response.data.generatedMeals);
 			setUserIngredients(response.data.ingredients);
 			setUserParameters(response.data.parameters);
-			router.push("/dashboard");
-			return response.data;
-		} catch (error) {
-			console.error("Error creating user:", error);
-			throw error;
-		}
-	}
-
-	async function createUserInDatabase(userAuthToken) {
-		try {
-			const response = await axios.post(
-				process.env.NEXT_PUBLIC_BACKEND_URL + "/users",
-				{},
-				{
-					headers: {
-						Authorization: userAuthToken
-					}
-				}
-			);
-			console.log("User created:", response.data);
-			setUserDislikedIngredients(response.data.dislikedIngredients);
-			setUserFavouriteMeals(response.data.favouriteMeals);
-			setUserGeneratedMeals(response.data.generatedMeals);
-			setUserIngredients(response.data.ingredients);
-			setUserParameters(response.data.parameters);
-			router.push("/dashboard");
+			router.push("/landing");
 			return response.data;
 		} catch (error) {
 			console.error("Error creating user:", error);
