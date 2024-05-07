@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import useDataStore from "@/lib/store";
 import { Suspense } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { ExpandMore } from "@mui/icons-material";
 
 function GenerationOptions() {
@@ -130,17 +129,25 @@ function GenerationOptions() {
 									: "Remix Mode takes a meal, figures out the ingredients in it and will generate you a new meal based on those ingredients."}
 							</Typography>
 							<Typography fontWeight="700" variant="h4">
-								I want a{" "}
+								I want a
 								<Select
 									value={userParameters !== null ? userParameters.mealType : ""}
 									onChange={(event) => setUserParameters({ ...userParameters, mealType: event.target.value })}
-									IconComponent={() => <ExpandMore sx={{ height: "36px", width: "36px" }} />}
+									IconComponent={() => (
+										<ExpandMore
+											sx={{
+												height: "36px",
+												width: "36px",
+												pointerEvents: "none",
+												position: "absolute",
+												right: 0
+											}}
+										/>
+									)}
 									sx={{
 										backgroundColor: "transparent",
 										color: "primary.main",
-										".MuiOutlinedInput-notchedOutline": { borderStyle: "none" },
-										".MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.css-jcfq8n-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input":
-											{ padding: 0 }
+										".MuiOutlinedInput-notchedOutline": { borderStyle: "none" }
 									}}
 								>
 									{mealTypes.map((mealType, index) => (
@@ -160,17 +167,25 @@ function GenerationOptions() {
 										</MenuItem>
 									))}
 								</Select>
-								Meal, for{" "}
+								Meal, for
 								<Select
 									value={userParameters !== null ? userParameters.numberOfPeople : ""}
 									onChange={(event) => setUserParameters({ ...userParameters, numberOfPeople: event.target.value })}
-									IconComponent={() => <ExpandMore sx={{ height: "36px", width: "36px" }} />}
+									IconComponent={() => (
+										<ExpandMore
+											sx={{
+												height: "36px",
+												width: "36px",
+												pointerEvents: "none",
+												position: "absolute",
+												right: 0
+											}}
+										/>
+									)}
 									sx={{
 										backgroundColor: "transparent",
 										color: "primary.main",
-										".MuiOutlinedInput-notchedOutline": { borderStyle: "none" },
-										".MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.css-jcfq8n-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input":
-											{ padding: 0 }
+										".MuiOutlinedInput-notchedOutline": { borderStyle: "none" }
 									}}
 								>
 									{numberOfPeopleOptions.map((number, index) => (
