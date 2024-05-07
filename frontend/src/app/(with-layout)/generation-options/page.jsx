@@ -84,6 +84,8 @@ function GenerationOptions() {
 								Make sure to point out ingredients that you want to include or exclude.
 							</Typography>
 							<TextField
+								multiline
+								maxRows={8}
 								variant="outlined"
 								placeholder="Generate a meal..."
 								onChange={(e) => setPrompt(e.target.value)}
@@ -94,11 +96,7 @@ function GenerationOptions() {
 									"& .MuiOutlinedInput-root": {
 										borderRadius: 4,
 										outline: "none",
-										backgroundColor: "#FFFFFF",
-										"& input": {
-											fontSize: "24px",
-											ml: 2
-										}
+										backgroundColor: "#FFFFFF"
 									}
 								}}
 								InputProps={{
@@ -106,7 +104,13 @@ function GenerationOptions() {
 										<IconButton onClick={handleGenerate}>
 											<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
 										</IconButton>
-									)
+									),
+									style: { fontSize: "24px" }
+								}}
+								inputProps={{
+									style: {
+										paddingLeft: 10
+									}
 								}}
 							/>
 						</Stack>
