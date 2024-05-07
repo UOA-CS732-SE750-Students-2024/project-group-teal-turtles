@@ -4,16 +4,11 @@ import React from "react";
 import PantryTabs from "@/components/Pantry/PantryTabs";
 import { Box, Stack } from "@mui/material";
 
-function EditIngredients() {
+function Pantry() {
 	return (
-		<Stack
-			sx={{ backgroundColor: "#FFFFFF", minHeight: "calc(100vh - 70px)" }}
-			alignItems="center"
-			justifyContent="center"
-		>
+		<Stack sx={{ minHeight: "calc(100vh - 70px)" }} alignItems="center" justifyContent="center">
 			<Box
 				sx={{
-					backgroundColor: "#FFF0FF",
 					height: "100%",
 					width: "100%",
 					minHeight: "calc(100vh - 70px)",
@@ -26,4 +21,4 @@ function EditIngredients() {
 	);
 }
 
-export default EditIngredients;
+export default Pantry;
