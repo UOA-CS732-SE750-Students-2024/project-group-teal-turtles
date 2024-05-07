@@ -6,28 +6,28 @@ import { ChevronLeft } from "@mui/icons-material";
 import { Stack, Typography, Button, IconButton } from "@mui/material";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import useDataStore from "@/lib/store";
 
 function Onboarding() {
-	const [favouriteMeals, setFavouriteMeals] = useState([]);
-	const [availableIngredients, setAvailableIngredients] = useState([]);
 	const [page, setPage] = useState("meals");
 	const router = useRouter();
+	const { userIngredients, setUserIngredients, setUserFavouriteMeals, userFavouriteMeals } = useDataStore();
 
 	const handleMealsChange = (item) => {
-		if (favouriteMeals.includes(item)) {
-			const newMeals = favouriteMeals.filter((meal) => meal !== item);
-			setFavouriteMeals(newMeals);
+		if (userFavouriteMeals.includes(item)) {
+			const newMeals = userFavouriteMeals.filter((meal) => meal !== item);
+			setUserFavouriteMeals(newMeals);
 		} else {
-			setFavouriteMeals([...favouriteMeals, item]);
+			setUserFavouriteMeals([...userFavouriteMeals, item]);
 		}
 	};
 
 	const handleIngredientsChange = (item) => {
-		if (availableIngredients.includes(item)) {
-			const newIngredients = availableIngredients.filter((ingredient) => ingredient !== item);
-			setAvailableIngredients(newIngredients);
+		if (userIngredients.includes(item)) {
+			const newIngredients = userIngredients.filter((ingredient) => ingredient !== item);
+			setUserIngredients(newIngredients);
 		} else {
-			setAvailableIngredients([...availableIngredients, item]);
+			setUserIngredients([...userIngredients, item]);
 		}
 	};
 
@@ -59,7 +59,7 @@ function Onboarding() {
 								itemData={ingredients}
 								variant="onboarding"
 								onClick={handleIngredientsChange}
-								selected={availableIngredients}
+								selected={userIngredients}
 							/>
 						</Stack>
 						<Button
@@ -81,7 +81,12 @@ function Onboarding() {
 							</Typography>
 						</Stack>
 						<Stack marginY="30px">
-							<PantryGrid itemData={meals} variant="onboarding" onClick={handleMealsChange} selected={favouriteMeals} />
+							<PantryGrid
+								itemData={meals}
+								variant="onboarding"
+								onClick={handleMealsChange}
+								selected={userFavouriteMeals}
+							/>
 						</Stack>
 						<Button
 							variant="contained"
@@ -153,8 +158,8 @@ const meals = [
 
 const ingredients = [
 	{
-		img: "/images/pantry-icons/carbohydrates/flour.png",
-		title: "Flour"
+		img: "/images/pantry-icons/carbohydrates/bread/bun.png",
+		title: "Bun"
 	},
 	{
 		img: "/images/pantry-icons/protein/eggs.png",
@@ -174,7 +179,7 @@ const ingredients = [
 	},
 	{
 		img: "/images/pantry-icons/fruit/tomato.png",
-		title: "Tomatos"
+		title: "Tomato"
 	},
 	{
 		img: "/images/pantry-icons/vegetables/garlic.png",
@@ -190,15 +195,15 @@ const ingredients = [
 	},
 	{
 		img: "/images/pantry-icons/carbohydrates/pasta/penne.png",
-		title: "Pasta"
+		title: "Spaghetti"
 	},
 	{
 		img: "/images/pantry-icons/protein/beefpatty.png",
-		title: "Beef Mince"
+		title: "Beef patty"
 	},
 	{
 		img: "/images/pantry-icons/protein/chickenwhole.png",
-		title: "Chicken"
+		title: "Chicken drum"
 	}
 ];
 
