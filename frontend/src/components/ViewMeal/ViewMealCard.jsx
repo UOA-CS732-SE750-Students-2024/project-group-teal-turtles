@@ -55,7 +55,7 @@ export default function ViewMealCard() {
 						.then((response) => {
 							setMealName(response.data.mealName);
 							setIngredientsUser(response.data.ingredients);
-							setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
+							saveToDB(response.data.mealName, userParameters);
 							setMealLoaded(true);
 						});
 				} else if (searchParams.get("generateOption") === "Prompt") {
@@ -74,7 +74,7 @@ export default function ViewMealCard() {
 						.then((response) => {
 							setMealName(response.data.mealName);
 							setIngredientsUser(response.data.ingredients);
-							setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
+							saveToDB(response.data.mealName, userParameters);
 							setMealLoaded(true);
 						});
 				} else if (searchParams.get("generateOption") === "Basic") {
@@ -100,7 +100,7 @@ export default function ViewMealCard() {
 							setMealName(response.data.mealName);
 							setIngredientsUser(response.data.ingredientsUser);
 							setIngredientsNeeded(response.data.ingredientsNeeded);
-							setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
+							saveToDB(response.data.mealName, userParameters);
 							setMealLoaded(true);
 						});
 				} else if (searchParams.get("generateOption") === "Strict") {
@@ -125,7 +125,7 @@ export default function ViewMealCard() {
 						.then((response) => {
 							setMealName(response.data.mealName);
 							setIngredientsUser(response.data.ingredientsUser);
-							setUserGeneratedMeals([...userGeneratedMeals, response.data.mealName]);
+							saveToDB(response.data.mealName, userParameters);
 							setMealLoaded(true);
 						});
 				}
@@ -157,6 +157,34 @@ export default function ViewMealCard() {
 					setRecipe(response.data.steps);
 					setIngredientQuantities(response.data.ingredientQuantities);
 					setRecipeLoaded(true);
+				});
+		}
+
+		async function saveToDB(generatedMeal, userParameters) {
+			const auth = getAuth();
+			const user = auth.currentUser;
+			const authToken = await user.getIdToken();
+			axios.put(
+				process.env.NEXT_PUBLIC_BACKEND_URL + "/users/parameters",
+				{ userParameters },
+				{
+					headers: {
+						Authorization: authToken
+					}
+				}
+			);
+			axios
+				.put(
+					process.env.NEXT_PUBLIC_BACKEND_URL + "/users/meals",
+					{ generatedMeal },
+					{
+						headers: {
+							Authorization: authToken
+						}
+					}
+				)
+				.then((response) => {
+					setUserGeneratedMeals([...userGeneratedMeals, generatedMeal]);
 				});
 		}
 

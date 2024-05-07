@@ -35,7 +35,9 @@ function ResponsiveAppBar() {
 		setUserFavouriteMeals,
 		setUserIngredients,
 		setUserParameters,
-		setAuthorisedUser
+		setAuthorisedUser,
+		setMealToRemix,
+		setPrompt
 	} = useDataStore();
 
 	const handleOpenNavMenu = (event) => {
@@ -56,6 +58,7 @@ function ResponsiveAppBar() {
 	const handleLogout = async () => {
 		try {
 			await logout();
+
 			setUserGeneratedMeals([]);
 			setUserDislikedIngredients([]);
 			setUserEmail(null);
@@ -63,6 +66,9 @@ function ResponsiveAppBar() {
 			setUserIngredients([]);
 			setUserParameters(null);
 			setAuthorisedUser(null);
+			setMealToRemix("");
+			setPrompt("");
+
 			router.push("/landing");
 			console.log("logout successful");
 		} catch (error) {
