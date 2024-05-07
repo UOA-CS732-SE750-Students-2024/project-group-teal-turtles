@@ -16,7 +16,6 @@ import {
 export default function ViewMealCard() {
 	function MealCard() {
 		const {
-			numberOfPeople,
 			mealToRemix,
 			userFavouriteMeals,
 			userDislikedIngredients,
@@ -33,7 +32,6 @@ export default function ViewMealCard() {
 		const [ingredientsNeeded, setIngredientsNeeded] = useState([]);
 		const searchParams = useSearchParams();
 		const [mealLoaded, setMealLoaded] = useState(false);
-		const [recipeLoadedStarted, setRecipeLoadedStarted] = useState(false);
 		const [recipeLoaded, setRecipeLoaded] = useState(false);
 
 		useEffect(() => {
@@ -42,11 +40,13 @@ export default function ViewMealCard() {
 					const authToken = await getAuth().currentUser.getIdToken();
 					if (searchParams.get("generateOption") === "Remix") {
 						generateMealRemix(authToken, mealToRemix).then((res) => {
-							afterResult(res.data.mealName, res.data.ingredients, userParameters);
+							afterResult(res.data.mealName, res.data.ingredients);
+							fetchRecipe(res.data.mealName, res.data.ingredients);
 						});
 					} else if (searchParams.get("generateOption") === "Prompt") {
 						generateMealPrompt(authToken, prompt).then((res) => {
-							afterResult(res.data.mealName, res.data.ingredients, userParameters);
+							afterResult(res.data.mealName, res.data.ingredients);
+							fetchRecipe(res.data.mealName, res.data.ingredients);
 						});
 					} else if (searchParams.get("generateOption") === "Basic") {
 						const body = {
@@ -60,7 +60,8 @@ export default function ViewMealCard() {
 						};
 						generateMealLoose(authToken, body).then((res) => {
 							setIngredientsNeeded(res.data.ingredientsNeeded);
-							afterResult(res.data.mealName, res.data.ingredientsUser, userParameters);
+							afterResult(res.data.mealName, res.data.ingredientsUser);
+							fetchRecipe(res.data.mealName, res.data.ingredientsUser + res.data.ingredientsNeeded);
 						});
 					} else if (searchParams.get("generateOption") === "Strict") {
 						const body = {
@@ -73,7 +74,8 @@ export default function ViewMealCard() {
 							dietaryRequirements: userParameters.dietaryRequirements
 						};
 						generateMealStrict(authToken, body).then((res) => {
-							afterResult(res.data.mealName, res.data.ingredientsUser, userParameters);
+							afterResult(res.data.mealName, res.data.ingredientsUser);
+							fetchRecipe(res.data.mealName, res.data.ingredientsUser);
 						});
 					}
 				}
@@ -83,7 +85,7 @@ export default function ViewMealCard() {
 			}
 		}, []);
 
-		async function afterResult(mealName, userIngredients, userParameters) {
+		async function afterResult(mealName, userIngredients) {
 			const authToken = await getAuth().currentUser.getIdToken();
 
 			setMealName(mealName);
@@ -95,10 +97,11 @@ export default function ViewMealCard() {
 			setUserGeneratedMeals([...userGeneratedMeals, mealName]);
 			setMealLoaded(true);
 		}
-		async function loadRecipe() {
+
+		async function fetchRecipe(mealName, ingredients) {
 			const authToken = await getAuth().currentUser.getIdToken();
-			setRecipeLoadedStarted(true);
-			generateRecipe(authToken, mealName, ingredientsUser + ingredientsNeeded, numberOfPeople).then((res) => {
+			const body = { mealName: mealName, ingredients: ingredients, numberOfPeople: userParameters.numberOfPeople };
+			generateRecipe(authToken, body).then((res) => {
 				setRecipe(res.data.steps);
 				setIngredientQuantities(res.data.ingredientQuantities);
 				setRecipeLoaded(true);
@@ -129,13 +132,7 @@ export default function ViewMealCard() {
 						</Stack>
 					</>
 				)}
-
-				{!recipeLoadedStarted && mealLoaded && (
-					<Button variant="contained" sx={{ mt: 4 }} size="large" onClick={loadRecipe}>
-						Generate Recipe
-					</Button>
-				)}
-				{recipeLoadedStarted && !recipeLoaded && <CircularProgress sx={{ mt: 4 }} size={50} />}
+				{mealLoaded && !recipeLoaded && <CircularProgress sx={{ mt: 4 }} size={50} />}
 
 				{recipeLoaded && (
 					<Stack alignItems={"flex-start"} sx={{ mt: 4 }} direction={"row"}>
