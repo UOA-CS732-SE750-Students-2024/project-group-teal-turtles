@@ -1,9 +1,9 @@
 import React from "react";
-import IngredientSummary from "../IngredientSummary/IngredientSummary";
-import ProfileSummary from "../ProfileSummary/ProfileSummary";
+import IngredientSummary from "./IngredientSummary/IngredientSummary";
+import ProfileSummary from "./ProfileSummary/ProfileSummary";
 import { Stack } from "@mui/system";
 import { Typography, Button } from "@mui/material";
-import EditProfileSummary from "../EditProfileSummary/EditProfileSummary";
+import EditProfileSummary from "./EditProfileSummary/EditProfileSummary";
 
 function EditProfilePage() {
 	const [isEditModalOpen, setEditModalOpen] = React.useState(false);

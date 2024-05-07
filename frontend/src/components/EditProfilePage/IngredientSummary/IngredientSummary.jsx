@@ -1,6 +1,6 @@
 import useDataStore from "@/lib/store";
 import React from "react";
-import ingredients from "../../ingredients.json";
+import ingredients from "@/ingredients.json";
 import { Grid, Card, CardMedia, CardContent, Typography, CardActionArea } from "@mui/material";
 import Link from "next/link";
 
