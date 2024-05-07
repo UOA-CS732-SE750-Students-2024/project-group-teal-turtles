@@ -12,7 +12,7 @@ function IngredientSummary() {
 		<>
 			{/* <div>{JSON.stringify(ingredientsPantry)}</div> */}
 			{/* <div>{JSON.stringify(userIngredients)}</div> */}
-			<Grid container spacing={2}>
+			<Grid container spacing={2} justifyContent="center" alignItems="center">
 				{ingredientsPantry.map((ingredient) => (
 					<Grid item key={ingredient.title}>
 						<Card sx={{ width: 50, height: 50 }}>
