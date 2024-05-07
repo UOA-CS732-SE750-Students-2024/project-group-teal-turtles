@@ -72,7 +72,7 @@ function CreateAccount() {
 			setUserGeneratedMeals(response.data.generatedMeals);
 			setUserIngredients(response.data.ingredients);
 			setUserParameters(response.data.parameters);
-			router.push("/landing");
+			router.push("/onboarding");
 			return response.data;
 		} catch (error) {
 			console.error("Error creating user:", error);
@@ -89,6 +89,7 @@ function CreateAccount() {
 				setUserEmail(auth.currentUser.email);
 				createUserInDatabase(auth.currentUser.accessToken);
 			} else {
+				setLoading(false);
 				setErrorToPrint("Passwords do not match");
 			}
 		} catch (error) {
@@ -172,7 +173,7 @@ function CreateAccount() {
 					}}
 				/>
 
-				{errorToPrint && !loading && !googleLoading && (
+				{errorToPrint && !googleLoading && (
 					<Typography variant="h6" fontWeight="700" sx={{ color: "primary.main" }}>
 						{errorToPrint}
 					</Typography>

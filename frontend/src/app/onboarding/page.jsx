@@ -5,11 +5,13 @@ import PantryGrid from "@/components/Pantry/PantryGrid";
 import { ChevronLeft } from "@mui/icons-material";
 import { Stack, Typography, Button, IconButton } from "@mui/material";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 function Onboarding() {
 	const [favouriteMeals, setFavouriteMeals] = useState([]);
 	const [availableIngredients, setAvailableIngredients] = useState([]);
 	const [page, setPage] = useState("meals");
+	const router = useRouter();
 
 	const handleMealsChange = (item) => {
 		if (favouriteMeals.includes(item)) {
@@ -60,7 +62,11 @@ function Onboarding() {
 								selected={availableIngredients}
 							/>
 						</Stack>
-						<Button variant="contained" sx={{ textTransform: "none", py: 1.5, width: "50%" }}>
+						<Button
+							variant="contained"
+							sx={{ textTransform: "none", py: 1.5, width: "50%" }}
+							onClick={() => router.push("/dashboard")}
+						>
 							<Typography variant="h6">Continue</Typography>
 						</Button>
 					</>
