@@ -45,6 +45,8 @@ function CircularCard({ title, body }) {
 function Landing() {
 	const { authorisedUser } = useDataStore();
 	const router = useRouter();
+
+	// Send user to dashboard if they are authorised in local storage
 	if (authorisedUser !== null) {
 		router.push("/dashboard");
 	}

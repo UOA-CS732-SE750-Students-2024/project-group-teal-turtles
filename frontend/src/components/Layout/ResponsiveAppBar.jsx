@@ -15,6 +15,8 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
+import useDataStore from "@/lib/store";
+import { logout } from "@/app/auth-functions";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -26,6 +28,15 @@ function ResponsiveAppBar() {
 	];
 	const currentUrl = usePathname();
 	const router = useRouter();
+	const {
+		setUserGeneratedMeals,
+		setUserDislikedIngredients,
+		setUserEmail,
+		setUserFavouriteMeals,
+		setUserIngredients,
+		setUserParameters,
+		setAuthorisedUser
+	} = useDataStore();
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -247,11 +258,17 @@ function ResponsiveAppBar() {
 							</Menu>
 						</Box>
 					) : (
-						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto" }}>
-							<Button onClick={() => router.push("/login")} sx={{ my: 2, color: "white", display: "block" }}>
+						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto", height: "100%" }}>
+							<Button
+								onClick={() => router.push("/login")}
+								sx={{ px: 2, mx: 1, color: "white", display: "block", height: "100%", alignSelf: "stretch" }}
+							>
 								Sign In
 							</Button>
-							<Button onClick={() => router.push("/create-account")} sx={{ my: 2, color: "white", display: "block" }}>
+							<Button
+								onClick={() => router.push("/create-account")}
+								sx={{ px: 2, mx: 1, color: "white", display: "block", height: "100%", alignSelf: "stretch" }}
+							>
 								Create Account
 							</Button>
 						</Box>
