@@ -25,15 +25,25 @@ function GenerationPreferences({ generateOptionParam }) {
 	const router = useRouter();
 
 	const handleGenerate = () => {
-		router.push(`/view-meal?generateOption=${generateOptionParam}`);
+		if (prompt !== "") {
+			router.push(`/view-meal?generateOption=${generateOptionParam}`);
+		}
 	};
+
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter" && prompt !== "") {
+			handleGenerate();
+		}
+	};
+
 	return generateOptionParam === "Prompt" ? (
 		<Box className={styles.centeredBox}>
 			<TextField
 				variant="outlined"
 				placeholder="Search for a meal..."
 				onChange={(e) => setPrompt(e.target.value)}
-				value={prompt !== "" ? prompt : ""}
+				onKeyDown={handleKeyPress}
+				value={prompt ?? ""}
 				sx={{
 					width: "100%",
 					"& .MuiOutlinedInput-root": {
