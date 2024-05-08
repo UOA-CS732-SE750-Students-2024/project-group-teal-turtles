@@ -6,7 +6,7 @@ import { Box, Stack } from "@mui/material";
 
 function Pantry() {
 	return (
-		<>
+		<Stack width="100%" sx={{ backgroundColor: "background.paper" }}>
 			<Stack sx={{ minHeight: "calc(100vh - 70px)" }} alignItems="center" justifyContent="center">
 				<Box
 					sx={{
@@ -19,7 +19,7 @@ function Pantry() {
 					<PantryTabs />
 				</Box>
 			</Stack>
-		</>
+		</Stack>
 	);
 }
 
