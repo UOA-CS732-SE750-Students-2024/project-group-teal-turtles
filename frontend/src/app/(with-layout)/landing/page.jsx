@@ -13,57 +13,57 @@ function LandingCard({ title, body, back }) {
 	const [flipped, setFlipped] = useState(false);
 
 	return (
-		<ReactCardFlip isFlipped={flipped}>
-			<Card
-				sx={{
-					width: "400px",
-					height: "200px",
-					borderRadius: "20px 20px 0 0",
-					m: "auto"
-				}}
-				onMouseOver={() => setFlipped(true)}
-				onMouseOut={() => setFlipped(false)}
-			>
-				<Stack
-					key="front"
+		<Stack onMouseOver={() => setFlipped(true)} onMouseOut={() => setFlipped(false)}>
+			<ReactCardFlip isFlipped={flipped}>
+				<Card
 					sx={{
-						alignItems: "center",
-						justifyContent: "center",
-						backgroundColor: "background.paper",
-						height: "100%"
+						width: "400px",
+						height: "200px",
+						borderRadius: "20px 20px 0 0",
+						m: "auto"
 					}}
 				>
-					<Typography color="secondary.dark" variant="h2" fontWeight="600">
-						{title}
-					</Typography>
-					<Typography color="primary.dark" align="center" variant="h4">
-						{body}
-					</Typography>
-				</Stack>
-			</Card>
-			<Card
-				sx={{
-					width: "400px",
-					height: "200px",
-					borderRadius: "20px 20px 0 0",
-					m: "auto"
-				}}
-			>
-				<Stack
-					key="back"
+					<Stack
+						key="front"
+						sx={{
+							alignItems: "center",
+							justifyContent: "center",
+							backgroundColor: "background.paper",
+							height: "100%"
+						}}
+					>
+						<Typography color="secondary.dark" variant="h2" fontWeight="600">
+							{title}
+						</Typography>
+						<Typography color="primary.dark" align="center" variant="h4">
+							{body}
+						</Typography>
+					</Stack>
+				</Card>
+				<Card
 					sx={{
-						alignItems: "center",
-						justifyContent: "center",
-						backgroundColor: "background.paper",
-						height: "100%"
+						width: "400px",
+						height: "200px",
+						borderRadius: "20px 20px 0 0",
+						m: "auto"
 					}}
 				>
-					<Typography textAlign="center" variant="h6" fontWeight="bold" sx={{ color: "secondary.dark", px: 5 }}>
-						{back}
-					</Typography>
-				</Stack>
-			</Card>
-		</ReactCardFlip>
+					<Stack
+						key="back"
+						sx={{
+							alignItems: "center",
+							justifyContent: "center",
+							backgroundColor: "background.paper",
+							height: "100%"
+						}}
+					>
+						<Typography textAlign="center" variant="h6" fontWeight="bold" sx={{ color: "secondary.dark", px: 5 }}>
+							{back}
+						</Typography>
+					</Stack>
+				</Card>
+			</ReactCardFlip>
+		</Stack>
 	);
 }
 
@@ -111,14 +111,14 @@ function Landing() {
 							sx={{
 								color: "primary.dark",
 								backgroundColor: "white",
-								"&:hover": { color: "white" },
+								"&:hover": { backgroundColor: "background.default" },
 								mt: 6,
 								px: 5,
 								py: 2,
 								borderRadius: "100px"
 							}}
 						>
-							<Typography variant="h4" fontWeight="bold" sx={{ mr: 2 }}>
+							<Typography variant="h4" fontWeight="bold" sx={{ mr: 2 }} textTransform="none">
 								Start your chef journey now
 							</Typography>
 							<ArrowForwardIcon sx={{ fontSize: "40px" }} />
