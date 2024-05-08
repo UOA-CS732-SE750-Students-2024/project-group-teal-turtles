@@ -3,6 +3,7 @@ import { TextField } from "@mui/material";
 import SearchResults from "./SearchResults";
 import SelectedIngredients from "./SelectedIngredients";
 import allIngredients from "@/ingredients.json";
+import { searchIngredients } from "./SearchUtil";
 
 function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 	const [searchTerm, setSearchTerm] = React.useState("");
