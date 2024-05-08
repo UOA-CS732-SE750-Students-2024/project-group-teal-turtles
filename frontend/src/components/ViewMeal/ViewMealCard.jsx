@@ -41,6 +41,19 @@ export default function ViewMealCard() {
 		const router = useRouter();
 		const [mealCurrentlyGenerating, setMealCurrentlyGenerating] = useState(false);
 
+		const url = "https://api.segmind.com/v1/sdxl1.0-txt2img";
+		const api_key = process.env.NEXT_PUBLIC_SEGMIND_API_KEY;
+
+		const data = {
+			prompt:
+				"4k, realistic, tasty looking dish, highly detailed, bokeh, cinemascope, moody, gorgeous, film grain, grainy, bulgogi meat on rice",
+			negative_prompt: "ugly, tiling, people, blurry, blurred, unappealing",
+			style: "base",
+			img_width: 1024,
+			img_height: 1024,
+			base64: true
+		};
+
 		useEffect(() => {
 			console.log(searchParams);
 			if (searchParams.get("from") === "generation") {
@@ -143,6 +156,15 @@ export default function ViewMealCard() {
 				.catch((err) => {
 					console.log(err);
 				});
+		}
+
+		async function generateImage() {
+			try {
+				const response = await axios.post(url, data, { headers: { "x-api-key": api_key } });
+				console.log(response.data);
+			} catch (error) {
+				console.error("Error:", error.response.data);
+			}
 		}
 
 		return (
