@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography, Stack, Card, CardActionArea } from "@mui/material";
+import { Typography, Stack, Card, CardActionArea, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 import "./../../globals.css";
@@ -120,34 +120,30 @@ function Landing() {
 							backgroundSize: "cover"
 						}}
 					>
-						<Typography variant="h1" fontWeight="900" sx={{ color: "background.paper", pb: 4 }}>
+						<Typography variant="h1" fontWeight="900" sx={{ color: "background.paper" }}>
 							Want a quick meal?
 						</Typography>
-						<Typography
-							variant="h3"
-							fontWeight="bold"
-							sx={{ color: "secondary.dark", backgroundColor: "primary.light", px: 4, py: 2, borderRadius: "20px" }}
-						>
+						<Typography variant="h4" sx={{ color: "grey.100", px: 4, py: 2 }}>
 							Generate a personalised recipe in seconds.
 						</Typography>
-						<Card sx={{ borderRadius: "20px", mt: "40px" }}>
-							<CardActionArea
-								onClick={() => router.push("/create-account")}
-								sx={{
-									pl: 4,
-									pr: 2,
-									py: 2,
-									flexDirection: "row",
-									display: "flex",
-									alignItems: "center"
-								}}
-							>
-								<Typography variant="h3" fontWeight="bold" sx={{ color: "secondary.dark", mr: 2 }}>
-									Start your chef journey now
-								</Typography>
-								<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
-							</CardActionArea>
-						</Card>
+						<Button
+							variant="contained"
+							onClick={() => router.push("/create-account")}
+							sx={{
+								color: "primary.dark",
+								backgroundColor: "white",
+								"&:hover": { color: "white" },
+								mt: 6,
+								px: 5,
+								py: 2,
+								borderRadius: "100px"
+							}}
+						>
+							<Typography variant="h4" fontWeight="bold" sx={{ mr: 2 }}>
+								Start your chef journey now
+							</Typography>
+							<ArrowForwardIcon sx={{ fontSize: "40px" }} />
+						</Button>
 					</Stack>
 					<Stack
 						direction="row"
