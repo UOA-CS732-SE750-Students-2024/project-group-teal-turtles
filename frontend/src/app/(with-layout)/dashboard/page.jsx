@@ -51,7 +51,7 @@ function Dashboard() {
 					<Button
 						onClick={() => router.push("/pantry")}
 						variant="contained"
-						sx={{ p: 2, borderRadius: 4 }}
+						sx={{ p: 2, borderRadius: "30px", width: "220px", height: "60px" }}
 						startIcon={<AddIcon />}
 					>
 						<Typography textTransform="none" variant="h6" fontWeight="bold">

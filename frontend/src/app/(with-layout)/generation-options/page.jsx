@@ -271,7 +271,7 @@ function GenerationOptions() {
 								onClick={handleGenerate}
 								sx={{ width: "200px", height: "60px", borderRadius: "30px" }}
 							>
-								<Typography textTransform="none" variant="h6">
+								<Typography textTransform="none" variant="h6" fontWeight="bold">
 									Generate Meal!
 								</Typography>
 							</Button>

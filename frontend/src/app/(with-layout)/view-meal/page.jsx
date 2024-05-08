@@ -203,7 +203,7 @@ export default function ViewMeal() {
 							borderRadius: "80px 80px 0px 0px",
 							flexGrow: 1,
 							pb: "20vh",
-							mt: mealCurrentlyGenerating && lastMeal === "" ? "20vh" : 0
+							mt: lastMeal === "" ? "20vh" : 0
 						}}
 					>
 						{lastMeal === "" && mealCurrentlyGenerating && (
@@ -216,12 +216,18 @@ export default function ViewMeal() {
 						)}
 
 						{lastMeal === "" && !mealCurrentlyGenerating && (
-							<Stack>
-								<Typography variant="h4" align="center">
+							<Stack alignItems="center">
+								<Typography variant="h4" align="center" fontWeight="bold" sx={{ mt: 4 }}>
 									Please go to Generate to create a personalised recipe
 								</Typography>
-								<Button variant="contained" sx={{ mt: 4 }} onClick={() => router.push("/generation-options")}>
-									Generate
+								<Button
+									variant="contained"
+									sx={{ mt: 4, height: "60px", width: "200px", borderRadius: "30px" }}
+									onClick={() => router.push("/generation-options")}
+								>
+									<Typography variant="h6" fontWeight="bold" textTransform="none">
+										Generate
+									</Typography>
 								</Button>
 							</Stack>
 						)}
