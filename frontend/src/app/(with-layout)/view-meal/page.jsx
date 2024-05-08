@@ -171,78 +171,84 @@ export default function ViewMeal() {
 	}
 
 	return (
-		<Stack sx={{ backgroundColor: "#FFFFFF", minHeight: "calc(100vh - 70px)" }} alignItems="center">
+		<Stack sx={{ backgroundColor: "background.paper" }}>
 			<Suspense>
-				<Card
-					elevation={5}
-					sx={{
-						borderRadius: "80px 80px 0px 0px",
-						height: "60vh"
-					}}
-				>
-					{lastMeal === "" && mealCurrentlyGenerating && (
-						<Stack>
-							<Typography variant="h4" align="center">
-								Generating a delicious meal...
-							</Typography>
-							<LinearProgress sx={{ mt: 4 }} />
-						</Stack>
-					)}
-
-					{lastMeal === "" && !mealCurrentlyGenerating && (
-						<Stack>
-							<Typography variant="h4" align="center">
-								Please go to Generate to create a personalised recipe
-							</Typography>
-							<Button variant="contained" sx={{ mt: 4 }} onClick={() => router.push("/generation-options")}>
-								Generate
-							</Button>
-						</Stack>
-					)}
-
+				<Stack justifyContent="space-between" paddingX="20vw">
 					{lastMeal !== "" && (
-						<Stack alignItems="center">
-							<Typography variant="h2" textAlign="center">
-								{lastMeal}
-							</Typography>
-							<Stack textAlign="center" sx={{ mt: 4 }}>
-								<Typography variant="h4" fontWeight="700">
-									Ingredients
-								</Typography>
-								<Typography variant="h6" fontWeight="700">
-									Ingredients in Pantry: {lastIngredientsUser.join(", ")}
-								</Typography>
-								{lastIngredientsNeeded.length > 0 && (
-									<Typography variant="h6" fontWeight="700">
-										Ingredients not in Pantry: {lastIngredientsNeeded.join(", ")} {}
-									</Typography>
-								)}
-							</Stack>
-						</Stack>
+						<Typography variant="h2" textAlign="center" fontWeight="700" mt="10vh" mb="5vh">
+							{lastMeal}
+						</Typography>
 					)}
-					{lastMeal !== "" && lastRecipe === "" && <CircularProgress sx={{ mt: 4 }} size={50} />}
+					<Card
+						elevation={5}
+						sx={{
+							borderRadius: "80px 80px 0px 0px",
+							flexGrow: 1,
+							pb: "20vh"
+						}}
+					>
+						{lastMeal === "" && mealCurrentlyGenerating && (
+							<Stack>
+								<Typography variant="h4" align="center">
+									Generating a delicious meal...
+								</Typography>
+								<LinearProgress sx={{ mt: 4 }} />
+							</Stack>
+						)}
 
-					{lastRecipe !== "" && (
-						<Stack alignItems={"flex-start"} sx={{ mt: 4 }} direction={"row"}>
-							<Stack alignItems={"flex-start"} sx={{ mr: 4 }}>
-								<Typography variant="h4">Quantities</Typography>
-								{lastIngredientQuantities.map((ingredient, index) => (
-									<Typography key={index} variant="h6" textAlign="start">
-										{ingredient}
-									</Typography>
-								))}
+						{lastMeal === "" && !mealCurrentlyGenerating && (
+							<Stack>
+								<Typography variant="h4" align="center">
+									Please go to Generate to create a personalised recipe
+								</Typography>
+								<Button variant="contained" sx={{ mt: 4 }} onClick={() => router.push("/generation-options")}>
+									Generate
+								</Button>
 							</Stack>
-							<Stack alignItems={"flex-start"}>
-								<Typography variant="h4">Instructions</Typography>
-								{lastRecipe.map((step, index) => (
-									<Typography key={index} variant="h6">
-										{step}
+						)}
+
+						{lastMeal !== "" && (
+							<Stack alignItems="center">
+								<Stack textAlign="center" sx={{ mt: 4 }}>
+									<Typography variant="h6" fontWeight="700">
+										Ingredients needed from Pantry: {lastIngredientsUser.join(", ")}
 									</Typography>
-								))}
+									{lastIngredientsNeeded.length > 0 && (
+										<Typography variant="h6" fontWeight="700">
+											Ingredients needed outside Pantry: {lastIngredientsNeeded.join(", ")} {}
+										</Typography>
+									)}
+								</Stack>
 							</Stack>
-						</Stack>
-					)}
-				</Card>
+						)}
+						{lastMeal !== "" && lastRecipe === "" && <CircularProgress sx={{ mt: 4 }} size={50} />}
+
+						{lastRecipe !== "" && (
+							<Stack alignItems="center" sx={{ mt: 4 }} spacing={2} width="100%" paddingX="4vw">
+								<Stack alignItems="center">
+									<Typography variant="h4" fontWeight="700">
+										Ingredients
+									</Typography>
+									{lastIngredientQuantities.map((ingredient, index) => (
+										<Typography key={index} variant="h6">
+											{ingredient}
+										</Typography>
+									))}
+								</Stack>
+								<Stack alignItems="center">
+									<Typography variant="h4" fontWeight="700">
+										Instructions
+									</Typography>
+									{lastRecipe.map((step, index) => (
+										<Typography key={index} variant="h6">
+											{step}
+										</Typography>
+									))}
+								</Stack>
+							</Stack>
+						)}
+					</Card>
+				</Stack>
 			</Suspense>
 		</Stack>
 	);
