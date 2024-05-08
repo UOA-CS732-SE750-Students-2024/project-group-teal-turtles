@@ -60,7 +60,7 @@ function CircularCard({ title, body, back }) {
 						height: "100%"
 					}}
 				>
-					<Typography textAlign="center" variant="h6" sx={{ color: "secondary.dark", px: 5 }}>
+					<Typography textAlign="center" variant="h6" fontWeight="bold" sx={{ color: "secondary.dark", px: 5 }}>
 						{back}
 					</Typography>
 				</CardActionArea>
@@ -113,7 +113,7 @@ function Landing() {
 						</Typography>
 						<Typography
 							variant="h3"
-							fontWeight="700"
+							fontWeight="bold"
 							sx={{ color: "secondary.dark", backgroundColor: "primary.light", px: 4, py: 2, borderRadius: "20px" }}
 						>
 							Generate a personalised recipe in seconds.
@@ -130,7 +130,7 @@ function Landing() {
 									alignItems: "center"
 								}}
 							>
-								<Typography variant="h3" fontWeight="700" sx={{ color: "secondary.dark", mr: 2 }}>
+								<Typography variant="h3" fontWeight="bold" sx={{ color: "secondary.dark", mr: 2 }}>
 									Start your chef journey now
 								</Typography>
 								<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />

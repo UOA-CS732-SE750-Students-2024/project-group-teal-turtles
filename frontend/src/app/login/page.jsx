@@ -135,7 +135,7 @@ function Login() {
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
-				<Typography variant="h3" fontWeight="700">
+				<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.dark" }}>
 					Login
 				</Typography>
 				<Typography variant="h5">Sign in to access saved recipes and information.</Typography>
@@ -166,7 +166,7 @@ function Login() {
 					}}
 				/>
 				{errorToPrint && !loading && !googleLoading && (
-					<Typography fontWeight="700" sx={{ color: "primary.main" }}>
+					<Typography fontWeight="bold" sx={{ color: "primary.main" }}>
 						{errorToPrint}
 					</Typography>
 				)}
@@ -177,7 +177,8 @@ function Login() {
 						variant="contained"
 						sx={{
 							textTransform: "none",
-							py: 1.5
+							py: 1.5,
+							borderRadius: "30px"
 						}}
 						onClick={handleSignIn}
 					>
@@ -186,7 +187,7 @@ function Login() {
 							Sign in
 						</Typography>
 					</Button>
-					<Typography variant="h6" fontWeight="700">
+					<Typography variant="h6" fontWeight="bold">
 						OR
 					</Typography>
 					<Button
@@ -196,7 +197,8 @@ function Login() {
 						endIcon={<Google sx={{ mr: googleLoading ? "40px" : "0px" }} />}
 						sx={{
 							textTransform: "none",
-							py: 1.5
+							py: 1.5,
+							borderRadius: "30px"
 						}}
 						onClick={handleGoogleSignIn}
 					>

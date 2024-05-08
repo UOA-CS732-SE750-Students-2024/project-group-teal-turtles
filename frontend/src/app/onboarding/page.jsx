@@ -46,7 +46,7 @@ function Onboarding() {
 								>
 									<ChevronLeft sx={{ fontSize: "40px", color: "#000" }} />
 								</IconButton>
-								<Typography variant="h2" marginRight="100px" fontWeight="700" sx={{ color: "primary.main" }}>
+								<Typography variant="h2" marginRight="100px" fontWeight="bold" sx={{ color: "primary.main" }}>
 									Add Ingredients
 								</Typography>
 							</Stack>
@@ -73,7 +73,7 @@ function Onboarding() {
 				) : (
 					<>
 						<Stack alignItems="center">
-							<Typography variant="h2" fontWeight="700" sx={{ color: "primary.main" }}>
+							<Typography variant="h2" fontWeight="bold" sx={{ color: "primary.main" }}>
 								Add Favourite Meals
 							</Typography>
 							<Typography variant="h6" textAlign="center">

@@ -132,7 +132,7 @@ function CreateAccount() {
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
-				<Typography variant="h3" fontWeight="700">
+				<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.dark" }}>
 					Sign Up
 				</Typography>
 				<Typography variant="h5">Don't have an account? We'll create one for you.</Typography>
@@ -182,7 +182,7 @@ function CreateAccount() {
 				/>
 
 				{errorToPrint && !googleLoading && (
-					<Typography variant="h6" fontWeight="700" sx={{ color: "primary.main" }}>
+					<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
 						{errorToPrint}
 					</Typography>
 				)}
@@ -191,7 +191,7 @@ function CreateAccount() {
 						disabled={loading || googleLoading}
 						fullWidth
 						variant="contained"
-						sx={{ textTransform: "none", py: 1.5 }}
+						sx={{ textTransform: "none", py: 1.5, borderRadius: "30px" }}
 						onClick={handleCreateAccount}
 					>
 						{loading && <CircularProgress size="25px" sx={{ color: "background.paper", mr: "15px" }} />}
@@ -199,7 +199,7 @@ function CreateAccount() {
 							Create Account
 						</Typography>
 					</Button>
-					<Typography variant="h6" fontWeight="700">
+					<Typography variant="h6" fontWeight="bold">
 						OR
 					</Typography>
 					<Button
@@ -209,7 +209,8 @@ function CreateAccount() {
 						endIcon={<Google sx={{ mr: googleLoading ? "40px" : "0px" }} />}
 						sx={{
 							textTransform: "none",
-							py: 1.5
+							py: 1.5,
+							borderRadius: "30px"
 						}}
 						onClick={handleGoogleSignIn}
 					>
