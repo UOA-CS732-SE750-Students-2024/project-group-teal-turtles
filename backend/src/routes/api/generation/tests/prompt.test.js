@@ -21,7 +21,6 @@ describe("GET /remix", () => {
 				if (err) {
 					return done(err);
 				}
-				console.log(res.text);
 				return done();
 			});
 	}, 15000);
@@ -39,7 +38,6 @@ describe("GET /remix", () => {
 				if (err) {
 					return done(err);
 				}
-				console.log(res.text);
 				return done();
 			});
 	}, 15000);

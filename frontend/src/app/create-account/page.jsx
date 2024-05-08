@@ -40,7 +40,6 @@ function CreateAccount() {
 				}
 			});
 
-			console.log(response.data);
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
 			setUserGeneratedMeals(response.data.generatedMeals);
@@ -50,7 +49,7 @@ function CreateAccount() {
 		} catch (error) {
 			if (error.response && error.response.data.error === "User not found") {
 			} else {
-				console.log("Error:", error);
+				console.error("Error:", error);
 			}
 		}
 	}
@@ -66,7 +65,6 @@ function CreateAccount() {
 					}
 				}
 			);
-			console.log("User created:", response.data);
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
 			setUserGeneratedMeals(response.data.generatedMeals);
@@ -99,7 +97,7 @@ function CreateAccount() {
 			} else if (error.code === "auth/email-already-in-use") {
 				setErrorToPrint("Email is already in use.");
 			} else {
-				console.log("An error occurred while signing up:", error.message);
+				console.error("An error occurred while signing up:", error.message);
 				setErrorToPrint("An error occurred while signing up. Please try again");
 			}
 		}
@@ -115,12 +113,11 @@ function CreateAccount() {
 			if (metadata.creationTime === metadata.lastSignInTime) {
 				createUserInDatabase(auth.currentUser.accessToken);
 			} else {
-				console.log("returning user");
 				fetchUser(auth.currentUser.accessToken);
 			}
 		} catch (error) {
 			setGoogleLoading(false);
-			console.log("An error occurred while signing in:", error.message);
+			console.error("An error occurred while signing in:", error.message);
 			setErrorToPrint("An error occurred while signing in. Please try again");
 		}
 	}

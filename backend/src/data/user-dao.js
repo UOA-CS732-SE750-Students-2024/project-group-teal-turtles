@@ -22,7 +22,6 @@ export async function addFavouriteMeal(uid, newfavouriteMeal) {
 	}
 
 	if (user.favouriteMeals.includes(newfavouriteMeal)) {
-		console.log("same");
 		throw { error: "favMealToAdd already exists in the user's favorite meals", status: 400 };
 	}
 	const updatedUser = await User.findByIdAndUpdate(uid, { $addToSet: { favouriteMeals: newfavouriteMeal } });
