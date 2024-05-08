@@ -59,16 +59,6 @@ export default function ViewMeal() {
 	const [open, setOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	const data = {
-		prompt: `4k, realistic, tasty looking dish, highly detailed, bokeh, cinemascope, moody, gorgeous, film grain, grainy, ${lastMeal} on a plate, ingredients of dish ${
-			lastIngredientsUser != null ? lastIngredientsUser.join(" ") : ""
-		} ${lastIngredientsNeeded != null ? lastIngredientsNeeded.join(" ") : ""},`,
-		negative_prompt: "ugly, tiling, people, blurry, blurred, unappealing, background items",
-		img_width: 1024,
-		img_height: 1024,
-		base64: true
-	};
-
 	useEffect(() => {
 		if (searchParams.get("from") === "generation") {
 			setMealCurrentlyGenerating(true);
@@ -112,7 +102,7 @@ export default function ViewMeal() {
 						generateMealLoose(authToken, body)
 							.then((res) => {
 								setLastIngredientsNeeded(res.data.ingredientsNeeded);
-								afterResult(res.data.mealName, res.data.ingredientsUser);
+								afterResult(res.data.mealName, res.data.ingredientsUser, res.data.ingredientsNeeded);
 								fetchRecipe(res.data.mealName, res.data.ingredientsUser + res.data.ingredientsNeeded);
 							})
 							.catch((err) => {
@@ -145,7 +135,7 @@ export default function ViewMeal() {
 		}
 	}, []);
 
-	async function afterResult(mealName, userIngredients) {
+	async function afterResult(mealName, userIngredients, ingredientsNeeded) {
 		const authToken = await getAuth().currentUser.getIdToken();
 
 		saveParameters(authToken, userParameters);
@@ -155,6 +145,7 @@ export default function ViewMeal() {
 
 		setLastMeal(mealName);
 		setLastIngredientsUser(userIngredients);
+		generateImage(mealName, userIngredients, ingredientsNeeded);
 	}
 
 	async function fetchRecipe(mealName, ingredients) {
@@ -171,7 +162,19 @@ export default function ViewMeal() {
 			});
 	}
 
-	async function generateImage() {
+	async function generateImage(mealName, ingredientsUser, ingredientsNeeded) {
+		const data = {
+			prompt: `4k, realistic, tasty looking dish, highly detailed, bokeh, cinemascope, moody, gorgeous, film grain, grainy, ${
+				mealName ?? ""
+			} on a plate, ingredients of dish ${ingredientsUser != null ? ingredientsUser.join(" ") : ""} ${
+				ingredientsNeeded != null ? ingredientsNeeded.join(" ") : ""
+			},`,
+			negative_prompt: "ugly, tiling, people, blurry, blurred, unappealing, background items",
+			img_width: 1024,
+			img_height: 1024,
+			base64: true
+		};
+
 		try {
 			setLoading(true);
 			const response = await axios.post(process.env.NEXT_PUBLIC_SEGMIND_URL, data, {
@@ -194,14 +197,13 @@ export default function ViewMeal() {
 							{lastMeal}
 						</Typography>
 					)}
-					{/* TODO: DELETE THIS AT THE END, just to save API Calls */}
-					<Button onClick={() => generateImage()}>View Meal Image</Button>
 					<Card
 						elevation={5}
 						sx={{
 							borderRadius: "80px 80px 0px 0px",
 							flexGrow: 1,
-							pb: "20vh"
+							pb: "20vh",
+							mt: mealCurrentlyGenerating && lastMeal === "" ? "20vh" : 0
 						}}
 					>
 						{lastMeal === "" && mealCurrentlyGenerating && (
