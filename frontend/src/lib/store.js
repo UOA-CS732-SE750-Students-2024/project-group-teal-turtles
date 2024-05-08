@@ -18,6 +18,7 @@ const useDataStore = create(
 			lastIngredientQuantities: [],
 			lastIngredientsNeeded: [],
 			lastIngredientsUser: [],
+			lastMealImage: "",
 			setUserFavouriteMeals: (meals) => set({ userFavouriteMeals: meals }),
 			setUserGeneratedMeals: (meals) => set({ userGeneratedMeals: meals }),
 			setUserIngredients: (ingredients) => set({ userIngredients: ingredients }),
@@ -33,7 +34,8 @@ const useDataStore = create(
 			setLastRecipe: (lastRecipe) => set({ lastRecipe }),
 			setLastIngredientQuantities: (lastIngredientQuantities) => set({ lastIngredientQuantities }),
 			setLastIngredientsNeeded: (lastIngredientsNeeded) => set({ lastIngredientsNeeded }),
-			setLastIngredientsUser: (lastIngredientsUser) => set({ lastIngredientsUser })
+			setLastIngredientsUser: (lastIngredientsUser) => set({ lastIngredientsUser }),
+			setLastMealImage: (image) => set({ lastMealImage: image })
 		}),
 		{
 			name: "data-store3"
