@@ -9,7 +9,6 @@ export default function Auth() {
 		onAuthStateChanged(getAuth(), () => {
 			const authUser = getAuth().currentUser;
 			if (!authUser) {
-				console.log("not authed");
 				router.push("/landing");
 			}
 		});
