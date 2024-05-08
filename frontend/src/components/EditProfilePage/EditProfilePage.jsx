@@ -3,7 +3,6 @@ import IngredientSummary from "./IngredientSummary/IngredientSummary";
 import ProfileSummary from "./ProfileSummary/ProfileSummary";
 import { Stack } from "@mui/system";
 import { Typography, Button } from "@mui/material";
-import EditProfileSummary from "./EditUserInfo/EditUserInfo";
 import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
 import EditUserInfoModal from "./EditUserInfo/EditUserInfoModal";

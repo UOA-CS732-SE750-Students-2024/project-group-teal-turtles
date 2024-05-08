@@ -2,9 +2,11 @@ import React from "react";
 import { TextField } from "@mui/material";
 import SearchResults from "./SearchResults";
 import SelectedIngredients from "./SelectedIngredients";
+import allIngredients from "@/ingredients.json";
 
 function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 	const [searchTerm, setSearchTerm] = React.useState("");
+	const searchResults = searchTerm == "" ? allIngredients : searchIngredients(searchTerm);
 
 	const handleSelectIngredient = (ingredient) => {
 		return () => {
@@ -14,7 +16,6 @@ function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 			} else {
 				setSelectedIngredients([...selectedIngredients, ingredient]);
 			}
-			console.log(selectedIngredients);
 		};
 	};
 
@@ -26,12 +27,9 @@ function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 				value={searchTerm}
 				onChange={(e) => setSearchTerm(e.target.value)}
 			/>
-			<SelectedIngredients
-				selectedIngredients={selectedIngredients}
-				handleSelectIngredient={handleSelectIngredient}
-			/>
+			<SelectedIngredients selectedIngredients={selectedIngredients} handleSelectIngredient={handleSelectIngredient} />
 			<SearchResults
-				searchTerm={searchTerm}
+				searchResults={searchResults}
 				selectedIngredients={selectedIngredients}
 				handleSelectIngredient={handleSelectIngredient}
 			/>
