@@ -100,13 +100,6 @@ function Landing() {
 		return () => clearTimeout(delayToShowContent);
 	}, []);
 
-	const handleKeyPress = (e) => {
-		if (e.key === "Enter") {
-			// TODO: Enter search prompt here
-			console.log("Enter key pressed");
-		}
-	};
-
 	return (
 		<Stack height="calc(100vh)">
 			{showContent && (

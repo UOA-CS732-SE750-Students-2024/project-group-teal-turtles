@@ -23,7 +23,6 @@ describe("GET /recipe", () => {
 				if (err) {
 					return done(err);
 				}
-				console.log(res.text);
 				return done();
 			});
 	}, 15000);

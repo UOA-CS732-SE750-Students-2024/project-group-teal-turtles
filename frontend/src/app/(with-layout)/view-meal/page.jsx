@@ -72,7 +72,7 @@ export default function ViewMeal() {
 									fetchRecipe(res.data.mealName, res.data.ingredients);
 								})
 								.catch((err) => {
-									console.log(err);
+									console.error(err);
 								});
 						} else if (searchParams.get("generateOption") === "Prompt") {
 							generateMealPrompt(authToken, prompt)
@@ -81,7 +81,7 @@ export default function ViewMeal() {
 									fetchRecipe(res.data.mealName, res.data.ingredients);
 								})
 								.catch((err) => {
-									console.log(err);
+									console.error(err);
 								});
 						} else if (searchParams.get("generateOption") === "Basic") {
 							const body = {
@@ -100,7 +100,7 @@ export default function ViewMeal() {
 									fetchRecipe(res.data.mealName, res.data.ingredientsUser + res.data.ingredientsNeeded);
 								})
 								.catch((err) => {
-									console.log(err);
+									console.error(err);
 								});
 						} else if (searchParams.get("generateOption") === "Strict") {
 							const body = {
@@ -118,13 +118,13 @@ export default function ViewMeal() {
 									fetchRecipe(res.data.mealName, res.data.ingredientsUser);
 								})
 								.catch((err) => {
-									console.log(err);
+									console.error(err);
 								});
 						}
 					}
 					fetchMeal();
 				} catch (err) {
-					console.log(err);
+					console.error(err);
 				}
 			}
 		}, []);
@@ -152,7 +152,7 @@ export default function ViewMeal() {
 					setLastIngredientQuantities(res.data.ingredientQuantities);
 				})
 				.catch((err) => {
-					console.log(err);
+					console.error(err);
 				});
 		}
 

@@ -40,7 +40,6 @@ describe("GET /basicLoose", () => {
 				if (err) {
 					return done(err);
 				}
-				console.log(res.text);
 				return done();
 			});
 	}, 15000);
@@ -78,7 +77,6 @@ describe("GET /basicLoose", () => {
 				if (err) {
 					return done(err);
 				}
-				console.log(res.text);
 				return done();
 			});
 	}, 15000);
@@ -116,7 +114,6 @@ describe("GET /basicLoose", () => {
 				if (err) {
 					return done(err);
 				}
-				console.log(res.text);
 				return done();
 			});
 	}, 15000);
@@ -154,7 +151,6 @@ describe("GET /basicLoose", () => {
 				if (err) {
 					return done(err);
 				}
-				console.log(res.text);
 				return done();
 			});
 	}, 15000);
