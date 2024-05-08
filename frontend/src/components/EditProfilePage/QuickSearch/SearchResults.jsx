@@ -1,10 +1,10 @@
 import { searchIngredients, categorizeIngredients } from "@/components/EditProfilePage/QuickSearch/SearchUtil";
 import { Divider } from "@mui/material";
 import DisplayIngredients from "@/components/EditProfilePage/QuickSearch/DisplayIngredients";
-import ingredients from "@/ingredients.json";
+import allIngredients from "@/ingredients.json";
 
 function SearchResults({ searchTerm, selectedIngredients, handleSelectIngredient }) {
-	const searchResults = searchTerm == "" ? ingredients : searchIngredients(searchTerm);
+	const searchResults = searchTerm == "" ? allIngredients : searchIngredients(searchTerm);
 	const categorizedResults = categorizeIngredients(searchResults);
 
 	const renderedResults = [];
