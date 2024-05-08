@@ -63,9 +63,8 @@ function EditProfilePage() {
 			setLastIngredientsUser([]);
 
 			router.push("/landing");
-			console.log("logout successful");
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 

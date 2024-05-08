@@ -33,7 +33,6 @@ export async function handleGoogleLogin() {
 	try {
 		const provider = new GoogleAuthProvider();
 		const userCredential = await signInWithPopup(auth, provider);
-		console.log("logged in success");
 		return userCredential.user;
 	} catch (error) {
 		throw error;

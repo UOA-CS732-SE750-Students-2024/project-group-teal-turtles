@@ -10,7 +10,7 @@ export default function Layout({ children }) {
 			<ResponsiveAppBar />
 			<Box sx={{ flexGrow: "1" }}>{children}</Box>
 			<StickyFooter />
-			<Auth />
+			{/* <Auth /> */}
 		</Box>
 	);
 }

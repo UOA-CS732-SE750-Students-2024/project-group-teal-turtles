@@ -18,7 +18,7 @@ function AuthExample() {
 		try {
 			await createAccount(email, password);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
@@ -26,7 +26,7 @@ function AuthExample() {
 		try {
 			await login(email, password);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
@@ -34,7 +34,7 @@ function AuthExample() {
 		try {
 			await logout();
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
@@ -45,7 +45,6 @@ function AuthExample() {
 					authorisation: accessToken
 				}
 			});
-			console.log("User data:", res.data);
 		} catch (error) {
 			console.error("Error fetching data:", error);
 		}
@@ -58,7 +57,6 @@ function AuthExample() {
 
 			<button
 				onClick={() => {
-					console.log("logging in ");
 					handleLogin("1234@gmail.com", "1234567");
 				}}
 			>
@@ -67,7 +65,6 @@ function AuthExample() {
 
 			<button
 				onClick={() => {
-					console.log("creating account");
 					handleAccountCreation("1234@gmail.com", "1234567");
 				}}
 			>
@@ -76,7 +73,6 @@ function AuthExample() {
 
 			<button
 				onClick={() => {
-					console.log("logging out");
 					handleLogout();
 				}}
 			>
@@ -85,7 +81,6 @@ function AuthExample() {
 
 			<button
 				onClick={() => {
-					console.log(user.accessToken);
 					fetchData(user.accessToken);
 				}}
 			>

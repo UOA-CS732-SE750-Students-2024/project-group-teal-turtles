@@ -6,7 +6,7 @@ function DashboardGenerationCard({ header, description, onClick }) {
 		<Card sx={{ borderRadius: 4 }} elevation={5}>
 			<CardActionArea
 				onClick={onClick}
-				sx={{ p: "3vh", alignItems: "center", display: "flex", flexDirection: "column" }}
+				sx={{ px: "2vh", alignItems: "center", display: "flex", flexDirection: "column", height: "250px" }}
 			>
 				<Typography variant="h4" fontWeight="bold" mb={2} sx={{ color: "primary.dark" }}>
 					{header}

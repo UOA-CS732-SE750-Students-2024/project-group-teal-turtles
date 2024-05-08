@@ -17,10 +17,8 @@ const authenticateUser = async (req, res, next) => {
 	}
 
 	try {
-		console.log("trying auth");
 		const decodeToken = await admin.auth().verifyIdToken(authToken);
 		req.uid = decodeToken.uid;
-		console.log("auth worked");
 		return next();
 	} catch (error) {
 		return res.status(401).json({ message: "Invalid authorisation token." });

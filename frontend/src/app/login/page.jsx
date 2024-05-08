@@ -38,18 +38,16 @@ function Login() {
 				}
 			});
 
-			console.log(response.data);
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
 			setUserGeneratedMeals(response.data.generatedMeals);
 			setUserIngredients(response.data.ingredients);
 			setUserParameters(response.data.parameters);
-			console.log(userParameters);
 			router.push("/dashboard");
 		} catch (error) {
 			if (error.response && error.response.data.error === "User not found") {
 			} else {
-				console.log("Error:", error);
+				console.error("Error:", error);
 			}
 		}
 	}
@@ -65,7 +63,6 @@ function Login() {
 					}
 				}
 			);
-			console.log("User created:", response.data);
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
 			setUserGeneratedMeals(response.data.generatedMeals);
@@ -91,17 +88,17 @@ function Login() {
 		} catch (error) {
 			setLoading(false);
 			if (error.code === "auth/invalid-credential") {
-				console.log("Invalid credentials. Please check your email and password.");
+				console.error("Invalid credentials. Please check your email and password.");
 				setErrorToPrint("Invalid credentials. Please check your email and password");
 			} else if (error.code === "auth/too-many-requests") {
-				console.log(
+				console.error(
 					"Access to this account has been temporarily disabled due to many failed login attempts. Please try again later."
 				);
 				setErrorToPrint(
 					"Access to this account has been temporarily disabled due to many failed login attempts. Please try again later"
 				);
 			} else {
-				console.log("An error occurred while signing in:", error.message);
+				console.error("An error occurred while signing in:", error.message);
 				setErrorToPrint("An error has occurred while signing in. Please try again");
 			}
 		}
@@ -119,12 +116,11 @@ function Login() {
 			if (metadata.creationTime === metadata.lastSignInTime) {
 				createUserInDatabase(auth.currentUser.accessToken);
 			} else {
-				console.log("returning user");
 				fetchUser(auth.currentUser.accessToken);
 			}
 		} catch (error) {
 			setGoogleLoading(false);
-			console.log("An error occurred while signing in:", error.message);
+			console.error("An error occurred while signing in:", error.message);
 			setErrorToPrint("An error occurred while signing in. Please try again");
 		}
 	}

@@ -7,7 +7,7 @@ function EditUserInfoModal({ isOpen, handleClose }) {
 		<Modal open={isOpen}>
 			<>
 				<Paper style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-					<EditUserInfoForm onSave={()=>{console.log("NOTHING")}} onClose={handleClose} />
+					<EditUserInfoForm onClose={handleClose} />
 				</Paper>
 			</>
 		</Modal>

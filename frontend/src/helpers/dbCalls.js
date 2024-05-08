@@ -14,7 +14,7 @@ export function saveIngredients(authToken, userIngredients) {
 			}
 		);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 }
 
@@ -32,7 +32,7 @@ export function addDislikedIngredient(authToken, dislikedIngredient) {
 			}
 		);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 }
 export function removeDislikedIngredient(authToken, dislikedIngredient) {
@@ -49,7 +49,7 @@ export function removeDislikedIngredient(authToken, dislikedIngredient) {
 			}
 		);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 }
 
@@ -67,7 +67,7 @@ export function addFavMeal(authToken, favMeal) {
 			}
 		);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 }
 export function removeFavMeal(authToken, favMeal) {
@@ -84,7 +84,7 @@ export function removeFavMeal(authToken, favMeal) {
 			}
 		);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 }
 export function saveParameters(authToken, userParameters) {
@@ -99,7 +99,7 @@ export function saveParameters(authToken, userParameters) {
 			}
 		);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 }
 
@@ -113,7 +113,7 @@ export function addGeneratedMeal(authToken, mealName) {
 			}
 		);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 }
 
