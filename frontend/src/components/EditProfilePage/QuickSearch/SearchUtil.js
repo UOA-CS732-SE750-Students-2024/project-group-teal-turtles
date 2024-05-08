@@ -1,30 +1,37 @@
 import ingredients from "@/ingredients.json";
-import Fuse from 'fuse.js';
+import Fuse from "fuse.js";
 
 const fuse = new Fuse(ingredients, {
-    keys: ['title'],
-    threshold: 0.4,
+	keys: ["title"],
+	threshold: 0.4
 });
 
+const processSearchResults = (searchResults) => {
+	return searchResults.map((result) => result.item);
+};
+
 export const searchIngredients = (searchTerm) => {
-    const results = fuse.search(searchTerm);
-    return results;
+	const results = fuse.search(searchTerm);
+	return processSearchResults(results);
 };
 
 export const categorizeIngredients = (ingredients) => {
-    const categorizedIngredients = {};
-	console.log(ingredients);
-	// ingredients.forEach((ingredient) => {
-    //     console.log(ingredient.categories);
-    //     ingredient.categories.forEach((category) => {
-	// 		if (!categorizedIngredients[category]) {
-	// 			categorizedIngredients[category] = [];
-	// 		}
-	// 		categorizedIngredients[category].push(ingredient);
-	// 	});
-	// });
+	const categorizedIngredients = {};
+	for (let ingredient of ingredients) {
+		ingredient.categories.forEach((category) => {
+			if (!categorizedIngredients[category]) {
+				categorizedIngredients[category] = [];
+			}
+			categorizedIngredients[category].push(ingredient);
+		});
+	}
 	return categorizedIngredients;
 };
+
+export const extractIngredients = (categorizedIngredients, category) => {
+	return categorizedIngredients[category].map((key)=>categorizeIngredients[key]);
+}
+
 
 // const extractCategories = () => {
 // 	const categories = new Set();
