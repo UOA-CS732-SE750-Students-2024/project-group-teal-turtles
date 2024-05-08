@@ -135,7 +135,7 @@ function Login() {
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
-				<Typography variant="h3" fontWeight="bold">
+				<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.dark" }}>
 					Login
 				</Typography>
 				<Typography variant="h5">Sign in to access saved recipes and information.</Typography>

@@ -3,10 +3,10 @@ import React from "react";
 
 function MealGenerationCard({ header, description, onClick }) {
 	return (
-		<Card sx={{ borderRadius: 4, p: 1 }}>
+		<Card sx={{ borderRadius: 4 }}>
 			<CardActionArea
 				onClick={onClick}
-				sx={{ p: "2vh", alignItems: "center", display: "flex", flexDirection: "column" }}
+				sx={{ p: "3vh", alignItems: "center", display: "flex", flexDirection: "column" }}
 			>
 				<Typography variant="h4" fontWeight="bold" mb={2} sx={{ color: "primary.dark" }}>
 					{header}
