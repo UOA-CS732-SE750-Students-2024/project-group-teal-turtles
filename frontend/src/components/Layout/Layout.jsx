@@ -1,7 +1,8 @@
 import React from "react";
 import ResponsiveAppBar from "./ResponsiveAppBar";
-import { BottomNavigation, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import StickyFooter from "./StickyFooter";
+import Auth from "./Auth";
 
 export default function Layout({ children }) {
 	return (
@@ -9,6 +10,7 @@ export default function Layout({ children }) {
 			<ResponsiveAppBar />
 			<Box sx={{ flexGrow: "1" }}>{children}</Box>
 			<StickyFooter />
+			<Auth />
 		</Box>
 	);
 }
