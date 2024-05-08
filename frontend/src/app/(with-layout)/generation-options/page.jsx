@@ -7,6 +7,7 @@ import useDataStore from "@/lib/store";
 import { Suspense } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { ExpandMore } from "@mui/icons-material";
+import StyledButton from "@/components/StyledButton/StyledButton";
 
 function GenerationOptions() {
 	function Generation() {
@@ -268,16 +269,7 @@ function GenerationOptions() {
 									</Tooltip>
 								</Stack>
 							)}
-
-							<Button
-								variant="contained"
-								onClick={handleGenerate}
-								sx={{ width: "200px", height: "60px", borderRadius: "30px" }}
-							>
-								<Typography textTransform="none" variant="h6" fontWeight="bold">
-									Generate Meal!
-								</Typography>
-							</Button>
+							<StyledButton text="Generate Meal!" onClick={handleGenerate} />
 						</Stack>
 					)}
 				</Card>

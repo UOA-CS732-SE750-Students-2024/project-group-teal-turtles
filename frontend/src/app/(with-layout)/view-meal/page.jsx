@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import { Stack } from "@mui/material";
 import useDataStore from "@/lib/store";
 import Image from "next/image";
+import StyledButton from "@/components/StyledButton/StyledButton";
 
 export default function ViewMeal() {
 	function View() {
@@ -327,16 +328,7 @@ export default function ViewMeal() {
 													"\n"
 												)}\n\nInstructions:\n${lastRecipe.join("\n")}`}
 											>
-												<Button
-													variant="contained"
-													sx={{
-														mt: "4vh",
-														width: "100%",
-														height: "5vh"
-													}}
-												>
-													Share
-												</Button>
+												<StyledButton text="Share" sx={{ mt: 4 }} />
 											</EmailShareButton>
 										)}
 									</Stack>
