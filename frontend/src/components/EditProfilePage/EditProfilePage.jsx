@@ -9,7 +9,7 @@ import EditUserInfoModal from "./EditUserInfo/EditUserInfoModal";
 import DisplayMeals from "./DisplayMeals/DisplayMeals";
 import { logout } from "@/app/auth-functions";
 import { getAuth } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { saveIngredients } from "@/helpers/dbCalls";
 
@@ -21,6 +21,8 @@ function EditProfilePage() {
 		setUserGeneratedMeals,
 		setUserDislikedIngredients,
 		userEmail,
+		userName,
+		setUserName,
 		setUserEmail,
 		setUserFavouriteMeals,
 		setUserIngredients,
@@ -39,8 +41,6 @@ function EditProfilePage() {
 	const [isEditDislikedIngredients, setEditDislikedIngredients] = useState(false);
 	const router = useRouter();
 
-	const name = userEmail.split("@")[0];
-
 	const handleLogout = async () => {
 		try {
 			const authToken = await getAuth().currentUser.getIdToken();
@@ -49,6 +49,7 @@ function EditProfilePage() {
 			setUserGeneratedMeals([]);
 			setUserDislikedIngredients([]);
 			setUserEmail(null);
+			setUserName(null);
 			setUserFavouriteMeals([]);
 			setUserIngredients([]);
 			setUserParameters(null);
@@ -77,7 +78,7 @@ function EditProfilePage() {
 				sx={{ width: "40%", margin: "0 auto", padding: "10vh" }}
 			>
 				<>
-					<ProfileSummary username={name} email={userEmail} />
+					<ProfileSummary username={userName} email={userEmail} />
 					<Button variant="contained" onClick={handleLogout}>
 						Logout
 					</Button>
