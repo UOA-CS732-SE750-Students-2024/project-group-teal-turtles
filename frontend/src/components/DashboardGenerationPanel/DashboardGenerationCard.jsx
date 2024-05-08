@@ -1,7 +1,7 @@
 import { Card, CardActionArea, CardContent, CardHeader, Typography } from "@mui/material";
 import React from "react";
 
-function MealGenerationCard({ header, description, onClick }) {
+function DashboardGenerationCard({ header, description, onClick }) {
 	return (
 		<Card sx={{ borderRadius: 4 }} elevation={5}>
 			<CardActionArea
@@ -19,4 +19,4 @@ function MealGenerationCard({ header, description, onClick }) {
 	);
 }
 
-export default MealGenerationCard;
+export default DashboardGenerationCard;
