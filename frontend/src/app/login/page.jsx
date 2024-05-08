@@ -26,6 +26,7 @@ function Login() {
 		setUserParameters,
 		userParameters,
 		setUserEmail,
+		setUserName,
 		setAuthorisedUser
 	} = useDataStore();
 	const router = useRouter();
@@ -85,6 +86,7 @@ function Login() {
 			setAuthorisedUser(auth.currentUser);
 
 			setUserEmail(auth.currentUser.email);
+			setUserName(auth.currentUser.email.split("@")[0]);
 			fetchUser(auth.currentUser.accessToken);
 		} catch (error) {
 			setLoading(false);
@@ -110,6 +112,7 @@ function Login() {
 			setGoogleLoading(true);
 			await handleGoogleLogin();
 			setUserEmail(auth.currentUser.email);
+			setUserName(auth.currentUser.email.split("@")[0]);
 			setAuthorisedUser(auth.currentUser);
 
 			const metadata = auth.currentUser.metadata;

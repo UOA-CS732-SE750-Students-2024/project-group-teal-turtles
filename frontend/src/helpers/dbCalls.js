@@ -18,6 +18,75 @@ export function saveIngredients(authToken, userIngredients) {
 	}
 }
 
+export function addDislikedIngredient(authToken, dislikedIngredient) {
+	try {
+		axios.put(
+			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/ingredients/disliked/add",
+			{
+				dislikedIngredientToAdd: dislikedIngredient
+			},
+			{
+				headers: {
+					Authorization: authToken
+				}
+			}
+		);
+	} catch (error) {
+		console.log(error);
+	}
+}
+export function removeDislikedIngredient(authToken, dislikedIngredient) {
+	try {
+		axios.put(
+			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/ingredients/disliked/remove",
+			{
+				dislikedIngredientToRemove: dislikedIngredient
+			},
+			{
+				headers: {
+					Authorization: authToken
+				}
+			}
+		);
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+export function addFavMeal(authToken, favMeal) {
+	try {
+		axios.put(
+			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/meals/favourite/add",
+			{
+				favMealToAdd: favMeal
+			},
+			{
+				headers: {
+					Authorization: authToken
+				}
+			}
+		);
+	} catch (error) {
+		console.log(error);
+	}
+}
+export function removeFavMeal(authToken, favMeal) {
+	try {
+		axios.put(
+			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/meals/favourite/remove",
+			{
+				favMealToDelete: favMeal
+			},
+			{
+				headers: {
+					Authorization: authToken
+				}
+			}
+		);
+	} catch (error) {
+		console.log(error);
+	}
+}
 export function saveParameters(authToken, userParameters) {
 	try {
 		axios.put(

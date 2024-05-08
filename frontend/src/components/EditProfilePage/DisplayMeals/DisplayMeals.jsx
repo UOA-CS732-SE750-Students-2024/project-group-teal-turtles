@@ -2,6 +2,8 @@ import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } fro
 import React from "react";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
+import { addFavMeal, removeFavMeal } from "@/helpers/dbCalls";
+import { getAuth } from "firebase/auth";
 
 function DisplayMeals({
 	showFavouriteOnly = false,
@@ -12,15 +14,19 @@ function DisplayMeals({
 }) {
 	const meals = showFavouriteOnly ? userFavouriteMeals : userGeneratedMeals;
 
-	const toggleFavourite = (meal) => {
+	const toggleFavourite = async (meal) => {
 		setUserFavouriteMeals(
 			userFavouriteMeals.includes(meal) ? userFavouriteMeals.filter((m) => m !== meal) : [...userFavouriteMeals, meal]
 		);
+		userFavouriteMeals.includes(meal)
+			? removeFavMeal(await getAuth().currentUser.getIdToken(), meal)
+			: addFavMeal(await getAuth().currentUser.getIdToken(), meal);
 	};
 
 	const deleteMeal = (meal) => {
 		setUserGeneratedMeals(userGeneratedMeals.filter((m) => m !== meal));
-    setUserFavouriteMeals(userFavouriteMeals.filter((m) => m !== meal));
+		setUserFavouriteMeals(userFavouriteMeals.filter((m) => m !== meal));
+		//DELETE FORM HISTORY DB
 	};
 
 	return (
