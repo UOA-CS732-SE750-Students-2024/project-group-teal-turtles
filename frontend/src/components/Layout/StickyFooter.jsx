@@ -1,4 +1,5 @@
 import * as React from "react";
+import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -20,7 +21,7 @@ function Copyright() {
 
 export default function StickyFooter() {
 	return (
-		<Box
+		<Card
 			component="footer"
 			sx={{
 				mt: "auto"
@@ -36,6 +37,6 @@ export default function StickyFooter() {
 			>
 				<Copyright />
 			</Container>
-		</Box>
+		</Card>
 	);
 }

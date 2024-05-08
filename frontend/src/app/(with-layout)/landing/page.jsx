@@ -1,18 +1,19 @@
 "use client";
 
-import { Typography, Stack, TextField, Card, IconButton, CardActionArea, Box } from "@mui/material";
+import { Typography, Stack, Card, CardActionArea } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 import "./../../globals.css";
-import { Search } from "@mui/icons-material";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ReactCardFlip from "react-card-flip";
 
-function CircularCard({ title, body }) {
+function CircularCard({ title, body, back }) {
+	const [flipped, setFlipped] = useState(false);
+
 	return (
-		title &&
-		body && (
+		<ReactCardFlip isFlipped={flipped}>
 			<Card
 				sx={{
 					width: "400px",
@@ -22,6 +23,8 @@ function CircularCard({ title, body }) {
 				}}
 			>
 				<CardActionArea
+					key="front"
+					onClick={() => setFlipped(!flipped)}
 					sx={{
 						alignItems: "center",
 						display: "flex",
@@ -33,12 +36,36 @@ function CircularCard({ title, body }) {
 					<Typography color="secondary.dark" variant="h2" fontWeight="600">
 						{title}
 					</Typography>
-					<Typography color="secondary.main" align="center" variant="h4">
+					<Typography color="primary.dark" align="center" variant="h4">
 						{body}
 					</Typography>
 				</CardActionArea>
 			</Card>
-		)
+			<Card
+				sx={{
+					width: "400px",
+					height: "200px",
+					borderRadius: "20px 20px 0 0",
+					m: "auto"
+				}}
+			>
+				<CardActionArea
+					onClick={() => setFlipped(!flipped)}
+					key="back"
+					sx={{
+						alignItems: "center",
+						display: "flex",
+						flexDirection: "column",
+						backgroundColor: "background.paper",
+						height: "100%"
+					}}
+				>
+					<Typography textAlign="center" variant="h6" sx={{ color: "secondary.dark", px: 5 }}>
+						{back}
+					</Typography>
+				</CardActionArea>
+			</Card>
+		</ReactCardFlip>
 	);
 }
 
@@ -91,69 +118,47 @@ function Landing() {
 						>
 							Generate a personalised recipe in seconds.
 						</Typography>
-
-						<TextField
-							variant="outlined"
-							autoComplete="off"
-							placeholder="Create me a recipe..."
-							onKeyDown={handleKeyPress}
-							sx={{
-								"& .MuiOutlinedInput-root": {
-									mt: 4,
-									borderRadius: 1,
-									backgroundColor: "#FFFFFF",
-									"& input": {
-										fontSize: "30px",
-										fontWeight: "700",
-										ml: 2
-									}
-								},
-								width: "40%"
-							}}
-							InputProps={{
-								startAdornment: <Search sx={{ fontSize: "40px", color: "black" }} />,
-								endAdornment: (
-									<IconButton>
-										<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
-									</IconButton>
-								)
-							}}
-						/>
-						<Box
-							sx={{
-								backgroundColor: "primary.light",
-								px: 4,
-								py: 2,
-								borderRadius: "20px",
-								height: "100px",
-								display: "flex"
-							}}
-						>
-							<Typography variant="h3" fontWeight="700" sx={{ color: "secondary.dark" }}>
-								Start your chef journey now
-							</Typography>
-							<Box
+						<Card sx={{ borderRadius: "20px", mt: "40px" }}>
+							<CardActionArea
+								onClick={() => router.push("/create-account")}
 								sx={{
-									bgcolor: "white",
-									borderRadius: "20px",
-									ml: "5vh",
-									border: "3px solid black",
-									alignItems: "center",
-									justifyContent: "center",
-									display: "flex"
+									pl: 4,
+									pr: 2,
+									py: 2,
+									flexDirection: "row",
+									display: "flex",
+									alignItems: "center"
 								}}
 							>
-								<IconButton onClick={() => router.push("/create-account")}>
-									<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
-								</IconButton>
-							</Box>
-						</Box>
+								<Typography variant="h3" fontWeight="700" sx={{ color: "secondary.dark", mr: 2 }}>
+									Start your chef journey now
+								</Typography>
+								<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
+							</CardActionArea>
+						</Card>
 					</Stack>
-					<Stack direction="row" pt={5} px={30} sx={{ backgroundColor: "background.default" }}>
-						{/* TODO: Put something meaningful here */}
-						<CircularCard title="Many" body="Recipes Generated" />
-						<CircularCard title="Fast" body="Generation Time" />
-						<CircularCard title="Many" body="Trusted Reviews" />
+					<Stack
+						direction="row"
+						pt={5}
+						spacing="60px"
+						justifyContent="center"
+						sx={{ backgroundColor: "background.default" }}
+					>
+						<CircularCard
+							title="Unlimited"
+							body="Recipe Generation"
+							back="Intelligent Eats allows for unlimited generated recipes for FREE. All you have to do is Sign up."
+						/>
+						<CircularCard
+							title="Fast"
+							body="Generation Times"
+							back="No need to spend precious time searching for meals - We'll generate you a meal in 10 seconds or less."
+						/>
+						<CircularCard
+							title="AI"
+							body="Tailored Recipes"
+							back="All Recipes and Meal images are generated using the latest, most powerful AI models."
+						/>
 					</Stack>
 				</>
 			)}
