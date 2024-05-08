@@ -4,7 +4,6 @@ import { Typography, Stack, TextField, Card, IconButton, CardActionArea, Box } f
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 import "./../../globals.css";
-import { Search } from "@mui/icons-material";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -91,69 +90,29 @@ function Landing() {
 						>
 							Generate a personalised recipe in seconds.
 						</Typography>
-
-						<TextField
-							variant="outlined"
-							autoComplete="off"
-							placeholder="Create me a recipe..."
-							onKeyDown={handleKeyPress}
-							sx={{
-								"& .MuiOutlinedInput-root": {
-									mt: 4,
-									borderRadius: 1,
-									backgroundColor: "#FFFFFF",
-									"& input": {
-										fontSize: "30px",
-										fontWeight: "700",
-										ml: 2
-									}
-								},
-								width: "40%"
-							}}
-							InputProps={{
-								startAdornment: <Search sx={{ fontSize: "40px", color: "black" }} />,
-								endAdornment: (
-									<IconButton>
-										<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
-									</IconButton>
-								)
-							}}
-						/>
-						<Box
-							sx={{
-								backgroundColor: "primary.light",
-								px: 4,
-								py: 2,
-								borderRadius: "20px",
-								height: "100px",
-								display: "flex"
-							}}
-						>
-							<Typography variant="h3" fontWeight="700" sx={{ color: "secondary.dark" }}>
-								Start your chef journey now
-							</Typography>
-							<Box
+						<Card sx={{ borderRadius: "20px", mt: "40px" }}>
+							<CardActionArea
+								onClick={() => router.push("/create-account")}
 								sx={{
-									bgcolor: "white",
-									borderRadius: "20px",
-									ml: "5vh",
-									border: "3px solid black",
-									alignItems: "center",
-									justifyContent: "center",
-									display: "flex"
+									pl: 4,
+									pr: 2,
+									py: 2,
+									flexDirection: "row",
+									display: "flex",
+									alignItems: "center"
 								}}
 							>
-								<IconButton onClick={() => router.push("/create-account")}>
-									<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
-								</IconButton>
-							</Box>
-						</Box>
+								<Typography variant="h3" fontWeight="700" sx={{ color: "secondary.dark", mr: 2 }}>
+									Start your chef journey now
+								</Typography>
+								<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
+							</CardActionArea>
+						</Card>
 					</Stack>
 					<Stack direction="row" pt={5} px={30} sx={{ backgroundColor: "background.default" }}>
-						{/* TODO: Put something meaningful here */}
-						<CircularCard title="Many" body="Recipes Generated" />
-						<CircularCard title="Fast" body="Generation Time" />
-						<CircularCard title="Many" body="Trusted Reviews" />
+						<CircularCard title="Unlimited" body="Recipe Generation" />
+						<CircularCard title="Fast" body="Generation Times" />
+						<CircularCard title="AI" body="Tailored Recipes" />
 					</Stack>
 				</>
 			)}
