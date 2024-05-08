@@ -13,71 +13,57 @@ function LandingCard({ title, body, back }) {
 	const [flipped, setFlipped] = useState(false);
 
 	return (
-		<CardActionArea
-			sx={{
-				width: "400px",
-				height: "200px",
-				borderRadius: "20px 20px 0 0",
-				m: "auto",
-				"&:hover": {
-					backgroundColor: "transparent"
-				}
-			}}
-			onMouseOver={() => setFlipped(true)}
-			onMouseOut={() => setFlipped(false)}
-		>
-			<ReactCardFlip isFlipped={flipped}>
-				<Card
+		<ReactCardFlip isFlipped={flipped}>
+			<Card
+				sx={{
+					width: "400px",
+					height: "200px",
+					borderRadius: "20px 20px 0 0",
+					m: "auto"
+				}}
+				onMouseOver={() => setFlipped(true)}
+				onMouseOut={() => setFlipped(false)}
+			>
+				<Stack
+					key="front"
 					sx={{
-						width: "400px",
-						height: "200px",
-						borderRadius: "20px 20px 0 0",
-						m: "auto"
+						alignItems: "center",
+						justifyContent: "center",
+						backgroundColor: "background.paper",
+						height: "100%"
 					}}
 				>
-					<CardActionArea
-						key="front"
-						sx={{
-							alignItems: "center",
-							display: "flex",
-							flexDirection: "column",
-							backgroundColor: "background.paper",
-							height: "100%"
-						}}
-					>
-						<Typography color="secondary.dark" variant="h2" fontWeight="600">
-							{title}
-						</Typography>
-						<Typography color="primary.dark" align="center" variant="h4">
-							{body}
-						</Typography>
-					</CardActionArea>
-				</Card>
-				<Card
+					<Typography color="secondary.dark" variant="h2" fontWeight="600">
+						{title}
+					</Typography>
+					<Typography color="primary.dark" align="center" variant="h4">
+						{body}
+					</Typography>
+				</Stack>
+			</Card>
+			<Card
+				sx={{
+					width: "400px",
+					height: "200px",
+					borderRadius: "20px 20px 0 0",
+					m: "auto"
+				}}
+			>
+				<Stack
+					key="back"
 					sx={{
-						width: "400px",
-						height: "200px",
-						borderRadius: "20px 20px 0 0",
-						m: "auto"
+						alignItems: "center",
+						justifyContent: "center",
+						backgroundColor: "background.paper",
+						height: "100%"
 					}}
 				>
-					<CardActionArea
-						key="back"
-						sx={{
-							alignItems: "center",
-							display: "flex",
-							flexDirection: "column",
-							backgroundColor: "background.paper",
-							height: "100%"
-						}}
-					>
-						<Typography textAlign="center" variant="h6" fontWeight="bold" sx={{ color: "secondary.dark", px: 5 }}>
-							{back}
-						</Typography>
-					</CardActionArea>
-				</Card>
-			</ReactCardFlip>
-		</CardActionArea>
+					<Typography textAlign="center" variant="h6" fontWeight="bold" sx={{ color: "secondary.dark", px: 5 }}>
+						{back}
+					</Typography>
+				</Stack>
+			</Card>
+		</ReactCardFlip>
 	);
 }
 
