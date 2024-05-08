@@ -99,7 +99,13 @@ export default function PantryTabs() {
 				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
 					Your Ingredients
 				</Typography>
-				<PantryGrid itemData={ingredientsPantry} onClick={handleIngredientsChange} selected={userIngredients} />
+				{userIngredients && userIngredients.length > 0 ? (
+					<PantryGrid itemData={ingredientsPantry} onClick={handleIngredientsChange} selected={userIngredients} />
+				) : (
+					<Typography variant="h6" sx={{ mt: 3, mb: 1, opacity: 0.5 }}>
+						Add Ingredients to get started
+					</Typography>
+				)}
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
