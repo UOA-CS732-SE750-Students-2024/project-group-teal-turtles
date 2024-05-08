@@ -40,7 +40,7 @@ function Dashboard() {
 				</Typography>
 
 				{userIngredients && userIngredients.length > 0 ? (
-					<Box sx={{ backgroundColor: "grey.300", p: 2, borderRadius: 1 }}>
+					<Box sx={{ backgroundColor: "grey.300", p: 2, borderRadius: 1, maxWidth: "1012px" }}>
 						<PantryGrid
 							itemData={ingredientsPantry}
 							onClick={() => router.push("/pantry")}
