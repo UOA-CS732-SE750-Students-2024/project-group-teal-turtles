@@ -191,7 +191,7 @@ function CreateAccount() {
 						disabled={loading || googleLoading}
 						fullWidth
 						variant="contained"
-						sx={{ textTransform: "none", py: 1.5 }}
+						sx={{ textTransform: "none", py: 1.5, borderRadius: "30px" }}
 						onClick={handleCreateAccount}
 					>
 						{loading && <CircularProgress size="25px" sx={{ color: "background.paper", mr: "15px" }} />}
@@ -209,7 +209,8 @@ function CreateAccount() {
 						endIcon={<Google sx={{ mr: googleLoading ? "40px" : "0px" }} />}
 						sx={{
 							textTransform: "none",
-							py: 1.5
+							py: 1.5,
+							borderRadius: "30px"
 						}}
 						onClick={handleGoogleSignIn}
 					>

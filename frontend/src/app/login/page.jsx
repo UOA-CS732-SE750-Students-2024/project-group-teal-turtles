@@ -177,7 +177,8 @@ function Login() {
 						variant="contained"
 						sx={{
 							textTransform: "none",
-							py: 1.5
+							py: 1.5,
+							borderRadius: "30px"
 						}}
 						onClick={handleSignIn}
 					>
@@ -196,7 +197,8 @@ function Login() {
 						endIcon={<Google sx={{ mr: googleLoading ? "40px" : "0px" }} />}
 						sx={{
 							textTransform: "none",
-							py: 1.5
+							py: 1.5,
+							borderRadius: "30px"
 						}}
 						onClick={handleGoogleSignIn}
 					>
