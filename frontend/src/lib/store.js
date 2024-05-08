@@ -13,6 +13,11 @@ const useDataStore = create(
 			authorisedUser: null,
 			prompt: "",
 			mealToRemix: "",
+			lastMeal: "",
+			lastRecipe: "",
+			lastIngredientQuantities: [],
+			lastIngredientsNeeded: [],
+			lastIngredientsUser: [],
 			setUserFavouriteMeals: (meals) => set({ userFavouriteMeals: meals }),
 			setUserGeneratedMeals: (meals) => set({ userGeneratedMeals: meals }),
 			setUserIngredients: (ingredients) => set({ userIngredients: ingredients }),
@@ -23,7 +28,12 @@ const useDataStore = create(
 			setUserEmail: (email) => set({ userEmail: email }),
 			setPrompt: (prompt) => set({ prompt }),
 			setMealToRemix: (mealToRemix) => set({ mealToRemix }),
-			setAuthorisedUser: (authorisedUser) => set({ authorisedUser })
+			setAuthorisedUser: (authorisedUser) => set({ authorisedUser }),
+			setLastMeal: (lastMeal) => set({ lastMeal }),
+			setLastRecipe: (lastRecipe) => set({ lastRecipe }),
+			setLastIngredientQuantities: (lastIngredientQuantities) => set({ lastIngredientQuantities }),
+			setLastIngredientsNeeded: (lastIngredientsNeeded) => set({ lastIngredientsNeeded }),
+			setLastIngredientsUser: (lastIngredientsUser) => set({ lastIngredientsUser })
 		}),
 		{
 			name: "data-store3"

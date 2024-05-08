@@ -7,6 +7,8 @@ import PantryGrid from "./PantryGrid";
 import useDataStore from "@/lib/store";
 import ingredients from "../../ingredients.json";
 import { useState } from "react";
+import Fab from "@mui/material/Fab";
+import { Delete } from "@mui/icons-material";
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -96,13 +98,27 @@ export default function PantryTabs() {
 				<Tab label="Dairy" {...a11yProps(5)} />
 			</Tabs>
 			<TabPanel value={value} index={0}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
-					Your Ingredients
-				</Typography>
-				<PantryGrid itemData={ingredientsPantry} onClick={handleIngredientsChange} selected={userIngredients} />
+				<Box sx={{ display: "flex", justifyContent: "space-between", mt: 3, width: "40vw" }}>
+					<Typography variant="h6">Your Ingredients</Typography>
+					{userIngredients && userIngredients.length > 0 ? (
+						<Fab onClick={() => setUserIngredients([])} sx={{}}>
+							<Delete />
+						</Fab>
+					) : null}
+				</Box>
+
+				{userIngredients && userIngredients.length > 0 ? (
+					<>
+						<PantryGrid itemData={ingredientsPantry} onClick={handleIngredientsChange} selected={userIngredients} />
+					</>
+				) : (
+					<Typography variant="h6" sx={{ mt: 3, mb: 1, opacity: 0.5 }}>
+						Add Ingredients to get started
+					</Typography>
+				)}
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
 					Bread
 				</Typography>
 				<PantryGrid itemData={ingredientsBread} onClick={handleIngredientsChange} selected={userIngredients} />
@@ -116,7 +132,7 @@ export default function PantryTabs() {
 				<PantryGrid itemData={ingredientsCarbsMisc} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 			<TabPanel value={value} index={2}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
 					Beef
 				</Typography>
 				<PantryGrid itemData={ingredientsBeef} onClick={handleIngredientsChange} selected={userIngredients} />
@@ -138,19 +154,19 @@ export default function PantryTabs() {
 				<PantryGrid itemData={ingredientsProteinMisc} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 			<TabPanel value={value} index={3}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
 					Vegetables
 				</Typography>
 				<PantryGrid itemData={ingredientsVegetables} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 			<TabPanel value={value} index={4}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
 					Fruit
 				</Typography>
 				<PantryGrid itemData={ingredientsFruit} onClick={handleIngredientsChange} selected={userIngredients} />
 			</TabPanel>
 			<TabPanel value={value} index={5}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
 					Dairy
 				</Typography>
 				<PantryGrid itemData={ingredientsDairy} onClick={handleIngredientsChange} selected={userIngredients} />

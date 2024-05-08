@@ -5,7 +5,6 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -17,6 +16,9 @@ import { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
 import useDataStore from "@/lib/store";
 import { logout } from "@/app/auth-functions";
+import { getAuth } from "firebase/auth";
+
+import { saveIngredients } from "@/helpers/dbCalls";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -24,7 +26,8 @@ function ResponsiveAppBar() {
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
 		{ name: "Generate", url: "/generation-options?generateOption=Basic" },
-		{ name: "Pantry", url: "/pantry" }
+		{ name: "Pantry", url: "/pantry" },
+		{ name: "Previous Recipe", url: "/view-meal" }
 	];
 	const currentUrl = usePathname();
 	const router = useRouter();
@@ -34,8 +37,16 @@ function ResponsiveAppBar() {
 		setUserEmail,
 		setUserFavouriteMeals,
 		setUserIngredients,
+		userIngredients,
 		setUserParameters,
-		setAuthorisedUser
+		setAuthorisedUser,
+		setMealToRemix,
+		setPrompt,
+		setLastMeal,
+		setLastRecipe,
+		setLastIngredientQuantities,
+		setLastIngredientsNeeded,
+		setLastIngredientsUser
 	} = useDataStore();
 
 	const handleOpenNavMenu = (event) => {
@@ -55,6 +66,8 @@ function ResponsiveAppBar() {
 
 	const handleLogout = async () => {
 		try {
+			const authToken = await getAuth().currentUser.getIdToken();
+			saveIngredients(authToken, userIngredients);
 			await logout();
 			setUserGeneratedMeals([]);
 			setUserDislikedIngredients([]);
@@ -63,6 +76,14 @@ function ResponsiveAppBar() {
 			setUserIngredients([]);
 			setUserParameters(null);
 			setAuthorisedUser(null);
+			setMealToRemix("");
+			setPrompt("");
+			setLastMeal("");
+			setLastRecipe("");
+			setLastIngredientQuantities([]);
+			setLastIngredientsNeeded([]);
+			setLastIngredientsUser([]);
+
 			router.push("/landing");
 			console.log("logout successful");
 		} catch (error) {
@@ -221,7 +242,7 @@ function ResponsiveAppBar() {
 
 					{currentUrl !== "/landing" ? (
 						<Box sx={{ flexGrow: 0 }}>
-							<Tooltip title="Username">
+							<Tooltip title="Profile">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 									<Image src={"/user.png"} alt={"User"} width={45} height={45} />
 								</IconButton>
