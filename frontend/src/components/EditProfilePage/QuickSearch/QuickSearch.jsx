@@ -2,12 +2,11 @@ import React from "react";
 import { searchIngredients } from "./SearchUtil";
 import { TextField } from "@mui/material";
 import SearchResults from "./SearchResults";
+import ingredients from "@/ingredients.json";
 
 function QuickSearch() {
 	const [searchTerm, setSearchTerm] = React.useState("");
-
-	const searchResults = searchIngredients(searchTerm);
-	console.log(searchResults);
+	const searchResults = searchTerm == "" ? ingredients : searchIngredients(searchTerm);
 
 	return (
 		<>
