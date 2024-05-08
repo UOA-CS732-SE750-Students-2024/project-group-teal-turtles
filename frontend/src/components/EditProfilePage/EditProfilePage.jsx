@@ -36,7 +36,6 @@ function EditProfilePage() {
 		setLastIngredientsUser
 	} = useDataStore();
 
-	const [isEditProfile, setEditProfile] = useState(false);
 	const [isEditUserIngredients, setEditUserIngredients] = useState(false);
 	const [isEditDislikedIngredients, setEditDislikedIngredients] = useState(false);
 	const router = useRouter();
@@ -80,20 +79,6 @@ function EditProfilePage() {
 			>
 				<>
 					<ProfileSummary username={name} email={userEmail} />
-					<EditUserInfoModal
-						isOpen={isEditProfile}
-						handleClose={() => {
-							setEditProfile(false);
-						}}
-					/>
-					<Button
-						variant="contained"
-						onClick={() => {
-							setEditProfile(true);
-						}}
-					>
-						Edit Profile
-					</Button>
 					<Button variant="contained" onClick={handleLogout}>
 						Logout
 					</Button>
@@ -104,7 +89,7 @@ function EditProfilePage() {
 					<DisplayMeals
 						userFavouriteMeals={userFavouriteMeals}
 						setUserFavouriteMeals={setUserFavouriteMeals}
-						userGeneratedMeals={userGeneratedMeals}
+						userGeneratedMeals={userGeneratedMeals.slice(0, 10)}
 						setUserGeneratedMeals={setUserGeneratedMeals}
 					/>
 				</>
