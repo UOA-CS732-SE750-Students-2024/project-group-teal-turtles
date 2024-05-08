@@ -15,10 +15,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
 import useDataStore from "@/lib/store";
-import { logout } from "@/app/auth-functions";
-import { getAuth } from "firebase/auth";
-
-import { saveIngredients } from "@/helpers/dbCalls";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
@@ -62,33 +58,6 @@ function ResponsiveAppBar() {
 
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
-	};
-
-	const handleLogout = async () => {
-		try {
-			const authToken = await getAuth().currentUser.getIdToken();
-			saveIngredients(authToken, userIngredients);
-			await logout();
-			setUserGeneratedMeals([]);
-			setUserDislikedIngredients([]);
-			setUserEmail(null);
-			setUserFavouriteMeals([]);
-			setUserIngredients([]);
-			setUserParameters(null);
-			setAuthorisedUser(null);
-			setMealToRemix("");
-			setPrompt("");
-			setLastMeal("");
-			setLastRecipe("");
-			setLastIngredientQuantities([]);
-			setLastIngredientsNeeded([]);
-			setLastIngredientsUser([]);
-
-			router.push("/landing");
-			console.log("logout successful");
-		} catch (error) {
-			console.log(error);
-		}
 	};
 
 	return (
@@ -251,40 +220,10 @@ function ResponsiveAppBar() {
 					{currentUrl !== "/landing" ? (
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="Profile">
-								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+								<IconButton onClick={() => router.push("/edit-profile")} sx={{ p: 0 }}>
 									<Image src={"/user.png"} alt={"User"} width={45} height={45} />
 								</IconButton>
 							</Tooltip>
-							<Menu
-								sx={{ mt: "45px" }}
-								id="menu-appbar"
-								anchorEl={anchorElUser}
-								anchorOrigin={{
-									vertical: "top",
-									horizontal: "right"
-								}}
-								keepMounted
-								transformOrigin={{
-									vertical: "top",
-									horizontal: "right"
-								}}
-								open={Boolean(anchorElUser)}
-								onClose={handleCloseUserMenu}
-							>
-								<MenuItem onClick={handleCloseUserMenu} sx={{ p: 0 }}>
-									<Button
-										onClick={() => router.push("/edit-profile")}
-										sx={{ color: "black", px: 2, py: 1, width: "100%", fontWeight: "bold" }}
-									>
-										Profile
-									</Button>
-								</MenuItem>
-								<MenuItem sx={{ p: 0 }}>
-									<Button onClick={handleLogout} sx={{ color: "red", px: 2, py: 1, fontWeight: "bold" }}>
-										Log out
-									</Button>
-								</MenuItem>
-							</Menu>
 						</Box>
 					) : (
 						<Box sx={{ display: "flex", flexDirection: "row", gap: 2, ml: "auto", height: "100%" }}>
