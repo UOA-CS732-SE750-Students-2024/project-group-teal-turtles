@@ -14,8 +14,16 @@ export default function PantryGrid({ itemData, variant, onClick, selected }) {
 					<Card
 						sx={{
 							position: "relative",
-							backgroundColor: selected ? (selected.includes(item.title) ? "primary.main" : "#fff") : "#fff",
-							color: selected ? (selected.includes(item.title) ? "#fff" : "#000") : "#000"
+							backgroundColor: selected
+								? selected.includes(item.title)
+									? "primary.main"
+									: "background.paper"
+								: "background.paper",
+							color: selected
+								? selected.includes(item.title)
+									? "background.paper"
+									: "secondary.dark"
+								: "secondary.dark"
 						}}
 					>
 						<CardActionArea
@@ -23,7 +31,7 @@ export default function PantryGrid({ itemData, variant, onClick, selected }) {
 							sx={{
 								height: 150,
 								width: 150,
-								backgroundColor: alpha("#fff", 0),
+								backgroundColor: alpha("background.paper", 0),
 								alignItems: "center",
 								justifyContent: "center",
 								display: "flex",

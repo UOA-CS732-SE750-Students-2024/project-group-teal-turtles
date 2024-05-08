@@ -98,7 +98,7 @@ function GenerationOptions() {
 									"& .MuiOutlinedInput-root": {
 										borderRadius: 4,
 										outline: "none",
-										backgroundColor: "#FFFFFF"
+										backgroundColor: "background.paper"
 									}
 								}}
 								InputProps={{
