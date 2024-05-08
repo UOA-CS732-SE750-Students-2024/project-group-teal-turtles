@@ -1,10 +1,21 @@
 "use client";
 
 import React from "react";
-import { Button, Card, Typography, LinearProgress, CircularProgress } from "@mui/material";
+import {
+	Button,
+	Card,
+	Typography,
+	LinearProgress,
+	CircularProgress,
+	CardActionArea,
+	CardContent,
+	IconButton,
+	Dialog
+} from "@mui/material";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { getAuth } from "firebase/auth";
+import axios from "axios";
 import {
 	addGeneratedMeal,
 	saveParameters,
@@ -17,6 +28,7 @@ import {
 import { useRouter } from "next/navigation";
 import { Stack } from "@mui/material";
 import useDataStore from "@/lib/store";
+import Image from "next/image";
 
 export default function ViewMeal() {
 	const {
@@ -43,22 +55,21 @@ export default function ViewMeal() {
 	const searchParams = useSearchParams();
 	const router = useRouter();
 	const [mealCurrentlyGenerating, setMealCurrentlyGenerating] = useState(false);
-
-	const url = "https://api.segmind.com/v1/sdxl1.0-txt2img";
-	const api_key = process.env.NEXT_PUBLIC_SEGMIND_API_KEY;
+	const [imageSrc, setImageSrc] = useState("");
+	const [open, setOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const data = {
-		prompt:
-			"4k, realistic, tasty looking dish, highly detailed, bokeh, cinemascope, moody, gorgeous, film grain, grainy, bulgogi meat on rice",
-		negative_prompt: "ugly, tiling, people, blurry, blurred, unappealing",
-		style: "base",
+		prompt: `4k, realistic, tasty looking dish, highly detailed, bokeh, cinemascope, moody, gorgeous, film grain, grainy, ${lastMeal} on a plate, ingredients of dish ${
+			lastIngredientsUser != null ? lastIngredientsUser.join(" ") : ""
+		} ${lastIngredientsNeeded != null ? lastIngredientsNeeded.join(" ") : ""},`,
+		negative_prompt: "ugly, tiling, people, blurry, blurred, unappealing, background items",
 		img_width: 1024,
 		img_height: 1024,
 		base64: true
 	};
 
 	useEffect(() => {
-		console.log(searchParams);
 		if (searchParams.get("from") === "generation") {
 			setMealCurrentlyGenerating(true);
 			setLastMeal("");
@@ -66,7 +77,6 @@ export default function ViewMeal() {
 			setLastIngredientQuantities([]);
 			setLastIngredientsUser([]);
 			setLastIngredientsNeeded([]);
-			console.log("generating");
 
 			try {
 				async function fetchMeal() {
@@ -163,9 +173,14 @@ export default function ViewMeal() {
 
 	async function generateImage() {
 		try {
-			const response = await axios.post(url, data, { headers: { "x-api-key": api_key } });
-			console.log(response.data);
+			setLoading(true);
+			const response = await axios.post(process.env.NEXT_PUBLIC_SEGMIND_URL, data, {
+				headers: { "x-api-key": process.env.NEXT_PUBLIC_SEGMIND_API_KEY }
+			});
+			setImageSrc(response.data.image);
+			setLoading(false);
 		} catch (error) {
+			setLoading(false);
 			console.error("Error:", error.response.data);
 		}
 	}
@@ -173,12 +188,14 @@ export default function ViewMeal() {
 	return (
 		<Stack sx={{ backgroundColor: "background.paper" }}>
 			<Suspense>
-				<Stack justifyContent="space-between" paddingX="20vw">
+				<Stack justifyContent="space-between" paddingX="20vw" minHeight="calc(100vh - 70px)">
 					{lastMeal !== "" && (
 						<Typography variant="h2" textAlign="center" fontWeight="700" mt="10vh" mb="5vh">
 							{lastMeal}
 						</Typography>
 					)}
+					{/* TODO: DELETE THIS AT THE END, just to save API Calls */}
+					<Button onClick={() => generateImage()}>View Meal Image</Button>
 					<Card
 						elevation={5}
 						sx={{
@@ -189,7 +206,7 @@ export default function ViewMeal() {
 					>
 						{lastMeal === "" && mealCurrentlyGenerating && (
 							<Stack>
-								<Typography variant="h4" align="center">
+								<Typography variant="h4" align="center" sx={{ mt: 4 }}>
 									Generating a delicious meal...
 								</Typography>
 								<LinearProgress sx={{ mt: 4 }} />
@@ -207,8 +224,72 @@ export default function ViewMeal() {
 							</Stack>
 						)}
 
-						{lastMeal !== "" && (
+						{lastMeal !== "" && lastRecipe === "" && (
 							<Stack alignItems="center">
+								<CircularProgress sx={{ mt: 4 }} size={50} />
+								<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.main" }}>
+									Generating recipe...
+								</Typography>
+							</Stack>
+						)}
+
+						{lastRecipe !== "" && (
+							<Stack alignItems="center" sx={{ mt: 8 }} spacing="30px" width="100%" paddingX="4vw">
+								{loading ? (
+									<Stack alignItems="center" spacing="30px">
+										<CircularProgress sx={{ mt: 4 }} size={50} />
+										<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.main" }}>
+											Generating meal image...
+										</Typography>
+									</Stack>
+								) : imageSrc !== "" ? (
+									<Button
+										variant="contained"
+										sx={{ p: 1, borderRadius: 4 }}
+										onClick={() => {
+											setOpen(true);
+										}}
+									>
+										<Image
+											src={imageSrc !== "" ? `data:image/png;base64,${imageSrc}` : "/user.png"}
+											width={384}
+											height={384}
+											alt="Generated depiction of the meal"
+											style={{ borderRadius: 8 }}
+										/>
+									</Button>
+								) : (
+									<></>
+								)}
+								<Stack alignItems="center">
+									<Typography variant="h4" fontWeight="700">
+										Ingredients
+									</Typography>
+									{lastIngredientQuantities.map((ingredient, index) => (
+										<Typography textAlign="center" key={index} variant="h5">
+											{ingredient}
+										</Typography>
+									))}
+								</Stack>
+								<Stack alignItems="center">
+									<Typography variant="h4" fontWeight="700">
+										Instructions
+									</Typography>
+									{lastRecipe.map((step, index) => (
+										<Typography textAlign="center" key={index} variant="h5">
+											{step}
+										</Typography>
+									))}
+								</Stack>
+								<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }} textAlign="center">
+									DISCLAIMER: This recipe and the image are AI-generated and has not been verified for accuracy or
+									safety. It may contain errors. Always use your best judgement when making AI-generated dishes.
+								</Typography>
+							</Stack>
+						)}
+
+						{lastMeal !== "" && (
+							<Stack alignItems="center" paddingX="4vw">
 								<Stack textAlign="center" sx={{ mt: 4 }}>
 									<Typography variant="h6" fontWeight="700">
 										Ingredients needed from Pantry: {lastIngredientsUser.join(", ")}
@@ -221,35 +302,17 @@ export default function ViewMeal() {
 								</Stack>
 							</Stack>
 						)}
-						{lastMeal !== "" && lastRecipe === "" && <CircularProgress sx={{ mt: 4 }} size={50} />}
-
-						{lastRecipe !== "" && (
-							<Stack alignItems="center" sx={{ mt: 4 }} spacing={2} width="100%" paddingX="4vw">
-								<Stack alignItems="center">
-									<Typography variant="h4" fontWeight="700">
-										Ingredients
-									</Typography>
-									{lastIngredientQuantities.map((ingredient, index) => (
-										<Typography key={index} variant="h6">
-											{ingredient}
-										</Typography>
-									))}
-								</Stack>
-								<Stack alignItems="center">
-									<Typography variant="h4" fontWeight="700">
-										Instructions
-									</Typography>
-									{lastRecipe.map((step, index) => (
-										<Typography key={index} variant="h6">
-											{step}
-										</Typography>
-									))}
-								</Stack>
-							</Stack>
-						)}
 					</Card>
 				</Stack>
 			</Suspense>
+			<Dialog open={open} onClose={() => setOpen(false)} maxWidth="lg">
+				<Image
+					src={imageSrc !== "" ? `data:image/png;base64,${imageSrc}` : ""}
+					width={1024}
+					height={1024}
+					alt="Generated depiction of the meal"
+				/>
+			</Dialog>
 		</Stack>
 	);
 }
