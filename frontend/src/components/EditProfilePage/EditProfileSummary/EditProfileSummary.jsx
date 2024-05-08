@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { TextField, Button, Modal, Paper, Stack } from "@mui/material";
 
-function EditProfileSummary({ isOpen, setIsOpen }) {
-	const handleClose = () => {
-		setIsOpen(false);
-	};
-
+function EditProfileSummary({ isOpen, handleClose }) {
 	return (
-		<Modal open={isOpen} onClose={handleClose}>
+		<Modal open={isOpen}>
 			<Paper style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
 				<form>
 					<Stack>

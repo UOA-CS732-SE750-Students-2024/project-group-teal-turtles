@@ -4,13 +4,16 @@ import ProfileSummary from "./ProfileSummary/ProfileSummary";
 import { Stack } from "@mui/system";
 import { Typography, Button } from "@mui/material";
 import EditProfileSummary from "./EditProfileSummary/EditProfileSummary";
+import Link from "next/link";
+import useDataStore from "@/lib/store";
+import QuickSearchModal from "./QuickSearch/QuickSearchModal";
 
 function EditProfilePage() {
-	const [isEditModalOpen, setEditModalOpen] = React.useState(false);
+	const { userIngredients, setUserIngredients, userDislikedIngredients, setUserDislikedIngredients } = useDataStore();
 
-	const handleEditProfile = () => {
-		setEditModalOpen(true);
-	};
+	const [isEditProfile, setEditProfile] = React.useState(false);
+	const [isEditUserIngredients, setEditUserIngredients] = React.useState(false);
+	const [isEditDislikedIngredients, setEditDislikedIngredients] = React.useState(false);
 
 	const handleLogout = () => {
 		console.log("LOGOUT CODE HERE");
@@ -24,20 +27,66 @@ function EditProfilePage() {
 				alignItems="center"
 				sx={{ width: "40%", margin: "0 auto", padding: "10vh" }}
 			>
-				<ProfileSummary />
-				<EditProfileSummary isOpen={isEditModalOpen} setIsOpen={setEditModalOpen} />
-				<Button variant="contained" onClick={handleEditProfile}>
-					Edit Profile
-				</Button>
-				<Button variant="contained" onClick={handleLogout}>
-					Logout
-				</Button>
-				<Typography variant="h5">Pantry</Typography>
-				<IngredientSummary />
-				<Typography variant="h5">Liked Ingredients</Typography>
-				<IngredientSummary />
-				<Typography variant="h5">Disliked Ingredients</Typography>
-				<IngredientSummary />
+				<>
+					<ProfileSummary />
+					<EditProfileSummary
+						isOpen={isEditProfile}
+						handleClose={() => {
+							setEditProfile(false);
+						}}
+					/>
+					<Button
+						variant="contained"
+						onClick={() => {
+							setEditProfile(true);
+						}}
+					>
+						Edit Profile
+					</Button>
+					<Button variant="contained" onClick={handleLogout}>
+						Logout
+					</Button>
+				</>
+				<>
+					<Typography variant="h5">Pantry</Typography>
+					<Button
+						variant="contained"
+						onClick={() => {
+							setEditUserIngredients(true);
+						}}
+					>
+						Edit
+					</Button>
+					<IngredientSummary ingredients={userIngredients} />
+					<QuickSearchModal
+						selectedIngredients={userIngredients}
+						setSelectedIngredients={setUserIngredients}
+						isOpen={isEditUserIngredients}
+						handleClose={() => {
+							setEditUserIngredients(false);
+						}}
+					/>
+				</>
+				<>
+					<Typography variant="h5">Disliked Ingredients</Typography>
+					<Button
+						variant="contained"
+						onClick={() => {
+							setEditDislikedIngredients(true);
+						}}
+					>
+						Edit
+					</Button>
+					<IngredientSummary ingredients={userDislikedIngredients} />
+					<QuickSearchModal
+						selectedIngredients={userDislikedIngredients}
+						setSelectedIngredients={setUserDislikedIngredients}
+						isOpen={isEditDislikedIngredients}
+						handleClose={() => {
+							setEditDislikedIngredients(false);
+						}}
+					/>
+				</>
 			</Stack>
 		</>
 	);
