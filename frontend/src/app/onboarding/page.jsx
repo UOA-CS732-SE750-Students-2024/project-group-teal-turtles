@@ -7,6 +7,8 @@ import { Stack, Typography, Button, IconButton } from "@mui/material";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useDataStore from "@/lib/store";
+import ingredients from "../../ingredients.json";
+import meals from "../../meals.json";
 
 function Onboarding() {
 	const [page, setPage] = useState("meals");
@@ -56,7 +58,7 @@ function Onboarding() {
 						</Stack>
 						<Stack marginY="30px">
 							<PantryGrid
-								itemData={ingredients}
+								itemData={ingredientsOnboarding}
 								variant="onboarding"
 								onClick={handleIngredientsChange}
 								selected={userIngredients}
@@ -104,107 +106,6 @@ function Onboarding() {
 	);
 }
 
-// TODO: Update images here
-const meals = [
-	{
-		img: "/images/pantry-icons/meals/pizza.png",
-		title: "Pizza"
-	},
-	{
-		img: "/images/pantry-icons/meals/ramen.png",
-		title: "Ramen"
-	},
-	{
-		img: "/images/pantry-icons/meals/hamburger.png",
-		title: "Hamburger"
-	},
-	{
-		img: "/images/pantry-icons/meals/paella.png",
-		title: "Paella"
-	},
-	{
-		img: "/images/pantry-icons/meals/chickenTikka.png",
-		title: "Chicken Tikka"
-	},
-	{
-		img: "/images/pantry-icons/meals/taco.png",
-		title: "Tacos"
-	},
-	{
-		img: "/images/pantry-icons/meals/sushi.png",
-		title: "Sushi"
-	},
-	{
-		img: "/images/pantry-icons/meals/lasagna.png",
-		title: "Lasagna"
-	},
-	{
-		img: "/images/pantry-icons/meals/fried-chicken.png",
-		title: "Fried Chicken"
-	},
-	{
-		img: "/images/pantry-icons/meals/pie.png",
-		title: "Shepherd's Pie"
-	},
-	{
-		img: "/images/pantry-icons/meals/ribs.png",
-		title: "Beef Ribs"
-	},
-	{
-		img: "/images/pantry-icons/meals/curry.png",
-		title: "Spicy Curry"
-	}
-];
-
-const ingredients = [
-	{
-		img: "/images/pantry-icons/carbohydrates/bread/bun.png",
-		title: "Bun"
-	},
-	{
-		img: "/images/pantry-icons/protein/eggs.png",
-		title: "Eggs"
-	},
-	{
-		img: "/images/pantry-icons/vegetables/lettuce.png",
-		title: "Lettuce"
-	},
-	{
-		img: "/images/pantry-icons/vegetables/onion.png",
-		title: "Onion"
-	},
-	{
-		img: "/images/pantry-icons/dairy/milk.png",
-		title: "Milk"
-	},
-	{
-		img: "/images/pantry-icons/fruit/tomato.png",
-		title: "Tomato"
-	},
-	{
-		img: "/images/pantry-icons/vegetables/garlic.png",
-		title: "Garlic"
-	},
-	{
-		img: "/images/pantry-icons/vegetables/carrot.png",
-		title: "Carrot"
-	},
-	{
-		img: "/images/pantry-icons/dairy/butter.png",
-		title: "Butter"
-	},
-	{
-		img: "/images/pantry-icons/carbohydrates/pasta/penne.png",
-		title: "Spaghetti"
-	},
-	{
-		img: "/images/pantry-icons/protein/beefpatty.png",
-		title: "Beef patty"
-	},
-	{
-		img: "/images/pantry-icons/protein/chickenwhole.png",
-		title: "Chicken drum"
-	}
-];
+const ingredientsOnboarding = ingredients.filter((item) => item.categories.includes("Onboarding"));
 
 export default Onboarding;

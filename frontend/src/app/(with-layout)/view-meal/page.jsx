@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Card, Typography, LinearProgress, CircularProgress, Dialog } from "@mui/material";
+import { Button, Card, Typography, LinearProgress, CircularProgress, Dialog, Box } from "@mui/material";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { getAuth } from "firebase/auth";
@@ -182,6 +182,29 @@ export default function ViewMeal() {
 			}
 		}
 
+		// Dynamic sizing for enlarged image
+		const [imageSize, setImageSize] = useState(0);
+
+		useEffect(() => {
+			function handleResize() {
+				const windowWidth = window.innerWidth;
+				const windowHeight = window.innerHeight;
+				const smallerDimension = Math.min(windowWidth, windowHeight) * 0.9;
+				setImageSize(smallerDimension);
+			}
+
+			// Call the function once to set initial size
+			handleResize();
+
+			// Attach event listener for resize
+			window.addEventListener("resize", handleResize);
+
+			// Cleanup
+			return () => {
+				window.removeEventListener("resize", handleResize);
+			};
+		}, []);
+
 		return (
 			<Stack sx={{ backgroundColor: "background.paper" }}>
 				<Suspense>
@@ -247,7 +270,7 @@ export default function ViewMeal() {
 											}}
 										>
 											<Image
-												src={lastMealImage !== "" ? `data:image/png;base64,${lastMealImage}` : "/user.png"}
+												src={lastMealImage !== "" ? `data:image/png;base64,${lastMealImage}` : ""}
 												width={384}
 												height={384}
 												alt="Generated depiction of the meal"
@@ -323,16 +346,28 @@ export default function ViewMeal() {
 					</Stack>
 				</Suspense>
 				<Dialog open={open} onClose={() => setOpen(false)} maxWidth="lg">
-					<Image
-						src={lastMealImage !== "" ? `data:image/png;base64,${lastMealImage}` : ""}
-						width={1024}
-						height={1024}
-						alt="Generated depiction of the meal"
-					/>
+					<Stack
+						sx={{
+							width: imageSize + "px",
+							height: imageSize + "px",
+							position: "relative",
+							overflow: "hidden",
+							margin: "auto"
+						}}
+					>
+						<Image
+							src={lastMealImage !== "" ? `data:image/png;base64,${lastMealImage}` : ""}
+							width={imageSize}
+							height={imageSize}
+							layout="responsive"
+							alt="Generated depiction of the meal"
+						/>
+					</Stack>
 				</Dialog>
 			</Stack>
 		);
 	}
+
 	return (
 		<Suspense>
 			<View />

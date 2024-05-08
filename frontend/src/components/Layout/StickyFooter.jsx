@@ -24,7 +24,8 @@ export default function StickyFooter() {
 		<Card
 			component="footer"
 			sx={{
-				mt: "auto"
+				mt: "auto",
+				zIndex: 100
 			}}
 		>
 			<Box sx={{ backgroundColor: grey[300], height: "1px" }} />
