@@ -296,7 +296,7 @@ export default function ViewMeal() {
 											</Typography>
 										)}
 
-										{lastMealImage !== "" && (
+										{lastMealImage !== "" && lastMeal !== "" && lastRecipe !== "" && (
 											<EmailShareButton
 												url="IntelligentEats.com"
 												subject={`Take a look at the ${lastMeal} Recipe I generated from Intelligent Eats.`}
