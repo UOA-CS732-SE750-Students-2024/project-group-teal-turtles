@@ -218,7 +218,7 @@ export default function ViewMeal() {
 						{lastMeal === "" && !mealCurrentlyGenerating && (
 							<Stack alignItems="center">
 								<Typography variant="h4" align="center" fontWeight="bold" sx={{ mt: 4 }}>
-									Please go to Generate to create a personalised recipe
+									Please go to Generate to create a personalised recipe.
 								</Typography>
 								<Button
 									variant="contained"

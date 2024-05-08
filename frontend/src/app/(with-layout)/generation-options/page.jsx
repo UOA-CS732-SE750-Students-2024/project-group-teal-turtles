@@ -38,7 +38,12 @@ function GenerationOptions() {
 		};
 
 		return (
-			<Stack height="calc(100vh - 70px)" justifyContent="space-between" paddingX="20vw">
+			<Stack
+				height="calc(100vh - 70px)"
+				justifyContent="space-between"
+				paddingX="20vw"
+				sx={{ backgroundColor: "background.paper" }}
+			>
 				<Stack alignItems="center">
 					<Typography variant="h2" align="center" fontWeight="bold" mt="10vh" mb="2vh">
 						Recipe Generator

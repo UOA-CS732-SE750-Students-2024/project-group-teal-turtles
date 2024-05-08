@@ -3,7 +3,7 @@ import React from "react";
 
 function MealGenerationCard({ header, description, onClick }) {
 	return (
-		<Card sx={{ borderRadius: 4 }}>
+		<Card sx={{ borderRadius: 4 }} elevation={5}>
 			<CardActionArea
 				onClick={onClick}
 				sx={{ p: "3vh", alignItems: "center", display: "flex", flexDirection: "column" }}

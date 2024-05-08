@@ -26,7 +26,7 @@ function Dashboard() {
 	let ingredientsPantry = ingredients.filter((item) => userIngredients.includes(item.title));
 
 	return (
-		<Stack alignItems="center" justifyContent="center" sx={{ backgroundColor: "background.default" }}>
+		<Stack alignItems="center" justifyContent="center" sx={{ backgroundColor: "background.paper" }}>
 			<Container sx={styles.container}>
 				<Typography variant="h2" align="center" fontWeight="bold" gutterBottom sx={{ color: "primary.dark" }}>
 					Generate a Meal
