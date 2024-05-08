@@ -3,13 +3,19 @@
 import React from "react";
 import PantryTabs from "@/components/Pantry/PantryTabs";
 import { Box, Stack } from "@mui/material";
-import QuickSearch from "@/components/EditProfilePage/QuickSearch/QuickSearch";
+import QuickSearchModal from "@/components/EditProfilePage/QuickSearch/QuickSearchModal";
 
 function Pantry() {
 	const [ingredients, setIngredients] = React.useState([]);
+	const [modalOpen, setModalOpen] = React.useState(true);
 	return (
 		<>
-			<QuickSearch ingredients={ingredients} setIngredients={setIngredients} />
+			<QuickSearchModal
+				ingredients={ingredients}
+				setIngredients={setIngredients}
+				isOpen={modalOpen}
+				handleClose={()=>{setModalOpen(false)}}
+			/>
 			<Stack sx={{ minHeight: "calc(100vh - 70px)" }} alignItems="center" justifyContent="center">
 				<Box
 					sx={{
