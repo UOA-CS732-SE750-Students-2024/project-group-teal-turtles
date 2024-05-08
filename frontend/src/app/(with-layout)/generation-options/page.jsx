@@ -249,20 +249,23 @@ function GenerationOptions() {
 									))}
 								</Select>
 							</Stack>
-							<Stack alignItems="center">
-								<Button onClick={() => router.push("/pantry")}>
-									<Typography variant="h6" textTransform="none">
-										Edit your ingredients from your Pantry:
-									</Typography>
-								</Button>
-								<Tooltip title="Disliked ingaredients will not be included in the generated meal">
-									<Button onClick={() => router.push("/edit-profile")}>
+							{(generateOptionParam === "Basic" || generateOptionParam === "Strict") && (
+								<Stack alignItems="center">
+									<Button onClick={() => router.push("/pantry")}>
 										<Typography variant="h6" textTransform="none">
-											Edit your disliked ingredients from your Profile
+											Edit your ingredients from your Pantry:
 										</Typography>
 									</Button>
-								</Tooltip>
-							</Stack>
+									<Tooltip title="Disliked ingaredients will not be included in the generated meal">
+										<Button onClick={() => router.push("/edit-profile")}>
+											<Typography variant="h6" textTransform="none">
+												Edit your disliked ingredients from your Profile
+											</Typography>
+										</Button>
+									</Tooltip>
+								</Stack>
+							)}
+
 							<Button
 								variant="contained"
 								onClick={handleGenerate}
