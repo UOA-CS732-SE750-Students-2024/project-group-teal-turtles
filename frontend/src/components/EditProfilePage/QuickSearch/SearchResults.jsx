@@ -1,23 +1,10 @@
-import React from "react";
-import { categorizeIngredients } from "./SearchUtil";
-import { Divider, Grid, Card, CardMedia } from "@mui/material";
-import { render } from "@testing-library/react";
+import { searchIngredients, categorizeIngredients } from "@/components/EditProfilePage/QuickSearch/SearchUtil";
+import { Divider } from "@mui/material";
+import DisplayIngredients from "@/components/EditProfilePage/QuickSearch/DisplayIngredients";
+import ingredients from "@/ingredients.json";
 
-function DisplayIngredients({ ingredients }) {
-	return (
-		<Grid container spacing={2}>
-			{ingredients.map((ingredient) => (
-				<Grid item key={ingredient.title}>
-					<Card sx={{ width: 50, height: 50 }}>
-						<CardMedia component="img" image={ingredient.img} alt={ingredient.title} />
-					</Card>
-				</Grid>
-			))}
-		</Grid>
-	);
-}
-
-function SearchResults({ searchResults }) {
+function SearchResults({ searchTerm, selectedIngredients, handleSelectIngredient }) {
+	const searchResults = searchTerm == "" ? ingredients : searchIngredients(searchTerm);
 	const categorizedResults = categorizeIngredients(searchResults);
 
 	const renderedResults = [];
@@ -26,17 +13,16 @@ function SearchResults({ searchResults }) {
 		renderedResults.push(
 			<>
 				<Divider key={category}>{category.toUpperCase()}</Divider>
-				<DisplayIngredients ingredients={ingredients} />
+				<DisplayIngredients
+					ingredients={ingredients}
+					selectedIngredients={selectedIngredients}
+					handleSelectIngredient={handleSelectIngredient}
+				/>
 			</>
 		);
 	}
 
-	return (
-		<>
-			{JSON.stringify(categorizedResults)}
-			{renderedResults}
-		</>
-	);
+	return <>{renderedResults}</>;
 }
 
 export default SearchResults;
