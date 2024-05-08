@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 
-function CircularCard({ title, body, back }) {
+function LandingCard({ title, body, back }) {
 	const [flipped, setFlipped] = useState(false);
 
 	return (
@@ -144,17 +144,17 @@ function Landing() {
 						justifyContent="center"
 						sx={{ backgroundColor: "background.default" }}
 					>
-						<CircularCard
+						<LandingCard
 							title="Unlimited"
 							body="Recipe Generation"
 							back="Intelligent Eats allows for unlimited generated recipes for FREE. All you have to do is Sign up."
 						/>
-						<CircularCard
+						<LandingCard
 							title="Fast"
 							body="Generation Times"
 							back="No need to spend precious time searching for meals - We'll generate you a meal in 10 seconds or less."
 						/>
-						<CircularCard
+						<LandingCard
 							title="AI"
 							body="Tailored Recipes"
 							back="All Recipes and Meal images are generated using the latest, most powerful AI models."
