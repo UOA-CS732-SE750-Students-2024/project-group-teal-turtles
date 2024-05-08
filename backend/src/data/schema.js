@@ -10,9 +10,9 @@ const userSchema = new Schema({
 	dislikedIngredients: { type: [{ type: String }], default: [] },
 	parameters: {
 		numberOfPeople: { type: Number, default: 4 },
-		mealType: { type: String, enum: ["breakfast", "lunch", "dinner"], default: "dinner" },
-		cuisine: { type: String, default: "" },
-		dietaryRequirements: [{ type: String, default: [] }]
+		mealType: { type: String, enum: ["Breakfast", "Lunch", "Dinner"], default: "Dinner" },
+		cuisine: { type: String, default: "Any" },
+		dietaryRequirements: [{ type: String, default: "None" }]
 	}
 });
 
