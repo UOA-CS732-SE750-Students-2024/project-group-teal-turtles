@@ -177,7 +177,7 @@ function ResponsiveAppBar() {
 										<Button
 											key={idx}
 											onClick={() => router.push(page.url)}
-											sx={{ color: "black", px: 2, py: 1, width: "100%" }}
+											sx={{ color: "black", px: 2, py: 1, width: "100%", fontWeight: "bold" }}
 										>
 											{page.name}
 										</Button>
@@ -232,7 +232,15 @@ function ResponsiveAppBar() {
 								<Button
 									key={idx}
 									onClick={() => router.push(page.url)}
-									sx={{ px: 2, mx: 1, color: "white", display: "block", height: "100%", alignSelf: "stretch" }}
+									sx={{
+										px: 2,
+										mx: 1,
+										color: "white",
+										display: "block",
+										height: "100%",
+										alignSelf: "stretch",
+										fontWeight: "bold"
+									}}
 								>
 									{page.name}
 								</Button>
@@ -266,13 +274,13 @@ function ResponsiveAppBar() {
 								<MenuItem onClick={handleCloseUserMenu} sx={{ p: 0 }}>
 									<Button
 										onClick={() => router.push("/edit-profile")}
-										sx={{ color: "black", px: 2, py: 1, width: "100%" }}
+										sx={{ color: "black", px: 2, py: 1, width: "100%", fontWeight: "bold" }}
 									>
 										Profile
 									</Button>
 								</MenuItem>
 								<MenuItem sx={{ p: 0 }}>
-									<Button onClick={handleLogout} sx={{ color: "red", px: 2, py: 1 }}>
+									<Button onClick={handleLogout} sx={{ color: "red", px: 2, py: 1, fontWeight: "bold" }}>
 										Log out
 									</Button>
 								</MenuItem>
