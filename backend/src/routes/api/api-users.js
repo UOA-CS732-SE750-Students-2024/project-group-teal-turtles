@@ -22,7 +22,6 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
 	try {
 		const user = await createUser(req.uid);
-		console.log("created");
 		return res.status(201).json(user);
 	} catch (err) {
 		return res.status(err.status).json({ error: err.error });
