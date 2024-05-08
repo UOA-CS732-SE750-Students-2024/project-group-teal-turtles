@@ -6,9 +6,19 @@ import { Typography, Button } from "@mui/material";
 import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
 import EditUserInfoModal from "./EditUserInfo/EditUserInfoModal";
+import DisplayMeals from "./DisplayMeals/DisplayMeals";
 
 function EditProfilePage() {
-	const { userIngredients, setUserIngredients, userDislikedIngredients, setUserDislikedIngredients } = useDataStore();
+	const {
+		userIngredients,
+		setUserIngredients,
+		userDislikedIngredients,
+		setUserDislikedIngredients,
+		userFavouriteMeals,
+		setUserFavouriteMeals,
+		userGeneratedMeals,
+		setUserGeneratedMeals
+	} = useDataStore();
 
 	const [isEditProfile, setEditProfile] = React.useState(false);
 	const [isEditUserIngredients, setEditUserIngredients] = React.useState(false);
@@ -16,6 +26,11 @@ function EditProfilePage() {
 
 	const handleLogout = () => {
 		console.log("LOGOUT CODE HERE");
+	};
+
+	const initializeMeals = () => {
+		setUserFavouriteMeals(["horse"]);
+		setUserGeneratedMeals(["horse", "tumors", "after", "eating", "the", "meals", "from", "here"]);
 	};
 
 	return (
@@ -45,6 +60,28 @@ function EditProfilePage() {
 					<Button variant="contained" onClick={handleLogout}>
 						Logout
 					</Button>
+				</>
+				<Button onClick={initializeMeals}>INITIALIZE MEAL HISTORY AND FAVOURITES</Button>
+				<>
+					<Typography variant="h5">Meal History</Typography>
+
+					<DisplayMeals
+						userFavouriteMeals={userFavouriteMeals}
+						setUserFavouriteMeals={setUserFavouriteMeals}
+						userGeneratedMeals={userGeneratedMeals}
+						setUserGeneratedMeals={setUserGeneratedMeals}
+					/>
+				</>
+				<>
+					<Typography variant="h5">Favourite Meals</Typography>
+
+					<DisplayMeals
+						showFavouriteOnly={true}
+						userFavouriteMeals={userFavouriteMeals}
+						setUserFavouriteMeals={setUserFavouriteMeals}
+						userGeneratedMeals={userGeneratedMeals}
+						setUserGeneratedMeals={setUserGeneratedMeals}
+					/>
 				</>
 				<>
 					<Typography variant="h5">Pantry</Typography>
