@@ -34,6 +34,10 @@ function EditProfilePage() {
 				</Button>
 				<Typography variant="h5">Pantry</Typography>
 				<IngredientSummary />
+				<Typography variant="h5">Liked Ingredients</Typography>
+				<IngredientSummary />
+				<Typography variant="h5">Disliked Ingredients</Typography>
+				<IngredientSummary />
 			</Stack>
 		</>
 	);

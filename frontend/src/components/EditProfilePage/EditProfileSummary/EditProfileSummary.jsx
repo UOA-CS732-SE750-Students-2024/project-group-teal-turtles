@@ -11,10 +11,9 @@ function EditProfileSummary({ isOpen, setIsOpen }) {
 			<Paper style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
 				<form>
 					<Stack>
-						<TextField label="First Name" variant="outlined" />
-						<TextField label="Last Name" variant="outlined" />
+						<TextField label="Username" variant="outlined" />
+						<TextField label="Password" variant="outlined" />
 						<TextField label="Email" variant="outlined" />
-						<TextField label="Description" variant="outlined" />
 						<Button variant="contained" color="primary" type="submit" onClick={handleClose}>
 							Save
 						</Button>
