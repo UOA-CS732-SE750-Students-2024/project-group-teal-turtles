@@ -132,7 +132,7 @@ function CreateAccount() {
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
-				<Typography variant="h3" fontWeight="700">
+				<Typography variant="h3" fontWeight="bold">
 					Sign Up
 				</Typography>
 				<Typography variant="h5">Don't have an account? We'll create one for you.</Typography>
@@ -182,7 +182,7 @@ function CreateAccount() {
 				/>
 
 				{errorToPrint && !googleLoading && (
-					<Typography variant="h6" fontWeight="700" sx={{ color: "primary.main" }}>
+					<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
 						{errorToPrint}
 					</Typography>
 				)}
@@ -199,7 +199,7 @@ function CreateAccount() {
 							Create Account
 						</Typography>
 					</Button>
-					<Typography variant="h6" fontWeight="700">
+					<Typography variant="h6" fontWeight="bold">
 						OR
 					</Typography>
 					<Button

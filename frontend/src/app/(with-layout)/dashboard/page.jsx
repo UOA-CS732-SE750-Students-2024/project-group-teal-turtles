@@ -26,16 +26,16 @@ function Dashboard() {
 	let ingredientsPantry = ingredients.filter((item) => userIngredients.includes(item.title));
 
 	return (
-		<Stack alignItems="center" justifyContent="center">
+		<Stack alignItems="center" justifyContent="center" sx={{ backgroundColor: "background.default" }}>
 			<Container sx={styles.container}>
-				<Typography variant="h2" align="center" gutterBottom>
+				<Typography variant="h2" align="center" fontWeight="bold" gutterBottom sx={{ color: "primary.dark" }}>
 					Generate a Meal
 				</Typography>
 				<MealGenerationPanel />
 			</Container>
 			<Divider orientation="horizontal" variant="middle" width="600px" />
 			<Container sx={styles.container}>
-				<Typography variant="h2" align="center" gutterBottom>
+				<Typography variant="h2" align="center" fontWeight="bold" gutterBottom sx={{ color: "primary.dark" }}>
 					Your Pantry
 				</Typography>
 
@@ -48,9 +48,15 @@ function Dashboard() {
 						/>
 					</Box>
 				) : (
-					<Button onClick={() => router.push("/pantry")} variant="contained" sx={{ p: 2 }}>
-						<AddIcon sx={{ mr: 1 }} />
-						Add Ingredients
+					<Button
+						onClick={() => router.push("/pantry")}
+						variant="contained"
+						sx={{ p: 2, borderRadius: 4 }}
+						startIcon={<AddIcon />}
+					>
+						<Typography textTransform="none" variant="h6" fontWeight="bold">
+							Add Ingredients
+						</Typography>
 					</Button>
 				)}
 			</Container>

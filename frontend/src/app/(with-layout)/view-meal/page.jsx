@@ -193,7 +193,7 @@ export default function ViewMeal() {
 			<Suspense>
 				<Stack justifyContent="space-between" paddingX="20vw" minHeight="calc(100vh - 70px)">
 					{lastMeal !== "" && (
-						<Typography variant="h2" textAlign="center" fontWeight="700" mt="10vh" mb="5vh">
+						<Typography variant="h2" textAlign="center" fontWeight="bold" mt="10vh" mb="5vh">
 							{lastMeal}
 						</Typography>
 					)}
@@ -264,7 +264,7 @@ export default function ViewMeal() {
 									<></>
 								)}
 								<Stack alignItems="center">
-									<Typography variant="h4" fontWeight="700">
+									<Typography variant="h4" fontWeight="bold">
 										Ingredients
 									</Typography>
 									{lastIngredientQuantities.map((ingredient, index) => (
@@ -274,7 +274,7 @@ export default function ViewMeal() {
 									))}
 								</Stack>
 								<Stack alignItems="center">
-									<Typography variant="h4" fontWeight="700">
+									<Typography variant="h4" fontWeight="bold">
 										Instructions
 									</Typography>
 									{lastRecipe.map((step, index) => (
@@ -293,11 +293,11 @@ export default function ViewMeal() {
 						{lastMeal !== "" && (
 							<Stack alignItems="center" paddingX="4vw">
 								<Stack textAlign="center" sx={{ mt: 4 }}>
-									<Typography variant="h6" fontWeight="700">
+									<Typography variant="h6" fontWeight="bold">
 										Ingredients needed from Pantry: {lastIngredientsUser.join(", ")}
 									</Typography>
 									{lastIngredientsNeeded.length > 0 && (
-										<Typography variant="h6" fontWeight="700">
+										<Typography variant="h6" fontWeight="bold">
 											Ingredients needed outside Pantry: {lastIngredientsNeeded.join(", ")} {}
 										</Typography>
 									)}

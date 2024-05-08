@@ -40,7 +40,7 @@ function GenerationOptions() {
 		return (
 			<Stack height="calc(100vh - 70px)" justifyContent="space-between" paddingX="20vw">
 				<Stack alignItems="center">
-					<Typography variant="h2" align="center" fontWeight="700" mt="10vh" mb="2vh">
+					<Typography variant="h2" align="center" fontWeight="bold" mt="10vh" mb="2vh">
 						Recipe Generator
 					</Typography>
 					<Stack direction="row" justifyContent="space-between" spacing="20px">
@@ -128,7 +128,7 @@ function GenerationOptions() {
 									? "Strict Mode will not add new ingredients outside of your pantry list."
 									: "Remix Mode takes a meal, figures out the ingredients in it and will generate you a new meal based on those ingredients."}
 							</Typography>
-							<Typography fontWeight="700" variant="h4">
+							<Typography fontWeight="bold" variant="h4">
 								I want a
 								<Select
 									value={userParameters !== null ? userParameters.mealType : ""}

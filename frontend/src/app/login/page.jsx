@@ -135,7 +135,7 @@ function Login() {
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
-				<Typography variant="h3" fontWeight="700">
+				<Typography variant="h3" fontWeight="bold">
 					Login
 				</Typography>
 				<Typography variant="h5">Sign in to access saved recipes and information.</Typography>
@@ -166,7 +166,7 @@ function Login() {
 					}}
 				/>
 				{errorToPrint && !loading && !googleLoading && (
-					<Typography fontWeight="700" sx={{ color: "primary.main" }}>
+					<Typography fontWeight="bold" sx={{ color: "primary.main" }}>
 						{errorToPrint}
 					</Typography>
 				)}
@@ -186,7 +186,7 @@ function Login() {
 							Sign in
 						</Typography>
 					</Button>
-					<Typography variant="h6" fontWeight="700">
+					<Typography variant="h6" fontWeight="bold">
 						OR
 					</Typography>
 					<Button
