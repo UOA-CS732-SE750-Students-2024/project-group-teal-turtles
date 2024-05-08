@@ -42,6 +42,7 @@ export default function ViewMealCard() {
 		const [mealCurrentlyGenerating, setMealCurrentlyGenerating] = useState(false);
 
 		useEffect(() => {
+			console.log(searchParams);
 			if (searchParams.get("from") === "generation") {
 				setMealCurrentlyGenerating(true);
 				setLastMeal("");
@@ -50,6 +51,7 @@ export default function ViewMealCard() {
 				setLastIngredientsUser([]);
 				setLastIngredientsNeeded([]);
 				console.log("generating");
+
 				try {
 					async function fetchMeal() {
 						const authToken = await getAuth().currentUser.getIdToken();

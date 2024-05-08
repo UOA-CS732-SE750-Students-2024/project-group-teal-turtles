@@ -27,7 +27,7 @@ function GenerationOptions() {
 
 		const handleGenerate = () => {
 			if (prompt !== "") {
-				router.push(`/view-meal?generateOption=${generateOptionParam}`);
+				router.push(`/view-meal?generateOption=${generateOptionParam}&from=generation`);
 			}
 		};
 
@@ -132,7 +132,9 @@ function GenerationOptions() {
 								I want a
 								<Select
 									value={userParameters !== null ? userParameters.mealType : ""}
-									onChange={(event) => setUserParameters({ ...userParameters, mealType: event.target.value })}
+									onChange={(event) => {
+										setUserParameters({ ...userParameters, mealType: event.target.value.toLowerCase() });
+									}}
 									IconComponent={() => (
 										<ExpandMore
 											sx={{
@@ -153,10 +155,10 @@ function GenerationOptions() {
 									{mealTypes.map((mealType, index) => (
 										<MenuItem
 											key={index}
-											value={mealType}
+											value={mealType.toLowerCase()}
 											sx={{
 												color:
-													userParameters !== null && userParameters.mealType === mealType
+													userParameters !== null && userParameters.mealType.toLowerCase() === mealType.toLowerCase()
 														? "primary.main"
 														: "secondary.dark"
 											}}
@@ -247,20 +249,23 @@ function GenerationOptions() {
 									))}
 								</Select>
 							</Stack>
-							<Stack alignItems="center">
-								<Button onClick={() => router.push("/pantry")}>
-									<Typography variant="h6" textTransform="none">
-										Edit your ingredients from your Pantry:
-									</Typography>
-								</Button>
-								<Tooltip title="Disliked ingaredients will not be included in the generated meal">
-									<Button onClick={() => router.push("/edit-profile")}>
+							{(generateOptionParam === "Basic" || generateOptionParam === "Strict") && (
+								<Stack alignItems="center">
+									<Button onClick={() => router.push("/pantry")}>
 										<Typography variant="h6" textTransform="none">
-											Edit your disliked ingredients from your Profile
+											Edit your ingredients from your Pantry:
 										</Typography>
 									</Button>
-								</Tooltip>
-							</Stack>
+									<Tooltip title="Disliked ingaredients will not be included in the generated meal">
+										<Button onClick={() => router.push("/edit-profile")}>
+											<Typography variant="h6" textTransform="none">
+												Edit your disliked ingredients from your Profile
+											</Typography>
+										</Button>
+									</Tooltip>
+								</Stack>
+							)}
+
 							<Button
 								variant="contained"
 								onClick={handleGenerate}
