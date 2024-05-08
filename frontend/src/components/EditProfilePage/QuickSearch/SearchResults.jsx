@@ -3,8 +3,7 @@ import { Divider } from "@mui/material";
 import DisplayIngredients from "@/components/EditProfilePage/QuickSearch/DisplayIngredients";
 import allIngredients from "@/ingredients.json";
 
-function SearchResults({ searchTerm, selectedIngredients, handleSelectIngredient }) {
-	const searchResults = searchTerm == "" ? allIngredients : searchIngredients(searchTerm);
+function SearchResults({ searchResults, selectedIngredients, handleSelectIngredient }) {
 	const categorizedResults = categorizeIngredients(searchResults);
 
 	const renderedResults = [];

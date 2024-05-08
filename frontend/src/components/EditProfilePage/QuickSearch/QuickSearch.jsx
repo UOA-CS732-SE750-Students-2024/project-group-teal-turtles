@@ -5,6 +5,7 @@ import SelectedIngredients from "./SelectedIngredients";
 
 function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 	const [searchTerm, setSearchTerm] = React.useState("");
+	const searchResults = searchTerm == "" ? allIngredients : searchIngredients(searchTerm);
 
 	const handleSelectIngredient = (ingredient) => {
 		return () => {
@@ -14,7 +15,6 @@ function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 			} else {
 				setSelectedIngredients([...selectedIngredients, ingredient]);
 			}
-			console.log(selectedIngredients);
 		};
 	};
 
@@ -31,7 +31,7 @@ function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 				handleSelectIngredient={handleSelectIngredient}
 			/>
 			<SearchResults
-				searchTerm={searchTerm}
+				searchResults={searchResults}
 				selectedIngredients={selectedIngredients}
 				handleSelectIngredient={handleSelectIngredient}
 			/>
