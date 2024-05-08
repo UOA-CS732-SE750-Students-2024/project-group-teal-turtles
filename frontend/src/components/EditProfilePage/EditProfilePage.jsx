@@ -36,7 +36,6 @@ function EditProfilePage() {
 		setLastIngredientsUser
 	} = useDataStore();
 
-	const [isEditUserIngredients, setEditUserIngredients] = useState(false);
 	const [isEditDislikedIngredients, setEditDislikedIngredients] = useState(false);
 	const router = useRouter();
 
@@ -109,20 +108,12 @@ function EditProfilePage() {
 					<Button
 						variant="contained"
 						onClick={() => {
-							setEditUserIngredients(true);
+							router.push("/pantry");
 						}}
 					>
 						Edit
 					</Button>
 					<IngredientSummary ingredients={userIngredients} />
-					<QuickSearchModal
-						selectedIngredients={userIngredients}
-						setSelectedIngredients={setUserIngredients}
-						isOpen={isEditUserIngredients}
-						handleClose={() => {
-							setEditUserIngredients(false);
-						}}
-					/>
 				</>
 				<>
 					<Typography variant="h5">Disliked Ingredients</Typography>
