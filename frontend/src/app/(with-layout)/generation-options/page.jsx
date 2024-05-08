@@ -26,9 +26,7 @@ function GenerationOptions() {
 		};
 
 		const handleGenerate = () => {
-			if (prompt !== "") {
-				router.push(`/view-meal?generateOption=${generateOptionParam}&from=generation`);
-			}
+			router.push(`/view-meal?generateOption=${generateOptionParam}&from=generation`);
 		};
 
 		const handleKeyPress = (e) => {
