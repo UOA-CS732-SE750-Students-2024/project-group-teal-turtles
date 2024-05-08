@@ -1,17 +1,19 @@
 "use client";
 
-import { Typography, Stack, TextField, Card, IconButton, CardActionArea, Box } from "@mui/material";
+import { Typography, Stack, Card, CardActionArea } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 import "./../../globals.css";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ReactCardFlip from "react-card-flip";
 
-function CircularCard({ title, body }) {
+function CircularCard({ title, body, back }) {
+	const [flipped, setFlipped] = useState(false);
+
 	return (
-		title &&
-		body && (
+		<ReactCardFlip isFlipped={flipped}>
 			<Card
 				sx={{
 					width: "400px",
@@ -21,6 +23,8 @@ function CircularCard({ title, body }) {
 				}}
 			>
 				<CardActionArea
+					key="front"
+					onClick={() => setFlipped(!flipped)}
 					sx={{
 						alignItems: "center",
 						display: "flex",
@@ -32,12 +36,36 @@ function CircularCard({ title, body }) {
 					<Typography color="secondary.dark" variant="h2" fontWeight="600">
 						{title}
 					</Typography>
-					<Typography color="secondary.main" align="center" variant="h4">
+					<Typography color="primary.dark" align="center" variant="h4">
 						{body}
 					</Typography>
 				</CardActionArea>
 			</Card>
-		)
+			<Card
+				sx={{
+					width: "400px",
+					height: "200px",
+					borderRadius: "20px 20px 0 0",
+					m: "auto"
+				}}
+			>
+				<CardActionArea
+					onClick={() => setFlipped(!flipped)}
+					key="back"
+					sx={{
+						alignItems: "center",
+						display: "flex",
+						flexDirection: "column",
+						backgroundColor: "background.paper",
+						height: "100%"
+					}}
+				>
+					<Typography textAlign="center" variant="h6" sx={{ color: "secondary.dark", px: 5 }}>
+						{back}
+					</Typography>
+				</CardActionArea>
+			</Card>
+		</ReactCardFlip>
 	);
 }
 
@@ -109,10 +137,28 @@ function Landing() {
 							</CardActionArea>
 						</Card>
 					</Stack>
-					<Stack direction="row" pt={5} px={30} sx={{ backgroundColor: "background.default" }}>
-						<CircularCard title="Unlimited" body="Recipe Generation" />
-						<CircularCard title="Fast" body="Generation Times" />
-						<CircularCard title="AI" body="Tailored Recipes" />
+					<Stack
+						direction="row"
+						pt={5}
+						px={30}
+						justifyContent="space-evenly"
+						sx={{ backgroundColor: "background.default" }}
+					>
+						<CircularCard
+							title="Unlimited"
+							body="Recipe Generation"
+							back="Intelligent Eats allows for unlimited generated recipes for FREE. All you have to do is Sign up."
+						/>
+						<CircularCard
+							title="Fast"
+							body="Generation Times"
+							back="No need to spend precious time searching for meals - We'll generate you a meal in 10 seconds or less."
+						/>
+						<CircularCard
+							title="AI"
+							body="Tailored Recipes"
+							back="All Recipes and Meal images are generated using the latest, most powerful AI models."
+						/>
 					</Stack>
 				</>
 			)}
