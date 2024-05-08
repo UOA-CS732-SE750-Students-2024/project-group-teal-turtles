@@ -140,8 +140,8 @@ function Landing() {
 					<Stack
 						direction="row"
 						pt={5}
-						px={30}
-						justifyContent="space-evenly"
+						spacing="60px"
+						justifyContent="center"
 						sx={{ backgroundColor: "background.default" }}
 					>
 						<CircularCard
