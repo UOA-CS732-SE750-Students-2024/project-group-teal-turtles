@@ -14,6 +14,11 @@ import { useState } from "react";
 import { saveIngredients, setDislikedIngredient } from "@/lib/dbCalls";
 import StyledButton from "../StyledButton";
 
+/**
+ * EditProfilePage component renders the profile editing page with options to edit profile details, view meal history, and edit disliked ingredients.
+ * @returns {JSX.Element} A React JSX element representing the profile editing page.
+ */
+
 function EditProfilePage() {
 	const {
 		userDislikedIngredients,
@@ -42,6 +47,11 @@ function EditProfilePage() {
 	const [isEditDislikedIngredients, setEditDislikedIngredients] = useState(false);
 	const router = useRouter();
 
+	/**
+	 * handleLogout function handles the logout action.
+	 * @returns {Promise<void>} A promise that resolves after logout and profile reset operations.
+	 */
+
 	const handleLogout = async () => {
 		try {
 			const authToken = await getAuth().currentUser.getIdToken();
@@ -68,6 +78,11 @@ function EditProfilePage() {
 			console.error(error);
 		}
 	};
+
+	/**
+	 * handleCloseDislikedIngredients function handles the closure of disliked ingredients modal.
+	 * @returns {Promise<void>} A promise that resolves after setting disliked ingredients and closing the modal.
+	 */
 
 	const handleCloseDislikedIngredients = async () => {
 		const authToken = await getAuth().currentUser.getIdToken();

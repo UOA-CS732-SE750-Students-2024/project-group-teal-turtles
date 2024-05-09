@@ -7,11 +7,21 @@ import { useRouter } from "next/navigation";
 import useDataStore from "@/lib/store";
 import ingredients from "@/lib/ingredients.json";
 
+/**
+ * Ingredients page component for adding ingredients to the user's pantry.
+ * @param {object} props - Component props.
+ * @param {function} props.onPageChange - Function to handle page change.
+ * @returns {JSX.Element} Ingredients page component.
+ */
 export function IngredientsPage({ onPageChange }) {
 	const { userIngredients, setUserIngredients } = useDataStore();
 	const ingredientsOnboarding = ingredients.filter((item) => item.categories.includes("Onboarding"));
 	const router = useRouter();
 
+	/**
+	 * Handles the change of ingredient selection.
+	 * @param {string} item - The ingredient to add or remove.
+	 */
 	const handleIngredientsChange = (item) => {
 		if (userIngredients.includes(item)) {
 			const newIngredients = userIngredients.filter((ingredient) => ingredient !== item);
@@ -41,7 +51,8 @@ export function IngredientsPage({ onPageChange }) {
 					itemData={ingredientsOnboarding}
 					variant="onboarding"
 					onClick={handleIngredientsChange}
-					selected={userIngredients} />
+					selected={userIngredients}
+				/>
 			</Stack>
 			<Button
 				variant="contained"

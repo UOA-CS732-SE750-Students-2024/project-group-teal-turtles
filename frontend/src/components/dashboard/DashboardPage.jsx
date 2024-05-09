@@ -20,6 +20,10 @@ const styles = {
 	}
 };
 
+/**
+ * Represents the dashboard page displaying meal generation options and user's pantry.
+ * @returns {JSX.Element} The JSX representation of the DashboardPage component.
+ */
 function DashboardPage() {
 	const router = useRouter();
 	const { userIngredients } = useDataStore();

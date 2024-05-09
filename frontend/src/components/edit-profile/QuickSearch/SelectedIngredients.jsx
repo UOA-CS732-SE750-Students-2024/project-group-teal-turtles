@@ -3,6 +3,14 @@ import DisplayIngredients from "./DisplayIngredients";
 import { Divider, Stack } from "@mui/material";
 import allIngredients from "@/lib/ingredients.json";
 
+/**
+ * SelectedIngredients component displays a list of selected ingredients.
+ * @param {object} props - The component props.
+ * @param {Array} props.selectedIngredients - The array of selected ingredient titles.
+ * @param {function} props.handleSelectIngredient - Function to handle ingredient selection.
+ * @returns {JSX.Element | null} A React JSX element representing the list of selected ingredients, or null if there are no selected ingredients.
+ */
+
 function SelectedIngredients({ selectedIngredients, handleSelectIngredient }) {
 	if (!selectedIngredients.length) {
 		return null;

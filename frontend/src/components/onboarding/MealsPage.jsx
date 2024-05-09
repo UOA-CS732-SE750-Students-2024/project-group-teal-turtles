@@ -7,9 +7,19 @@ import { addFavMeal, removeFavMeal } from "@/lib/dbCalls";
 import { getAuth } from "firebase/auth";
 import meals from "@/lib/meals.json";
 
+/**
+ * Renders a page for selecting favorite meals.
+ * @param {object} props - The component props.
+ * @param {Function} props.onPageChange - Function to handle page change.
+ * @returns {JSX.Element} The rendered component.
+ */
 export function MealsPage({ onPageChange }) {
 	const { setUserFavouriteMeals, userFavouriteMeals } = useDataStore();
 
+	/**
+	 * Handles the change of favorite meals selection.
+	 * @param {string} item - The meal to add or remove.
+	 */
 	const handleMealsChange = async (item) => {
 		if (userFavouriteMeals.includes(item)) {
 			const newMeals = userFavouriteMeals.filter((meal) => meal !== item);

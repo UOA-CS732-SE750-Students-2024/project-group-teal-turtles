@@ -4,6 +4,12 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { auth } from "@/lib/firebase-config";
 
+/**
+ * Auth component is responsible for handling authentication state changes.
+ * It redirects the user to the landing page if they are not authenticated.
+ * @returns {null} Null component.
+ */
+
 export default function Auth() {
 	auth.app;
 

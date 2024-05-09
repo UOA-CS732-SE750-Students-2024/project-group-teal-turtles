@@ -2,6 +2,15 @@ import { Modal, Paper } from "@mui/material";
 import QuickSearch from "./QuickSearch";
 import React from "react";
 
+/**
+ * QuickSearchModal component displays a modal dialog with a QuickSearch component inside.
+ * @param {object} props - The component props.
+ * @param {Array} props.selectedIngredients - The currently selected ingredients.
+ * @param {function} props.setSelectedIngredients - Function to update selected ingredients.
+ * @param {boolean} props.isOpen - Flag indicating whether the modal is open or not.
+ * @param {function} props.handleClose - Function to handle modal close event.
+ * @returns {JSX.Element} A React JSX element representing the QuickSearchModal.
+ */
 function QuickSearchModal({ selectedIngredients, setSelectedIngredients, isOpen, handleClose }) {
 	return (
 		<Modal open={isOpen} onClose={handleClose}>
