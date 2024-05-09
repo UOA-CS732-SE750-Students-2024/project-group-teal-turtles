@@ -1,12 +1,10 @@
-import { searchIngredients, categorizeIngredients } from "@/lib/SearchUtil";
-import { Divider } from "@mui/material";
+import { categorizeIngredients } from "@/lib/SearchUtil";
+import { Divider, Stack, Typography } from "@mui/material";
 import DisplayIngredients from "@/components/edit-profile/QuickSearch/DisplayIngredients";
-import allIngredients from "@/lib/ingredients.json";
 
 function SearchResults({ searchResults, selectedIngredients, handleSelectIngredient }) {
 	const categorizedResults = categorizeIngredients(searchResults);
 	delete categorizedResults["Onboarding"];
-	console.log(categorizedResults);
 
 	const renderedResults = [];
 	for (let category in categorizedResults) {
@@ -14,7 +12,9 @@ function SearchResults({ searchResults, selectedIngredients, handleSelectIngredi
 		renderedResults.push(
 			<>
 				<Divider sx={{ mb: "2vh" }} key={category}>
-					{category.toUpperCase()}
+					<Typography fontWeight="bold" sx={{ color: "primary.main" }}>
+						{category}
+					</Typography>
 				</Divider>
 				<DisplayIngredients
 					ingredients={ingredients}
@@ -25,7 +25,7 @@ function SearchResults({ searchResults, selectedIngredients, handleSelectIngredi
 		);
 	}
 
-	return <>{renderedResults}</>;
+	return <Stack>{renderedResults}</Stack>;
 }
 
 export default SearchResults;

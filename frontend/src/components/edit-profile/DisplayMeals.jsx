@@ -1,7 +1,6 @@
 import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from "@mui/material";
 import React from "react";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
-import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import { addFavMeal, removeFavMeal } from "@/lib/dbCalls";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
@@ -37,7 +36,7 @@ function DisplayMeals({
 				{meals.map((meal) => (
 					<ListItem
 						key={meal}
-						sx={{ cursor: "pointer", "&:hover": { backgroundColor: "#f0f0f0", color: "primary.main" } }}
+						sx={{ cursor: "pointer", "&:hover": { backgroundColor: "background.default", color: "primary.main" } }}
 						onClick={() =>
 							setPrompt(`Make sure the name of the meal is ${meal} and that its ingredients are correct for that meal`)
 						}

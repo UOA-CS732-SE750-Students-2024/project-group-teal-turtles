@@ -1,6 +1,6 @@
 import React from "react";
 import DisplayIngredients from "./DisplayIngredients";
-import { Divider } from "@mui/material";
+import { Divider, Stack } from "@mui/material";
 import allIngredients from "@/lib/ingredients.json";
 
 function SelectedIngredients({ selectedIngredients, handleSelectIngredient }) {
@@ -17,14 +17,14 @@ function SelectedIngredients({ selectedIngredients, handleSelectIngredient }) {
 	});
 
 	return (
-		<>
-			<Divider sx={{ mb: "2vh" }}>SELECTED</Divider>
+		<Stack alignItems="center">
+			<Divider sx={{ mb: "2vh" }} />
 			<DisplayIngredients
 				ingredients={ingredients}
 				selectedIngredients={selectedIngredients}
 				handleSelectIngredient={handleSelectIngredient}
 			/>
-		</>
+		</Stack>
 	);
 }
 
