@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { TextField, Typography, Button, MenuItem, Select, IconButton, Stack, Tooltip, Card } from "@mui/material";
+import { TextField, Typography, Button, MenuItem, Select, IconButton, Stack, Tooltip, Card, Box } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import useDataStore from "@/lib/store";
 import { Suspense } from "react";
@@ -12,7 +12,8 @@ import StyledButton from "@/components/StyledButton/StyledButton";
 function GenerationOptionsPage() {
 	function Generation() {
 		const router = useRouter();
-		const { setUserParameters, userParameters, setPrompt, prompt, mealToRemix, setMealToRemix } = useDataStore();
+		const { setUserParameters, userParameters, setPrompt, prompt, mealToRemix, setMealToRemix, userIngredients } =
+			useDataStore();
 		const searchParams = useSearchParams();
 		const generateOptionParam = searchParams.get("generateOption");
 
@@ -49,21 +50,34 @@ function GenerationOptionsPage() {
 					</Typography>
 					<Stack direction="row" justifyContent="space-between" spacing="20px">
 						{options.map((option, index) => (
-							<Button
-								fullWidth
-								variant={option === generateOptionParam ? "contained" : "outlined"}
-								key={index}
-								onClick={() => handleButtonClick(option)}
-								sx={{
-									borderRadius: "30px",
-									height: "60px",
-									width: "200px"
-								}}
+							<Tooltip
+								title={
+									(!userIngredients || userIngredients.length === 0) && option === "Strict"
+										? "You need to add some ingredients to your Pantry"
+										: ""
+								}
 							>
-								<Typography variant="h5" fontWeight="bold" textTransform="none">
-									{option}
-								</Typography>
-							</Button>
+								<Button
+									fullWidth
+									variant={option === generateOptionParam ? "contained" : "outlined"}
+									key={index}
+									onClick={
+										(!userIngredients || userIngredients.length === 0) && option === "Strict"
+											? () => {} // Do nothing when the Pantry is empty
+											: () => handleButtonClick(option) // Call handleButtonClick otherwise
+									}
+									sx={{
+										borderRadius: "30px",
+										height: "60px",
+										width: "200px",
+										opacity: (!userIngredients || userIngredients.length === 0) && option === "Strict" ? 0.5 : 1
+									}}
+								>
+									<Typography variant="h5" fontWeight="bold" textTransform="none">
+										{option}
+									</Typography>
+								</Button>
+							</Tooltip>
 						))}
 					</Stack>
 				</Stack>
@@ -257,7 +271,7 @@ function GenerationOptionsPage() {
 								<Stack alignItems="center">
 									<Button onClick={() => router.push("/pantry")}>
 										<Typography variant="h6" textTransform="none">
-											Edit your ingredients from your Pantry:
+											Edit your ingredients from your Pantry
 										</Typography>
 									</Button>
 									<Tooltip title="Disliked ingaredients will not be included in the generated meal">
@@ -269,7 +283,14 @@ function GenerationOptionsPage() {
 									</Tooltip>
 								</Stack>
 							)}
-							<StyledButton text="Generate Meal!" onClick={handleGenerate} />
+
+							{(userIngredients && userIngredients.length > 0) || generateOptionParam !== "Strict" ? (
+								<StyledButton text="Generate Meal!" onClick={handleGenerate} />
+							) : (
+								<Box sx={{ opacity: 0.5 }}>
+									<StyledButton text="Generate Meal!" onClick={() => {}} />
+								</Box>
+							)}
 						</Stack>
 					)}
 				</Card>
