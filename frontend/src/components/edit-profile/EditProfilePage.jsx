@@ -1,19 +1,18 @@
-"use client"
+"use client";
 
 import IngredientSummary from "./IngredientSummary";
 import ProfileSummary from "./ProfileSummary";
-import { Stack } from "@mui/system";
 import { useRouter } from "next/navigation";
-import { Typography, Button, Box } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
-import EditUserInfoModal from "./EditUserInfo/EditUserInfoModal";
 import DisplayMeals from "./DisplayMeals";
 import { logout } from "@/lib/auth-functions";
 import { getAuth } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { saveIngredients, setDislikedIngredient } from "@/lib/dbCalls";
+import StyledButton from "../StyledButton";
 
 function EditProfilePage() {
 	const {
@@ -84,67 +83,55 @@ function EditProfilePage() {
 				alignItems="center"
 				sx={{ width: "100%", margin: "0 auto", padding: "10vh" }}
 			>
-				<>
+				<Stack alignItems="center" spacing={2}>
 					<ProfileSummary username={userName} email={userEmail} />
-					<Button variant="contained" onClick={handleLogout}>
-						Logout
-					</Button>
-				</>
-				<Box sx={{ display: "flex", flexDirection: "row" }}>
-					<Box sx={{ display: "flex", flexDirection: "column", mr: "20vh" }}>
-						<Typography variant="h5">Meal History </Typography>
-
+					<StyledButton onClick={handleLogout} text="Logout" />
+				</Stack>
+				<Stack direction="row" spacing="5vh">
+					<Stack sx={{ alignItems: "center" }}>
+						<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
+							Meal History (Last 10)
+						</Typography>
 						<DisplayMeals
 							userFavouriteMeals={userFavouriteMeals}
 							setUserFavouriteMeals={setUserFavouriteMeals}
 							userGeneratedMeals={userGeneratedMeals.slice(-10).reverse()}
 							setUserGeneratedMeals={setUserGeneratedMeals}
 						/>
-					</Box>
-					<Box sx={{ display: "flex", flexDirection: "column" }}>
-						<Typography variant="h5">Favourite Meals</Typography>
-
-						<DisplayMeals
-							showFavouriteOnly={true}
-							userFavouriteMeals={userFavouriteMeals}
-							setUserFavouriteMeals={setUserFavouriteMeals}
-							userGeneratedMeals={userGeneratedMeals}
-							setUserGeneratedMeals={setUserGeneratedMeals}
-						/>
-					</Box>
-				</Box>
-				<>
-					<>
-						<Typography variant="h5">Pantry</Typography>
-						<Button
-							variant="contained"
-							onClick={() => {
-								router.push("/pantry");
-							}}
-						>
-							Edit
-						</Button>
-						<IngredientSummary ingredients={userIngredients} />
-					</>
-					<>
-						<Typography variant="h5">Disliked Ingredients</Typography>
-						<Button
-							variant="contained"
-							onClick={() => {
-								setEditDislikedIngredients(true);
-							}}
-						>
-							Edit
-						</Button>
-						<IngredientSummary ingredients={userDislikedIngredients} />
-						<QuickSearchModal
-							selectedIngredients={userDislikedIngredients}
-							setSelectedIngredients={setUserDislikedIngredients}
-							isOpen={isEditDislikedIngredients}
-							handleClose={handleCloseDislikedIngredients}
-						/>
-					</>
-				</>
+					</Stack>
+					{userFavouriteMeals.length !== 0 && (
+						<Stack sx={{ alignItems: "center" }}>
+							<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
+								Favourite Meals
+							</Typography>
+							<DisplayMeals
+								showFavouriteOnly={true}
+								userFavouriteMeals={userFavouriteMeals}
+								setUserFavouriteMeals={setUserFavouriteMeals}
+								userGeneratedMeals={userGeneratedMeals}
+								setUserGeneratedMeals={setUserGeneratedMeals}
+							/>
+						</Stack>
+					)}
+				</Stack>
+				<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
+					Disliked Ingredients:
+				</Typography>
+				<Stack alignItems="center" spacing={2} width="45vw">
+					<IngredientSummary ingredients={userDislikedIngredients} />
+					<StyledButton
+						onClick={() => {
+							setEditDislikedIngredients(true);
+						}}
+						text="Edit"
+					/>
+					<QuickSearchModal
+						selectedIngredients={userDislikedIngredients}
+						setSelectedIngredients={setUserDislikedIngredients}
+						isOpen={isEditDislikedIngredients}
+						handleClose={handleCloseDislikedIngredients}
+					/>
+				</Stack>
 			</Stack>
 		</Stack>
 	);
