@@ -64,8 +64,8 @@ function GenerationOptionsPage() {
 									key={index}
 									onClick={
 										(!userIngredients || userIngredients.length === 0) && option === "Strict"
-											? () => {} // Do nothing when the Pantry is empty
-											: () => handleButtonClick(option) // Call handleButtonClick otherwise
+											? () => {}
+											: () => handleButtonClick(option)
 									}
 									sx={{
 										borderRadius: "30px",
@@ -120,7 +120,7 @@ function GenerationOptionsPage() {
 								InputProps={{
 									endAdornment: (
 										<IconButton onClick={handleGenerate}>
-											<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
+											<ArrowForwardIcon sx={{ fontSize: "40px", color: "secondary.dark" }} />
 										</IconButton>
 									),
 									style: { fontSize: "24px" }
@@ -248,7 +248,6 @@ function GenerationOptionsPage() {
 											borderRadius: "30px",
 											fontSize: "24px",
 											height: "60px",
-											borderRadius: "30px",
 											px: "20px"
 										}
 									}}

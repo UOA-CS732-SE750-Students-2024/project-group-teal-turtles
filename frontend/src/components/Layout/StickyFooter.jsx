@@ -7,7 +7,7 @@ import { grey } from "@mui/material/colors";
 
 function Copyright() {
 	return (
-		<Typography variant="body2" color="text.secondary">
+		<Typography variant="body2" sx={{ color: "secondary.main" }}>
 			{"© "}
 			{new Date().getFullYear()}{" "}
 			<Link color="inherit" href="/landing" sx={{ textDecoration: "none" }}>

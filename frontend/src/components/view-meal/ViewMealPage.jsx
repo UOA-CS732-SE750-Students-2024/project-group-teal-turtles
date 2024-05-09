@@ -292,7 +292,7 @@ export default function ViewMealPage() {
 													<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
 														Ingredients {lastIngredientsNeeded.length > 0 && "needed from Pantry"}
 													</Typography>
-													<Typography variant="h6" sx={{ color: "black" }}>
+													<Typography variant="h6" sx={{ color: "secondary.dark" }}>
 														{lastIngredientsUser.join(", ")}
 													</Typography>
 												</Stack>
@@ -301,7 +301,7 @@ export default function ViewMealPage() {
 														<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
 															Ingredients needed outside Pantry
 														</Typography>
-														<Typography variant="h6" sx={{ color: "black" }}>
+														<Typography variant="h6" sx={{ color: "secondary.dark" }}>
 															{lastIngredientsNeeded.join(", ")}
 														</Typography>
 													</Stack>

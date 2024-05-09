@@ -112,7 +112,7 @@ function ResponsiveAppBar() {
 										<Button
 											key={idx}
 											onClick={() => router.push(page.url)}
-											sx={{ color: "black", px: 2, py: 1, width: "100%", fontWeight: "bold" }}
+											sx={{ color: "secondary.dark", px: 2, py: 1, width: "100%", fontWeight: "bold" }}
 										>
 											{page.name}
 										</Button>
@@ -170,7 +170,7 @@ function ResponsiveAppBar() {
 									sx={{
 										px: 2,
 										mx: 1,
-										color: "white",
+										color: "background.paper",
 										display: "block",
 										height: "100%",
 										alignSelf: "stretch",
@@ -198,7 +198,7 @@ function ResponsiveAppBar() {
 								sx={{
 									px: 2,
 									mx: 1,
-									color: "white",
+									color: "background.paper",
 									display: "block",
 									height: "100%",
 									alignSelf: "stretch",
@@ -212,7 +212,7 @@ function ResponsiveAppBar() {
 								sx={{
 									px: 2,
 									mx: 1,
-									color: "white",
+									color: "background.paper",
 									display: "block",
 									height: "100%",
 									alignSelf: "stretch",

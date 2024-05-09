@@ -32,10 +32,10 @@ function LandingCard({ title, body, back }) {
 							height: "100%"
 						}}
 					>
-						<Typography color="secondary.dark" variant="h2" fontWeight="bold">
+						<Typography variant="h2" fontWeight="bold" sx={{ color: " secondary.dark" }}>
 							{title}
 						</Typography>
-						<Typography color="primary.dark" align="center" variant="h4">
+						<Typography align="center" variant="h4" sx={{ color: "primary.dark" }}>
 							{body}
 						</Typography>
 					</Stack>
@@ -102,7 +102,7 @@ function LandingPage() {
 						<Typography variant="h1" fontWeight="900" sx={{ color: "background.paper" }}>
 							Want a quick meal?
 						</Typography>
-						<Typography variant="h4" sx={{ color: "grey.100", px: 4, py: 2 }}>
+						<Typography variant="h4" sx={{ color: "secondary.main", px: 4, py: 2 }}>
 							Generate a personalised recipe in seconds.
 						</Typography>
 						<Button
@@ -110,7 +110,7 @@ function LandingPage() {
 							onClick={() => router.push("/create-account")}
 							sx={{
 								color: "primary.dark",
-								backgroundColor: "white",
+								backgroundColor: "background.paper",
 								"&:hover": { backgroundColor: "background.default" },
 								mt: 6,
 								px: 5,
