@@ -114,7 +114,7 @@ function LandingPage() {
 						<Typography variant="h1" fontWeight="900" sx={{ color: "background.paper" }}>
 							Want a quick meal?
 						</Typography>
-						<Typography variant="h4" sx={{ color: "secondary.main", px: 4, py: 2 }}>
+						<Typography variant="h4" sx={{ color: "background.paper", px: 4, py: 2 }}>
 							Generate a personalised recipe in seconds.
 						</Typography>
 						<Button
