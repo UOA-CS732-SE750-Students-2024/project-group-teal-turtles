@@ -183,7 +183,6 @@ export default function ViewMeal() {
 			}
 		}
 
-		// Dynamic sizing for enlarged image
 		const [imageSize, setImageSize] = useState(0);
 
 		useEffect(() => {
@@ -194,13 +193,10 @@ export default function ViewMeal() {
 				setImageSize(smallerDimension);
 			}
 
-			// Call the function once to set initial size
 			handleResize();
 
-			// Attach event listener for resize
 			window.addEventListener("resize", handleResize);
 
-			// Cleanup
 			return () => {
 				window.removeEventListener("resize", handleResize);
 			};
@@ -221,7 +217,7 @@ export default function ViewMeal() {
 								borderRadius: "80px 80px 0px 0px",
 								flexGrow: 1,
 								pb: "20vh",
-								mt: mealCurrentlyGenerating && lastMeal === "" ? "20vh" : 0
+								mt: lastMeal === "" ? "20vh" : 0
 							}}
 						>
 							{lastMeal === "" && mealCurrentlyGenerating && (
@@ -234,13 +230,14 @@ export default function ViewMeal() {
 							)}
 
 							{lastMeal === "" && !mealCurrentlyGenerating && (
-								<Stack>
-									<Typography variant="h4" align="center">
-										Please go to Generate to create a personalised recipe
+								<Stack alignItems="center" spacing={4} mt={4}>
+									<Typography variant="h4" textAlign="center" fontWeight="bold">
+										Please go to Generate to create a personalised recipe.
 									</Typography>
-									<Button variant="contained" sx={{ mt: 4 }} onClick={() => router.push("/generation-options")}>
-										Generate
-									</Button>
+									<Typography variant="h6" fontWeight="700" sx={{ color: "primary.main" }}>
+										Your last generated recipe will show up here.
+									</Typography>
+									<StyledButton text="Generate" onClick={() => router.push("/generation-options")} />
 								</Stack>
 							)}
 
