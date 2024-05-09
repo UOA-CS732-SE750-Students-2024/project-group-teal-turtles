@@ -1,14 +1,13 @@
 "use client";
-import DashboardGenerationPanel from "@/components/DashboardGenerationPanel/DashboardGenerationPanel";
-import { Box, Card, Divider, Fab, Stack, Typography } from "@mui/material";
+import DashboardGenerationPanel from "@/components/dashboard/DashboardGenerationPanel/DashboardGenerationPanel";
+import { Card, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
-import { Button, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { useRouter } from "next/navigation";
-import AddIcon from "@mui/icons-material/Add";
-import PantryGrid from "@/components/pantry/PantryGrid";
-import ingredients from "@/ingredients.json";
+import PantryGrid from "@/components/PantryGrid";
+import ingredients from "@/lib/ingredients.json";
 import useDataStore from "@/lib/store";
-import StyledButton from "@/components/StyledButton/StyledButton";
+import StyledButton from "@/components/StyledButton";
 
 const styles = {
 	container: {
@@ -21,7 +20,7 @@ const styles = {
 	}
 };
 
-function Dashboard() {
+function DashboardPage() {
 	const router = useRouter();
 	const { userIngredients } = useDataStore();
 	let ingredientsPantry = ingredients.filter((item) => userIngredients.includes(item.title));
@@ -56,4 +55,4 @@ function Dashboard() {
 	);
 }
 
-export default Dashboard;
+export default DashboardPage;

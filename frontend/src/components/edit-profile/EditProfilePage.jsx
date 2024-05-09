@@ -1,17 +1,19 @@
-import IngredientSummary from "./IngredientSummary/IngredientSummary";
-import ProfileSummary from "./ProfileSummary/ProfileSummary";
+"use client"
+
+import IngredientSummary from "./IngredientSummary";
+import ProfileSummary from "./ProfileSummary";
 import { Stack } from "@mui/system";
 import { useRouter } from "next/navigation";
 import { Typography, Button, Box } from "@mui/material";
 import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
 import EditUserInfoModal from "./EditUserInfo/EditUserInfoModal";
-import DisplayMeals from "./DisplayMeals/DisplayMeals";
-import { logout } from "@/app/auth-functions";
+import DisplayMeals from "./DisplayMeals";
+import { logout } from "@/lib/auth-functions";
 import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
 
-import { saveIngredients, setDislikedIngredient } from "@/helpers/dbCalls";
+import { saveIngredients, setDislikedIngredient } from "@/lib/dbCalls";
 
 function EditProfilePage() {
 	const {
