@@ -64,6 +64,8 @@ This project requires Node.js 20.12.2 or higher
 
 ### Running the Backend
 
+0. Set up the `.env` file in the root directory. See `.env.example` for an example
+
 1. Navigate inside the backend folder:
 
    ```bash
@@ -134,6 +136,10 @@ Deployed using vercel
 TODO
 
 ### Database
+
+Using [monogoDB](https://www.mongodb.com/)
+
+User Dao and schemas for database can be found within the data folder in backend src
 
 ## Project Structure
 
