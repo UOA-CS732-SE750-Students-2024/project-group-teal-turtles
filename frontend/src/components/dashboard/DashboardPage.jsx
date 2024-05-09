@@ -29,14 +29,14 @@ function Dashboard() {
 	return (
 		<Stack alignItems="center" justifyContent="center" sx={{ backgroundColor: "background.paper" }}>
 			<Container sx={styles.container}>
-				<Typography variant="h2" align="center" fontWeight="bold" gutterBottom sx={{ color: "primary.dark" }}>
+				<Typography variant="h2" align="center" fontWeight="bold" gutterBottom sx={{ color: "primary.main" }}>
 					Generate a Meal
 				</Typography>
 				<DashboardGenerationPanel />
 			</Container>
 			<Divider orientation="horizontal" variant="middle" width="600px" />
 			<Container sx={styles.container}>
-				<Typography variant="h2" align="center" fontWeight="bold" gutterBottom sx={{ color: "primary.dark" }}>
+				<Typography variant="h2" align="center" fontWeight="bold" gutterBottom sx={{ color: "primary.main" }}>
 					Your Pantry
 				</Typography>
 

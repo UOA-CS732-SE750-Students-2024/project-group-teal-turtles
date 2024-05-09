@@ -223,11 +223,11 @@ export default function ViewMeal() {
 						<Typography
 							variant="h2"
 							textAlign="center"
-							fontWeight="700"
+							fontWeight="bold"
 							mt="5vh"
 							mb="5vh"
 							mx="50px"
-							sx={{ color: "primary.dark" }}
+							sx={{ color: "primary.main" }}
 						>
 							{lastMeal === "" && !mealCurrentlyGenerating ? "Last Generated Recipe" : lastMeal}
 						</Typography>
@@ -289,16 +289,16 @@ export default function ViewMeal() {
 												/>
 											</Button>
 											<Stack flex={1} paddingX="4vw" spacing={3}>
-												<Typography variant="h6" fontWeight="700" sx={{ color: "primary.dark" }}>
+												<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
 													Ingredients {lastIngredientsNeeded.length > 0 && "needed from Pantry"}
-													<Typography variant="h6" fontWeight="500" sx={{ color: "black" }}>
+													<Typography variant="h6" sx={{ color: "black" }}>
 														{lastIngredientsUser.join(", ")}
 													</Typography>
 												</Typography>
 												{lastIngredientsNeeded.length > 0 && (
-													<Typography variant="h6" fontWeight="700" sx={{ color: "primary.dark" }}>
+													<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
 														Ingredients needed outside Pantry
-														<Typography variant="h6" fontWeight="500" sx={{ color: "black" }}>
+														<Typography variant="h6" sx={{ color: "black" }}>
 															{lastIngredientsNeeded.join(", ")}
 														</Typography>
 													</Typography>
@@ -316,7 +316,7 @@ export default function ViewMeal() {
 										spacing={8}
 									>
 										<Stack alignItems="center" flex={2}>
-											<Typography variant="h5" fontWeight="700" sx={{ color: "primary.dark" }}>
+											<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
 												Ingredients
 											</Typography>
 											{lastIngredientQuantities.map((ingredient, index) => (
@@ -326,7 +326,7 @@ export default function ViewMeal() {
 											))}
 										</Stack>
 										<Stack alignItems="center" flex={5}>
-											<Typography variant="h5" fontWeight="700" sx={{ color: "primary.dark" }}>
+											<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
 												Instructions
 											</Typography>
 											{lastRecipe.map((step, index) => (

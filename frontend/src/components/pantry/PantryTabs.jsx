@@ -16,7 +16,7 @@ function TabPanel({ children, value, index }) {
 
 function StyledTypography({ text }) {
 	return (
-		<Typography variant="h5" fontWeight="bold" sx={{ mt: 3, mb: 3, color: "primary.dark" }}>
+		<Typography variant="h5" fontWeight="bold" sx={{ mt: 3, mb: 3, color: "primary.main" }}>
 			{text}
 		</Typography>
 	);
@@ -74,7 +74,7 @@ export default function PantryTabs() {
 			</Tabs>
 			<TabPanel value={value} index={0}>
 				<Stack spacing={2} sx={{ mt: 3, mb: 3, width: "40vw" }}>
-					<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.dark" }}>
+					<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
 						Your Ingredients
 					</Typography>
 					{userIngredients && userIngredients.length > 0 ? (
@@ -85,7 +85,7 @@ export default function PantryTabs() {
 								backgroundColor: "background.paper",
 								height: "40px",
 								borderRadius: "20px",
-								color: "primary.dark"
+								color: "primary.main"
 							}}
 						>
 							<Typography fontWeight="bold" textTransform="none" mr={1}>

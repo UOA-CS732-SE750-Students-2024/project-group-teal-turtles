@@ -32,7 +32,7 @@ function LandingCard({ title, body, back }) {
 							height: "100%"
 						}}
 					>
-						<Typography color="secondary.dark" variant="h2" fontWeight="600">
+						<Typography color="secondary.dark" variant="h2" fontWeight="bold">
 							{title}
 						</Typography>
 						<Typography color="primary.dark" align="center" variant="h4">

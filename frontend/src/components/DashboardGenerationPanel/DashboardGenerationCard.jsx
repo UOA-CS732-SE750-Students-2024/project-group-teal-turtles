@@ -8,7 +8,7 @@ function DashboardGenerationCard({ header, description, onClick }) {
 				onClick={onClick}
 				sx={{ px: "2vh", alignItems: "center", display: "flex", flexDirection: "column", height: "250px" }}
 			>
-				<Typography variant="h4" fontWeight="bold" mb={2} sx={{ color: "primary.dark" }}>
+				<Typography variant="h4" fontWeight="bold" mb={2} sx={{ color: "primary.main" }}>
 					{header}
 				</Typography>
 				<Typography variant="h5" textAlign="center">

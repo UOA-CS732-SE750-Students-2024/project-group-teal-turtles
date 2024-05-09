@@ -132,7 +132,7 @@ export default function CreateAccount() {
 	return (
 		<CardWrapper>
 			<Stack alignItems="center" spacing={3}>
-				<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.dark" }}>
+				<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.main" }}>
 					Sign Up
 				</Typography>
 				<Typography variant="h5">Don't have an account? We'll create one for you.</Typography>
