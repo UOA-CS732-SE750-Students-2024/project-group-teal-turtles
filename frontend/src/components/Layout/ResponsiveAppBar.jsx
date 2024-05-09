@@ -47,7 +47,8 @@ function ResponsiveAppBar() {
 				top: 0,
 				justifyContent: "flex-start",
 				height: 70,
-				backgroundColor: currentUrl !== "/landing" ? "primary.main" : "transparent"
+				backgroundColor: currentUrl !== "/landing" ? "primary.main" : "transparent",
+				width: "100%"
 			}}
 		>
 			<Container sx={{ height: "100%" }}>

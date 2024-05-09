@@ -57,16 +57,16 @@ function GenerationOptionsPage() {
 
 		return (
 			<Stack
-				height="calc(100vh - 70px)"
+				minHeight="calc(100vh - 70px)"
 				justifyContent="space-between"
-				px="20vw"
+				alignItems="center"
 				sx={{ backgroundColor: "background.paper" }}
 			>
 				<Stack alignItems="center">
 					<Typography variant="h2" align="center" fontWeight="bold" mt="10vh" mb="2vh" sx={{ color: "primary.main" }}>
 						Recipe Generator
 					</Typography>
-					<Stack direction="row" justifyContent="space-between" spacing="20px">
+					<Stack direction="row" justifyContent="center" spacing="20px" flexWrap="wrap" useFlexGap my={3}>
 						{options.map((option, index) => (
 							<Tooltip
 								key={index}
@@ -104,7 +104,9 @@ function GenerationOptionsPage() {
 					elevation={5}
 					sx={{
 						borderRadius: "80px 80px 0px 0px",
-						height: "60vh"
+						minHeight: "60vh",
+						maxWidth: "lg",
+						width: "100%"
 					}}
 				>
 					{generateOptionParam === "Prompt" ? (
@@ -165,7 +167,7 @@ function GenerationOptionsPage() {
 									? "Strict Mode will not add new ingredients outside of your pantry list."
 									: "Remix Mode takes a meal, figures out the ingredients in it and will generate you a new meal based on those ingredients."}
 							</Typography>
-							<Typography fontWeight="bold" variant="h4">
+							<Typography fontWeight="bold" variant="h4" textAlign="center">
 								I want a
 								<Select
 									value={userParameters !== null ? userParameters.mealType : ""}

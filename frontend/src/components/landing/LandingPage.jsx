@@ -99,69 +99,72 @@ function LandingPage() {
 	}, []);
 
 	return (
-		<Stack height="calc(100vh)">
-			{showContent && (
-				<>
-					<Stack
-						flexGrow={1}
-						alignItems="center"
-						justifyContent="center"
+		showContent && (
+			<Stack
+				height="calc(100vh)"
+				sx={{
+					minWidth: "1350px"
+				}}
+			>
+				<Stack
+					flexGrow={1}
+					alignItems="center"
+					justifyContent="center"
+					sx={{
+						backgroundImage: "url(/background.png)",
+						backgroundSize: "cover"
+					}}
+				>
+					<Typography variant="h1" fontWeight="900" textAlign="center" sx={{ color: "background.paper" }}>
+						Want a quick meal?
+					</Typography>
+					<Typography variant="h4" sx={{ color: "secondary.light", py: 4 }}>
+						Generate a personalised recipe in seconds.
+					</Typography>
+					<Button
+						variant="contained"
+						onClick={() => router.push("/create-account")}
 						sx={{
-							backgroundImage: "url(/background.png)",
-							backgroundSize: "cover"
+							color: "primary.dark",
+							backgroundColor: "background.paper",
+							"&:hover": { backgroundColor: "background.default" },
+							mt: 4,
+							px: 5,
+							py: 2,
+							borderRadius: "100px"
 						}}
 					>
-						<Typography variant="h1" fontWeight="900" sx={{ color: "background.paper" }}>
-							Want a quick meal?
+						<Typography variant="h4" fontWeight="bold" sx={{ mr: 2 }} textTransform="none">
+							Start your chef journey now
 						</Typography>
-						<Typography variant="h4" sx={{ color: "background.paper", px: 4, py: 2 }}>
-							Generate a personalised recipe in seconds.
-						</Typography>
-						<Button
-							variant="contained"
-							onClick={() => router.push("/create-account")}
-							sx={{
-								color: "primary.dark",
-								backgroundColor: "background.paper",
-								"&:hover": { backgroundColor: "background.default" },
-								mt: 6,
-								px: 5,
-								py: 2,
-								borderRadius: "100px"
-							}}
-						>
-							<Typography variant="h4" fontWeight="bold" sx={{ mr: 2 }} textTransform="none">
-								Start your chef journey now
-							</Typography>
-							<ArrowForwardIcon sx={{ fontSize: "40px" }} />
-						</Button>
-					</Stack>
-					<Stack
-						direction="row"
-						pt={5}
-						spacing="60px"
-						justifyContent="center"
-						sx={{ backgroundColor: "background.default" }}
-					>
-						<LandingCard
-							title="Unlimited"
-							body="Recipe Generation"
-							back="Intelligent Eats allows for unlimited generated recipes for FREE. All you have to do is Sign up."
-						/>
-						<LandingCard
-							title="Fast"
-							body="Generation Times"
-							back="No need to spend precious time searching for meals - We'll generate you a meal in 10 seconds or less."
-						/>
-						<LandingCard
-							title="AI"
-							body="Tailored Recipes"
-							back="All Recipes and Meal images are generated using the latest, most powerful AI models."
-						/>
-					</Stack>
-				</>
-			)}
-		</Stack>
+						<ArrowForwardIcon sx={{ fontSize: "40px" }} />
+					</Button>
+				</Stack>
+				<Stack
+					direction="row"
+					pt={5}
+					spacing="60px"
+					justifyContent="center"
+					sx={{ backgroundColor: "background.default" }}
+				>
+					<LandingCard
+						title="Unlimited"
+						body="Recipe Generation"
+						back="Intelligent Eats allows for unlimited generated recipes for FREE. All you have to do is Sign up."
+					/>
+					<LandingCard
+						title="Fast"
+						body="Generation Times"
+						back="No need to spend precious time searching for meals - We'll generate you a meal in 10 seconds or less."
+					/>
+					<LandingCard
+						title="AI"
+						body="Tailored Recipes"
+						back="All Recipes and Meal images are generated using the latest, most powerful AI models."
+					/>
+				</Stack>
+			</Stack>
+		)
 	);
 }
 
