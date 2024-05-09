@@ -206,3 +206,23 @@ export function generateMealStrict(authToken, body) {
 		}
 	);
 }
+
+export function getUser(userAuthToken) {
+	return axios.get(process.env.NEXT_PUBLIC_BACKEND_URL + "/users", {
+		headers: {
+			Authorization: userAuthToken
+		}
+	});
+}
+
+export function createUser(userAuthToken) {
+	return axios.post(
+		process.env.NEXT_PUBLIC_BACKEND_URL + "/users",
+		{},
+		{
+			headers: {
+				Authorization: userAuthToken
+			}
+		}
+	);
+}

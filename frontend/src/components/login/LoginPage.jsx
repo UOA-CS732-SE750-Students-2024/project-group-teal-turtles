@@ -10,6 +10,7 @@ import { auth } from "@/lib/firebase-config";
 import axios from "axios";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
+import { getUser, createUser } from "@/lib/dbCalls";
 
 function LoginPage() {
 	const [visible, setVisible] = useState(false);
@@ -33,11 +34,7 @@ function LoginPage() {
 	const router = useRouter();
 	async function fetchUser(userAuthToken) {
 		try {
-			const response = await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL + "/users", {
-				headers: {
-					Authorization: userAuthToken
-				}
-			});
+			const response = await getUser(userAuthToken);
 
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
@@ -55,15 +52,7 @@ function LoginPage() {
 
 	async function createUserInDatabase(userAuthToken) {
 		try {
-			const response = await axios.post(
-				process.env.NEXT_PUBLIC_BACKEND_URL + "/users",
-				{},
-				{
-					headers: {
-						Authorization: userAuthToken
-					}
-				}
-			);
+			const response = await createUser(userAuthToken);
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
 			setUserGeneratedMeals(response.data.generatedMeals);
