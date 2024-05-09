@@ -46,7 +46,7 @@ function Onboarding() {
 										setPage("meals");
 									}}
 								>
-									<ChevronLeft sx={{ fontSize: "40px", color: "#000" }} />
+									<ChevronLeft sx={{ fontSize: "40px", color: "secondary.dark" }} />
 								</IconButton>
 								<Typography variant="h2" marginRight="100px" fontWeight="bold" sx={{ color: "primary.main" }}>
 									Add Ingredients

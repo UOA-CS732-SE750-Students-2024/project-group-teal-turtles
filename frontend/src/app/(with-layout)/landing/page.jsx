@@ -13,19 +13,7 @@ function LandingCard({ title, body, back }) {
 	const [flipped, setFlipped] = useState(false);
 
 	return (
-		<CardActionArea
-			sx={{
-				width: "400px",
-				height: "200px",
-				borderRadius: "20px 20px 0 0",
-				m: "auto",
-				"&:hover": {
-					backgroundColor: "transparent"
-				}
-			}}
-			onMouseOver={() => setFlipped(true)}
-			onMouseOut={() => setFlipped(false)}
-		>
+		<Stack onMouseOver={() => setFlipped(true)} onMouseOut={() => setFlipped(false)}>
 			<ReactCardFlip isFlipped={flipped}>
 				<Card
 					sx={{
@@ -35,12 +23,11 @@ function LandingCard({ title, body, back }) {
 						m: "auto"
 					}}
 				>
-					<CardActionArea
+					<Stack
 						key="front"
 						sx={{
 							alignItems: "center",
-							display: "flex",
-							flexDirection: "column",
+							justifyContent: "center",
 							backgroundColor: "background.paper",
 							height: "100%"
 						}}
@@ -51,7 +38,7 @@ function LandingCard({ title, body, back }) {
 						<Typography color="primary.dark" align="center" variant="h4">
 							{body}
 						</Typography>
-					</CardActionArea>
+					</Stack>
 				</Card>
 				<Card
 					sx={{
@@ -61,12 +48,11 @@ function LandingCard({ title, body, back }) {
 						m: "auto"
 					}}
 				>
-					<CardActionArea
+					<Stack
 						key="back"
 						sx={{
 							alignItems: "center",
-							display: "flex",
-							flexDirection: "column",
+							justifyContent: "center",
 							backgroundColor: "background.paper",
 							height: "100%"
 						}}
@@ -74,10 +60,10 @@ function LandingCard({ title, body, back }) {
 						<Typography textAlign="center" variant="h6" fontWeight="bold" sx={{ color: "secondary.dark", px: 5 }}>
 							{back}
 						</Typography>
-					</CardActionArea>
+					</Stack>
 				</Card>
 			</ReactCardFlip>
-		</CardActionArea>
+		</Stack>
 	);
 }
 
@@ -125,14 +111,14 @@ function Landing() {
 							sx={{
 								color: "primary.dark",
 								backgroundColor: "white",
-								"&:hover": { color: "white" },
+								"&:hover": { backgroundColor: "background.default" },
 								mt: 6,
 								px: 5,
 								py: 2,
 								borderRadius: "100px"
 							}}
 						>
-							<Typography variant="h4" fontWeight="bold" sx={{ mr: 2 }}>
+							<Typography variant="h4" fontWeight="bold" sx={{ mr: 2 }} textTransform="none">
 								Start your chef journey now
 							</Typography>
 							<ArrowForwardIcon sx={{ fontSize: "40px" }} />

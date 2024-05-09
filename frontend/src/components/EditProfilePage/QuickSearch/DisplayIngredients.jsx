@@ -7,8 +7,8 @@ function DisplayIngredient({ ingredient, isSelected, handleSelect }) {
 			sx={{
 				width: 50,
 				height: 50,
-				backgroundColor: isSelected ? "primary.main" : "#fff",
-				color: isSelected ? "#fff" : "#000"
+				backgroundColor: isSelected ? "primary.main" : "background.paper",
+				color: isSelected ? "background.paper" : "secondary.dark"
 			}}
 		>
 			<CardActionArea onClick={handleSelect}>

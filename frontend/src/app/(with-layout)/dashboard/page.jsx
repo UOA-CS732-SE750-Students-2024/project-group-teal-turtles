@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import PantryGrid from "@/components/Pantry/PantryGrid";
 import ingredients from "../../../ingredients.json";
 import useDataStore from "@/lib/store";
+import StyledButton from "@/components/StyledButton/StyledButton";
 
 const styles = {
 	container: {
@@ -48,16 +49,7 @@ function Dashboard() {
 						/>
 					</Box>
 				) : (
-					<Button
-						onClick={() => router.push("/pantry")}
-						variant="contained"
-						sx={{ p: 2, borderRadius: "30px", width: "220px", height: "60px" }}
-						startIcon={<AddIcon />}
-					>
-						<Typography textTransform="none" variant="h6" fontWeight="bold">
-							Add Ingredients
-						</Typography>
-					</Button>
+					<StyledButton text="+ Add Ingredients" onClick={() => router.push("/pantry")} />
 				)}
 			</Container>
 		</Stack>
