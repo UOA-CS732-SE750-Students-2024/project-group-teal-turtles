@@ -27,6 +27,7 @@ export default function CreateAccount() {
 		setUserIngredients,
 		setUserDislikedIngredients,
 		setUserParameters,
+		setUserName,
 		setUserEmail,
 		setAuthorisedUser
 	} = useDataStore();

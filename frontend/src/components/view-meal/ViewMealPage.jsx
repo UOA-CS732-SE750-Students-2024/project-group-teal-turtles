@@ -33,6 +33,7 @@ export default function ViewMeal() {
 			userParameters,
 			userIngredients,
 			prompt,
+			setPrompt,
 			lastMeal,
 			setLastMeal,
 			lastRecipe,
@@ -80,6 +81,7 @@ export default function ViewMeal() {
 								.then((res) => {
 									afterResult(res.data.mealName, res.data.ingredients);
 									fetchRecipe(res.data.mealName, res.data.ingredients);
+									setPrompt("");
 								})
 								.catch((err) => {
 									console.error(err);
@@ -236,9 +238,11 @@ export default function ViewMeal() {
 									<Typography variant="h4" align="center">
 										Please go to Generate to create a personalised recipe
 									</Typography>
-									<Button variant="contained" sx={{ mt: 4 }} onClick={() => router.push("/generation-options")}>
-										Generate
-									</Button>
+
+									<StyledButton
+										text="Generate"
+										onClick={() => router.push("/generation-options?generateOption=Basic")}
+									/>
 								</Stack>
 							)}
 
