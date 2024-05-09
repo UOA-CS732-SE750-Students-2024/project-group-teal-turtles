@@ -1,6 +1,6 @@
 import DashboardGenerationCard from "@/components/dashboard/DashboardGenerationPanel/DashboardGenerationCard";
 import useDataStore from "@/lib/store";
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 function DashboardGenerationPanel() {

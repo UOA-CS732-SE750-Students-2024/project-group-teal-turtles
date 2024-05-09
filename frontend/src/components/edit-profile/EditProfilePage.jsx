@@ -3,7 +3,7 @@
 import IngredientSummary from "./IngredientSummary";
 import ProfileSummary from "./ProfileSummary";
 import { useRouter } from "next/navigation";
-import { Typography, Stack } from "@mui/material";
+import { Typography, Stack, Divider } from "@mui/material";
 import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
 import DisplayMeals from "./DisplayMeals";
@@ -87,6 +87,9 @@ function EditProfilePage() {
 					<ProfileSummary username={userName} email={userEmail} />
 					<StyledButton onClick={handleLogout} text="Logout" />
 				</Stack>
+				<Stack sx={{ py: 3 }}>
+					<Divider orientation="horizontal" variant="middle" width="600px" />
+				</Stack>
 				<Stack direction="row" spacing="5vh">
 					<Stack sx={{ alignItems: "center" }}>
 						<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
@@ -114,10 +117,13 @@ function EditProfilePage() {
 						</Stack>
 					)}
 				</Stack>
-				<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
-					Disliked Ingredients:
+				<Stack sx={{ py: 3 }}>
+					<Divider orientation="horizontal" variant="middle" width="600px" />
+				</Stack>
+				<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
+					Disliked Ingredients
 				</Typography>
-				<Stack alignItems="center" spacing={2} width="45vw">
+				<Stack alignItems="center" spacing={5} width="45vw">
 					<IngredientSummary ingredients={userDislikedIngredients} />
 					<StyledButton
 						onClick={() => {
