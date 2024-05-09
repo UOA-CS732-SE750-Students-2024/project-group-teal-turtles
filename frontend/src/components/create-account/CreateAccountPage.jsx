@@ -6,7 +6,7 @@ import { Stack, Typography, Button, TextField, IconButton, Link, CircularProgres
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import { createAccount } from "@/lib/auth-functions";
-import { auth } from "@/app/firebase-config";
+import { auth } from "@/lib/firebase-config";
 import useDataStore from "@/lib/store";
 import axios from "axios";
 import { useRouter } from "next/navigation";

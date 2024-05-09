@@ -4,7 +4,7 @@ import styles from "./ExampleComponent.module.css";
 import { createAccount, login, logout } from "@/lib/auth-functions";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/app/firebase-config";
+import { auth } from "@/lib/firebase-config";
 import axios from "axios";
 
 function AuthExample() {
