@@ -239,7 +239,10 @@ export default function ViewMeal() {
 									<Typography variant="h6" fontWeight="700" sx={{ color: "primary.main" }}>
 										Your last generated recipe will show up here.
 									</Typography>
-									<StyledButton text="Generate" onClick={() => router.push("/generation-options")} />
+									<StyledButton
+										text="Generate"
+										onClick={() => router.push("/generation-options?generateOption=Basic")}
+									/>
 								</Stack>
 							)}
 
