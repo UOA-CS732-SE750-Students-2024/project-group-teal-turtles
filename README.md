@@ -2,11 +2,11 @@
 
 Are you tired of staring into your fridge, wondering what to cook for dinner?
 
-Do you find yourself stuck in a culinary rut, repeating the same meals week after week? 
+Do you find yourself stuck in a culinary rut, repeating the same meals week after week?
 
-Well, worry no more! 
+Well, worry no more!
 
-Introducing Intelligent-Eats, the revolutionary ***AI-generated*** meal service designed for you. 
+Introducing Intelligent-Eats, the revolutionary **_AI-generated_** meal service designed for you.
 
 Whether you're craving comfort food classics, exotic international flavors, or healthy, plant-based options, our AI algorithm has you covered.
 
@@ -142,6 +142,7 @@ npx playwright test
 ## Tech Stack
 
 ### Backend
+
 NodeJS + Express
 
 Jest for testing
@@ -149,6 +150,7 @@ Jest for testing
 Deployed using google app engine
 
 ### Frontend
+
 NextJS
 
 Jest + Playwright for testing
@@ -163,7 +165,7 @@ We used Segmind API for image generation
 
 ### Database
 
-Using [monogoDB](https://www.mongodb.com/)
+Using [mongoDB](https://www.mongodb.com/)
 
 User DAO and database schemas can be found within the data folder in the backend
 
