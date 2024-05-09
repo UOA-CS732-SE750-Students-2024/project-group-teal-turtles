@@ -79,7 +79,7 @@ function EditProfilePage() {
 		<Stack width="100%" sx={{ backgroundColor: "background.paper" }}>
 			<Stack
 				direction="column"
-				spacing={4}
+				spacing={8}
 				alignItems="center"
 				sx={{ width: "100%", margin: "0 auto", padding: "10vh" }}
 			>
@@ -92,7 +92,7 @@ function EditProfilePage() {
 				</Stack>
 				<Stack direction="row" spacing="5vh">
 					<Stack sx={{ alignItems: "center" }}>
-						<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
+						<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
 							Meal History (Last 10)
 						</Typography>
 						<DisplayMeals
@@ -104,7 +104,7 @@ function EditProfilePage() {
 					</Stack>
 					{userFavouriteMeals.length !== 0 && (
 						<Stack sx={{ alignItems: "center" }}>
-							<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
+							<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
 								Favourite Meals
 							</Typography>
 							<DisplayMeals
@@ -117,27 +117,28 @@ function EditProfilePage() {
 						</Stack>
 					)}
 				</Stack>
-				<Stack sx={{ py: 3 }}>
+				<Stack alignItems="center" spacing={8} width="1000px">
 					<Divider orientation="horizontal" variant="middle" width="600px" />
+					<Stack alignItems="center" spacing={4}>
+						<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
+							Disliked Ingredients:
+						</Typography>
+						<IngredientSummary ingredients={userDislikedIngredients} />
+
+						<QuickSearchModal
+							selectedIngredients={userDislikedIngredients}
+							setSelectedIngredients={setUserDislikedIngredients}
+							isOpen={isEditDislikedIngredients}
+							handleClose={handleCloseDislikedIngredients}
+						/>
+					</Stack>
 				</Stack>
-				<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
-					Disliked Ingredients
-				</Typography>
-				<Stack alignItems="center" spacing={5} width="45vw">
-					<IngredientSummary ingredients={userDislikedIngredients} />
-					<StyledButton
-						onClick={() => {
-							setEditDislikedIngredients(true);
-						}}
-						text="Edit"
-					/>
-					<QuickSearchModal
-						selectedIngredients={userDislikedIngredients}
-						setSelectedIngredients={setUserDislikedIngredients}
-						isOpen={isEditDislikedIngredients}
-						handleClose={handleCloseDislikedIngredients}
-					/>
-				</Stack>
+				<StyledButton
+					onClick={() => {
+						setEditDislikedIngredients(true);
+					}}
+					text="Edit"
+				/>
 			</Stack>
 		</Stack>
 	);
