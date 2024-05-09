@@ -11,7 +11,7 @@ import { logout } from "@/app/auth-functions";
 import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
 
-import { saveIngredients } from "@/helpers/dbCalls";
+import { saveIngredients, setDislikedIngredient } from "@/helpers/dbCalls";
 
 function EditProfilePage() {
 	const {
@@ -66,6 +66,12 @@ function EditProfilePage() {
 		} catch (error) {
 			console.error(error);
 		}
+	};
+
+	const handleCloseDislikedIngredients = async () => {
+		const authToken = await getAuth().currentUser.getIdToken();
+		setEditDislikedIngredients(false);
+		setDislikedIngredient(authToken, userDislikedIngredients);
 	};
 
 	return (
@@ -130,9 +136,7 @@ function EditProfilePage() {
 						selectedIngredients={userDislikedIngredients}
 						setSelectedIngredients={setUserDislikedIngredients}
 						isOpen={isEditDislikedIngredients}
-						handleClose={() => {
-							setEditDislikedIngredients(false);
-						}}
+						handleClose={handleCloseDislikedIngredients}
 					/>
 				</>
 			</Stack>
