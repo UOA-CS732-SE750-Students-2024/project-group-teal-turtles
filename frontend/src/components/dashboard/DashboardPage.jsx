@@ -21,7 +21,7 @@ const styles = {
 	}
 };
 
-function Dashboard() {
+function DashboardPage() {
 	const router = useRouter();
 	const { userIngredients } = useDataStore();
 	let ingredientsPantry = ingredients.filter((item) => userIngredients.includes(item.title));
@@ -56,4 +56,4 @@ function Dashboard() {
 	);
 }
 
-export default Dashboard;
+export default DashboardPage;

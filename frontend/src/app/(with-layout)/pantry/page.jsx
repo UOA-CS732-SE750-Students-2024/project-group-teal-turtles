@@ -1,9 +1,9 @@
-import Pantry from '@/components/pantry/PantryPage'
+import PantryPage from '@/components/pantry/PantryPage'
 import React from 'react'
 
 function Page() {
   return (
-	<Pantry/>
+	<PantryPage/>
   )
 }
 

@@ -11,7 +11,7 @@ import axios from "axios";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
 
-function Login() {
+function LoginPage() {
 	const [visible, setVisible] = useState(false);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -216,4 +216,4 @@ function Login() {
 	);
 }
 
-export default Login;
+export default LoginPage;

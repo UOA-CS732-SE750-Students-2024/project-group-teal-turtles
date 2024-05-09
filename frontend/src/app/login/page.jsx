@@ -1,9 +1,9 @@
-import Login from '@/components/login/LoginPage'
+import LoginPage from '@/components/login/LoginPage'
 import React from 'react'
 
 function Page() {
   return (
-	<Login/>
+	<LoginPage/>
   )
 }
 

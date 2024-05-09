@@ -1,9 +1,9 @@
-import Dashboard from '@/components/dashboard/DashboardPage'
+import DashboardPage from '@/components/dashboard/DashboardPage'
 import React from 'react'
 
 function Page() {
   return (
-	<Dashboard/>
+	<DashboardPage/>
   )
 }
 

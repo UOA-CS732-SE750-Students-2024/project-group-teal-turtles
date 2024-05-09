@@ -12,7 +12,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { handleGoogleLogin } from "@/app/auth-functions";
 
-export default function CreateAccount() {
+export default function CreateAccountPage() {
 	const [passwordVisible, setPasswordVisible] = useState(false);
 	const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");

@@ -23,7 +23,7 @@ import useDataStore from "@/lib/store";
 import Image from "next/image";
 import StyledButton from "@/components/StyledButton/StyledButton";
 
-export default function ViewMeal() {
+export default function ViewMealPage() {
 	function View() {
 		const {
 			mealToRemix,

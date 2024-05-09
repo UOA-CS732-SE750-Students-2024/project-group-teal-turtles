@@ -1,9 +1,9 @@
-import Landing from '@/components/landing/LandingPage'
+import LandingPage from '@/components/landing/LandingPage'
 import React from 'react'
 
 function Page() {
   return (
-	<Landing/>
+	<LandingPage/>
   )
 }
 
