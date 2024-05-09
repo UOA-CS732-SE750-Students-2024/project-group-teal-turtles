@@ -1,10 +1,9 @@
 "use client";
 import DashboardGenerationPanel from "@/components/dashboard/DashboardGenerationPanel/DashboardGenerationPanel";
-import { Box, Divider, Fab, Stack, Typography } from "@mui/material";
+import { Card, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
-import { Button, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { useRouter } from "next/navigation";
-import AddIcon from "@mui/icons-material/Add";
 import PantryGrid from "@/components/PantryGrid";
 import ingredients from "@/lib/ingredients.json";
 import useDataStore from "@/lib/store";
