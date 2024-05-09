@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardHeader, Typography } from "@mui/material";
+import { Card, CardActionArea, Typography } from "@mui/material";
 import React from "react";
 
 function DashboardGenerationCard({ header, description, onClick }) {

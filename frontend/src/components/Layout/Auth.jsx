@@ -15,7 +15,7 @@ export default function Auth() {
 				router.push("/landing");
 			}
 		});
-	}, []);
+	}, [router]);
 
 	return null;
 }

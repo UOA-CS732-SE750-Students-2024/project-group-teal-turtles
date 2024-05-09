@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Avatar, Stack } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import Image from "next/image";
 
 function ProfileSummary(props) {

@@ -6,13 +6,7 @@ import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import useDataStore from "@/lib/store";
 
-function DisplayMeals({
-	showFavouriteOnly = false,
-	userFavouriteMeals,
-	setUserFavouriteMeals,
-	userGeneratedMeals,
-	setUserGeneratedMeals
-}) {
+function DisplayMeals({ showFavouriteOnly = false, userFavouriteMeals, setUserFavouriteMeals, userGeneratedMeals }) {
 	const meals = showFavouriteOnly ? userFavouriteMeals : userGeneratedMeals;
 	const { setPrompt } = useDataStore();
 	const router = useRouter();

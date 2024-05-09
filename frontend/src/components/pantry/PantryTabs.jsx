@@ -52,7 +52,7 @@ export default function PantryTabs() {
 		<Box
 			sx={{
 				flexGrow: 1,
-				bgcolor: "background.paper",
+				backgroundColor: "background.paper",
 				display: "flex",
 				height: "100%",
 				minHeight: "calc(100vh - 70px)"

@@ -14,11 +14,9 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
-import useDataStore from "@/lib/store";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
-	const [anchorElUser, setAnchorElUser] = useState(null);
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
 		{ name: "Generate", url: "/generation-options?generateOption=Basic" },
@@ -34,10 +32,6 @@ function ResponsiveAppBar() {
 
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
-	};
-
-	const handleCloseUserMenu = () => {
-		setAnchorElUser(null);
 	};
 
 	return (
@@ -118,7 +112,7 @@ function ResponsiveAppBar() {
 										<Button
 											key={idx}
 											onClick={() => router.push(page.url)}
-											sx={{ color: "black", px: 2, py: 1, width: "100%", fontWeight: "bold" }}
+											sx={{ color: "secondary.dark", px: 2, py: 1, width: "100%", fontWeight: "bold" }}
 										>
 											{page.name}
 										</Button>
@@ -176,7 +170,7 @@ function ResponsiveAppBar() {
 									sx={{
 										px: 2,
 										mx: 1,
-										color: "white",
+										color: "background.paper",
 										display: "block",
 										height: "100%",
 										alignSelf: "stretch",
@@ -204,7 +198,7 @@ function ResponsiveAppBar() {
 								sx={{
 									px: 2,
 									mx: 1,
-									color: "white",
+									color: "background.paper",
 									display: "block",
 									height: "100%",
 									alignSelf: "stretch",
@@ -218,7 +212,7 @@ function ResponsiveAppBar() {
 								sx={{
 									px: 2,
 									mx: 1,
-									color: "white",
+									color: "background.paper",
 									display: "block",
 									height: "100%",
 									alignSelf: "stretch",

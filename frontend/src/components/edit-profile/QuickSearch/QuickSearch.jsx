@@ -32,7 +32,6 @@ function QuickSearch({ selectedIngredients, setSelectedIngredients, handleClose 
 							borderRadius: "30px",
 							fontSize: "24px",
 							height: "60px",
-							borderRadius: "30px",
 							paddingX: "20px"
 						}
 					}}
