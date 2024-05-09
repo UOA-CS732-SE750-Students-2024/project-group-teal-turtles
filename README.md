@@ -133,7 +133,9 @@ Deployed using vercel
 
 ### API usage
 
-TODO
+Uses Open AI API for meal generation and recipe generation
+
+Uses Segmind API for meal Image generation
 
 ### Database
 
