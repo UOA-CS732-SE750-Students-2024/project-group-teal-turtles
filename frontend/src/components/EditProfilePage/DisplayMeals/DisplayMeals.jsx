@@ -38,13 +38,12 @@ function DisplayMeals({
 						<ListItemSecondaryAction>
 							<IconButton
 								edge="end"
-								aria-label="favorite"
 								onClick={() => toggleFavourite(meal)}
 								color={userFavouriteMeals.includes(meal) ? "warning" : "default"}
 							>
 								<StarRoundedIcon />
 							</IconButton>
-							<IconButton edge="end" aria-label="delete" onClick={() => deleteMeal(meal)}>
+							<IconButton edge="end" onClick={() => deleteMeal(meal)}>
 								<DeleteOutlineRoundedIcon />
 							</IconButton>
 						</ListItemSecondaryAction>
