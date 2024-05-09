@@ -1,8 +1,8 @@
-import Onboarding from "@/components/onboarding/OnboardingPage";
+import OnboardingPage from "@/components/onboarding/OnboardingPage";
 import React from "react";
 
 function Page() {
-	return <Onboarding />;
+	return <OnboardingPage />;
 }
 
 export default Page;

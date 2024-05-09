@@ -6,7 +6,7 @@ import { useState } from "react";
 import { MealsPage } from "./MealsPage";
 import { IngredientsPage } from "./IngredientsPage";
 
-function Onboarding() {
+function OnboardingPage() {
 	const [page, setPage] = useState("meals");
 
 	const handlePageChange = (newPage) => {
@@ -28,4 +28,4 @@ function Onboarding() {
 	);
 }
 
-export default Onboarding;
+export default OnboardingPage;
