@@ -136,7 +136,7 @@ function GenerationOptions() {
 								<Select
 									value={userParameters !== null ? userParameters.mealType : ""}
 									onChange={(event) => {
-										setUserParameters({ ...userParameters, mealType: event.target.value.toLowerCase() });
+										setUserParameters({ ...userParameters, mealType: event.target.value });
 									}}
 									IconComponent={() => (
 										<ExpandMore
@@ -158,10 +158,10 @@ function GenerationOptions() {
 									{mealTypes.map((mealType, index) => (
 										<MenuItem
 											key={index}
-											value={mealType.toLowerCase()}
+											value={mealType}
 											sx={{
 												color:
-													userParameters !== null && userParameters.mealType.toLowerCase() === mealType.toLowerCase()
+													userParameters !== null && userParameters.mealType === mealType
 														? "primary.main"
 														: "secondary.dark"
 											}}
