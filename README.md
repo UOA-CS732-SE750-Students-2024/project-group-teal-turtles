@@ -1,12 +1,18 @@
 # Intelligent Eats
 
-Are you tired of staring into your fridge, wondering what to cook for dinner? Do you find yourself stuck in a culinary rut, repeating the same meals week after week? Well, worry no more! Introducing Intelligent-Eats, the revolutionary AI-generated meal service designed for you.
+Are you tired of staring into your fridge, wondering what to cook for dinner?
+
+Do you find yourself stuck in a culinary rut, repeating the same meals week after week? 
+
+Well, worry no more! 
+
+Introducing Intelligent-Eats, the revolutionary ***AI-generated*** meal service designed for you. 
 
 Whether you're craving comfort food classics, exotic international flavors, or healthy, plant-based options, our AI algorithm has you covered.
 
 ### Usage
 
-Intelligent Eats can be simply used as follows:
+Using Intelligent Eats is as simple as follows:
 
 1. Create an account
 2. Follow the onboarding process to add ingredients and favourite meals
@@ -113,6 +119,7 @@ npm run test
 #### Playwright
 
 End-to-end testing is achieved through playwright
+
 We've focused our tests on some common user flows
 
 ```bash
@@ -134,31 +141,37 @@ npx playwright test
 
 ## Tech Stack
 
-NodeJS + Express for backend
+### Backend
+NodeJS + Express
+
 Jest for testing
+
 Deployed using google app engine
 
-NextJS for frontend
+### Frontend
+NextJS
+
 Jest + Playwright for testing
+
 Deployed using vercel
 
 ### API usage
 
-Uses Open AI API for meal generation and recipe generation
+We used Open AI API for meal generation and recipe generation
 
-Uses Segmind API for meal Image generation
+We used Segmind API for image generation
 
 ### Database
 
 Using [monogoDB](https://www.mongodb.com/)
 
-User Dao and schemas for database can be found within the data folder in backend src
+User DAO and database schemas can be found within the data folder in the backend
 
 ## Project Structure
 
 ### Frontend
 
-Our frontend repository structure is as follows:
+Our repository structure is as follows:
 
 ```
 public/
@@ -171,7 +184,7 @@ src/
 
 ### Backend
 
-Our backend repository structure is as follows:
+Our repository structure is as follows:
 
 ```
 src/
