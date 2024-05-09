@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PantryTabs from "@/components/Pantry/PantryTabs";
+import PantryTabs from "@/components/pantry/PantryTabs";
 import { Box, Stack } from "@mui/material";
 
 function Pantry() {

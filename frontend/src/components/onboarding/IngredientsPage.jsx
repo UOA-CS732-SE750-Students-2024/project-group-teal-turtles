@@ -1,6 +1,6 @@
 "use client";
 
-import PantryGrid from "@/components/Pantry/PantryGrid";
+import PantryGrid from "@/components/pantry/PantryGrid";
 import { ChevronLeft } from "@mui/icons-material";
 import { Stack, Typography, Button, IconButton } from "@mui/material";
 import { useRouter } from "next/navigation";

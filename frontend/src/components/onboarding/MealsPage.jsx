@@ -1,6 +1,6 @@
 "use client";
 
-import PantryGrid from "@/components/Pantry/PantryGrid";
+import PantryGrid from "@/components/pantry/PantryGrid";
 import { Stack, Typography, Button } from "@mui/material";
 import useDataStore from "@/lib/store";
 import meals from "@/meals.json";
