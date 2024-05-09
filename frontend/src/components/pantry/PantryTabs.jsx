@@ -2,7 +2,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import PantryGrid from "./PantryGrid";
+import PantryGrid from "../PantryGrid";
 import useDataStore from "@/lib/store";
 import ingredients from "../../ingredients.json";
 import { useState } from "react";

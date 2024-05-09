@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation";
 import { Stack } from "@mui/material";
 import useDataStore from "@/lib/store";
 import Image from "next/image";
-import StyledButton from "@/components/StyledButton/StyledButton";
+import StyledButton from "@/components/StyledButton";
 
 export default function ViewMealPage() {
 	function View() {

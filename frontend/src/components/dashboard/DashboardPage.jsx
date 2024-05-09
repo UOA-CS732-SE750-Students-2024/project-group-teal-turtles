@@ -1,14 +1,14 @@
 "use client";
-import DashboardGenerationPanel from "@/components/DashboardGenerationPanel/DashboardGenerationPanel";
+import DashboardGenerationPanel from "@/components/dashboard/DashboardGenerationPanel/DashboardGenerationPanel";
 import { Box, Divider, Fab, Stack, Typography } from "@mui/material";
 import React from "react";
 import { Button, Container } from "@mui/material";
 import { useRouter } from "next/navigation";
 import AddIcon from "@mui/icons-material/Add";
-import PantryGrid from "@/components/pantry/PantryGrid";
+import PantryGrid from "@/components/PantryGrid";
 import ingredients from "@/ingredients.json";
 import useDataStore from "@/lib/store";
-import StyledButton from "@/components/StyledButton/StyledButton";
+import StyledButton from "@/components/StyledButton";
 
 const styles = {
 	container: {

@@ -18,7 +18,7 @@ import useDataStore from "@/lib/store";
 import { Suspense } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { ExpandMore } from "@mui/icons-material";
-import StyledButton from "@/components/StyledButton/StyledButton";
+import StyledButton from "@/components/StyledButton";
 
 function GenerationOptionsPage() {
 	function Generation() {
