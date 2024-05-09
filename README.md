@@ -121,7 +121,13 @@ npx playwright test
 
 ## Pages
 
-TODO
+- Landing - an unauthorized user first lands/is redirected here
+- Sign up/Log in - for signing up or logging in via email + password or Google
+- Dashboard - generate a meal or update your pantry
+- Generate - modify generation parameters and execute generation
+- Pantry - update your list of ingredients
+- Recipe - view the last recipe you generated here and share it or add it to your favourites
+- Profile - view your last generated meals and favourite them or edit your disliked ingredients
 
 ## Tech Stack
 
