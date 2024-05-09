@@ -33,6 +33,7 @@ export default function ViewMeal() {
 			userParameters,
 			userIngredients,
 			prompt,
+			setPrompt,
 			lastMeal,
 			setLastMeal,
 			lastRecipe,
@@ -80,6 +81,7 @@ export default function ViewMeal() {
 								.then((res) => {
 									afterResult(res.data.mealName, res.data.ingredients);
 									fetchRecipe(res.data.mealName, res.data.ingredients);
+									setPrompt("");
 								})
 								.catch((err) => {
 									console.error(err);
