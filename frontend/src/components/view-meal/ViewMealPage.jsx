@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Card, Typography, LinearProgress, CircularProgress, Dialog, Box } from "@mui/material";
+import { Button, Card, Typography, LinearProgress, CircularProgress, Dialog, Box, Divider } from "@mui/material";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { getAuth } from "firebase/auth";
@@ -207,11 +207,19 @@ export default function ViewMeal() {
 		}, []);
 
 		return (
-			<Stack sx={{ backgroundColor: "background.paper" }}>
+			<Stack sx={{ backgroundColor: "background.paper" }} alignItems="center">
 				<Suspense>
-					<Stack justifyContent="space-between" paddingX="20vw" minHeight="calc(100vh - 70px)">
+					<Stack justifyContent="space-between" minHeight="calc(100vh - 70px)" width="100%" maxWidth="lg">
 						{lastMeal !== "" && (
-							<Typography variant="h2" textAlign="center" fontWeight="700" mt="10vh" mb="5vh">
+							<Typography
+								variant="h2"
+								textAlign="center"
+								fontWeight="700"
+								mt="10vh"
+								mb="5vh"
+								mx="50px"
+								sx={{ color: "primary.dark" }}
+							>
 								{lastMeal}
 							</Typography>
 						)}
@@ -256,7 +264,7 @@ export default function ViewMeal() {
 							)}
 
 							{lastRecipe !== "" && (
-								<Stack alignItems="center" sx={{ mt: 8 }} spacing="30px" width="100%" paddingX="4vw">
+								<Stack alignItems="center" sx={{ mt: 8 }} spacing="30px" paddingX="4vw">
 									{loading ? (
 										<Stack alignItems="center" spacing="30px">
 											<CircularProgress sx={{ mt: 4 }} size={50} />
@@ -265,45 +273,79 @@ export default function ViewMeal() {
 											</Typography>
 										</Stack>
 									) : setLastMealImage !== "" ? (
-										<Button
-											variant="contained"
-											sx={{ p: 1, borderRadius: 4 }}
-											onClick={() => {
-												setOpen(true);
-											}}
-										>
-											<Image
-												src={lastMealImage !== "" ? `data:image/png;base64,${lastMealImage}` : ""}
-												width={384}
-												height={384}
-												alt="Generated depiction of the meal"
-												style={{ borderRadius: 8 }}
-											/>
-										</Button>
+										<Stack direction="row" sx={{ display: "flex", alignItems: "center" }} width="100%">
+											<Button
+												variant="contained"
+												sx={{ p: 1, borderRadius: 4, width: 400, height: 400 }}
+												onClick={() => {
+													setOpen(true);
+												}}
+												flex={0}
+											>
+												<Image
+													src={lastMealImage !== "" ? `data:image/png;base64,${lastMealImage}` : ""}
+													width={384}
+													height={384}
+													alt="Generated depiction of the meal"
+													style={{ borderRadius: 8 }}
+												/>
+											</Button>
+											<Stack flex={1} paddingX="4vw" spacing={3}>
+												<Typography variant="h6" fontWeight="700" sx={{ color: "primary.dark" }}>
+													Ingredients {lastIngredientsNeeded.length > 0 && "needed from Pantry"}
+													<Typography variant="h6" fontWeight="500" sx={{ color: "black" }}>
+														{lastIngredientsUser.join(", ")}
+													</Typography>
+												</Typography>
+												{lastIngredientsNeeded.length > 0 && (
+													<Typography variant="h6" fontWeight="700" sx={{ color: "primary.dark" }}>
+														Ingredients needed outside Pantry
+														<Typography variant="h6" fontWeight="500" sx={{ color: "black" }}>
+															{lastIngredientsNeeded.join(", ")}
+														</Typography>
+													</Typography>
+												)}
+											</Stack>
+										</Stack>
 									) : (
 										<></>
 									)}
-									<Stack alignItems="center">
-										<Typography variant="h4" fontWeight="700">
-											Ingredients
-										</Typography>
-										{lastIngredientQuantities.map((ingredient, index) => (
-											<Typography textAlign="center" key={index} variant="h5">
-												{ingredient}
+									<Divider orientation="horizontal" variant="middle" width="90%" paddingX={10} />
+									<Stack
+										direction="row"
+										sx={{ display: "flex", alignItems: "flex-start", width: "100%" }}
+										divider={<Divider orientation="vertical" flexItem />}
+										spacing={8}
+									>
+										<Stack alignItems="center" flex={2}>
+											<Typography variant="h5" fontWeight="700" sx={{ color: "primary.dark" }}>
+												Ingredients
 											</Typography>
-										))}
-									</Stack>
-									<Stack alignItems="center">
-										<Typography variant="h4" fontWeight="700">
-											Instructions
-										</Typography>
-										{lastRecipe.map((step, index) => (
-											<Typography textAlign="center" key={index} variant="h5">
-												{step}
+											{lastIngredientQuantities.map((ingredient, index) => (
+												<Typography textAlign="start" width="100%" key={index} variant="h6" py={1}>
+													- {ingredient}
+												</Typography>
+											))}
+										</Stack>
+										<Stack alignItems="center" flex={5}>
+											<Typography variant="h5" fontWeight="700" sx={{ color: "primary.dark" }}>
+												Instructions
 											</Typography>
-										))}
+											{lastRecipe.map((step, index) => (
+												<Typography textAlign="start" width="100%" key={index} variant="h6" py={1}>
+													{step}
+												</Typography>
+											))}
+										</Stack>
 									</Stack>
-									<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }} textAlign="center">
+
+									<Divider orientation="horizontal" variant="middle" width="90%" paddingX={10} />
+
+									<Typography
+										fontWeight="bold"
+										sx={{ color: "primary.main", p: 1, borderRadius: 1 }}
+										textAlign="center"
+									>
 										DISCLAIMER: This recipe and the image are AI-generated and has not been verified for accuracy or
 										safety. It may contain errors. Always use your best judgement when making AI-generated dishes.
 									</Typography>
@@ -313,25 +355,19 @@ export default function ViewMeal() {
 							{lastMeal !== "" && (
 								<Stack alignItems="center" paddingX="4vw">
 									<Stack textAlign="center" sx={{ mt: 4 }}>
-										<Typography variant="h6" fontWeight="700">
-											Ingredients needed from Pantry: {lastIngredientsUser.join(", ")}
-										</Typography>
-										{lastIngredientsNeeded.length > 0 && (
-											<Typography variant="h6" fontWeight="700">
-												Ingredients needed outside Pantry: {lastIngredientsNeeded.join(", ")} {}
-											</Typography>
-										)}
-
 										{lastMealImage !== "" && lastMeal !== "" && lastRecipe !== "" && (
-											<EmailShareButton
-												url="IntelligentEats.com"
-												subject={`Take a look at the ${lastMeal} Recipe I generated from Intelligent Eats.`}
-												body={`Meal Name: ${lastMeal}\n\nIngredients:\n${lastIngredientQuantities.join(
-													"\n"
-												)}\n\nInstructions:\n${lastRecipe.join("\n")}`}
-											>
-												<StyledButton text="Share" sx={{ mt: 4 }} />
-											</EmailShareButton>
+											<Stack direction="row" spacing={4}>
+												<EmailShareButton
+													url="IntelligentEats.com"
+													subject={`Take a look at the ${lastMeal} Recipe I generated from Intelligent Eats.`}
+													body={`Meal Name: ${lastMeal}\n\nIngredients:\n${lastIngredientQuantities.join(
+														"\n"
+													)}\n\nInstructions:\n${lastRecipe.join("\n")}`}
+												>
+													<StyledButton text="Share" />
+												</EmailShareButton>
+												<StyledButton text="Add to Favourites" onClick={() => {}} />
+											</Stack>
 										)}
 									</Stack>
 								</Stack>

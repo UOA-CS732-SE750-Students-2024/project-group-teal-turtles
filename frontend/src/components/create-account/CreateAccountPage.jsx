@@ -29,6 +29,7 @@ export default function CreateAccount() {
 		setUserParameters,
 		setUserName,
 		setUserEmail,
+		setUserName,
 		setAuthorisedUser
 	} = useDataStore();
 	const router = useRouter();
