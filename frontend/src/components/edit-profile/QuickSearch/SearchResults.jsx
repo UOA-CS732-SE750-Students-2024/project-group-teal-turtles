@@ -1,6 +1,6 @@
-import { searchIngredients, categorizeIngredients } from "@/components/EditProfilePage/QuickSearch/SearchUtil";
+import { searchIngredients, categorizeIngredients } from "@/components/edit-profile/QuickSearch/SearchUtil";
 import { Divider } from "@mui/material";
-import DisplayIngredients from "@/components/EditProfilePage/QuickSearch/DisplayIngredients";
+import DisplayIngredients from "@/components/edit-profile/QuickSearch/DisplayIngredients";
 import allIngredients from "@/ingredients.json";
 
 function SearchResults({ searchResults, selectedIngredients, handleSelectIngredient }) {
