@@ -41,15 +41,15 @@ function DashboardPage() {
 				</Typography>
 
 				{userIngredients && userIngredients.length > 0 ? (
-					<Box sx={{ backgroundColor: "grey.300", p: 2, borderRadius: 1, maxWidth: "1012px" }}>
+					<Card sx={{ p: 2, borderRadius: 4, maxWidth: "1012px" }} elevation={5}>
 						<PantryGrid
 							itemData={ingredientsPantry}
 							onClick={() => router.push("/pantry")}
 							selected={userIngredients}
 						/>
-					</Box>
+					</Card>
 				) : (
-					<StyledButton text="+ Add Ingredients" onClick={() => router.push("/pantry")} />
+					<StyledButton text="+  Add Ingredients" onClick={() => router.push("/pantry")} sx={{ mt: 3 }} />
 				)}
 			</Container>
 		</Stack>
