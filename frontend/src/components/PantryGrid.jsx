@@ -1,6 +1,15 @@
 import { Card, CardActionArea, Grid, Typography, alpha } from "@mui/material";
 import Image from "next/image";
 
+/**
+ * PantryGrid component for displaying items in a grid layout.
+ * @param {Object} props - The props for the PantryGrid component.
+ * @param {Array<Object>} props.itemData - The data for the items to be displayed.
+ * @param {string} props.variant - The variant of the grid layout.
+ * @param {function} props.onClick - The function to handle click events on items.
+ * @param {Array<string>} props.selected - The list of selected items.
+ * @returns {JSX.Element} The PantryGrid component.
+ */
 export default function PantryGrid({ itemData, variant, onClick, selected }) {
 	return (
 		<Grid

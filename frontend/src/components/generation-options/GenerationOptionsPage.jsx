@@ -9,6 +9,10 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { ExpandMore } from "@mui/icons-material";
 import StyledButton from "@/components/StyledButton";
 
+/**
+ * GenerationOptionsPage component renders the page for generating recipe options based on user preferences.
+ * @returns {JSX.Element} A React JSX element representing the generation options page.
+ */
 function GenerationOptionsPage() {
 	function Generation() {
 		const router = useRouter();
@@ -23,14 +27,28 @@ function GenerationOptionsPage() {
 		const dietaryRequirements = ["None", "Vegetarian", "Vegan", "Gluten-free", "Dairy-free"];
 		const numberOfPeopleOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
 
+		/**
+		 * handleButtonClick function handles button click events for selecting generation options.
+		 * @param {string} option - The selected generation option.
+		 * @returns {void}
+		 */
 		const handleButtonClick = (option) => {
 			router.push(`/generation-options?generateOption=${option}`);
 		};
 
+		/**
+		 * handleGenerate function handles generation of meal based on selected options.
+		 * @returns {void}
+		 */
 		const handleGenerate = () => {
 			router.push(`/view-meal?generateOption=${generateOptionParam}&from=generation`);
 		};
 
+		/**
+		 * handleKeyPress function handles key press events for generating meal based on prompt input.
+		 * @param {object} e - The key press event object.
+		 * @returns {void}
+		 */
 		const handleKeyPress = (e) => {
 			if (e.key === "Enter" && prompt !== "") {
 				handleGenerate();

@@ -23,7 +23,15 @@ import useDataStore from "@/lib/store";
 import Image from "next/image";
 import StyledButton from "@/components/StyledButton";
 
+/**
+ * ViewMealPage component for displaying a generated recipe and related functionalities.
+ * @returns {JSX.Element} The ViewMealPage component.
+ */
 export default function ViewMealPage() {
+	/**
+	 * View component for managing state and logic related to displaying a generated recipe.
+	 * @returns {JSX.Element} The View component.
+	 */
 	function View() {
 		const {
 			mealToRemix,
@@ -55,6 +63,7 @@ export default function ViewMealPage() {
 		const [mealCurrentlyGenerating, setMealCurrentlyGenerating] = useState(false);
 		const [open, setOpen] = useState(false);
 		const [loading, setLoading] = useState(false);
+
 		useEffect(() => {
 			if (searchParams.get("from") === "generation" || searchParams.get("from") === "profile") {
 				setMealCurrentlyGenerating(true);
@@ -133,6 +142,12 @@ export default function ViewMealPage() {
 			}
 		}, []);
 
+		/**
+		 * Function for handling actions after receiving the result of a generated meal.
+		 * @param {string} mealName - The name of the generated meal.
+		 * @param {string[]} userIngredients - The ingredients used in the generated meal.
+		 * @param {string[]} [ingredientsNeeded] - The ingredients needed for the meal from the pantry.
+		 */
 		async function afterResult(mealName, userIngredients, ingredientsNeeded) {
 			const authToken = await getAuth().currentUser.getIdToken();
 
@@ -147,6 +162,11 @@ export default function ViewMealPage() {
 			generateImage(mealName, userIngredients, ingredientsNeeded);
 		}
 
+		/**
+		 * Function for fetching a recipe based on the generated meal.
+		 * @param {string} mealName - The name of the generated meal.
+		 * @param {string[]} ingredients - The ingredients used in the generated meal.
+		 */
 		async function fetchRecipe(mealName, ingredients) {
 			const authToken = await getAuth().currentUser.getIdToken();
 			const body = { mealName: mealName, ingredients: ingredients, numberOfPeople: userParameters.numberOfPeople };
@@ -161,6 +181,12 @@ export default function ViewMealPage() {
 				});
 		}
 
+		/**
+		 * Function for generating an image representation of the meal.
+		 * @param {string} mealName - The name of the generated meal.
+		 * @param {string[]} ingredientsUser - The ingredients used in the generated meal.
+		 * @param {string[]} ingredientsNeeded - The ingredients needed for the meal from the pantry.
+		 */
 		async function generateImage(mealName, ingredientsUser, ingredientsNeeded) {
 			const mealData = {
 				mealName: mealName,
@@ -183,6 +209,9 @@ export default function ViewMealPage() {
 			}
 		}
 
+		/**
+		 * Function for adding the generated meal to the user's favorite list.
+		 */
 		async function addToFavourites() {
 			if (!userFavouriteMeals.includes(lastMeal)) {
 				const authToken = await getAuth().currentUser.getIdToken();

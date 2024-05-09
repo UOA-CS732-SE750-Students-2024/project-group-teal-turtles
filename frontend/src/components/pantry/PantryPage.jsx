@@ -4,6 +4,10 @@ import React from "react";
 import PantryTabs from "@/components/pantry/PantryTabs";
 import { Box, Stack } from "@mui/material";
 
+/**
+ * Renders the pantry page.
+ * @returns {JSX.Element} The rendered component.
+ */
 function PantryPage() {
 	return (
 		<Stack width="100%" sx={{ backgroundColor: "background.paper" }}>
