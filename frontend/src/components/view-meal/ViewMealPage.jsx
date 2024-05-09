@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
 import { EmailShareButton } from "react-share";
+import { getSegmindMeal } from "@/lib/apiCalls";
 import {
 	addGeneratedMeal,
 	addFavMeal,
@@ -176,9 +177,7 @@ export default function ViewMealPage() {
 
 			try {
 				setLoading(true);
-				const response = await axios.post(process.env.NEXT_PUBLIC_SEGMIND_URL, data, {
-					headers: { "x-api-key": process.env.NEXT_PUBLIC_SEGMIND_API_KEY }
-				});
+				const response = await getSegmindMeal(data);
 				setLastMealImage(response.data.image);
 				setLoading(false);
 			} catch (error) {

@@ -3,7 +3,7 @@ import axios from "axios";
 export function saveIngredients(authToken, userIngredients) {
 	try {
 		axios.put(
-			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/ingredients",
+			process.env.BACKEND_URL + "/users/ingredients",
 			{
 				ingredients: userIngredients
 			},
@@ -21,7 +21,7 @@ export function saveIngredients(authToken, userIngredients) {
 export function addDislikedIngredient(authToken, dislikedIngredient) {
 	try {
 		axios.put(
-			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/ingredients/disliked/add",
+			process.env.BACKEND_URL + "/users/ingredients/disliked/add",
 			{
 				dislikedIngredientToAdd: dislikedIngredient
 			},
@@ -38,7 +38,7 @@ export function addDislikedIngredient(authToken, dislikedIngredient) {
 export function removeDislikedIngredient(authToken, dislikedIngredient) {
 	try {
 		axios.put(
-			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/ingredients/disliked/remove",
+			process.env.BACKEND_URL + "/users/ingredients/disliked/remove",
 			{
 				dislikedIngredientToRemove: dislikedIngredient
 			},
@@ -56,7 +56,7 @@ export function removeDislikedIngredient(authToken, dislikedIngredient) {
 export function setDislikedIngredient(authToken, dislikedIngredients) {
 	try {
 		axios.put(
-			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/ingredients/disliked",
+			process.env.BACKEND_URL + "/users/ingredients/disliked",
 			{
 				dislikedIngredients: dislikedIngredients
 			},
@@ -74,7 +74,7 @@ export function setDislikedIngredient(authToken, dislikedIngredients) {
 export function addFavMeal(authToken, favMeal) {
 	try {
 		axios.put(
-			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/meals/favourite/add",
+			process.env.BACKEND_URL + "/users/meals/favourite/add",
 			{
 				favMealToAdd: favMeal
 			},
@@ -91,7 +91,7 @@ export function addFavMeal(authToken, favMeal) {
 export function removeFavMeal(authToken, favMeal) {
 	try {
 		axios.put(
-			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/meals/favourite/remove",
+			process.env.BACKEND_URL + "/users/meals/favourite/remove",
 			{
 				favMealToDelete: favMeal
 			},
@@ -108,7 +108,7 @@ export function removeFavMeal(authToken, favMeal) {
 export function saveParameters(authToken, userParameters) {
 	try {
 		axios.put(
-			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/parameters",
+			process.env.BACKEND_URL + "/users/parameters",
 			{ parameters: userParameters },
 			{
 				headers: {
@@ -124,7 +124,7 @@ export function saveParameters(authToken, userParameters) {
 export function addGeneratedMeal(authToken, mealName) {
 	try {
 		axios.put(
-			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/meals",
+			process.env.BACKEND_URL + "/users/meals",
 			{ mealToAdd: mealName },
 			{
 				headers: { Authorization: authToken }
@@ -137,7 +137,7 @@ export function addGeneratedMeal(authToken, mealName) {
 
 export function generateRecipe(authToken, mealName, ingredients, numberOfPeople) {
 	return axios.post(
-		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/recipe",
+		process.env.BACKEND_URL + "/generation/recipe",
 		{
 			mealName: mealName,
 			ingredients: ingredients,
@@ -153,7 +153,7 @@ export function generateRecipe(authToken, mealName, ingredients, numberOfPeople)
 
 export function generateMealRemix(authToken, body) {
 	return axios.post(
-		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/remix",
+		process.env.BACKEND_URL + "/generation/remix",
 		{
 			body
 		},
@@ -167,7 +167,7 @@ export function generateMealRemix(authToken, body) {
 
 export function generateMealPrompt(authToken, prompt) {
 	return axios.post(
-		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/prompt",
+		process.env.BACKEND_URL + "/generation/prompt",
 		{
 			prompt: prompt
 		},
@@ -181,7 +181,7 @@ export function generateMealPrompt(authToken, prompt) {
 
 export function generateMealLoose(authToken, body) {
 	return axios.post(
-		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicLoose",
+		process.env.BACKEND_URL + "/generation/basicLoose",
 		{
 			body
 		},
@@ -195,7 +195,7 @@ export function generateMealLoose(authToken, body) {
 
 export function generateMealStrict(authToken, body) {
 	return axios.post(
-		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicStrict",
+		process.env.BACKEND_URL + "/generation/basicStrict",
 		{
 			body
 		},
@@ -205,4 +205,24 @@ export function generateMealStrict(authToken, body) {
 			}
 		}
 	);
+}
+
+export function createUser(userAuthToken) {
+	return axios.post(
+		process.env.BACKEND_URL + "/users",
+		{},
+		{
+			headers: {
+				Authorization: userAuthToken
+			}
+		}
+	);
+}
+
+export function getUser(userAuthToken) {
+	return axios.get(process.env.BACKEND_URL + "/users", {
+		headers: {
+			Authorization: userAuthToken
+		}
+	});
 }
