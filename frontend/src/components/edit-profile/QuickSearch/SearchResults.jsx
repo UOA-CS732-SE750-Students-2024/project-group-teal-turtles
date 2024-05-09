@@ -1,4 +1,4 @@
-import { searchIngredients, categorizeIngredients } from "@/components/edit-profile/QuickSearch/SearchUtil";
+import { searchIngredients, categorizeIngredients } from "@/lib/SearchUtil";
 import { Divider } from "@mui/material";
 import DisplayIngredients from "@/components/edit-profile/QuickSearch/DisplayIngredients";
 import allIngredients from "@/lib/ingredients.json";

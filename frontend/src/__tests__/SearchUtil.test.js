@@ -1,4 +1,4 @@
-import { searchIngredients, categorizeIngredients } from "@/components/edit-profile/QuickSearch/SearchUtil";
+import { searchIngredients, categorizeIngredients } from "@/lib/SearchUtil";
 import ingredients from "@/lib/ingredients.json";
 
 describe("SearchUtil", () => {
