@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { auth } from "@/app/firebase-config";
+import { auth } from "@/lib/firebase-config";
 
 export default function Auth() {
 	auth.app;

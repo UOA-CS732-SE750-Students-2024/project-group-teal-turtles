@@ -1,7 +1,7 @@
 import IngredientSummary from "./IngredientSummary/IngredientSummary";
 import ProfileSummary from "./ProfileSummary/ProfileSummary";
 import { useRouter } from "next/navigation";
-import { Typography, Button, Stack, Card, CardContent } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
 import DisplayMeals from "./DisplayMeals/DisplayMeals";

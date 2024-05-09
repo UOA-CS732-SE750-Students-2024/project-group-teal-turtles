@@ -1,18 +1,18 @@
 "use client";
 
-import CardWrapper from "@/components/CardWrapper/CardWrapper";
+import CardWrapper from "@/components/CardWrapper";
 import { Google } from "@mui/icons-material";
 import { Stack, Typography, Button, TextField, IconButton, Link, CircularProgress } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
-import { createAccount } from "@/app/auth-functions";
-import { auth } from "@/app/firebase-config";
+import { createAccount } from "@/lib/auth-functions";
+import { auth } from "@/lib/firebase-config";
 import useDataStore from "@/lib/store";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { handleGoogleLogin } from "@/app/auth-functions";
+import { handleGoogleLogin } from "@/lib/auth-functions";
 
-export default function CreateAccount() {
+export default function CreateAccountPage() {
 	const [passwordVisible, setPasswordVisible] = useState(false);
 	const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");

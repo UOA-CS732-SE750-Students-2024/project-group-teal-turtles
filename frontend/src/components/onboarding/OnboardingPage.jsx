@@ -1,6 +1,6 @@
 "use client";
 
-import CardWrapper from "@/components/CardWrapper/CardWrapper";
+import CardWrapper from "@/components/CardWrapper";
 import { Stack } from "@mui/material";
 import { useState } from "react";
 import { MealsPage } from "./MealsPage";

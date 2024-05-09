@@ -1,4 +1,4 @@
-import ingredients from "@/ingredients.json";
+import ingredients from "@/lib/ingredients.json";
 import Fuse from "fuse.js";
 
 const fuse = new Fuse(ingredients, {
