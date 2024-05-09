@@ -18,3 +18,29 @@ Current technology for development
 
 - Prettier for formatting
 - EScode for lining
+
+## Development
+
+in the terminal type npm install
+
+then npm
+
+## Running the Backend
+
+For backend cd to the backend file
+
+1. install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. start server :
+
+   ```bash
+   npm staart
+   ```
+
+   This will start the backend server at http://localhost:3000
+
+## Production
