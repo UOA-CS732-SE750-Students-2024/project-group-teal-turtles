@@ -1,5 +1,6 @@
 import DashboardGenerationCard from "@/components/DashboardGenerationPanel/DashboardGenerationCard";
-import { Grid, Paper, Typography, Box } from "@mui/material";
+import useDataStore from "@/lib/store";
+import { Box, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 function DashboardGenerationPanel() {
@@ -24,22 +25,33 @@ function DashboardGenerationPanel() {
 		}
 	};
 	const router = useRouter();
+	const { userIngredients } = useDataStore();
 
 	return (
 		<Grid container spacing={2} sx={{ mb: "2vh" }}>
 			<Grid item xs={6}>
 				<DashboardGenerationCard
 					header="Basic"
-					description="Will use ingredients from your pantry as well as other ingredients to generate a delicious meal"
+					description="Will use ingredients in your pantry as well as other ingredients to generate a delicious meal"
 					onClick={() => handleButtonPress("Basic")}
 				/>
 			</Grid>
 			<Grid item xs={6}>
-				<DashboardGenerationCard
-					header="Strict"
-					description="Will only use the ingredients from your pantry to generate a delicious meal"
-					onClick={() => handleButtonPress("Strict")}
-				/>
+				{userIngredients && userIngredients.length > 0 ? (
+					<DashboardGenerationCard
+						header="Strict"
+						description="Will use only the ingredients in your pantry to generate a delicious meal"
+						onClick={() => handleButtonPress("Strict")}
+					/>
+				) : (
+					<Box sx={{ opacity: 0.5 }}>
+						<DashboardGenerationCard
+							header="Strict"
+							description="Add some items to your pantry to use Strict generation"
+							onClick={() => {}}
+						/>
+					</Box>
+				)}
 			</Grid>
 			<Grid item xs={6}>
 				<DashboardGenerationCard
