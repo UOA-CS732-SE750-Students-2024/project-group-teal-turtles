@@ -210,41 +210,29 @@ export default function ViewMeal() {
 			<Stack sx={{ backgroundColor: "background.paper" }} alignItems="center">
 				<Suspense>
 					<Stack justifyContent="space-between" minHeight="calc(100vh - 70px)" width="100%" maxWidth="lg">
-						{lastMeal !== "" && (
-							<Typography
-								variant="h2"
-								textAlign="center"
-								fontWeight="700"
-								mt="10vh"
-								mb="5vh"
-								mx="50px"
-								sx={{ color: "primary.dark" }}
-							>
-								{lastMeal}
-							</Typography>
-						)}
+						<Typography
+							variant="h2"
+							textAlign="center"
+							fontWeight="700"
+							mt="5vh"
+							mb="5vh"
+							mx="50px"
+							sx={{ color: "primary.dark" }}
+						>
+							{lastMeal === "" && !mealCurrentlyGenerating ? "Last Generated Recipe" : lastMeal}
+						</Typography>
 						<Card
 							elevation={5}
 							sx={{
 								borderRadius: "80px 80px 0px 0px",
 								flexGrow: 1,
-								pb: "20vh",
-								mt: mealCurrentlyGenerating && lastMeal === "" ? "20vh" : 0
+								pb: "20vh"
 							}}
 						>
-							{lastMeal === "" && mealCurrentlyGenerating && (
-								<Stack>
-									<Typography variant="h4" align="center" sx={{ mt: 4 }}>
-										Generating a delicious meal...
-									</Typography>
-									<LinearProgress sx={{ mt: 4 }} />
-								</Stack>
-							)}
-
 							{lastMeal === "" && !mealCurrentlyGenerating && (
-								<Stack>
-									<Typography variant="h4" align="center">
-										Please go to Generate to create a personalised recipe
+								<Stack alignItems="center">
+									<Typography variant="h5" align="center" my={7}>
+										Please go to Generate to create a personalised recipe.
 									</Typography>
 
 									<StyledButton
@@ -254,9 +242,9 @@ export default function ViewMeal() {
 								</Stack>
 							)}
 
-							{lastMeal !== "" && lastRecipe === "" && (
+							{((lastMeal === "" && mealCurrentlyGenerating) || (lastMeal !== "" && lastRecipe === "")) && (
 								<Stack alignItems="center">
-									<CircularProgress sx={{ mt: 4 }} size={50} />
+									<CircularProgress sx={{ my: 7 }} size={50} />
 									<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.main" }}>
 										Generating recipe...
 									</Typography>
