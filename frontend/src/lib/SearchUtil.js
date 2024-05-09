@@ -28,6 +28,3 @@ export const categorizeIngredients = (ingredients) => {
 	return categorizedIngredients;
 };
 
-export const extractIngredients = (categorizedIngredients, category) => {
-	return categorizedIngredients[category].map((key) => categorizeIngredients[key]);
-};
