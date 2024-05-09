@@ -25,17 +25,45 @@ in the terminal type npm install
 
 then npm
 
-## Running the Backend
+## Running the Frontend
 
-For backend cd to the backend file
+For frontend cd to the frontend folder and
 
-1. install dependencies:
+1. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. start server :
+2. Either run in development mode:
+
+   ```bash
+   npm run dev
+   ```
+
+   Or production mode:
+
+   ```bash
+   npm run build
+   ```
+
+   then:
+
+   ```bash
+   npm run start
+   ```
+
+## Running the Backend
+
+For backend cd to the backend file
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Start server :
 
    ```bash
    npm start
@@ -47,7 +75,7 @@ For backend cd to the backend file
 
 ## Testing the Backend
 
-The backend can be tested by cd to backend folder and then
+The backend can be tested by first cd to backend folder and then
 
 ```bash
 npm run test
