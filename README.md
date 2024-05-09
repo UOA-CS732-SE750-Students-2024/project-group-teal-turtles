@@ -92,9 +92,10 @@ This project requires Node.js 20.12.2 or higher
 
 ### Testing the Backend
 
-The backend can be tested by first cd to backend folder and then
+The backend can be tested by
 
 ```bash
+cd backend
 npm run test
 ```
 
@@ -102,18 +103,20 @@ npm run test
 
 #### Jest
 
-The backend logic is tests with jest
+We unit tested our frontend logic with Jest
 
 ```bash
+cd frontend
 npm run test
 ```
 
 #### Playwright
 
-To test with playwright follow the following instructions
-These test some common user flows
+End-to-end testing is achieved through playwright
+We've focused our tests on some common user flows
 
 ```bash
+cd frontend
 npm run build
 npx playwright install
 npx playwright test
@@ -121,7 +124,23 @@ npx playwright test
 
 ## Pages
 
-TODO
+### /dashboard
+
+### /edit-profile
+
+### /generation-options
+
+### /landing
+
+### /pantry
+
+### /view-meal
+
+### /create-account
+
+### /login
+
+### /onboarding
 
 ## Tech Stack
 
