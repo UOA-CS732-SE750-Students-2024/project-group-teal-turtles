@@ -29,6 +29,7 @@ function Login() {
 		setUserName,
 		setAuthorisedUser
 	} = useDataStore();
+	
 	const router = useRouter();
 	async function fetchUser(userAuthToken) {
 		try {
