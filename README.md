@@ -72,21 +72,23 @@ This project requires Node.js 20.12.2 or higher
 
 ### Running the Backend
 
-0. Set up the `.env` file in the root directory. See `.env.example` for an example
+0. Add the `serviceAccount.json` file to `src\auth`
 
-1. Navigate inside the backend folder:
+1. Set up the `.env` file in the root directory. See `.env.local.example` for an example
+
+2. Navigate inside the backend folder:
 
    ```bash
    cd backend
    ```
 
-2. Install the dependencies:
+3. Install the dependencies:
 
    ```bash
    npm install
    ```
 
-3. Start the server:
+4. Start the server:
 
    ```bash
    npm start
