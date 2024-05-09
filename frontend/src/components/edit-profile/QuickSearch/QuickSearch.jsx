@@ -4,7 +4,7 @@ import SearchResults from "./SearchResults";
 import SelectedIngredients from "./SelectedIngredients";
 import allIngredients from "@/ingredients.json";
 import { searchIngredients } from "./SearchUtil";
-import { addDislikedIngredient, removeDislikedIngredient } from "@/helpers/dbCalls";
+import { addDislikedIngredient, removeDislikedIngredient } from "@/lib/dbCalls";
 import { getAuth } from "firebase/auth";
 
 function QuickSearch({ selectedIngredients, setSelectedIngredients, handleClose }) {

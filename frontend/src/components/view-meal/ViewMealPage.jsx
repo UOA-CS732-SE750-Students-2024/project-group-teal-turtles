@@ -16,7 +16,7 @@ import {
 	generateMealPrompt,
 	generateMealRemix,
 	generateMealStrict
-} from "@/helpers/dbCalls";
+} from "@/lib/dbCalls";
 import { useRouter } from "next/navigation";
 import { Stack } from "@mui/material";
 import useDataStore from "@/lib/store";
