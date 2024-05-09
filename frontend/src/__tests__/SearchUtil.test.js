@@ -1,4 +1,4 @@
-import { searchIngredients, categorizeIngredients, extractIngredients } from "@/lib/SearchUtil";
+import { searchIngredients, categorizeIngredients } from "@/lib/SearchUtil";
 import ingredients from "@/lib/ingredients.json";
 
 describe("SearchUtil", () => {

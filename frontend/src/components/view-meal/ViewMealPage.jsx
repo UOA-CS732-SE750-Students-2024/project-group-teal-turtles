@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Card, Typography, LinearProgress, CircularProgress, Dialog, Box, Divider } from "@mui/material";
+import { Button, Card, Typography, CircularProgress, Dialog, Divider } from "@mui/material";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { getAuth } from "firebase/auth";

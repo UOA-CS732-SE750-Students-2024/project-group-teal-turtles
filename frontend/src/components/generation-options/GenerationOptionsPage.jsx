@@ -51,6 +51,7 @@ function GenerationOptionsPage() {
 					<Stack direction="row" justifyContent="space-between" spacing="20px">
 						{options.map((option, index) => (
 							<Tooltip
+								key={index}
 								title={
 									(!userIngredients || userIngredients.length === 0) && option === "Strict"
 										? "You need to add some ingredients to your Pantry"

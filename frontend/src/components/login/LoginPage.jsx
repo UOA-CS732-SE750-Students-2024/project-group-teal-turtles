@@ -1,13 +1,12 @@
 "use client";
 
 import { Google } from "@mui/icons-material";
-import { Stack, Typography, Card, Button, TextField, IconButton, Link, CircularProgress } from "@mui/material";
+import { Stack, Typography, Button, TextField, IconButton, Link, CircularProgress } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import CardWrapper from "@/components/CardWrapper";
 import { handleGoogleLogin, login } from "@/lib/auth-functions";
 import { auth } from "@/lib/firebase-config";
-import axios from "axios";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
 import { getUser, createUser } from "@/lib/dbCalls";
@@ -25,7 +24,6 @@ function LoginPage() {
 		setUserIngredients,
 		setUserDislikedIngredients,
 		setUserParameters,
-		userParameters,
 		setUserEmail,
 		setUserName,
 		setAuthorisedUser

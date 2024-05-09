@@ -8,7 +8,6 @@ import React, { useState } from "react";
 import { createAccount } from "@/lib/auth-functions";
 import { auth } from "@/lib/firebase-config";
 import useDataStore from "@/lib/store";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { handleGoogleLogin } from "@/lib/auth-functions";
 import { getUser, createUser } from "@/lib/dbCalls";
@@ -124,8 +123,7 @@ export default function CreateAccountPage() {
 				<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.main" }}>
 					Sign Up
 				</Typography>
-				<Typography variant="h5">Don't have an account? We'll create one for you.</Typography>
-
+				<Typography variant="h5">Don&apos;t have an account? We&apos;ll create one for you.</Typography>
 				<TextField
 					fullWidth
 					label="Email Address"

@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography, Stack, Card, CardActionArea, Button } from "@mui/material";
+import { Typography, Stack, Card, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 import "@/app/globals.css";

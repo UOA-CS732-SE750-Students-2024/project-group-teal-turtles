@@ -14,11 +14,9 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
-import useDataStore from "@/lib/store";
 
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
-	const [anchorElUser, setAnchorElUser] = useState(null);
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
 		{ name: "Generate", url: "/generation-options?generateOption=Basic" },
@@ -34,10 +32,6 @@ function ResponsiveAppBar() {
 
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
-	};
-
-	const handleCloseUserMenu = () => {
-		setAnchorElUser(null);
 	};
 
 	return (
