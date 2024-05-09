@@ -1,10 +1,8 @@
-import PantryPage from '@/components/pantry/PantryPage'
-import React from 'react'
+import PantryPage from "@/components/pantry/PantryPage";
+import React from "react";
 
 function Page() {
-  return (
-	<PantryPage/>
-  )
+	return <PantryPage />;
 }
 
-export default Page
+export default Page;

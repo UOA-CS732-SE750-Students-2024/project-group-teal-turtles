@@ -1,10 +1,8 @@
-import LandingPage from '@/components/landing/LandingPage'
-import React from 'react'
+import LandingPage from "@/components/landing/LandingPage";
+import React from "react";
 
 function Page() {
-  return (
-	<LandingPage/>
-  )
+	return <LandingPage />;
 }
 
-export default Page
+export default Page;
