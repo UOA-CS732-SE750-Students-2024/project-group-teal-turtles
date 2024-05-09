@@ -1,7 +1,7 @@
 import React from "react";
 import DisplayIngredients from "./DisplayIngredients";
 import { Divider } from "@mui/material";
-import allIngredients from "@/ingredients.json";
+import allIngredients from "@/lib/ingredients.json";
 
 function SelectedIngredients({ selectedIngredients, handleSelectIngredient }) {
 	if (!selectedIngredients.length) {

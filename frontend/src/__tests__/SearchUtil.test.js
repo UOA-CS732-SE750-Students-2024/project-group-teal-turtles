@@ -1,5 +1,5 @@
-import { searchIngredients, categorizeIngredients } from "@/components/edit-profile/QuickSearch/SearchUtil";
-import ingredients from "@/ingredients.json";
+import { searchIngredients, categorizeIngredients } from "@/lib/SearchUtil";
+import ingredients from "@/lib/ingredients.json";
 
 describe("SearchUtil", () => {
 	test("categorizeIngredients should return an object with categories as keys", () => {

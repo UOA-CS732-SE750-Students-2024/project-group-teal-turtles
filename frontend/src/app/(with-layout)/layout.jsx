@@ -1,5 +1,5 @@
-import Layout from "@/components/Layout/Layout";
+import HeaderFooterLayout from "@/components/Layout/HeaderFooterLayout";
 
 export default function Page({ children }) {
-	return <Layout>{children}</Layout>;
+	return <HeaderFooterLayout>{children}</HeaderFooterLayout>;
 }

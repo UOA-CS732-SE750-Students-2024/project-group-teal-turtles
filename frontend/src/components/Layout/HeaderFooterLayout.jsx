@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import StickyFooter from "./StickyFooter";
 import Auth from "./Auth";
 
-export default function Layout({ children }) {
+export default function HeaderFooterLayout({ children }) {
 	return (
 		<Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
 			<ResponsiveAppBar />
