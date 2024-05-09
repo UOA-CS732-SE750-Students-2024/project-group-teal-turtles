@@ -50,4 +50,3 @@ export const categorizeIngredients = (ingredients) => {
 	}
 	return categorizedIngredients;
 };
-

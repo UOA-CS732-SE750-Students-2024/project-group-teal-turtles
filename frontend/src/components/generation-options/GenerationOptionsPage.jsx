@@ -164,8 +164,8 @@ function GenerationOptionsPage() {
 								{generateOptionParam === "Basic"
 									? "Basic Mode allows you to generate recipes based on your pantry and cuisine type."
 									: generateOptionParam === "Strict"
-									? "Strict Mode will not add new ingredients outside of your pantry list."
-									: "Remix Mode takes a meal, figures out the ingredients in it and will generate you a new meal based on those ingredients."}
+										? "Strict Mode will not add new ingredients outside of your pantry list."
+										: "Remix Mode takes a meal, figures out the ingredients in it and will generate you a new meal based on those ingredients."}
 							</Typography>
 							<Typography fontWeight="bold" variant="h4" textAlign="center">
 								I want a
