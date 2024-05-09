@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from "@mui/material";
+import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Typography } from "@mui/material";
 import React from "react";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import { addFavMeal, removeFavMeal } from "@/lib/dbCalls";
@@ -41,7 +41,11 @@ function DisplayMeals({
 							setPrompt(`Make sure the name of the meal is ${meal} and that its ingredients are correct for that meal`)
 						}
 					>
-						<ListItemText primary={meal} onClick={handleMealClick} />
+						<ListItemText onClick={handleMealClick} disableTypography>
+							<Typography fontWeight="bold" variant="h6">
+								{meal}
+							</Typography>
+						</ListItemText>
 						<ListItemSecondaryAction>
 							<IconButton
 								edge="end"

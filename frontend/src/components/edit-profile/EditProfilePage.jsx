@@ -79,7 +79,7 @@ function EditProfilePage() {
 		<Stack width="100%" sx={{ backgroundColor: "background.paper" }}>
 			<Stack
 				direction="column"
-				spacing={4}
+				spacing={8}
 				alignItems="center"
 				sx={{ width: "100%", margin: "0 auto", padding: "10vh" }}
 			>
@@ -89,7 +89,7 @@ function EditProfilePage() {
 				</Stack>
 				<Stack direction="row" spacing="5vh">
 					<Stack sx={{ alignItems: "center" }}>
-						<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
+						<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
 							Meal History (Last 10)
 						</Typography>
 						<DisplayMeals
@@ -101,7 +101,7 @@ function EditProfilePage() {
 					</Stack>
 					{userFavouriteMeals.length !== 0 && (
 						<Stack sx={{ alignItems: "center" }}>
-							<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.main" }}>
+							<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
 								Favourite Meals
 							</Typography>
 							<DisplayMeals
@@ -114,17 +114,12 @@ function EditProfilePage() {
 						</Stack>
 					)}
 				</Stack>
-				<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
-					Disliked Ingredients:
-				</Typography>
-				<Stack alignItems="center" spacing={2} width="45vw">
+				<Stack alignItems="center" spacing={2} width="1000px">
+					<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
+						Disliked Ingredients:
+					</Typography>
 					<IngredientSummary ingredients={userDislikedIngredients} />
-					<StyledButton
-						onClick={() => {
-							setEditDislikedIngredients(true);
-						}}
-						text="Edit"
-					/>
+
 					<QuickSearchModal
 						selectedIngredients={userDislikedIngredients}
 						setSelectedIngredients={setUserDislikedIngredients}
@@ -132,6 +127,12 @@ function EditProfilePage() {
 						handleClose={handleCloseDislikedIngredients}
 					/>
 				</Stack>
+				<StyledButton
+					onClick={() => {
+						setEditDislikedIngredients(true);
+					}}
+					text="Edit"
+				/>
 			</Stack>
 		</Stack>
 	);
