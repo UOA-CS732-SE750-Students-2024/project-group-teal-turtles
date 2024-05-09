@@ -3,7 +3,7 @@
 import PantryGrid from "@/components/PantryGrid";
 import { Stack, Typography, Button } from "@mui/material";
 import useDataStore from "@/lib/store";
-import meals from "@/meals.json";
+import meals from "@/lib/meals.json";
 
 export function MealsPage({ onPageChange }) {
 	const { setUserFavouriteMeals, userFavouriteMeals } = useDataStore();
