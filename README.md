@@ -18,3 +18,65 @@ Current technology for development
 
 - Prettier for formatting
 - EScode for lining
+
+## Development
+
+in the terminal type npm install
+
+then npm
+
+## Running the Frontend
+
+For frontend cd to the frontend folder and
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Either run in development mode:
+
+   ```bash
+   npm run dev
+   ```
+
+   Or production mode:
+
+   ```bash
+   npm run build
+   ```
+
+   then:
+
+   ```bash
+   npm run start
+   ```
+
+## Running the Backend
+
+For backend cd to the backend file
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Start server :
+
+   ```bash
+   npm start
+   ```
+
+   This will start the backend server at http://localhost:3000
+
+## Production
+
+## Testing the Backend
+
+The backend can be tested by first cd to backend folder and then
+
+```bash
+npm run test
+```
