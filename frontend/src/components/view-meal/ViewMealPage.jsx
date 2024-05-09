@@ -9,6 +9,7 @@ import axios from "axios";
 import { EmailShareButton } from "react-share";
 import {
 	addGeneratedMeal,
+	addFavMeal,
 	saveParameters,
 	generateMealLoose,
 	generateRecipe,
@@ -27,6 +28,7 @@ export default function ViewMeal() {
 		const {
 			mealToRemix,
 			userFavouriteMeals,
+			setUserFavouriteMeals,
 			userDislikedIngredients,
 			userGeneratedMeals,
 			setUserGeneratedMeals,
@@ -183,6 +185,14 @@ export default function ViewMeal() {
 			} catch (error) {
 				setLoading(false);
 				console.error("Error:", error.response.data);
+			}
+		}
+
+		async function addToFavourites() {
+			if (!userFavouriteMeals.includes(lastMeal)) {
+				const authToken = await getAuth().currentUser.getIdToken();
+				setUserFavouriteMeals([...userFavouriteMeals, lastMeal]);
+				addFavMeal(authToken, lastMeal);
 			}
 		}
 
@@ -366,7 +376,11 @@ export default function ViewMeal() {
 												>
 													<StyledButton text="Share" />
 												</EmailShareButton>
-												<StyledButton text="Add to Favourites" onClick={() => {}} />
+												<StyledButton
+													text="Add to Favourites"
+													onClick={addToFavourites}
+													disabled={userFavouriteMeals.includes(lastMeal)}
+												/>
 											</Stack>
 										)}
 									</Stack>
