@@ -121,7 +121,7 @@ function EditProfilePage() {
 					<Divider orientation="horizontal" variant="middle" width="600px" />
 					<Stack alignItems="center" spacing={4}>
 						<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
-							Disliked Ingredients:
+							Disliked Ingredients
 						</Typography>
 						<IngredientSummary ingredients={userDislikedIngredients} />
 

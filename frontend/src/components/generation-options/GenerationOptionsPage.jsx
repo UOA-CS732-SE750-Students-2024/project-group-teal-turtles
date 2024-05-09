@@ -42,7 +42,7 @@ function GenerationOptionsPage() {
 				height="calc(100vh - 70px)"
 				justifyContent="space-between"
 				px="20vw"
-				sx={{ backgroundColor: "background.paper" }}
+				sx={{ backgroundColor: "background.paper", minWidth: "1000px" }}
 			>
 				<Stack alignItems="center">
 					<Typography variant="h2" align="center" fontWeight="bold" mt="10vh" mb="2vh" sx={{ color: "primary.main" }}>
