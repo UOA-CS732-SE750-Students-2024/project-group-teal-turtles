@@ -207,7 +207,7 @@ export default function ViewMeal() {
 		return (
 			<Stack sx={{ backgroundColor: "background.paper" }} alignItems="center">
 				<Suspense>
-					<Stack justifyContent="space-between" minHeight="calc(100vh - 70px)" minWidth="lg" maxWidth="lg">
+					<Stack justifyContent="space-between" minHeight="calc(100vh - 70px)" width="100%" maxWidth="lg">
 						{lastMeal !== "" && (
 							<Typography
 								variant="h2"
@@ -270,13 +270,14 @@ export default function ViewMeal() {
 											</Typography>
 										</Stack>
 									) : setLastMealImage !== "" ? (
-										<Stack direction="row" sx={{ display: "flex", alignItems: "center" }}>
+										<Stack direction="row" sx={{ display: "flex", alignItems: "center" }} width="100%">
 											<Button
 												variant="contained"
 												sx={{ p: 1, borderRadius: 4, width: 400, height: 400 }}
 												onClick={() => {
 													setOpen(true);
 												}}
+												flex={0}
 											>
 												<Image
 													src={lastMealImage !== "" ? `data:image/png;base64,${lastMealImage}` : ""}
@@ -288,7 +289,7 @@ export default function ViewMeal() {
 											</Button>
 											<Stack flex={1} paddingX="4vw" spacing={3}>
 												<Typography variant="h6" fontWeight="700" sx={{ color: "primary.dark" }}>
-													Ingredients needed from Pantry
+													Ingredients {lastIngredientsNeeded.length > 0 && "needed from Pantry"}
 													<Typography variant="h6" fontWeight="500" sx={{ color: "black" }}>
 														{lastIngredientsUser.join(", ")}
 													</Typography>

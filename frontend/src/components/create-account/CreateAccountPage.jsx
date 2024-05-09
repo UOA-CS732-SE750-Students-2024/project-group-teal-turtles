@@ -28,6 +28,7 @@ export default function CreateAccount() {
 		setUserDislikedIngredients,
 		setUserParameters,
 		setUserEmail,
+		setUserName,
 		setAuthorisedUser
 	} = useDataStore();
 	const router = useRouter();
