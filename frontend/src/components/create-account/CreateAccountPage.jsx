@@ -11,6 +11,7 @@ import useDataStore from "@/lib/store";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { handleGoogleLogin } from "@/lib/auth-functions";
+import { getUser, createUser } from "@/lib/dbCalls";
 
 export default function CreateAccountPage() {
 	const [passwordVisible, setPasswordVisible] = useState(false);
@@ -35,11 +36,7 @@ export default function CreateAccountPage() {
 
 	async function fetchUser(userAuthToken) {
 		try {
-			const response = await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL + "/users", {
-				headers: {
-					Authorization: userAuthToken
-				}
-			});
+			const response = await getUser(userAuthToken);
 
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
@@ -57,15 +54,7 @@ export default function CreateAccountPage() {
 
 	async function createUserInDatabase(userAuthToken) {
 		try {
-			const response = await axios.post(
-				process.env.NEXT_PUBLIC_BACKEND_URL + "/users",
-				{},
-				{
-					headers: {
-						Authorization: userAuthToken
-					}
-				}
-			);
+			const response = await createUser(userAuthToken);
 			setUserDislikedIngredients(response.data.dislikedIngredients);
 			setUserFavouriteMeals(response.data.favouriteMeals);
 			setUserGeneratedMeals(response.data.generatedMeals);
