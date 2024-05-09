@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Card, Typography, LinearProgress, CircularProgress, Dialog, Box, Divider } from "@mui/material";
+import { Button, Card, Typography, CircularProgress, Dialog, Divider } from "@mui/material";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { getAuth } from "firebase/auth";
@@ -23,7 +23,15 @@ import useDataStore from "@/lib/store";
 import Image from "next/image";
 import StyledButton from "@/components/StyledButton";
 
+/**
+ * ViewMealPage component for displaying a generated recipe and related functionalities.
+ * @returns {JSX.Element} The ViewMealPage component.
+ */
 export default function ViewMealPage() {
+	/**
+	 * View component for managing state and logic related to displaying a generated recipe.
+	 * @returns {JSX.Element} The View component.
+	 */
 	function View() {
 		const {
 			mealToRemix,
@@ -55,6 +63,7 @@ export default function ViewMealPage() {
 		const [mealCurrentlyGenerating, setMealCurrentlyGenerating] = useState(false);
 		const [open, setOpen] = useState(false);
 		const [loading, setLoading] = useState(false);
+
 		useEffect(() => {
 			if (searchParams.get("from") === "generation" || searchParams.get("from") === "profile") {
 				setMealCurrentlyGenerating(true);
@@ -133,6 +142,12 @@ export default function ViewMealPage() {
 			}
 		}, []);
 
+		/**
+		 * Function for handling actions after receiving the result of a generated meal.
+		 * @param {string} mealName - The name of the generated meal.
+		 * @param {string[]} userIngredients - The ingredients used in the generated meal.
+		 * @param {string[]} [ingredientsNeeded] - The ingredients needed for the meal from the pantry.
+		 */
 		async function afterResult(mealName, userIngredients, ingredientsNeeded) {
 			const authToken = await getAuth().currentUser.getIdToken();
 
@@ -147,6 +162,11 @@ export default function ViewMealPage() {
 			generateImage(mealName, userIngredients, ingredientsNeeded);
 		}
 
+		/**
+		 * Function for fetching a recipe based on the generated meal.
+		 * @param {string} mealName - The name of the generated meal.
+		 * @param {string[]} ingredients - The ingredients used in the generated meal.
+		 */
 		async function fetchRecipe(mealName, ingredients) {
 			const authToken = await getAuth().currentUser.getIdToken();
 			const body = { mealName: mealName, ingredients: ingredients, numberOfPeople: userParameters.numberOfPeople };
@@ -161,25 +181,27 @@ export default function ViewMealPage() {
 				});
 		}
 
+		/**
+		 * Function for generating an image representation of the meal.
+		 * @param {string} mealName - The name of the generated meal.
+		 * @param {string[]} ingredientsUser - The ingredients used in the generated meal.
+		 * @param {string[]} ingredientsNeeded - The ingredients needed for the meal from the pantry.
+		 */
 		async function generateImage(mealName, ingredientsUser, ingredientsNeeded) {
-			const data = {
-				prompt: `4k, realistic, tasty looking dish, highly detailed, bokeh, cinemascope, moody, gorgeous, film grain, grainy, ${
-					mealName ?? ""
-				} on a plate, ingredients of dish ${ingredientsUser != null ? ingredientsUser.join(" ") : ""} ${
-					ingredientsNeeded != null ? ingredientsNeeded.join(" ") : ""
-				},`,
-				negative_prompt: "ugly, tiling, people, blurry, blurred, unappealing, background items",
-				img_width: 1024,
-				img_height: 1024,
-				base64: true
+			const mealData = {
+				mealName: mealName,
+				ingredientsUser: ingredientsUser,
+				ingredientsNeeded: ingredientsNeeded
 			};
-
 			try {
 				setLoading(true);
-				const response = await axios.post(process.env.NEXT_PUBLIC_SEGMIND_URL, data, {
-					headers: { "x-api-key": process.env.NEXT_PUBLIC_SEGMIND_API_KEY }
+				const authToken = await getAuth().currentUser.getIdToken();
+				const response = await axios.post(process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/mealImage", mealData, {
+					headers: {
+						Authorization: authToken
+					}
 				});
-				setLastMealImage(response.data.image);
+				setLastMealImage(response.data);
 				setLoading(false);
 			} catch (error) {
 				setLoading(false);
@@ -187,6 +209,9 @@ export default function ViewMealPage() {
 			}
 		}
 
+		/**
+		 * Function for adding the generated meal to the user's favorite list.
+		 */
 		async function addToFavourites() {
 			if (!userFavouriteMeals.includes(lastMeal)) {
 				const authToken = await getAuth().currentUser.getIdToken();
@@ -292,7 +317,7 @@ export default function ViewMealPage() {
 													<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
 														Ingredients {lastIngredientsNeeded.length > 0 && "needed from Pantry"}
 													</Typography>
-													<Typography variant="h6" sx={{ color: "black" }}>
+													<Typography variant="h6" sx={{ color: "secondary.dark" }}>
 														{lastIngredientsUser.join(", ")}
 													</Typography>
 												</Stack>
@@ -301,7 +326,7 @@ export default function ViewMealPage() {
 														<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
 															Ingredients needed outside Pantry
 														</Typography>
-														<Typography variant="h6" sx={{ color: "black" }}>
+														<Typography variant="h6" sx={{ color: "secondary.dark" }}>
 															{lastIngredientsNeeded.join(", ")}
 														</Typography>
 													</Stack>

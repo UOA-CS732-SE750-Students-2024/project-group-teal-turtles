@@ -83,13 +83,34 @@ This project requires Node.js 20.12.2 or higher
 
 ## Testing
 
-### Testing the Frontend
-
-TODO
-
 ### Testing the Backend
 
-TODO
+The backend can be tested by first cd to backend folder and then
+
+```bash
+npm run test
+```
+
+### Testing the Frontend
+
+#### Jest
+
+The backend logic is tests with jest
+
+```bash
+npm run test
+```
+
+#### PLaywright
+
+To test with playwright follow the following instructions
+These test some common user flows
+
+```bash
+npm run build
+npx playwright install
+npx playwright test
+```
 
 ## Pages
 

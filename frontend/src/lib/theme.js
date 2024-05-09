@@ -8,6 +8,9 @@ const lato = Lato({
 	display: "swap"
 });
 
+/**
+ * Configures the theme for the application.
+ */
 const theme = createTheme({
 	typography: {
 		fontFamily: lato.style.fontFamily
@@ -19,6 +22,7 @@ const theme = createTheme({
 			dark: "#D11E0A"
 		},
 		secondary: {
+			light: "#FFFFFF",
 			main: "#7E7E7E",
 			dark: "#000000"
 		},

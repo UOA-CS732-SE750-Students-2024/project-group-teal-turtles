@@ -1,17 +1,20 @@
 "use client";
 
 import { Google } from "@mui/icons-material";
-import { Stack, Typography, Card, Button, TextField, IconButton, Link, CircularProgress } from "@mui/material";
+import { Stack, Typography, Button, TextField, IconButton, Link, CircularProgress } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import CardWrapper from "@/components/CardWrapper";
 import { handleGoogleLogin, login } from "@/lib/auth-functions";
 import { auth } from "@/lib/firebase-config";
-import axios from "axios";
 import useDataStore from "@/lib/store";
 import { useRouter } from "next/navigation";
 import { getUser, createUser } from "@/lib/dbCalls";
 
+/**
+ * LoginPage component handles user login functionality.
+ * @returns {JSX.Element} LoginPage component.
+ */
 function LoginPage() {
 	const [visible, setVisible] = useState(false);
 	const [email, setEmail] = useState("");
@@ -25,13 +28,17 @@ function LoginPage() {
 		setUserIngredients,
 		setUserDislikedIngredients,
 		setUserParameters,
-		userParameters,
 		setUserEmail,
 		setUserName,
 		setAuthorisedUser
 	} = useDataStore();
 
 	const router = useRouter();
+	/**
+	 * Fetches user data using the provided authentication token.
+	 * @param {string} userAuthToken - The authentication token of the user.
+	 * @returns {Promise<void>} A promise indicating the completion of the fetch operation.
+	 */
 	async function fetchUser(userAuthToken) {
 		try {
 			const response = await getUser(userAuthToken);
@@ -50,6 +57,12 @@ function LoginPage() {
 		}
 	}
 
+	/**
+	 * Creates a user in the database using the provided authentication token.
+	 * @param {string} userAuthToken - The authentication token of the user.
+	 * @returns {Promise<Object>} A promise resolving to the response data from the database.
+	 * @throws {Error} Throws an error if user creation fails.
+	 */
 	async function createUserInDatabase(userAuthToken) {
 		try {
 			const response = await createUser(userAuthToken);
@@ -66,6 +79,12 @@ function LoginPage() {
 		}
 	}
 
+	/**
+	 * Handles the sign-in process using the provided email and password.
+	 * @async
+	 * @function handleSignIn
+	 * @throws {Error} Throws an error if the sign-in process fails.
+	 */
 	async function handleSignIn() {
 		try {
 			setLoading(true);
@@ -94,6 +113,12 @@ function LoginPage() {
 		}
 	}
 
+	/**
+	 * Handles the sign-in process using Google authentication.
+	 * @async
+	 * @function handleGoogleSignIn
+	 * @throws {Error} Throws an error if the sign-in process fails.
+	 */
 	async function handleGoogleSignIn() {
 		try {
 			setGoogleLoading(true);

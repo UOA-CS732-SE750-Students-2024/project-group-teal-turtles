@@ -8,11 +8,14 @@ import React, { useState } from "react";
 import { createAccount } from "@/lib/auth-functions";
 import { auth } from "@/lib/firebase-config";
 import useDataStore from "@/lib/store";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { handleGoogleLogin } from "@/lib/auth-functions";
 import { getUser, createUser } from "@/lib/dbCalls";
 
+/**
+ * React component for rendering a sign-up page for creating a new account.
+ * @returns {JSX.Element} The JSX representation of the sign-up page.
+ */
 export default function CreateAccountPage() {
 	const [passwordVisible, setPasswordVisible] = useState(false);
 	const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -34,6 +37,10 @@ export default function CreateAccountPage() {
 	} = useDataStore();
 	const router = useRouter();
 
+	/**
+	 * Fetches user data from the backend using the provided user authentication token.
+	 * @param {string} userAuthToken The user authentication token.
+	 */
 	async function fetchUser(userAuthToken) {
 		try {
 			const response = await getUser(userAuthToken);
@@ -52,6 +59,11 @@ export default function CreateAccountPage() {
 		}
 	}
 
+	/**
+	 * Creates a new user in the database using the provided user authentication token.
+	 * @param {string} userAuthToken The user authentication token.
+	 * @returns {Promise<Object>} A promise that resolves to the response data.
+	 */
 	async function createUserInDatabase(userAuthToken) {
 		try {
 			const response = await createUser(userAuthToken);
@@ -68,6 +80,9 @@ export default function CreateAccountPage() {
 		}
 	}
 
+	/**
+	 * Handles the sign-up process.
+	 */
 	async function handleCreateAccount() {
 		try {
 			if (password === confirmPassword) {
@@ -93,6 +108,10 @@ export default function CreateAccountPage() {
 			}
 		}
 	}
+
+	/**
+	 * Handles the Google sign-in process.
+	 */
 	async function handleGoogleSignIn() {
 		try {
 			setGoogleLoading(true);
@@ -113,6 +132,11 @@ export default function CreateAccountPage() {
 			setErrorToPrint("An error occurred while signing in. Please try again");
 		}
 	}
+
+	/**
+	 * Handles key press events to trigger the sign-up process when all required fields are filled.
+	 * @param {React.KeyboardEvent} e The keyboard event object.
+	 */
 	const handleKeyPress = (e) => {
 		if (e.key === "Enter" && email && password && confirmPassword) {
 			handleCreateAccount();
@@ -124,8 +148,7 @@ export default function CreateAccountPage() {
 				<Typography variant="h3" fontWeight="bold" sx={{ color: "primary.main" }}>
 					Sign Up
 				</Typography>
-				<Typography variant="h5">Don't have an account? We'll create one for you.</Typography>
-
+				<Typography variant="h5">Don&apos;t have an account? We&apos;ll create one for you.</Typography>
 				<TextField
 					fullWidth
 					label="Email Address"

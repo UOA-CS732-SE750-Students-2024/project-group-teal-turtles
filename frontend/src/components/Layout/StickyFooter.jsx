@@ -5,9 +5,13 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { grey } from "@mui/material/colors";
 
+/**
+ * Copyright component displays the copyright information.
+ * @returns {JSX.Element} Copyright component.
+ */
 function Copyright() {
 	return (
-		<Typography variant="body2" color="text.secondary">
+		<Typography variant="body2" sx={{ color: "secondary.main" }}>
 			{"© "}
 			{new Date().getFullYear()}{" "}
 			<Link color="inherit" href="/landing" sx={{ textDecoration: "none" }}>
@@ -18,6 +22,10 @@ function Copyright() {
 	);
 }
 
+/**
+ * StickyFooter component displays a sticky footer with copyright information.
+ * @returns {JSX.Element} StickyFooter component.
+ */
 export default function StickyFooter() {
 	return (
 		<Card

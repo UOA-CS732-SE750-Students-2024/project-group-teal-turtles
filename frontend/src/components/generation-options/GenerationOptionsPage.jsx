@@ -9,6 +9,10 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { ExpandMore } from "@mui/icons-material";
 import StyledButton from "@/components/StyledButton";
 
+/**
+ * GenerationOptionsPage component renders the page for generating recipe options based on user preferences.
+ * @returns {JSX.Element} A React JSX element representing the generation options page.
+ */
 function GenerationOptionsPage() {
 	function Generation() {
 		const router = useRouter();
@@ -23,14 +27,28 @@ function GenerationOptionsPage() {
 		const dietaryRequirements = ["None", "Vegetarian", "Vegan", "Gluten-free", "Dairy-free"];
 		const numberOfPeopleOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"];
 
+		/**
+		 * handleButtonClick function handles button click events for selecting generation options.
+		 * @param {string} option - The selected generation option.
+		 * @returns {void}
+		 */
 		const handleButtonClick = (option) => {
 			router.push(`/generation-options?generateOption=${option}`);
 		};
 
+		/**
+		 * handleGenerate function handles generation of meal based on selected options.
+		 * @returns {void}
+		 */
 		const handleGenerate = () => {
 			router.push(`/view-meal?generateOption=${generateOptionParam}&from=generation`);
 		};
 
+		/**
+		 * handleKeyPress function handles key press events for generating meal based on prompt input.
+		 * @param {object} e - The key press event object.
+		 * @returns {void}
+		 */
 		const handleKeyPress = (e) => {
 			if (e.key === "Enter" && prompt !== "") {
 				handleGenerate();
@@ -39,18 +57,19 @@ function GenerationOptionsPage() {
 
 		return (
 			<Stack
-				height="calc(100vh - 70px)"
+				minHeight="calc(100vh - 70px)"
 				justifyContent="space-between"
-				px="20vw"
+				alignItems="center"
 				sx={{ backgroundColor: "background.paper" }}
 			>
 				<Stack alignItems="center">
 					<Typography variant="h2" align="center" fontWeight="bold" mt="10vh" mb="2vh" sx={{ color: "primary.main" }}>
 						Recipe Generator
 					</Typography>
-					<Stack direction="row" justifyContent="space-between" spacing="20px">
+					<Stack direction="row" justifyContent="center" spacing="20px" flexWrap="wrap" useFlexGap my={3}>
 						{options.map((option, index) => (
 							<Tooltip
+								key={index}
 								title={
 									(!userIngredients || userIngredients.length === 0) && option === "Strict"
 										? "You need to add some ingredients to your Pantry"
@@ -63,8 +82,8 @@ function GenerationOptionsPage() {
 									key={index}
 									onClick={
 										(!userIngredients || userIngredients.length === 0) && option === "Strict"
-											? () => {} // Do nothing when the Pantry is empty
-											: () => handleButtonClick(option) // Call handleButtonClick otherwise
+											? () => {}
+											: () => handleButtonClick(option)
 									}
 									sx={{
 										borderRadius: "30px",
@@ -85,7 +104,9 @@ function GenerationOptionsPage() {
 					elevation={5}
 					sx={{
 						borderRadius: "80px 80px 0px 0px",
-						height: "60vh"
+						minHeight: "60vh",
+						maxWidth: "lg",
+						width: "100%"
 					}}
 				>
 					{generateOptionParam === "Prompt" ? (
@@ -119,7 +140,7 @@ function GenerationOptionsPage() {
 								InputProps={{
 									endAdornment: (
 										<IconButton onClick={handleGenerate}>
-											<ArrowForwardIcon sx={{ fontSize: "40px", color: "black" }} />
+											<ArrowForwardIcon sx={{ fontSize: "40px", color: "secondary.dark" }} />
 										</IconButton>
 									),
 									style: { fontSize: "24px" }
@@ -146,7 +167,7 @@ function GenerationOptionsPage() {
 									? "Strict Mode will not add new ingredients outside of your pantry list."
 									: "Remix Mode takes a meal, figures out the ingredients in it and will generate you a new meal based on those ingredients."}
 							</Typography>
-							<Typography fontWeight="bold" variant="h4">
+							<Typography fontWeight="bold" variant="h4" textAlign="center">
 								I want a
 								<Select
 									value={userParameters !== null ? userParameters.mealType : ""}
@@ -247,7 +268,6 @@ function GenerationOptionsPage() {
 											borderRadius: "30px",
 											fontSize: "24px",
 											height: "60px",
-											borderRadius: "30px",
 											px: "20px"
 										}
 									}}

@@ -14,11 +14,14 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
-import useDataStore from "@/lib/store";
 
+/**
+ * ResponsiveAppBar component displays a responsive app bar with navigation links, a menu icon for small screens,
+ * and user profile button.
+ * @returns {JSX.Element} ResponsiveAppBar component.
+ */
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
-	const [anchorElUser, setAnchorElUser] = useState(null);
 	const pages = [
 		{ name: "Dashboard", url: "/dashboard" },
 		{ name: "Generate", url: "/generation-options?generateOption=Basic" },
@@ -36,10 +39,6 @@ function ResponsiveAppBar() {
 		setAnchorElNav(null);
 	};
 
-	const handleCloseUserMenu = () => {
-		setAnchorElUser(null);
-	};
-
 	return (
 		<AppBar
 			position={currentUrl !== "/landing" ? "sticky" : "absolute"}
@@ -48,7 +47,8 @@ function ResponsiveAppBar() {
 				top: 0,
 				justifyContent: "flex-start",
 				height: 70,
-				backgroundColor: currentUrl !== "/landing" ? "primary.main" : "transparent"
+				backgroundColor: currentUrl !== "/landing" ? "primary.main" : "transparent",
+				width: "100%"
 			}}
 		>
 			<Container sx={{ height: "100%" }}>
@@ -118,7 +118,7 @@ function ResponsiveAppBar() {
 										<Button
 											key={idx}
 											onClick={() => router.push(page.url)}
-											sx={{ color: "black", px: 2, py: 1, width: "100%", fontWeight: "bold" }}
+											sx={{ color: "secondary.dark", px: 2, py: 1, width: "100%", fontWeight: "bold" }}
 										>
 											{page.name}
 										</Button>
@@ -176,7 +176,7 @@ function ResponsiveAppBar() {
 									sx={{
 										px: 2,
 										mx: 1,
-										color: "white",
+										color: "background.paper",
 										display: "block",
 										height: "100%",
 										alignSelf: "stretch",
@@ -204,7 +204,7 @@ function ResponsiveAppBar() {
 								sx={{
 									px: 2,
 									mx: 1,
-									color: "white",
+									color: "background.paper",
 									display: "block",
 									height: "100%",
 									alignSelf: "stretch",
@@ -218,7 +218,7 @@ function ResponsiveAppBar() {
 								sx={{
 									px: 2,
 									mx: 1,
-									color: "white",
+									color: "background.paper",
 									display: "block",
 									height: "100%",
 									alignSelf: "stretch",
