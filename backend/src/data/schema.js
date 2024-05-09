@@ -12,7 +12,7 @@ const userSchema = new Schema({
 		numberOfPeople: { type: Number, default: 4 },
 		mealType: { type: String, enum: ["Breakfast", "Lunch", "Dinner"], default: "Dinner" },
 		cuisine: { type: String, default: "Any" },
-		dietaryRequirements: [{ type: String, default: "None" }]
+		dietaryRequirements: { type: String, default: "None" }
 	}
 });
 
