@@ -1,10 +1,7 @@
-import ViewMeal from '@/components/view-meal/ViewMealPage'
-import React from 'react'
+import ViewMeal from "@/components/view-meal/ViewMealPage";
+import React from "react";
 
 function Page() {
-  return (
-	<ViewMeal/>
-  )
+	return <ViewMeal />;
 }
-
-export default Page
+export default Page;

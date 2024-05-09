@@ -53,9 +53,8 @@ export default function ViewMeal() {
 		const [mealCurrentlyGenerating, setMealCurrentlyGenerating] = useState(false);
 		const [open, setOpen] = useState(false);
 		const [loading, setLoading] = useState(false);
-
 		useEffect(() => {
-			if (searchParams.get("from") === "generation") {
+			if (searchParams.get("from") === "generation" || searchParams.get("from") === "profile") {
 				setMealCurrentlyGenerating(true);
 				setLastMeal("");
 				setLastRecipe("");
@@ -77,6 +76,7 @@ export default function ViewMeal() {
 									console.error(err);
 								});
 						} else if (searchParams.get("generateOption") === "Prompt") {
+							console.log(prompt);
 							generateMealPrompt(authToken, prompt)
 								.then((res) => {
 									afterResult(res.data.mealName, res.data.ingredients);
@@ -135,10 +135,11 @@ export default function ViewMeal() {
 		async function afterResult(mealName, userIngredients, ingredientsNeeded) {
 			const authToken = await getAuth().currentUser.getIdToken();
 
-			saveParameters(authToken, userParameters);
-			addGeneratedMeal(authToken, mealName);
-
-			setUserGeneratedMeals([...userGeneratedMeals, mealName]);
+			if (!userGeneratedMeals.includes(mealName)) {
+				saveParameters(authToken, userParameters);
+				addGeneratedMeal(authToken, mealName);
+				setUserGeneratedMeals([...userGeneratedMeals, mealName]);
+			}
 
 			setLastMeal(mealName);
 			setLastIngredientsUser(userIngredients);
@@ -185,6 +186,7 @@ export default function ViewMeal() {
 			}
 		}
 
+		// Dynamic sizing for enlarged image
 		const [imageSize, setImageSize] = useState(0);
 
 		useEffect(() => {
@@ -219,7 +221,7 @@ export default function ViewMeal() {
 								borderRadius: "80px 80px 0px 0px",
 								flexGrow: 1,
 								pb: "20vh",
-								mt: lastMeal === "" ? "20vh" : 0
+								mt: mealCurrentlyGenerating && lastMeal === "" ? "20vh" : 0
 							}}
 						>
 							{lastMeal === "" && mealCurrentlyGenerating && (
@@ -232,13 +234,11 @@ export default function ViewMeal() {
 							)}
 
 							{lastMeal === "" && !mealCurrentlyGenerating && (
-								<Stack alignItems="center" spacing={4} mt={4}>
-									<Typography variant="h4" textAlign="center" fontWeight="bold">
-										Please go to Generate to create a personalised recipe.
+								<Stack>
+									<Typography variant="h4" align="center">
+										Please go to Generate to create a personalised recipe
 									</Typography>
-									<Typography variant="h6" fontWeight="700" sx={{ color: "primary.main" }}>
-										Your last generated recipe will show up here.
-									</Typography>
+
 									<StyledButton
 										text="Generate"
 										onClick={() => router.push("/generation-options?generateOption=Basic")}

@@ -1,590 +1,412 @@
 [
-    {
-        "img": "/images/pantry-icons/fruit/apple.png",
-        "title": "Apple",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/asparagus.png",
-        "title": "Asparagus",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/avocado.png",
-        "title": "Avocado",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/bacon.png",
-        "title": "Bacon",
-        "categories": [
-            "Pork"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/bread/bagel.png",
-        "title": "Bagel",
-        "categories": [
-            "Bread"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/bread/baguette.png",
-        "title": "Baguette",
-        "categories": [
-            "Bread"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/banana.png",
-        "title": "Banana",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/beans.png",
-        "title": "Beans",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/beefpatty.png",
-        "title": "Beef patty",
-        "categories": [
-            "Beef"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/beefribs.png",
-        "title": "Beef ribs",
-        "categories": [
-            "Beef"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/blueberry.png",
-        "title": "Blueberry",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/brocolli.png",
-        "title": "Brocolli",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/bread/bun.png",
-        "title": "Bun",
-        "categories": [
-            "Bread",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/dairy/butter.png",
-        "title": "Butter",
-        "categories": [
-            "Dairy",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/cabbage.png",
-        "title": "Cabbage",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/cantaloupe.png",
-        "title": "Cantaloupe",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/capsicum.png",
-        "title": "Capsicum",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/carrot.png",
-        "title": "Carrot",
-        "categories": [
-            "Vegetables",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/celery.png",
-        "title": "Celery",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/cereal.png",
-        "title": "Cereal",
-        "categories": [
-            "CarbsMisc"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/dairy/cheeseblock.png",
-        "title": "Cheese (Block)",
-        "categories": [
-            "Dairy"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/dairy/cheesesliced.png",
-        "title": "Cheese (Sliced)",
-        "categories": [
-            "Dairy"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/dairy/cheesewheel.png",
-        "title": "Cheese (Wheel)",
-        "categories": [
-            "Dairy"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/cherry.png",
-        "title": "Cherry",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/chickenbreast.png",
-        "title": "Chicken breast",
-        "categories": [
-            "Chicken"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/chickendrum.png",
-        "title": "Chicken drum",
-        "categories": [
-            "Chicken",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/chickenwhole.png",
-        "title": "Chicken whole",
-        "categories": [
-            "Chicken"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/chickenwing.png",
-        "title": "Chicken wing",
-        "categories": [
-            "Chicken"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/chilli.png",
-        "title": "Chilli",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/coconut.png",
-        "title": "Coconut",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/corn.png",
-        "title": "Corn",
-        "categories": [
-            "CarbsMisc",
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/dragonfruit.png",
-        "title": "Dragon fruit",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/durian.png",
-        "title": "Durian",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/eggplant.png",
-        "title": "Eggplant",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/eggs.png",
-        "title": "Eggs",
-        "categories": [
-            "ProteinMisc",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/pasta/farfalle.png",
-        "title": "Farfalle",
-        "categories": [
-            "Pasta"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/fish.png",
-        "title": "Fish",
-        "categories": [
-            "ProteinMisc"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/bread/flatbread.png",
-        "title": "Flat bread",
-        "categories": [
-            "Bread"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/pasta/fusilli.png",
-        "title": "Fusilli",
-        "categories": [
-            "Pasta"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/garlic.png",
-        "title": "Garlic",
-        "categories": [
-            "Vegetables",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/ginger.png",
-        "title": "Ginger",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/grape.png",
-        "title": "Grapes",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/ham.png",
-        "title": "Ham",
-        "categories": [
-            "Pork"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/dairy/icecream.png",
-        "title": "Ice cream",
-        "categories": [
-            "Dairy"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/kiwifruit.png",
-        "title": "Kiwifruit",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/lambchop.png",
-        "title": "Lamb chop",
-        "categories": [
-            "ProteinMisc"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/legham.png",
-        "title": "Leg ham",
-        "categories": [
-            "Pork"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/lemon.png",
-        "title": "Lemon",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/lettuce.png",
-        "title": "Lettuce",
-        "categories": [
-            "Vegetables",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/lime.png",
-        "title": "Lime",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/pasta/macaroni.png",
-        "title": "Macaroni",
-        "categories": [
-            "Pasta"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/mango.png",
-        "title": "Mango",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/mangosteen.png",
-        "title": "Mangosteen",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/dairy/milk.png",
-        "title": "Milk",
-        "categories": [
-            "Dairy",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/mushroom.png",
-        "title": "Mushroom",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/noodles.png",
-        "title": "Noodles",
-        "categories": [
-            "CarbsMisc"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/onion.png",
-        "title": "Onion",
-        "categories": [
-            "Vegetables",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/orange.png",
-        "title": "Orange",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/peach.png",
-        "title": "Peach",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/pear.png",
-        "title": "Pear",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/peas.png",
-        "title": "Peas",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/pasta/penne.png",
-        "title": "Penne",
-        "categories": [
-            "Pasta"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/pepperoni.png",
-        "title": "Pepperoni",
-        "categories": [
-            "ProcessedMeat"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/pineapple.png",
-        "title": "Pineapple",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/pork.png",
-        "title": "Pork",
-        "categories": [
-            "Pork"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/porkchop.png",
-        "title": "Pork chop",
-        "categories": [
-            "Pork"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/potatoes.png",
-        "title": "Potatoes",
-        "categories": [
-            "CarbsMisc",
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/pasta/ravioli.png",
-        "title": "Ravioli",
-        "categories": [
-            "Pasta"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/rice.png",
-        "title": "Rice",
-        "categories": [
-            "CarbsMisc"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/salami.png",
-        "title": "Salami",
-        "categories": [
-            "ProcessedMeat"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/sausage.png",
-        "title": "Sausage",
-        "categories": [
-            "ProcessedMeat"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/bread/sliced.png",
-        "title": "Sliced bread",
-        "categories": [
-            "Bread"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/bread/sourdough.png",
-        "title": "Sourdough",
-        "categories": [
-            "Bread"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/pasta/spaghetti.png",
-        "title": "Spaghetti",
-        "categories": [
-            "Pasta",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/steak.png",
-        "title": "Steak",
-        "categories": [
-            "Beef",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/strawberry.png",
-        "title": "Strawberry",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/protein/tofu.png",
-        "title": "Tofu",
-        "categories": [
-            "ProteinMisc"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/tomato.png",
-        "title": "Tomato",
-        "categories": [
-            "Vegetables",
-            "Onboarding"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/vegetables/turnip.png",
-        "title": "Turnip",
-        "categories": [
-            "Vegetables"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/fruit/watermelon.png",
-        "title": "Watermelon",
-        "categories": [
-            "Fruit"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/carbohydrates/bread/wrap.png",
-        "title": "Wrap",
-        "categories": [
-            "Bread"
-        ]
-    },
-    {
-        "img": "/images/pantry-icons/dairy/yogurt.png",
-        "title": "Yogurt",
-        "categories": [
-            "Dairy"
-        ]
-    }
+	{
+		"img": "/images/pantry-icons/fruit/apple.png",
+		"title": "Apple",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/asparagus.png",
+		"title": "Asparagus",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/avocado.png",
+		"title": "Avocado",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/bacon.png",
+		"title": "Bacon",
+		"categories": ["Pork"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/bread/bagel.png",
+		"title": "Bagel",
+		"categories": ["Bread"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/bread/baguette.png",
+		"title": "Baguette",
+		"categories": ["Bread"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/banana.png",
+		"title": "Banana",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/beans.png",
+		"title": "Beans",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/beefpatty.png",
+		"title": "Beef patty",
+		"categories": ["Beef"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/beefribs.png",
+		"title": "Beef ribs",
+		"categories": ["Beef"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/blueberry.png",
+		"title": "Blueberry",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/brocolli.png",
+		"title": "Brocolli",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/bread/bun.png",
+		"title": "Bun",
+		"categories": ["Bread", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/dairy/butter.png",
+		"title": "Butter",
+		"categories": ["Dairy", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/cabbage.png",
+		"title": "Cabbage",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/cantaloupe.png",
+		"title": "Cantaloupe",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/capsicum.png",
+		"title": "Capsicum",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/carrot.png",
+		"title": "Carrot",
+		"categories": ["Vegetables", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/celery.png",
+		"title": "Celery",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/cereal.png",
+		"title": "Cereal",
+		"categories": ["CarbsMisc"]
+	},
+	{
+		"img": "/images/pantry-icons/dairy/cheeseblock.png",
+		"title": "Cheese (Block)",
+		"categories": ["Dairy"]
+	},
+	{
+		"img": "/images/pantry-icons/dairy/cheesesliced.png",
+		"title": "Cheese (Sliced)",
+		"categories": ["Dairy"]
+	},
+	{
+		"img": "/images/pantry-icons/dairy/cheesewheel.png",
+		"title": "Cheese (Wheel)",
+		"categories": ["Dairy"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/cherry.png",
+		"title": "Cherry",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/chickenbreast.png",
+		"title": "Chicken breast",
+		"categories": ["Chicken"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/chickendrum.png",
+		"title": "Chicken drum",
+		"categories": ["Chicken", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/chickenwhole.png",
+		"title": "Chicken whole",
+		"categories": ["Chicken"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/chickenwing.png",
+		"title": "Chicken wing",
+		"categories": ["Chicken"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/chilli.png",
+		"title": "Chilli",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/coconut.png",
+		"title": "Coconut",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/corn.png",
+		"title": "Corn",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/dragonfruit.png",
+		"title": "Dragon fruit",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/durian.png",
+		"title": "Durian",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/eggplant.png",
+		"title": "Eggplant",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/eggs.png",
+		"title": "Eggs",
+		"categories": ["ProteinMisc", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/pasta/farfalle.png",
+		"title": "Farfalle",
+		"categories": ["Pasta"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/fish.png",
+		"title": "Fish",
+		"categories": ["ProteinMisc"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/bread/flatbread.png",
+		"title": "Flat bread",
+		"categories": ["Bread"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/pasta/fusilli.png",
+		"title": "Fusilli",
+		"categories": ["Pasta"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/garlic.png",
+		"title": "Garlic",
+		"categories": ["Vegetables", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/ginger.png",
+		"title": "Ginger",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/grape.png",
+		"title": "Grapes",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/ham.png",
+		"title": "Ham",
+		"categories": ["Pork"]
+	},
+	{
+		"img": "/images/pantry-icons/dairy/icecream.png",
+		"title": "Ice cream",
+		"categories": ["Dairy"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/kiwifruit.png",
+		"title": "Kiwifruit",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/lambchop.png",
+		"title": "Lamb chop",
+		"categories": ["ProteinMisc"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/legham.png",
+		"title": "Leg ham",
+		"categories": ["Pork"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/lemon.png",
+		"title": "Lemon",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/lettuce.png",
+		"title": "Lettuce",
+		"categories": ["Vegetables", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/lime.png",
+		"title": "Lime",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/pasta/macaroni.png",
+		"title": "Macaroni",
+		"categories": ["Pasta"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/mango.png",
+		"title": "Mango",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/mangosteen.png",
+		"title": "Mangosteen",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/dairy/milk.png",
+		"title": "Milk",
+		"categories": ["Dairy", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/mushroom.png",
+		"title": "Mushroom",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/noodles.png",
+		"title": "Noodles",
+		"categories": ["CarbsMisc"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/onion.png",
+		"title": "Onion",
+		"categories": ["Vegetables", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/orange.png",
+		"title": "Orange",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/peach.png",
+		"title": "Peach",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/pear.png",
+		"title": "Pear",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/peas.png",
+		"title": "Peas",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/pasta/penne.png",
+		"title": "Penne",
+		"categories": ["Pasta"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/pepperoni.png",
+		"title": "Pepperoni",
+		"categories": ["ProcessedMeat"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/pineapple.png",
+		"title": "Pineapple",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/pork.png",
+		"title": "Pork",
+		"categories": ["Pork"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/porkchop.png",
+		"title": "Pork chop",
+		"categories": ["Pork"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/potatoes.png",
+		"title": "Potatoes",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/pasta/ravioli.png",
+		"title": "Ravioli",
+		"categories": ["Pasta"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/rice.png",
+		"title": "Rice",
+		"categories": ["CarbsMisc"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/salami.png",
+		"title": "Salami",
+		"categories": ["ProcessedMeat"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/sausage.png",
+		"title": "Sausage",
+		"categories": ["ProcessedMeat"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/bread/sliced.png",
+		"title": "Sliced bread",
+		"categories": ["Bread"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/bread/sourdough.png",
+		"title": "Sourdough",
+		"categories": ["Bread"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/pasta/spaghetti.png",
+		"title": "Spaghetti",
+		"categories": ["Pasta", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/steak.png",
+		"title": "Steak",
+		"categories": ["Beef", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/strawberry.png",
+		"title": "Strawberry",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/protein/tofu.png",
+		"title": "Tofu",
+		"categories": ["ProteinMisc"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/tomato.png",
+		"title": "Tomato",
+		"categories": ["Vegetables", "Onboarding"]
+	},
+	{
+		"img": "/images/pantry-icons/vegetables/turnip.png",
+		"title": "Turnip",
+		"categories": ["Vegetables"]
+	},
+	{
+		"img": "/images/pantry-icons/fruit/watermelon.png",
+		"title": "Watermelon",
+		"categories": ["Fruit"]
+	},
+	{
+		"img": "/images/pantry-icons/carbohydrates/bread/wrap.png",
+		"title": "Wrap",
+		"categories": ["Bread"]
+	},
+	{
+		"img": "/images/pantry-icons/dairy/yogurt.png",
+		"title": "Yogurt",
+		"categories": ["Dairy"]
+	}
 ]

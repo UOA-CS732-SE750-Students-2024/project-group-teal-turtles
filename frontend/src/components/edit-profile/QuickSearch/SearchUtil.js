@@ -29,9 +29,8 @@ export const categorizeIngredients = (ingredients) => {
 };
 
 export const extractIngredients = (categorizedIngredients, category) => {
-	return categorizedIngredients[category].map((key)=>categorizeIngredients[key]);
-}
-
+	return categorizedIngredients[category].map((key) => categorizeIngredients[key]);
+};
 
 // const extractCategories = () => {
 // 	const categories = new Set();

@@ -1,17 +1,39 @@
-import { Modal, Paper, Button } from "@mui/material";
+import { Modal, Paper, Button, IconButton } from "@mui/material";
 import QuickSearch from "./QuickSearch";
 import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
 
 function QuickSearchModal({ selectedIngredients, setSelectedIngredients, isOpen, handleClose }) {
 	return (
 		<Modal open={isOpen}>
 			<>
-				<Paper elevation={12} sx={{ height: "75%", width: "50%", overflow: "auto" }}>
-					<QuickSearch selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients} />
+				<Paper
+					elevation={12}
+					sx={{
+						height: "90%",
+						width: "auto",
+						overflow: "auto",
+						mt: "2vh",
+						ml: "2vw",
+						mr: "2vw",
+						pt: "2vh",
+						pb: "2vh",
+						pl: "2vw",
+						pr: "2vw"
+					}}
+				>
+					<QuickSearch
+						selectedIngredients={selectedIngredients}
+						setSelectedIngredients={setSelectedIngredients}
+						handleClose={handleClose}
+					/>
 				</Paper>
-				<Button variant="contained" onClick={handleClose}>
+				{/* <Button sx={{ ml: "2vw" }} variant="contained" onClick={handleClose}>
 					Close
-				</Button>
+				</Button> */}
+				{/* <IconButton onClick={handleClose}>
+					<CloseIcon />
+				</IconButton> */}
 			</>
 		</Modal>
 	);

@@ -5,13 +5,17 @@ import allIngredients from "@/ingredients.json";
 
 function SearchResults({ searchResults, selectedIngredients, handleSelectIngredient }) {
 	const categorizedResults = categorizeIngredients(searchResults);
+	delete categorizedResults["Onboarding"];
+	console.log(categorizedResults);
 
 	const renderedResults = [];
 	for (let category in categorizedResults) {
 		const ingredients = Object.values(categorizedResults[category]);
 		renderedResults.push(
 			<>
-				<Divider key={category}>{category.toUpperCase()}</Divider>
+				<Divider sx={{ mb: "2vh" }} key={category}>
+					{category.toUpperCase()}
+				</Divider>
 				<DisplayIngredients
 					ingredients={ingredients}
 					selectedIngredients={selectedIngredients}

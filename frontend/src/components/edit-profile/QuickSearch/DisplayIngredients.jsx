@@ -20,7 +20,7 @@ function DisplayIngredient({ ingredient, isSelected, handleSelect }) {
 
 function DisplayIngredients({ ingredients, selectedIngredients, handleSelectIngredient }) {
 	return (
-		<Grid container spacing={2}>
+		<Grid container spacing={2} sx={{ mb: "2vh" }}>
 			{ingredients.map((ingredient, index) => (
 				<Grid item key={index}>
 					<DisplayIngredient

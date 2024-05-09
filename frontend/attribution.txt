@@ -10,3 +10,4 @@
 <a href="https://www.flaticon.com/free-icons/pie" title="pie icons">Pie icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/ribs" title="ribs icons">Ribs icons created by BomSymbols - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/rice" title="rice icons">Rice icons created by monkik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by Nendra Wahyu  - Flaticon</a>
