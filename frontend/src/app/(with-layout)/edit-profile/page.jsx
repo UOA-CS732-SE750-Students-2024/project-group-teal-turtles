@@ -1,10 +1,10 @@
 "use client";
 
-import EditProfilePage from "@/components/EditProfilePage/EditProfilePage";
+import EditProfilePage from "@/components/edit-profile/EditProfilePage";
 import React from "react";
 
-function EditProfile() {
+function Page() {
 	return <EditProfilePage />;
 }
 
-export default EditProfile;
+export default Page;

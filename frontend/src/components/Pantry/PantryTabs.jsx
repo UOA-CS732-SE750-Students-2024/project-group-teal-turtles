@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -9,40 +8,24 @@ import ingredients from "../../ingredients.json";
 import { useState } from "react";
 import Fab from "@mui/material/Fab";
 import { Delete } from "@mui/icons-material";
+import { Stack } from "@mui/material";
 
-function TabPanel(props) {
-	const { children, value, index, ...other } = props;
-
-	return (
-		<div
-			role="tabpanel"
-			hidden={value !== index}
-			id={`vertical-tabpanel-${index}`}
-			aria-labelledby={`vertical-tab-${index}`}
-			{...other}
-		>
-			{value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-		</div>
-	);
+function TabPanel({ children, value, index }) {
+	return <div hidden={value !== index}>{value === index && <Box sx={{ p: 3 }}>{children}</Box>}</div>;
 }
 
-TabPanel.propTypes = {
-	children: PropTypes.node,
-	index: PropTypes.number.isRequired,
-	value: PropTypes.number.isRequired
-};
-
-function a11yProps(index) {
-	return {
-		id: `vertical-tab-${index}`,
-		"aria-controls": `vertical-tabpanel-${index}`
-	};
+function StyledTypography({ text }) {
+	return (
+		<Typography variant="h5" fontWeight="bold" sx={{ mt: 3, mb: 3, color: "primary.dark" }}>
+			{text}
+		</Typography>
+	);
 }
 
 export default function PantryTabs() {
 	const [value, setValue] = useState(0);
 
-	const handleChange = (event, newValue) => {
+	const handleChange = (_event, newValue) => {
 		setValue(newValue);
 	};
 
@@ -51,26 +34,19 @@ export default function PantryTabs() {
 	let ingredientsPantry = ingredients.filter((item) => userIngredients.includes(item.title));
 
 	const handleIngredientsChange = (item) => {
-		// Ensure userIngredients is initialized to an empty array if it's null
 		const ingredientsArray = userIngredients || [];
-
-		// Check if the item is already in userIngredients
 		const isItemInUserIngredients = ingredientsArray.includes(item);
-
-		// Create a new array based on userIngredients
 		let newIngredients;
-
-		// If the item is already in userIngredients, remove it
 		if (isItemInUserIngredients) {
 			newIngredients = ingredientsArray.filter((ingredient) => ingredient !== item);
 		} else {
-			// If the item is not in userIngredients, add it
 			newIngredients = [...ingredientsArray, item];
 		}
-
-		// Update the state with the new array of ingredients
 		setUserIngredients(newIngredients);
 	};
+
+	const tabStyles = { fontWeight: "bold", fontSize: "20px", textTransform: "none" };
+	const pantryGridProps = { onClick: handleIngredientsChange, selected: userIngredients };
 
 	return (
 		<Box
@@ -87,89 +63,78 @@ export default function PantryTabs() {
 				variant="scrollable"
 				value={value}
 				onChange={handleChange}
-				aria-label="Vertical tabs example"
-				sx={{ borderRight: 1, borderColor: "divider", minWidth: "180px", paddingTop: "100px" }}
+				sx={{ borderRight: 1, borderColor: "divider", minWidth: "230px", paddingTop: "100px" }}
 			>
-				<Tab label="Your Ingredients" {...a11yProps(0)} />
-				<Tab label="Carbs" {...a11yProps(1)} />
-				<Tab label="Protein" {...a11yProps(2)} />
-				<Tab label="Vegetables" {...a11yProps(3)} />
-				<Tab label="Fruit" {...a11yProps(4)} />
-				<Tab label="Dairy" {...a11yProps(5)} />
+				<Tab sx={tabStyles} label="Your Ingredients" />
+				<Tab sx={tabStyles} label="Carbs" />
+				<Tab sx={tabStyles} label="Protein" />
+				<Tab sx={tabStyles} label="Vegetables" />
+				<Tab sx={tabStyles} label="Fruit" />
+				<Tab sx={tabStyles} label="Dairy" />
 			</Tabs>
 			<TabPanel value={value} index={0}>
-				<Box sx={{ display: "flex", justifyContent: "space-between", mt: 3, width: "40vw" }}>
-					<Typography variant="h6">Your Ingredients</Typography>
+				<Stack spacing={2} sx={{ mt: 3, mb: 3, width: "40vw" }}>
+					<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.dark" }}>
+						Your Ingredients
+					</Typography>
 					{userIngredients && userIngredients.length > 0 ? (
-						<Fab onClick={() => setUserIngredients([])} sx={{}}>
+						<Fab
+							onClick={() => setUserIngredients([])}
+							sx={{
+								width: "150px",
+								backgroundColor: "background.paper",
+								height: "40px",
+								borderRadius: "20px",
+								color: "primary.dark"
+							}}
+						>
+							<Typography fontWeight="bold" textTransform="none" mr={1}>
+								Clear Pantry
+							</Typography>
 							<Delete />
 						</Fab>
 					) : null}
-				</Box>
+				</Stack>
 
 				{userIngredients && userIngredients.length > 0 ? (
-					<>
-						<PantryGrid itemData={ingredientsPantry} onClick={handleIngredientsChange} selected={userIngredients} />
-					</>
+					<PantryGrid itemData={ingredientsPantry} {...pantryGridProps} />
 				) : (
-					<Typography variant="h6" sx={{ mt: 3, mb: 1, opacity: 0.5 }}>
+					<Typography variant="h6" sx={{ mt: 3, mb: 1, color: "secondary.main" }}>
 						Add Ingredients to get started
 					</Typography>
 				)}
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
-					Bread
-				</Typography>
-				<PantryGrid itemData={ingredientsBread} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
-					Pasta
-				</Typography>
-				<PantryGrid itemData={ingredientsPasta} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
-					Other
-				</Typography>
-				<PantryGrid itemData={ingredientsCarbsMisc} onClick={handleIngredientsChange} selected={userIngredients} />
+				<StyledTypography text="Bread" />
+				<PantryGrid itemData={ingredientsBread} {...pantryGridProps} />
+				<StyledTypography text="Pasta" />
+				<PantryGrid itemData={ingredientsPasta} {...pantryGridProps} />
+				<StyledTypography text="Other" />
+				<PantryGrid itemData={ingredientsCarbsMisc} {...pantryGridProps} />
 			</TabPanel>
 			<TabPanel value={value} index={2}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
-					Beef
-				</Typography>
-				<PantryGrid itemData={ingredientsBeef} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
-					Chicken
-				</Typography>
-				<PantryGrid itemData={ingredientsChicken} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
-					Pork
-				</Typography>
-				<PantryGrid itemData={ingredientsPork} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
-					Processed
-				</Typography>
-				<PantryGrid itemData={ingredientsProcessedMeat} onClick={handleIngredientsChange} selected={userIngredients} />
-				<Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
-					Other
-				</Typography>
-				<PantryGrid itemData={ingredientsProteinMisc} onClick={handleIngredientsChange} selected={userIngredients} />
+				<StyledTypography text="Beef" />
+				<PantryGrid itemData={ingredientsBeef} {...pantryGridProps} />
+				<StyledTypography text="Chicken" />
+				<PantryGrid itemData={ingredientsChicken} {...pantryGridProps} />
+				<StyledTypography text="Pork" />
+				<PantryGrid itemData={ingredientsPork} {...pantryGridProps} />
+				<StyledTypography text="Processed" />
+				<PantryGrid itemData={ingredientsProcessedMeat} {...pantryGridProps} />
+				<StyledTypography text="Other" />
+				<PantryGrid itemData={ingredientsProteinMisc} {...pantryGridProps} />
 			</TabPanel>
 			<TabPanel value={value} index={3}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
-					Vegetables
-				</Typography>
-				<PantryGrid itemData={ingredientsVegetables} onClick={handleIngredientsChange} selected={userIngredients} />
+				<StyledTypography text="Vegetables" />
+				<PantryGrid itemData={ingredientsVegetables} {...pantryGridProps} />
 			</TabPanel>
 			<TabPanel value={value} index={4}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
-					Fruit
-				</Typography>
-				<PantryGrid itemData={ingredientsFruit} onClick={handleIngredientsChange} selected={userIngredients} />
+				<StyledTypography text="Fruit" />
+				<PantryGrid itemData={ingredientsFruit} {...pantryGridProps} />
 			</TabPanel>
 			<TabPanel value={value} index={5}>
-				<Typography variant="h6" sx={{ mt: 3, mb: 3 }}>
-					Dairy
-				</Typography>
-				<PantryGrid itemData={ingredientsDairy} onClick={handleIngredientsChange} selected={userIngredients} />
+				<StyledTypography text="Dairy" />
+				<PantryGrid itemData={ingredientsDairy} {...pantryGridProps} />
 			</TabPanel>
 		</Box>
 	);

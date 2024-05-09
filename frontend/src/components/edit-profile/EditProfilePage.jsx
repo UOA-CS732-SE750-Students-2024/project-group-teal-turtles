@@ -75,7 +75,7 @@ function EditProfilePage() {
 	};
 
 	return (
-		<>
+		<Stack width="100%" sx={{ backgroundColor: "background.paper" }}>
 			<Stack
 				direction="column"
 				spacing={4}
@@ -140,7 +140,7 @@ function EditProfilePage() {
 					/>
 				</>
 			</Stack>
-		</>
+		</Stack>
 	);
 }
 
