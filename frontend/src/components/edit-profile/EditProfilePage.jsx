@@ -1,3 +1,5 @@
+"use client"
+
 import IngredientSummary from "./IngredientSummary/IngredientSummary";
 import ProfileSummary from "./ProfileSummary/ProfileSummary";
 import { Stack } from "@mui/system";
