@@ -20,20 +20,6 @@ it generates a meal
 
 favourite meals and checkout meal history to revisit old meals
 
-## Software
-
-### Pages
-
-TODO
-
-### Tech Stack
-
-TODO
-
-### API usage
-
-TODO
-
 ## Running the project
 
 ### Prerequisites
@@ -104,6 +90,22 @@ TODO
 ### Testing the Backend
 
 TODO
+
+## Pages
+
+TODO
+
+## Tech Stack
+
+NodeJS + Express for backend
+NextJS + Jest for frontend
+Deployed using vercel
+
+### API usage
+
+TODO
+
+### Database
 
 ## Project Structure
 
