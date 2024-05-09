@@ -4,6 +4,9 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import { addFavMeal, removeFavMeal } from "@/helpers/dbCalls";
 import { getAuth } from "firebase/auth";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import useDataStore from "@/lib/store";
 
 function DisplayMeals({
 	showFavouriteOnly = false,
@@ -13,6 +16,8 @@ function DisplayMeals({
 	setUserGeneratedMeals
 }) {
 	const meals = showFavouriteOnly ? userFavouriteMeals : userGeneratedMeals;
+	// const router = useRouter();
+	const { setPrompt } = useDataStore();
 
 	const toggleFavourite = async (meal) => {
 		setUserFavouriteMeals(
@@ -23,32 +28,39 @@ function DisplayMeals({
 			: addFavMeal(await getAuth().currentUser.getIdToken(), meal);
 	};
 
-	const deleteMeal = (meal) => {
-		setUserGeneratedMeals(userGeneratedMeals.filter((m) => m !== meal));
-		setUserFavouriteMeals(userFavouriteMeals.filter((m) => m !== meal));
-		//DELETE FORM HISTORY DB
-	};
+	// const handleClick = (meal) => {
+	// 	router.push(`/generate?meal=${meal}`);
+	// };
 
 	return (
 		<>
 			<List sx={{ width: "100%" }}>
 				{meals.map((meal) => (
-					<ListItem key={meal}>
-						<ListItemText primary={meal} />
-						<ListItemSecondaryAction>
-							<IconButton
-								edge="end"
-								aria-label="favorite"
-								onClick={() => toggleFavourite(meal)}
-								color={userFavouriteMeals.includes(meal) ? "warning" : "default"}
-							>
-								<StarRoundedIcon />
-							</IconButton>
-							<IconButton edge="end" aria-label="delete" onClick={() => deleteMeal(meal)}>
-								<DeleteOutlineRoundedIcon />
-							</IconButton>
-						</ListItemSecondaryAction>
-					</ListItem>
+					<Link href={"/view-meal?generateOption=Prompt&from=profile"} key={meal}>
+						<ListItem
+							key={meal}
+							sx={{ cursor: "pointer", "&:hover": { backgroundColor: "#f0f0f0", color: "primary.main" } }}
+							// onClick={handleClick(meal)}
+
+							onClick={() =>
+								setPrompt(
+									`Make sure the name of the meal is ${meal} and that its ingredients are correct for that meal`
+								)
+							}
+						>
+							<ListItemText primary={meal} />
+							<ListItemSecondaryAction>
+								<IconButton
+									edge="end"
+									aria-label="favorite"
+									onClick={() => toggleFavourite(meal)}
+									color={userFavouriteMeals.includes(meal) ? "warning" : "default"}
+								>
+									<StarRoundedIcon />
+								</IconButton>
+							</ListItemSecondaryAction>
+						</ListItem>
+					</Link>
 				))}
 			</List>
 		</>

@@ -28,7 +28,7 @@ function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 	return (
 		<>
 			<TextField
-				sx={{ width: "100%" }}
+				sx={{ width: "100%", mb: "2vh" }}
 				label="Search Term"
 				value={searchTerm}
 				onChange={(e) => setSearchTerm(e.target.value)}

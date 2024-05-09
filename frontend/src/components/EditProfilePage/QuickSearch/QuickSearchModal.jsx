@@ -6,7 +6,21 @@ function QuickSearchModal({ selectedIngredients, setSelectedIngredients, isOpen,
 	return (
 		<Modal open={isOpen}>
 			<>
-				<Paper elevation={12} sx={{ height: "75%", width: "50%", overflow: "auto" }}>
+				<Paper
+					elevation={12}
+					sx={{
+						height: "90%",
+						width: "auto",
+						overflow: "auto",
+						mt: "2vh",
+						ml: "2vw",
+						mr: "2vw",
+						pt: "2vh",
+						pb: "2vh",
+						pl: "2vw",
+						pr: "2vw"
+					}}
+				>
 					<QuickSearch selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients} />
 				</Paper>
 				<Button variant="contained" onClick={handleClose}>

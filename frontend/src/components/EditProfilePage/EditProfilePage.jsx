@@ -83,12 +83,12 @@ function EditProfilePage() {
 					</Button>
 				</>
 				<>
-					<Typography variant="h5">Meal History</Typography>
+					<Typography variant="h5">Meal History </Typography>
 
 					<DisplayMeals
 						userFavouriteMeals={userFavouriteMeals}
 						setUserFavouriteMeals={setUserFavouriteMeals}
-						userGeneratedMeals={userGeneratedMeals.slice(0, 10)}
+						userGeneratedMeals={userGeneratedMeals.slice(-10).reverse()}
 						setUserGeneratedMeals={setUserGeneratedMeals}
 					/>
 				</>

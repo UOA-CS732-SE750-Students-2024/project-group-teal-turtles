@@ -52,9 +52,8 @@ export default function ViewMeal() {
 		const [mealCurrentlyGenerating, setMealCurrentlyGenerating] = useState(false);
 		const [open, setOpen] = useState(false);
 		const [loading, setLoading] = useState(false);
-
 		useEffect(() => {
-			if (searchParams.get("from") === "generation") {
+			if (searchParams.get("from") === "generation" || searchParams.get("from") === "profile") {
 				setMealCurrentlyGenerating(true);
 				setLastMeal("");
 				setLastRecipe("");
@@ -62,7 +61,8 @@ export default function ViewMeal() {
 				setLastIngredientsUser([]);
 				setLastIngredientsNeeded([]);
 				setLastMealImage("");
-
+			}
+			if (searchParams.get("from") === "generation" || searchParams.get("from") === "profile") {
 				try {
 					async function fetchMeal() {
 						const authToken = await getAuth().currentUser.getIdToken();
@@ -76,6 +76,7 @@ export default function ViewMeal() {
 									console.error(err);
 								});
 						} else if (searchParams.get("generateOption") === "Prompt") {
+							console.log(prompt);
 							generateMealPrompt(authToken, prompt)
 								.then((res) => {
 									afterResult(res.data.mealName, res.data.ingredients);
@@ -134,9 +135,10 @@ export default function ViewMeal() {
 			const authToken = await getAuth().currentUser.getIdToken();
 
 			saveParameters(authToken, userParameters);
-			addGeneratedMeal(authToken, mealName);
-
-			setUserGeneratedMeals([...userGeneratedMeals, mealName]);
+			if (searchParams.get("from") === "generation") {
+				addGeneratedMeal(authToken, mealName);
+				setUserGeneratedMeals([...userGeneratedMeals, mealName]);
+			}
 
 			setLastMeal(mealName);
 			setLastIngredientsUser(userIngredients);

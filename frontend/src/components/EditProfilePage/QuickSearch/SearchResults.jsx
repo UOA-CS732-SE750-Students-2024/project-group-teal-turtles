@@ -5,6 +5,8 @@ import allIngredients from "@/ingredients.json";
 
 function SearchResults({ searchResults, selectedIngredients, handleSelectIngredient }) {
 	const categorizedResults = categorizeIngredients(searchResults);
+	delete categorizedResults["Onboarding"];
+	console.log(categorizedResults);
 
 	const renderedResults = [];
 	for (let category in categorizedResults) {
