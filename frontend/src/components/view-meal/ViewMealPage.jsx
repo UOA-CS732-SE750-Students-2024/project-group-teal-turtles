@@ -353,15 +353,18 @@ export default function ViewMeal() {
 								<Stack alignItems="center" paddingX="4vw">
 									<Stack textAlign="center" sx={{ mt: 4 }}>
 										{lastMealImage !== "" && lastMeal !== "" && lastRecipe !== "" && (
-											<EmailShareButton
-												url="IntelligentEats.com"
-												subject={`Take a look at the ${lastMeal} Recipe I generated from Intelligent Eats.`}
-												body={`Meal Name: ${lastMeal}\n\nIngredients:\n${lastIngredientQuantities.join(
-													"\n"
-												)}\n\nInstructions:\n${lastRecipe.join("\n")}`}
-											>
-												<StyledButton text="Share" sx={{ mt: 1 }} />
-											</EmailShareButton>
+											<Stack direction="row" spacing={4}>
+												<EmailShareButton
+													url="IntelligentEats.com"
+													subject={`Take a look at the ${lastMeal} Recipe I generated from Intelligent Eats.`}
+													body={`Meal Name: ${lastMeal}\n\nIngredients:\n${lastIngredientQuantities.join(
+														"\n"
+													)}\n\nInstructions:\n${lastRecipe.join("\n")}`}
+												>
+													<StyledButton text="Share" />
+												</EmailShareButton>
+												<StyledButton text="Add to Favourites" onClick={() => {}} />
+											</Stack>
 										)}
 									</Stack>
 								</Stack>
