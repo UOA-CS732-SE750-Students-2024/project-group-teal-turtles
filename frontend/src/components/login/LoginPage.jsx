@@ -5,7 +5,7 @@ import { Stack, Typography, Card, Button, TextField, IconButton, Link, CircularP
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useState } from "react";
 import CardWrapper from "@/components/CardWrapper";
-import { handleGoogleLogin, login } from "@/app/auth-functions";
+import { handleGoogleLogin, login } from "@/lib/auth-functions";
 import { auth } from "@/app/firebase-config";
 import axios from "axios";
 import useDataStore from "@/lib/store";

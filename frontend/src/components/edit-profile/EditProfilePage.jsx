@@ -9,7 +9,7 @@ import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
 import EditUserInfoModal from "./EditUserInfo/EditUserInfoModal";
 import DisplayMeals from "./DisplayMeals";
-import { logout } from "@/app/auth-functions";
+import { logout } from "@/lib/auth-functions";
 import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
 
