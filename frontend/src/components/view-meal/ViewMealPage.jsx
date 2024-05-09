@@ -78,7 +78,6 @@ export default function ViewMeal() {
 									console.error(err);
 								});
 						} else if (searchParams.get("generateOption") === "Prompt") {
-							console.log(prompt);
 							generateMealPrompt(authToken, prompt)
 								.then((res) => {
 									afterResult(res.data.mealName, res.data.ingredients);

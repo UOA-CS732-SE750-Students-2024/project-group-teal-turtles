@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function ProfileSummary(props) {
 	return (
-		<Stack direction="column" alignItems="center">
+		<Stack direction="column" alignItems="center" justifyContent="flex-start">
 			<Image src={"/logo.png"} alt={"User"} width={200} height={200} style={{ filter: "invert(100%)" }} />
 			<Typography fontWeight="bold" variant="h3">
 				{props.username}

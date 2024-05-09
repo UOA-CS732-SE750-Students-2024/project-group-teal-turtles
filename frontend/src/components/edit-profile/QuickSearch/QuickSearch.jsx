@@ -1,14 +1,13 @@
-import React from "react";
-import { TextField, Button, Box } from "@mui/material";
+import { TextField, IconButton, Stack } from "@mui/material";
 import SearchResults from "./SearchResults";
 import SelectedIngredients from "./SelectedIngredients";
 import allIngredients from "@/ingredients.json";
 import { searchIngredients } from "./SearchUtil";
-import { addDislikedIngredient, removeDislikedIngredient } from "@/helpers/dbCalls";
-import { getAuth } from "firebase/auth";
+import { Close, Search } from "@mui/icons-material";
+import { useState } from "react";
 
 function QuickSearch({ selectedIngredients, setSelectedIngredients, handleClose }) {
-	const [searchTerm, setSearchTerm] = React.useState("");
+	const [searchTerm, setSearchTerm] = useState("");
 	const searchResults = searchTerm == "" ? allIngredients : searchIngredients(searchTerm);
 
 	const handleSelectIngredient = (ingredient) => {
@@ -24,18 +23,31 @@ function QuickSearch({ selectedIngredients, setSelectedIngredients, handleClose 
 
 	return (
 		<>
-			<Box sx={{ display: "flex", flexDirection: "row" }}>
+			<Stack direction="row" alignItems="center" mb={4}>
 				<TextField
-					sx={{ width: "100%", mb: "2vh" }}
-					label="Search Term"
+					sx={{ width: "100%" }}
+					InputProps={{
+						startAdornment: <Search />,
+						sx: {
+							borderRadius: "30px",
+							fontSize: "24px",
+							height: "60px",
+							borderRadius: "30px",
+							paddingX: "20px"
+						}
+					}}
+					inputProps={{
+						style: {
+							paddingLeft: 10
+						}
+					}}
 					value={searchTerm}
 					onChange={(e) => setSearchTerm(e.target.value)}
 				/>
-				<Button sx={{ ml: "2vw", mb: "2vh" }} variant="contained" onClick={handleClose}>
-					Close
-				</Button>
-			</Box>
-
+				<IconButton onClick={handleClose} sx={{ ml: 2 }}>
+					<Close sx={{ width: "40px", height: "40px", color: "secondary.dark" }} />
+				</IconButton>
+			</Stack>
 			<SelectedIngredients selectedIngredients={selectedIngredients} handleSelectIngredient={handleSelectIngredient} />
 			<SearchResults
 				searchResults={searchResults}

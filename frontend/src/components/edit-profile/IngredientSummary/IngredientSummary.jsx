@@ -9,7 +9,7 @@ function IngredientSummary({ ingredients }) {
 			<Grid container spacing={2} justifyContent="center" alignItems="center">
 				{ingredientInfo.map((ingredient) => (
 					<Grid item key={ingredient.title}>
-						<Card sx={{ width: 50, height: 50 }}>
+						<Card sx={{ width: 75, height: 75 }}>
 							<CardMedia component="img" image={ingredient.img} alt={ingredient.title} />
 						</Card>
 					</Grid>
