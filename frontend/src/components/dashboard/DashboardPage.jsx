@@ -5,7 +5,7 @@ import React from "react";
 import { Button, Container } from "@mui/material";
 import { useRouter } from "next/navigation";
 import AddIcon from "@mui/icons-material/Add";
-import PantryGrid from "@/components/Pantry/PantryGrid";
+import PantryGrid from "@/components/pantry/PantryGrid";
 import ingredients from "@/ingredients.json";
 import useDataStore from "@/lib/store";
 import StyledButton from "@/components/StyledButton/StyledButton";
