@@ -1,4 +1,4 @@
-import allIngredients from "@/ingredients.json";
+import allIngredients from "@/lib/ingredients.json";
 import { Grid, Card, CardMedia } from "@mui/material";
 
 function IngredientSummary({ ingredients }) {

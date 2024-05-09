@@ -6,7 +6,7 @@ import { Button, Container } from "@mui/material";
 import { useRouter } from "next/navigation";
 import AddIcon from "@mui/icons-material/Add";
 import PantryGrid from "@/components/PantryGrid";
-import ingredients from "@/ingredients.json";
+import ingredients from "@/lib/ingredients.json";
 import useDataStore from "@/lib/store";
 import StyledButton from "@/components/StyledButton";
 
