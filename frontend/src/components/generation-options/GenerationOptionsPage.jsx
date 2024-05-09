@@ -44,7 +44,7 @@ function GenerationOptionsPage() {
 				sx={{ backgroundColor: "background.paper" }}
 			>
 				<Stack alignItems="center">
-					<Typography variant="h2" align="center" fontWeight="bold" mt="10vh" mb="2vh" sx={{ color: "primary.dark" }}>
+					<Typography variant="h2" align="center" fontWeight="bold" mt="10vh" mb="2vh" sx={{ color: "primary.main" }}>
 						Recipe Generator
 					</Typography>
 					<Stack direction="row" justifyContent="space-between" spacing="20px">
@@ -114,7 +114,8 @@ function GenerationOptionsPage() {
 									style: {
 										paddingLeft: 10
 									}
-								}} />
+								}}
+							/>
 						</Stack>
 					) : (
 						<Stack alignItems="center" mb="10vh" mt="25px" spacing="25px">
@@ -128,8 +129,8 @@ function GenerationOptionsPage() {
 								{generateOptionParam === "Basic"
 									? "Basic Mode allows you to generate recipes based on your pantry and cuisine type."
 									: generateOptionParam === "Strict"
-										? "Strict Mode will not add new ingredients outside of your pantry list."
-										: "Remix Mode takes a meal, figures out the ingredients in it and will generate you a new meal based on those ingredients."}
+									? "Strict Mode will not add new ingredients outside of your pantry list."
+									: "Remix Mode takes a meal, figures out the ingredients in it and will generate you a new meal based on those ingredients."}
 							</Typography>
 							<Typography fontWeight="bold" variant="h4">
 								I want a
@@ -146,7 +147,8 @@ function GenerationOptionsPage() {
 												pointerEvents: "none",
 												position: "absolute",
 												right: 0
-											}} />
+											}}
+										/>
 									)}
 									sx={{
 										backgroundColor: "transparent",
@@ -159,9 +161,10 @@ function GenerationOptionsPage() {
 											key={index}
 											value={mealType}
 											sx={{
-												color: userParameters !== null && userParameters.mealType === mealType
-													? "primary.main"
-													: "secondary.dark"
+												color:
+													userParameters !== null && userParameters.mealType === mealType
+														? "primary.main"
+														: "secondary.dark"
 											}}
 										>
 											<Typography variant="h4" fontWeight="bold">
@@ -182,7 +185,8 @@ function GenerationOptionsPage() {
 												pointerEvents: "none",
 												position: "absolute",
 												right: 0
-											}} />
+											}}
+										/>
 									)}
 									sx={{
 										backgroundColor: "transparent",
@@ -214,7 +218,8 @@ function GenerationOptionsPage() {
 											paddingX: "20px"
 										}
 									}}
-									sx={{ width: "75%" }} />
+									sx={{ width: "75%" }}
+								/>
 							)}
 							<Stack direction="row" width="75%" spacing="25px">
 								<Select
@@ -230,10 +235,14 @@ function GenerationOptionsPage() {
 									))}
 								</Select>
 								<Select
-									value={userParameters && userParameters.dietaryRequirements !== ""
-										? userParameters.dietaryRequirements
-										: ""}
-									onChange={(event) => setUserParameters({ ...userParameters, dietaryRequirements: event.target.value })}
+									value={
+										userParameters && userParameters.dietaryRequirements !== ""
+											? userParameters.dietaryRequirements
+											: ""
+									}
+									onChange={(event) =>
+										setUserParameters({ ...userParameters, dietaryRequirements: event.target.value })
+									}
 									IconComponent={() => <ExpandMore sx={{ height: "36px", width: "36px" }} />}
 									sx={{ width: "75%", height: "60px", borderRadius: "30px", paddingX: "20px", fontSize: "24px" }}
 								>

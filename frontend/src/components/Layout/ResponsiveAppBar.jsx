@@ -82,7 +82,7 @@ function ResponsiveAppBar() {
 								my: "auto",
 								ml: 1,
 								mr: 2,
-								fontWeight: 700,
+								fontWeight: "bold",
 								color: "inherit",
 								textDecoration: "none"
 							}}
@@ -158,7 +158,7 @@ function ResponsiveAppBar() {
 								my: "auto",
 								ml: 1,
 								mr: 2,
-								fontWeight: 700,
+								fontWeight: "bold",
 								color: "inherit",
 								textDecoration: "none"
 							}}
