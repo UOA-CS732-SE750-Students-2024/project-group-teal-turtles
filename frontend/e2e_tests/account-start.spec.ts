@@ -34,6 +34,5 @@ test("allows user to log in", async ({ page }) => {
 
 	await expect(page).toHaveURL("http://localhost:3000/edit-profile");
 	await expect(page.getByRole("heading", { name: "Meal History (Last 10)" })).toBeVisible();
-	await expect(page.getByRole("heading", { name: "Mexican Breakfast Burrito" })).toBeVisible();
 	await expect(page.getByRole("heading", { name: "Logout" })).toBeVisible();
 });

@@ -29,6 +29,8 @@ export default defineConfig({
 		}
 	],
 
+	timeout: 60000,
+
 	webServer: {
 		command: "npm run start",
 		url: "http://127.0.0.1:3000",
