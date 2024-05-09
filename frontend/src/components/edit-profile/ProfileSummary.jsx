@@ -9,7 +9,6 @@ import Image from "next/image";
  * @param {string} props.email - The email address to display.
  * @returns {JSX.Element} A React JSX element representing the summary of user profile.
  */
-
 function ProfileSummary(props) {
 	return (
 		<Stack direction="column" alignItems="center" justifyContent="flex-start">

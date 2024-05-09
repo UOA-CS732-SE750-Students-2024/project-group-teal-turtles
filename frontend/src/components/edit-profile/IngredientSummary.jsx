@@ -7,7 +7,6 @@ import { Grid, Card, CardMedia } from "@mui/material";
  * @param {Array} props.ingredients - The array of ingredient titles to display.
  * @returns {JSX.Element} A React JSX element representing the summary of ingredients.
  */
-
 function IngredientSummary({ ingredients }) {
 	let ingredientInfo = allIngredients.filter((item) => ingredients.includes(item.title));
 

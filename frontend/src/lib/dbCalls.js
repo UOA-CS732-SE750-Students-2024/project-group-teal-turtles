@@ -1,5 +1,10 @@
 import axios from "axios";
 
+/**
+ * Function for saving user ingredients to the backend.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {string[]} userIngredients - The ingredients to be saved.
+ */
 export function saveIngredients(authToken, userIngredients) {
 	try {
 		axios.put(
@@ -18,6 +23,11 @@ export function saveIngredients(authToken, userIngredients) {
 	}
 }
 
+/**
+ * Function for adding a disliked ingredient for the user.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {string} dislikedIngredient - The disliked ingredient to add.
+ */
 export function addDislikedIngredient(authToken, dislikedIngredient) {
 	try {
 		axios.put(
@@ -35,6 +45,12 @@ export function addDislikedIngredient(authToken, dislikedIngredient) {
 		console.error(error);
 	}
 }
+
+/**
+ * Function for removing a disliked ingredient for the user.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {string} dislikedIngredient - The disliked ingredient to remove.
+ */
 export function removeDislikedIngredient(authToken, dislikedIngredient) {
 	try {
 		axios.put(
@@ -53,6 +69,11 @@ export function removeDislikedIngredient(authToken, dislikedIngredient) {
 	}
 }
 
+/**
+ * Function for setting the disliked ingredients for the user.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {string[]} dislikedIngredients - The list of disliked ingredients.
+ */
 export function setDislikedIngredient(authToken, dislikedIngredients) {
 	try {
 		axios.put(
@@ -71,6 +92,11 @@ export function setDislikedIngredient(authToken, dislikedIngredients) {
 	}
 }
 
+/**
+ * Function for adding a favorite meal for the user.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {string} favMeal - The favorite meal to add.
+ */
 export function addFavMeal(authToken, favMeal) {
 	try {
 		axios.put(
@@ -88,6 +114,12 @@ export function addFavMeal(authToken, favMeal) {
 		console.error(error);
 	}
 }
+
+/**
+ * Function for removing a favorite meal for the user.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {string} favMeal - The favorite meal to remove.
+ */
 export function removeFavMeal(authToken, favMeal) {
 	try {
 		axios.put(
@@ -105,6 +137,12 @@ export function removeFavMeal(authToken, favMeal) {
 		console.error(error);
 	}
 }
+
+/**
+ * Function for saving user parameters to the backend.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {Object} userParameters - The parameters to be saved.
+ */
 export function saveParameters(authToken, userParameters) {
 	try {
 		axios.put(
@@ -121,6 +159,11 @@ export function saveParameters(authToken, userParameters) {
 	}
 }
 
+/**
+ * Function for adding a generated meal for the user.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {string} mealName - The name of the generated meal to add.
+ */
 export function addGeneratedMeal(authToken, mealName) {
 	try {
 		axios.put(
@@ -135,6 +178,14 @@ export function addGeneratedMeal(authToken, mealName) {
 	}
 }
 
+/**
+ * Function for generating a recipe.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {string} mealName - The name of the meal.
+ * @param {string[]} ingredients - The ingredients used in the meal.
+ * @param {number} numberOfPeople - The number of people the recipe is for.
+ * @returns {Promise<AxiosResponse>} A promise that resolves with the response from the backend.
+ */
 export function generateRecipe(authToken, mealName, ingredients, numberOfPeople) {
 	return axios.post(
 		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/recipe",
@@ -151,6 +202,12 @@ export function generateRecipe(authToken, mealName, ingredients, numberOfPeople)
 	);
 }
 
+/**
+ * Function for generating a meal using remix.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {Object} body - The request body for the remix generation.
+ * @returns {Promise<AxiosResponse>} A promise that resolves with the response from the backend.
+ */
 export function generateMealRemix(authToken, body) {
 	return axios.post(
 		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/remix",
@@ -165,6 +222,12 @@ export function generateMealRemix(authToken, body) {
 	);
 }
 
+/**
+ * Function for generating a meal using prompt.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {string} prompt - The prompt for the meal generation.
+ * @returns {Promise<AxiosResponse>} A promise that resolves with the response from the backend.
+ */
 export function generateMealPrompt(authToken, prompt) {
 	return axios.post(
 		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/prompt",
@@ -179,6 +242,12 @@ export function generateMealPrompt(authToken, prompt) {
 	);
 }
 
+/**
+ * Function for generating a meal using loose constraints.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {Object} body - The request body for the loose generation.
+ * @returns {Promise<AxiosResponse>} A promise that resolves with the response from the backend.
+ */
 export function generateMealLoose(authToken, body) {
 	return axios.post(
 		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicLoose",
@@ -193,6 +262,12 @@ export function generateMealLoose(authToken, body) {
 	);
 }
 
+/**
+ * Function for generating a meal using strict constraints.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {Object} body - The request body for the strict generation.
+ * @returns {Promise<AxiosResponse>} A promise that resolves with the response from the backend.
+ */
 export function generateMealStrict(authToken, body) {
 	return axios.post(
 		process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/basicStrict",
@@ -207,6 +282,12 @@ export function generateMealStrict(authToken, body) {
 	);
 }
 
+/**
+ * Function for generating a meal using strict constraints.
+ * @param {string} authToken - The authentication token of the user.
+ * @param {Object} body - The request body for the strict generation.
+ * @returns {Promise<AxiosResponse>} A promise that resolves with the response from the backend.
+ */
 export function getUser(userAuthToken) {
 	return axios.get(process.env.NEXT_PUBLIC_BACKEND_URL + "/users", {
 		headers: {
@@ -215,6 +296,11 @@ export function getUser(userAuthToken) {
 	});
 }
 
+/**
+ * Function for creating a new user.
+ * @param {string} userAuthToken - The authentication token of the user.
+ * @returns {Promise<AxiosResponse>} A promise that resolves with the response from the backend.
+ */
 export function createUser(userAuthToken) {
 	return axios.post(
 		process.env.NEXT_PUBLIC_BACKEND_URL + "/users",

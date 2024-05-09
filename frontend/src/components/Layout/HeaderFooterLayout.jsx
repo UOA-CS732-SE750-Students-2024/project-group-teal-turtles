@@ -10,7 +10,6 @@ import Auth from "./Auth";
  * @param {React.ReactNode} children - The main content of the layout.
  * @returns {React.ReactNode} HeaderFooterLayout component.
  */
-
 export default function HeaderFooterLayout({ children }) {
 	return (
 		<Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>

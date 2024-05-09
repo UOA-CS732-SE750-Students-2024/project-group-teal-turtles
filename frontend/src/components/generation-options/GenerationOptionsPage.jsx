@@ -13,7 +13,6 @@ import StyledButton from "@/components/StyledButton";
  * GenerationOptionsPage component renders the page for generating recipe options based on user preferences.
  * @returns {JSX.Element} A React JSX element representing the generation options page.
  */
-
 function GenerationOptionsPage() {
 	function Generation() {
 		const router = useRouter();

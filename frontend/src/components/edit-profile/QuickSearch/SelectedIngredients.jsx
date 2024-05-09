@@ -10,7 +10,6 @@ import allIngredients from "@/lib/ingredients.json";
  * @param {function} props.handleSelectIngredient - Function to handle ingredient selection.
  * @returns {JSX.Element | null} A React JSX element representing the list of selected ingredients, or null if there are no selected ingredients.
  */
-
 function SelectedIngredients({ selectedIngredients, handleSelectIngredient }) {
 	if (!selectedIngredients.length) {
 		return null;

@@ -15,7 +15,6 @@ import { getUser, createUser } from "@/lib/dbCalls";
  * LoginPage component handles user login functionality.
  * @returns {JSX.Element} LoginPage component.
  */
-
 function LoginPage() {
 	const [visible, setVisible] = useState(false);
 	const [email, setEmail] = useState("");

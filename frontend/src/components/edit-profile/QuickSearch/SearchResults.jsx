@@ -10,7 +10,6 @@ import DisplayIngredients from "@/components/edit-profile/QuickSearch/DisplayIng
  * @param {function} props.handleSelectIngredient - Function to handle ingredient selection.
  * @returns {JSX.Element} A React JSX element representing the SearchResults.
  */
-
 function SearchResults({ searchResults, selectedIngredients, handleSelectIngredient }) {
 	const categorizedResults = categorizeIngredients(searchResults);
 	delete categorizedResults["Onboarding"];

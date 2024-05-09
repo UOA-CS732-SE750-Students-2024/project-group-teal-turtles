@@ -9,7 +9,6 @@ import { auth } from "@/lib/firebase-config";
  * It redirects the user to the landing page if they are not authenticated.
  * @returns {null} Null component.
  */
-
 export default function Auth() {
 	auth.app;
 

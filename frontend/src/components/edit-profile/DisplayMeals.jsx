@@ -15,7 +15,6 @@ import useDataStore from "@/lib/store";
  * @param {Array} props.userGeneratedMeals - The array of user's generated meals.
  * @returns {JSX.Element} A React JSX element representing the list of meals.
  */
-
 function DisplayMeals({ showFavouriteOnly = false, userFavouriteMeals, setUserFavouriteMeals, userGeneratedMeals }) {
 	const meals = showFavouriteOnly ? userFavouriteMeals : userGeneratedMeals;
 	const { setPrompt } = useDataStore();

@@ -20,7 +20,6 @@ import { Menu, MenuItem } from "@mui/material";
  * and user profile button.
  * @returns {JSX.Element} ResponsiveAppBar component.
  */
-
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const pages = [
