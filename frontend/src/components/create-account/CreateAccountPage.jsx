@@ -1,6 +1,6 @@
 "use client";
 
-import CardWrapper from "@/components/CardWrapper/CardWrapper";
+import CardWrapper from "@/components/CardWrapper";
 import { Google } from "@mui/icons-material";
 import { Stack, Typography, Button, TextField, IconButton, Link, CircularProgress } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
