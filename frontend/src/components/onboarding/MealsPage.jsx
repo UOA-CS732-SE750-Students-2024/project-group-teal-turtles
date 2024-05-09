@@ -4,16 +4,20 @@ import PantryGrid from "@/components/pantry/PantryGrid";
 import { Stack, Typography, Button } from "@mui/material";
 import useDataStore from "@/lib/store";
 import meals from "@/meals.json";
+import { addFavMeal, removeFavMeal } from "@/helpers/dbCalls";
+import { getAuth } from "firebase/auth";
 
 export function MealsPage({ onPageChange }) {
 	const { setUserFavouriteMeals, userFavouriteMeals } = useDataStore();
 
-	const handleMealsChange = (item) => {
+	const handleMealsChange = async (item) => {
 		if (userFavouriteMeals.includes(item)) {
 			const newMeals = userFavouriteMeals.filter((meal) => meal !== item);
 			setUserFavouriteMeals(newMeals);
+			removeFavMeal(await getAuth().currentUser.getIdToken(), item);
 		} else {
 			setUserFavouriteMeals([...userFavouriteMeals, item]);
+			addFavMeal(await getAuth().currentUser.getIdToken(), item);
 		}
 	};
 
