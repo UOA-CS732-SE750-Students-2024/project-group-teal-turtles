@@ -53,6 +53,24 @@ export function removeDislikedIngredient(authToken, dislikedIngredient) {
 	}
 }
 
+export function setDislikedIngredient(authToken, dislikedIngredients) {
+	try {
+		axios.put(
+			process.env.NEXT_PUBLIC_BACKEND_URL + "/users/ingredients/disliked",
+			{
+				dislikedIngredients: dislikedIngredients
+			},
+			{
+				headers: {
+					Authorization: authToken
+				}
+			}
+		);
+	} catch (error) {
+		console.error(error);
+	}
+}
+
 export function addFavMeal(authToken, favMeal) {
 	try {
 		axios.put(

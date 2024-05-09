@@ -13,7 +13,7 @@ const router = Router();
  *   "numberOfPeople": 4,
  *   "mealType": "dinner",									  (must be "breakfast", "lunch", or "dinner")
  *   "cuisine": "Italian",
- *   "dietaryRequirements": ["vegetarian", "gluten-free"]
+ *   "dietaryRequirements": "None"
  * 	}
  * }
  */
@@ -36,7 +36,7 @@ router.put("/", async (req, res) => {
 				error: `Missing required fields: ${missingFields.join(", ")}`
 			});
 		}
-		if (!["breakfast", "lunch", "dinner"].includes(parameters.mealType)) {
+		if (!["Breakfast", "Lunch", "Dinner"].includes(parameters.mealType)) {
 			return res.status(400).json({ error: "mealType must be one of 'breakfast', 'lunch', or 'dinner'" });
 		}
 		await setUserParameters(req.uid, parameters);

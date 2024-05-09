@@ -144,4 +144,20 @@ describe("API: /api/users/ingredients", () => {
 			request(app).get("/api/users/ingredients/disliked").set("Authorization", badAuthToken).expect(404, done);
 		}, 15000);
 	});
+
+	describe("PUT /api/users/ingredients/disliked", () => {
+		it("should set disliked ingredient", (done) => {
+			const dislikedIngredientToAdd = ["Olives", "Broccoli", "Spinach"];
+
+			request(app)
+				.put("/api/users/ingredients/disliked/add")
+				.send({ dislikedIngredientToAdd })
+				.set("Authorization", authToken2)
+				.expect(204, done);
+		}, 15000);
+
+		it("should return 400 if no disliked ingredients are provided", (done) => {
+			request(app).put("/api/users/ingredients/disliked").send({}).set("Authorization", authToken).expect(400, done);
+		}, 15000);
+	});
 });

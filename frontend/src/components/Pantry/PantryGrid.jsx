@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Card, CardActionArea, Grid, Typography, alpha } from "@mui/material";
 import Image from "next/image";
 
