@@ -12,6 +12,24 @@ Your team members are:
 
 ![](./group-image/Teal%20Turtles.webp)
 
+## What are we
+
+## Usage
+
+## Software
+
+## Running the project
+
+## Front end
+
+## Back end
+
+## Pages
+
+## Tech Stack
+
+### API usage
+
 ## Setup
 
 Current technology for development
@@ -19,23 +37,25 @@ Current technology for development
 - Prettier for formatting
 - EScode for lining
 
-## Development
+### Prerequisites
+Get Node.js installed on your machine. You can download and install it from [here](https://nodejs.org/en/download/current)
 
-in the terminal type npm install
-
-then npm
+This project requires Node.js 20.12.2 or higher
 
 ## Running the Frontend
 
-For frontend cd to the frontend folder and
+1. Navigate inside the frontend folder:
+   ```bash
+   cd frontend
+   ```
 
-1. Install dependencies:
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Either run in development mode:
+3. Then either run in development mode:
 
    ```bash
    npm run dev
@@ -55,15 +75,18 @@ For frontend cd to the frontend folder and
 
 ## Running the Backend
 
-For backend cd to the backend file
+1. Navigate inside the backend folder:
+   ```bash
+   cd backend
+   ```
 
-1. Install dependencies:
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start server :
+3. Start server :
 
    ```bash
    npm start
@@ -73,6 +96,10 @@ For backend cd to the backend file
 
 ## Production
 
+## Testing the Frontend
+
+TODO
+
 ## Testing the Backend
 
 The backend can be tested by first cd to backend folder and then
@@ -80,3 +107,22 @@ The backend can be tested by first cd to backend folder and then
 ```bash
 npm run test
 ```
+
+### Project Structure
+The frontend project structure is as follows:
+
+```
+app/: Directory containing the routing logic and assembled React pages
+components/: Directory containing reusable React components
+constants/: Directory containing definitions of constants (like Typescript types for example)
+lib/: Directory containing any kind of utility file (basically anything that doesn't fit into the above)
+```
+
+### Miscellaneous
+Check out the figma design file here!
+
+### Deployment
+
+### License
+This project is licensed under the MIT License.
+
