@@ -3,7 +3,6 @@
 import PantryGrid from "@/components/PantryGrid";
 import { Stack, Typography, Button } from "@mui/material";
 import useDataStore from "@/lib/store";
-import meals from "@/meals.json";
 import { addFavMeal, removeFavMeal } from "@/helpers/dbCalls";
 import { getAuth } from "firebase/auth";
 import meals from "@/lib/meals.json";
