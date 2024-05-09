@@ -1,53 +1,47 @@
-# COMPSCI 732 / SOFTENG 750 project - Team Teal Turtles
-
-TEAM MEMBERS:
-
-- Nathan Bell
-- Troy Murdoch
-- Dan Chae
-- Jason Xavier
-- Jeremy Ting
-
-![](./group-image/Teal%20Turtles.webp)
-
 # Intelligent Eats
 
 Are you tired of staring into your fridge, wondering what to cook for dinner? Do you find yourself stuck in a culinary rut, repeating the same meals week after week? Well, worry no more! Introducing Intelligent-Eats, the revolutionary AI-generated meal service designed for you.
 
 Whether you're craving comfort food classics, exotic international flavors, or healthy, plant-based options, our AI algorithm has you covered.
 
-## Usage
+### Usage
 
 TODO but something like this
+
 sign in
+
 add ingredients to pantry
+
 add disliked ingredients etc
+
 pick from generation options
+
 it generates a meal
+
 favourite meals and checkout meal history to revisit old meals
 
-# Software
+## Software
 
-## Pages
-
-TODO
-
-## Tech Stack
+### Pages
 
 TODO
 
-## API usage
+### Tech Stack
+
+TODO
+
+### API usage
 
 TODO
 
 ## Running the project
 
-## Prerequisites
+### Prerequisites
 Get Node.js installed on your machine. You can download and install it from [here](https://nodejs.org/en/download/current)
 
 This project requires Node.js 20.12.2 or higher
 
-## Running the Frontend
+### Running the Frontend
 
 0. Set up the `.env` file in the root directory. See `.env.local.example` for an example
 
@@ -56,25 +50,23 @@ This project requires Node.js 20.12.2 or higher
    cd frontend
    ```
 
-2. Install dependencies:
+2. Install the dependencies:
 
    ```bash
    npm install
    ```
 
-3. Then either run in development mode:
+3. Then either run it in development mode:
 
    ```bash
    npm run dev
    ```
 
-   Or production mode:
+   Or in production mode:
 
    ```bash
    npm run build
    ```
-
-   then:
 
    ```bash
    npm run start
@@ -82,20 +74,20 @@ This project requires Node.js 20.12.2 or higher
 
    This will start the frontend server at http://localhost:3000
 
-## Running the Backend
+### Running the Backend
 
 1. Navigate inside the backend folder:
    ```bash
    cd backend
    ```
 
-2. Install dependencies:
+2. Install the dependencies:
 
    ```bash
    npm install
    ```
 
-3. Start server :
+3. Start the server:
 
    ```bash
    npm start
@@ -105,17 +97,17 @@ This project requires Node.js 20.12.2 or higher
 
 ## Testing
 
-# Testing the Frontend
+### Testing the Frontend
 
 TODO
 
-# Testing the Backend
+### Testing the Backend
 
 TODO
 
 ## Project Structure
 
-# Frontend
+### Frontend
 
 Our repository structure is as follows:
 
@@ -128,7 +120,7 @@ src/
    lib/: Contains everything that doesn't fit into the above, typically utility files
 ```
 
-# Backend
+### Backend
 
 TODO
 
@@ -149,3 +141,12 @@ https://project-group-teal-turtles.vercel.app/
 ## License
 This project is licensed under the MIT License.
 
+Contributors:
+- Nathan Bell
+- Troy Murdoch
+- Dan Chae
+- Jeremy Ting
+- Jason Xavier
+
+TEAM TEAL TURTLES
+![](./group-image/Teal%20Turtles.webp)
