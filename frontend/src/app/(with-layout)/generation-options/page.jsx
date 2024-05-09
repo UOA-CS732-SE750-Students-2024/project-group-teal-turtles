@@ -44,7 +44,7 @@ function GenerationOptions() {
 				sx={{ backgroundColor: "background.paper" }}
 			>
 				<Stack alignItems="center">
-					<Typography variant="h2" align="center" fontWeight="bold" mt="10vh" mb="2vh">
+					<Typography variant="h2" align="center" fontWeight="bold" mt="10vh" mb="2vh" sx={{ color: "primary.dark" }}>
 						Recipe Generator
 					</Typography>
 					<Stack direction="row" justifyContent="space-between" spacing="20px">
