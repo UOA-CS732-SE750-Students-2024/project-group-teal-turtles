@@ -23,6 +23,7 @@ favourite meals and checkout meal history to revisit old meals
 ## Running the project
 
 ### Prerequisites
+
 Get Node.js installed on your machine. You can download and install it from [here](https://nodejs.org/en/download/current)
 
 This project requires Node.js 20.12.2 or higher
@@ -32,6 +33,7 @@ This project requires Node.js 20.12.2 or higher
 0. Set up the `.env` file in the root directory. See `.env.local.example` for an example
 
 1. Navigate inside the frontend folder:
+
    ```bash
    cd frontend
    ```
@@ -63,6 +65,7 @@ This project requires Node.js 20.12.2 or higher
 ### Running the Backend
 
 1. Navigate inside the backend folder:
+
    ```bash
    cd backend
    ```
@@ -132,7 +135,7 @@ TODO
 
 ### Frontend
 
-Our repository structure is as follows:
+Our frontend repository structure is as follows:
 
 ```
 public/
@@ -145,21 +148,37 @@ src/
 
 ### Backend
 
-TODO
+Our backend repository structure is as follows:
+
+```
+src/
+   auth: Firebase config files
+   data: Database schema and user dao
+   openAi: openai meal generation helper functions
+   routes: api routes
+      api:
+         generation: generation related
+         users: user related
+   segmind: segmind image helper functions
+```
 
 ## Miscellaneous
+
 Check out the figma design file [here](https://www.figma.com/file/sqO8dyu3wTHNfGy3RJjkcR/750-wireframe?type=design&node-id=2%3A2&mode=design&t=eZQL2zIErd7BnnJH-1)
 
 Check out our project management tooling [here](https://trello.com/invite/750team1/ATTIe553059ddbcf84a85e1f14055027679b9EE006EB)
 
 ## Deployment
+
 Check out a live deployment here:
 https://project-group-teal-turtles.vercel.app/
 
 ## License
+
 This project is licensed under the MIT License.
 
 Contributors:
+
 - Nathan Bell
 - Troy Murdoch
 - Dan Chae
