@@ -183,7 +183,6 @@ export default function ViewMeal() {
 			}
 		}
 
-		// Dynamic sizing for enlarged image
 		const [imageSize, setImageSize] = useState(0);
 
 		useEffect(() => {
@@ -194,13 +193,10 @@ export default function ViewMeal() {
 				setImageSize(smallerDimension);
 			}
 
-			// Call the function once to set initial size
 			handleResize();
 
-			// Attach event listener for resize
 			window.addEventListener("resize", handleResize);
 
-			// Cleanup
 			return () => {
 				window.removeEventListener("resize", handleResize);
 			};

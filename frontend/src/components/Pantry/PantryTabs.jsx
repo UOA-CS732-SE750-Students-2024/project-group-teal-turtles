@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -10,12 +9,8 @@ import { useState } from "react";
 import Fab from "@mui/material/Fab";
 import { Delete } from "@mui/icons-material";
 
-function TabPanel({ children, value, index, ...other }) {
-	return (
-		<div hidden={value !== index} {...other}>
-			{value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-		</div>
-	);
+function TabPanel({ children, value, index }) {
+	return <div hidden={value !== index}>{value === index && <Box sx={{ p: 3 }}>{children}</Box>}</div>;
 }
 
 function StyledTypography({ text }) {
@@ -26,16 +21,10 @@ function StyledTypography({ text }) {
 	);
 }
 
-TabPanel.propTypes = {
-	children: PropTypes.node,
-	index: PropTypes.number.isRequired,
-	value: PropTypes.number.isRequired
-};
-
 export default function PantryTabs() {
 	const [value, setValue] = useState(0);
 
-	const handleChange = (event, newValue) => {
+	const handleChange = (_event, newValue) => {
 		setValue(newValue);
 	};
 
@@ -55,6 +44,9 @@ export default function PantryTabs() {
 		setUserIngredients(newIngredients);
 	};
 
+	const tabStyles = { fontWeight: "bold", fontSize: "20px", textTransform: "none" };
+	const pantryGridProps = { onClick: handleIngredientsChange, selected: userIngredients };
+
 	return (
 		<Box
 			sx={{
@@ -70,27 +62,41 @@ export default function PantryTabs() {
 				variant="scrollable"
 				value={value}
 				onChange={handleChange}
-				sx={{ borderRight: 1, borderColor: "divider", minWidth: "180px", paddingTop: "100px" }}
+				sx={{ borderRight: 1, borderColor: "divider", minWidth: "230px", paddingTop: "100px" }}
 			>
-				<Tab label="Your Ingredients" />
-				<Tab label="Carbs" />
-				<Tab label="Protein" />
-				<Tab label="Vegetables" />
-				<Tab label="Fruit" />
-				<Tab label="Dairy" />
+				<Tab sx={tabStyles} label="Your Ingredients" />
+				<Tab sx={tabStyles} label="Carbs" />
+				<Tab sx={tabStyles} label="Protein" />
+				<Tab sx={tabStyles} label="Vegetables" />
+				<Tab sx={tabStyles} label="Fruit" />
+				<Tab sx={tabStyles} label="Dairy" />
 			</Tabs>
 			<TabPanel value={value} index={0}>
 				<Box sx={{ display: "flex", justifyContent: "space-between", mt: 3, width: "40vw" }}>
-					<Typography variant="h6">Your Ingredients</Typography>
+					<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.dark" }}>
+						Your Ingredients
+					</Typography>
 					{userIngredients && userIngredients.length > 0 ? (
-						<Fab onClick={() => setUserIngredients([])} sx={{}}>
+						<Fab
+							onClick={() => setUserIngredients([])}
+							sx={{
+								width: "180px",
+								backgroundColor: "background.paper",
+								height: "60px",
+								borderRadius: "30px",
+								color: "primary.dark"
+							}}
+						>
+							<Typography fontWeight="bold" textTransform="none" mr={1} variant="h6">
+								Clear Pantry
+							</Typography>
 							<Delete />
 						</Fab>
 					) : null}
 				</Box>
 
 				{userIngredients && userIngredients.length > 0 ? (
-					<PantryGrid itemData={ingredientsPantry} onClick={handleIngredientsChange} selected={userIngredients} />
+					<PantryGrid itemData={ingredientsPantry} {...pantryGridProps} />
 				) : (
 					<Typography variant="h6" sx={{ mt: 3, mb: 1, color: "secondary.main" }}>
 						Add Ingredients to get started
@@ -99,35 +105,35 @@ export default function PantryTabs() {
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				<StyledTypography text="Bread" />
-				<PantryGrid itemData={ingredientsBread} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsBread} {...pantryGridProps} />
 				<StyledTypography text="Pasta" />
-				<PantryGrid itemData={ingredientsPasta} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsPasta} {...pantryGridProps} />
 				<StyledTypography text="Other" />
-				<PantryGrid itemData={ingredientsCarbsMisc} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsCarbsMisc} {...pantryGridProps} />
 			</TabPanel>
 			<TabPanel value={value} index={2}>
 				<StyledTypography text="Beef" />
-				<PantryGrid itemData={ingredientsBeef} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsBeef} {...pantryGridProps} />
 				<StyledTypography text="Chicken" />
-				<PantryGrid itemData={ingredientsChicken} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsChicken} {...pantryGridProps} />
 				<StyledTypography text="Pork" />
-				<PantryGrid itemData={ingredientsPork} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsPork} {...pantryGridProps} />
 				<StyledTypography text="Processed" />
-				<PantryGrid itemData={ingredientsProcessedMeat} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsProcessedMeat} {...pantryGridProps} />
 				<StyledTypography text="Other" />
-				<PantryGrid itemData={ingredientsProteinMisc} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsProteinMisc} {...pantryGridProps} />
 			</TabPanel>
 			<TabPanel value={value} index={3}>
 				<StyledTypography text="Vegetables" />
-				<PantryGrid itemData={ingredientsVegetables} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsVegetables} {...pantryGridProps} />
 			</TabPanel>
 			<TabPanel value={value} index={4}>
 				<StyledTypography text="Fruit" />
-				<PantryGrid itemData={ingredientsFruit} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsFruit} {...pantryGridProps} />
 			</TabPanel>
 			<TabPanel value={value} index={5}>
 				<StyledTypography text="Dairy" />
-				<PantryGrid itemData={ingredientsDairy} onClick={handleIngredientsChange} selected={userIngredients} />
+				<PantryGrid itemData={ingredientsDairy} {...pantryGridProps} />
 			</TabPanel>
 		</Box>
 	);

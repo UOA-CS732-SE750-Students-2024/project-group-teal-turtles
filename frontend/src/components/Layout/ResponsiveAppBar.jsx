@@ -27,29 +27,9 @@ function ResponsiveAppBar() {
 	];
 	const currentUrl = usePathname();
 	const router = useRouter();
-	const {
-		setUserGeneratedMeals,
-		setUserDislikedIngredients,
-		setUserEmail,
-		setUserFavouriteMeals,
-		setUserIngredients,
-		userIngredients,
-		setUserParameters,
-		setAuthorisedUser,
-		setMealToRemix,
-		setPrompt,
-		setLastMeal,
-		setLastRecipe,
-		setLastIngredientQuantities,
-		setLastIngredientsNeeded,
-		setLastIngredientsUser
-	} = useDataStore();
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
-	};
-	const handleOpenUserMenu = (event) => {
-		setAnchorElUser(event.currentTarget);
 	};
 
 	const handleCloseNavMenu = () => {
