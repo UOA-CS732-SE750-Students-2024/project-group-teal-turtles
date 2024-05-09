@@ -66,6 +66,8 @@ This project requires Node.js 20.12.2 or higher
 
 ### Running the Backend
 
+0. Set up the `.env` file in the root directory. See `.env.example` for an example
+
 1. Navigate inside the backend folder:
 
    ```bash
@@ -124,8 +126,12 @@ TODO
 ## Tech Stack
 
 NodeJS + Express for backend
-NextJS + Jest for frontend
-Deployed using Vercel
+Jest for testing
+Deployed using google app engine
+
+NextJS for frontend
+Jest + Playwright for testing
+Deployed using vercel
 
 ### API usage
 
@@ -133,11 +139,15 @@ TODO
 
 ### Database
 
+Using [monogoDB](https://www.mongodb.com/)
+
+User Dao and schemas for database can be found within the data folder in backend src
+
 ## Project Structure
 
 ### Frontend
 
-Our repository structure is as follows:
+Our frontend repository structure is as follows:
 
 ```
 public/
@@ -150,7 +160,19 @@ src/
 
 ### Backend
 
-TODO
+Our backend repository structure is as follows:
+
+```
+src/
+   auth: Firebase config files
+   data: Database schema and user dao
+   openAi: openai meal generation helper functions
+   routes: api routes
+      api:
+         generation: generation related
+         users: user related
+   segmind: segmind image helper functions
+```
 
 ## Miscellaneous
 
