@@ -85,6 +85,7 @@ function CreateAccount() {
 				await createAccount(email, password);
 				setAuthorisedUser(auth.currentUser);
 				setUserEmail(auth.currentUser.email);
+				setUserName(auth.currentUser.email.split("@")[0]);
 				createUserInDatabase(auth.currentUser.accessToken);
 			} else {
 				setLoading(false);
@@ -107,6 +108,7 @@ function CreateAccount() {
 			setGoogleLoading(true);
 			await handleGoogleLogin();
 			setUserEmail(auth.currentUser.email);
+			setUserName(auth.currentUser.email.split("@")[0]);
 			setAuthorisedUser(auth.currentUser);
 
 			const metadata = auth.currentUser.metadata;
