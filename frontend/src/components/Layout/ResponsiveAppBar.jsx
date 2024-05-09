@@ -15,6 +15,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
 
+/**
+ * ResponsiveAppBar component displays a responsive app bar with navigation links, a menu icon for small screens,
+ * and user profile button.
+ * @returns {JSX.Element} ResponsiveAppBar component.
+ */
 function ResponsiveAppBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const pages = [

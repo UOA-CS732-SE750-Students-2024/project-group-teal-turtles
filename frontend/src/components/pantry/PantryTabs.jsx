@@ -10,10 +10,24 @@ import Fab from "@mui/material/Fab";
 import { Delete } from "@mui/icons-material";
 import { Stack } from "@mui/material";
 
+/**
+ * Renders a tab panel.
+ * @param {object} props - The component props.
+ * @param {number} props.value - The current value of the panel.
+ * @param {number} props.index - The index of the panel.
+ * @param {JSX.Element} props.children - The children components.
+ * @returns {JSX.Element} The rendered tab panel component.
+ */
 function TabPanel({ children, value, index }) {
 	return <div hidden={value !== index}>{value === index && <Box sx={{ p: 3 }}>{children}</Box>}</div>;
 }
 
+/**
+ * Renders a styled typography component.
+ * @param {object} props - The component props.
+ * @param {string} props.text - The text content.
+ * @returns {JSX.Element} The rendered styled typography component.
+ */
 function StyledTypography({ text }) {
 	return (
 		<Typography variant="h5" fontWeight="bold" sx={{ mt: 3, mb: 3, color: "primary.main" }}>
@@ -22,6 +36,10 @@ function StyledTypography({ text }) {
 	);
 }
 
+/**
+ * Renders a component for managing pantry tabs.
+ * @returns {JSX.Element} The rendered pantry tabs component.
+ */
 export default function PantryTabs() {
 	const [value, setValue] = useState(0);
 
@@ -33,6 +51,10 @@ export default function PantryTabs() {
 
 	let ingredientsPantry = ingredients.filter((item) => userIngredients.includes(item.title));
 
+	/**
+	 * Handles the change of user ingredients selection.
+	 * @param {string} item - The ingredient to add or remove.
+	 */
 	const handleIngredientsChange = (item) => {
 		const ingredientsArray = userIngredients || [];
 		const isItemInUserIngredients = ingredientsArray.includes(item);

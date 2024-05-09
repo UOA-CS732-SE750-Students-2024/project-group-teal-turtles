@@ -6,10 +6,23 @@ import { searchIngredients } from "@/lib/SearchUtil";
 import { Close, Search } from "@mui/icons-material";
 import { useState } from "react";
 
+/**
+ * A component for quick ingredient search and selection.
+ * @param {object} props - Component props.
+ * @param {string[]} props.selectedIngredients - An array of selected ingredient names.
+ * @param {Function} props.setSelectedIngredients - A function to set selected ingredients.
+ * @param {Function} props.handleClose - A function to handle closing the search.
+ * @returns {JSX.Element} QuickSearch component JSX.
+ */
 function QuickSearch({ selectedIngredients, setSelectedIngredients, handleClose }) {
 	const [searchTerm, setSearchTerm] = useState("");
 	const searchResults = searchTerm == "" ? allIngredients : searchIngredients(searchTerm);
 
+	/**
+	 * Handles selecting or deselecting an ingredient.
+	 * @param {string} ingredient - The name of the ingredient.
+	 * @returns {Function} Event handler function for ingredient selection.
+	 */
 	const handleSelectIngredient = (ingredient) => {
 		return () => {
 			const isSelected = selectedIngredients.includes(ingredient);

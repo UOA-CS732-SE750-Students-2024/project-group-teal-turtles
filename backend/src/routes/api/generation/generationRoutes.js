@@ -17,4 +17,7 @@ generation.use("/prompt", prompt);
 import recipe from "./recipe.js";
 generation.use("/recipe", recipe);
 
+import mealImage from "./mealImage.js";
+generation.use("/mealImage", mealImage);
+
 export default generation;

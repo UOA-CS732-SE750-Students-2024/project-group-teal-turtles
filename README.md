@@ -1,6 +1,8 @@
 # COMPSCI 732 / SOFTENG 750 project - Team Teal Turtles
 
-Welcome to the project! I look forward to seeing your progress and your final results this semester!
+Welcome to our project!
+
+Intelligient Eats
 
 Your team members are:
 
@@ -12,18 +14,7 @@ Your team members are:
 
 ![](./group-image/Teal%20Turtles.webp)
 
-## Setup
-
-Current technology for development
-
-- Prettier for formatting
-- EScode for lining
-
-## Development
-
-in the terminal type npm install
-
-then npm
+# Development
 
 ## Running the Frontend
 
@@ -71,8 +62,6 @@ For backend cd to the backend file
 
    This will start the backend server at http://localhost:3000
 
-## Production
-
 ## Testing the Backend
 
 The backend can be tested by first cd to backend folder and then
@@ -80,3 +69,30 @@ The backend can be tested by first cd to backend folder and then
 ```bash
 npm run test
 ```
+
+## Testing the Frontend
+
+### Jest
+
+The backend logic is tests with jest
+
+```bash
+npm run test
+```
+
+### PLaywright
+
+To test with playwright follow the following instructions
+These test some common user flows
+
+```bash
+npm run build
+npx playwright install
+npx playwright test
+```
+
+# Production
+
+The backend and frontend are hosted
+
+FRONTEND PROD URL

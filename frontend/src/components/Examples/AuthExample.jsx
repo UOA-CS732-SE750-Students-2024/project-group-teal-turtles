@@ -7,6 +7,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase-config";
 import axios from "axios";
 
+/**
+ * AuthExample component demonstrates authentication-related functionalities.
+ * @returns {JSX.Element} A React JSX element representing the authentication example component.
+ */
 function AuthExample() {
 	//this needs to be known by all pages, so need to add to an appcontext somehow
 	const [user, setUser] = useState(false);

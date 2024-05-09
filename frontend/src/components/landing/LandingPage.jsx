@@ -9,6 +9,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 
+/**
+ * LandingCard component displays a card with front and back views.
+ * @param {Object} props - The props object.
+ * @param {string} props.title - The title of the card.
+ * @param {string} props.body - The content of the card front.
+ * @param {string} props.back - The content of the card back.
+ * @returns {JSX.Element} React component.
+ */
 function LandingCard({ title, body, back }) {
 	const [flipped, setFlipped] = useState(false);
 
@@ -67,6 +75,10 @@ function LandingCard({ title, body, back }) {
 	);
 }
 
+/**
+ * LandingPage component displays the landing page with cards and a call-to-action button.
+ * @returns {JSX.Element} React component.
+ */
 function LandingPage() {
 	const { authorisedUser } = useDataStore();
 	const router = useRouter();

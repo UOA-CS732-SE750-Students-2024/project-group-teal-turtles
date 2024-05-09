@@ -1,5 +1,11 @@
 import { Card, Stack } from "@mui/material";
 
+/**
+ * CardWrapper component for wrapping content in a centered card layout.
+ * @param {Object} props - The props for the CardWrapper component.
+ * @param {ReactNode} props.children - The child elements to be wrapped.
+ * @returns {JSX.Element} The CardWrapper component.
+ */
 function CardWrapper({ children }) {
 	return (
 		<Stack

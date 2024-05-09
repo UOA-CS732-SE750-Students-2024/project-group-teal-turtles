@@ -3,7 +3,15 @@ import useDataStore from "@/lib/store";
 import { Box, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 
+/**
+ * Represents a panel for generating meals in the dashboard.
+ * @returns {JSX.Element} The JSX representation of the DashboardGenerationPanel component.
+ */
 function DashboardGenerationPanel() {
+	/**
+	 * Handles the button press event for the generation options.
+	 * @param {string} header - The header text of the generation card.
+	 */
 	const handleButtonPress = (header) => {
 		switch (header) {
 			case "Basic":
