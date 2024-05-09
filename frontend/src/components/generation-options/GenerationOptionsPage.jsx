@@ -1,7 +1,18 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { TextField, Typography, Button, MenuItem, Select, IconButton, Stack, Tooltip, Card } from "@mui/material";
+import {
+	TextField,
+	Typography,
+	Button,
+	MenuItem,
+	Select,
+	IconButton,
+	Stack,
+	Tooltip,
+	Card,
+	FormHelperText
+} from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import useDataStore from "@/lib/store";
 import { Suspense } from "react";
@@ -188,6 +199,11 @@ function GenerationOptionsPage() {
 											}}
 										/>
 									)}
+									MenuProps={{
+										sx: {
+											maxHeight: "400px"
+										}
+									}}
 									sx={{
 										backgroundColor: "transparent",
 										color: "primary.main",
@@ -195,7 +211,7 @@ function GenerationOptionsPage() {
 									}}
 								>
 									{numberOfPeopleOptions.map((number, index) => (
-										<MenuItem key={index} value={number}>
+										<MenuItem key={index} value={number} sx={{ justifyContent: "center" }}>
 											<Typography variant="h4" fontWeight="bold">
 												{number}
 											</Typography>
@@ -222,36 +238,82 @@ function GenerationOptionsPage() {
 								/>
 							)}
 							<Stack direction="row" width="75%" spacing="25px">
-								<Select
-									value={userParameters && userParameters.cuisine !== "" ? userParameters.cuisine : ""}
-									onChange={(event) => setUserParameters({ ...userParameters, cuisine: event.target.value })}
-									IconComponent={() => <ExpandMore sx={{ height: "36px", width: "36px" }} />}
-									sx={{ width: "75%", height: "60px", borderRadius: "30px", paddingX: "20px", fontSize: "24px" }}
-								>
-									{cuisines.map((cuisine, index) => (
-										<MenuItem key={index} value={cuisine}>
-											{cuisine}
-										</MenuItem>
-									))}
-								</Select>
-								<Select
-									value={
-										userParameters && userParameters.dietaryRequirements !== ""
-											? userParameters.dietaryRequirements
-											: ""
-									}
-									onChange={(event) =>
-										setUserParameters({ ...userParameters, dietaryRequirements: event.target.value })
-									}
-									IconComponent={() => <ExpandMore sx={{ height: "36px", width: "36px" }} />}
-									sx={{ width: "75%", height: "60px", borderRadius: "30px", paddingX: "20px", fontSize: "24px" }}
-								>
-									{dietaryRequirements.map((requirement, index) => (
-										<MenuItem key={index} value={requirement}>
-											{requirement}
-										</MenuItem>
-									))}
-								</Select>
+								<Stack width="75%">
+									<Typography fontWeight="bold" ml={4} mb={0.5}>
+										Cuisine Type
+									</Typography>
+									<Select
+										value={userParameters && userParameters.cuisine !== "" ? userParameters.cuisine : ""}
+										onChange={(event) => setUserParameters({ ...userParameters, cuisine: event.target.value })}
+										IconComponent={() => (
+											<ExpandMore
+												sx={{
+													height: "36px",
+													width: "36px",
+													pointerEvents: "none",
+													position: "absolute",
+													right: 15
+												}}
+											/>
+										)}
+										sx={{
+											height: "60px",
+											borderRadius: "30px",
+											paddingX: "20px",
+											fontSize: "24px",
+											fontWeight: "bold"
+										}}
+									>
+										{cuisines.map((cuisine, index) => (
+											<MenuItem key={index} value={cuisine}>
+												<Typography variant="h5" fontWeight="bold">
+													{cuisine}
+												</Typography>
+											</MenuItem>
+										))}
+									</Select>
+								</Stack>
+								<Stack width="75%">
+									<Typography fontWeight="bold" ml={4} mb={0.5}>
+										Dietary Requirements
+									</Typography>
+									<Select
+										value={
+											userParameters && userParameters.dietaryRequirements !== ""
+												? userParameters.dietaryRequirements
+												: ""
+										}
+										onChange={(event) =>
+											setUserParameters({ ...userParameters, dietaryRequirements: event.target.value })
+										}
+										IconComponent={() => (
+											<ExpandMore
+												sx={{
+													height: "36px",
+													width: "36px",
+													pointerEvents: "none",
+													position: "absolute",
+													right: 15
+												}}
+											/>
+										)}
+										sx={{
+											height: "60px",
+											borderRadius: "30px",
+											paddingX: "20px",
+											fontSize: "24px",
+											fontWeight: "bold"
+										}}
+									>
+										{dietaryRequirements.map((requirement, index) => (
+											<MenuItem key={index} value={requirement}>
+												<Typography variant="h5" fontWeight="bold">
+													{requirement}
+												</Typography>
+											</MenuItem>
+										))}
+									</Select>
+								</Stack>
 							</Stack>
 							{(generateOptionParam === "Basic" || generateOptionParam === "Strict") && (
 								<Stack alignItems="center">
