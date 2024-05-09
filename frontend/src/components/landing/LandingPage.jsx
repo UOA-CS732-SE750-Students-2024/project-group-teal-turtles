@@ -67,7 +67,7 @@ function LandingCard({ title, body, back }) {
 	);
 }
 
-function Landing() {
+function LandingPage() {
 	const { authorisedUser } = useDataStore();
 	const router = useRouter();
 
@@ -153,4 +153,4 @@ function Landing() {
 	);
 }
 
-export default Landing;
+export default LandingPage;

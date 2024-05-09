@@ -1,11 +1,11 @@
 "use client";
 
-import PantryGrid from "@/components/pantry/PantryGrid";
+import PantryGrid from "@/components/PantryGrid";
 import { ChevronLeft } from "@mui/icons-material";
 import { Stack, Typography, Button, IconButton } from "@mui/material";
 import { useRouter } from "next/navigation";
 import useDataStore from "@/lib/store";
-import ingredients from "@/ingredients.json";
+import ingredients from "@/lib/ingredients.json";
 
 export function IngredientsPage({ onPageChange }) {
 	const { userIngredients, setUserIngredients } = useDataStore();

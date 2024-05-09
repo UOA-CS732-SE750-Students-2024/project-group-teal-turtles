@@ -79,9 +79,9 @@ describe("API: /api/users/parameters", () => {
 		it("should update the user's parameters", (done) => {
 			const parameters = {
 				numberOfPeople: 4,
-				mealType: "dinner",
+				mealType: "Dinner",
 				cuisine: "Italian",
-				dietaryRequirements: ["vegetarian", "gluten-free"]
+				dietaryRequirements: "Vegetarian"
 			};
 
 			request(app)

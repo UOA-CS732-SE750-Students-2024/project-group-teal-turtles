@@ -1,4 +1,4 @@
-import Pantry from "@/components/pantry/PantryPage";
+import PantryPage from "@/components/pantry/PantryPage";
 import React from "react";
 
 export const metadata = {
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 function Page() {
-	return <Pantry />;
+	return <PantryPage />;
 }
 
 export default Page;

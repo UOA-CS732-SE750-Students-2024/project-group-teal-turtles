@@ -1,4 +1,4 @@
-import Dashboard from "@/components/dashboard/DashboardPage";
+import DashboardPage from "@/components/dashboard/DashboardPage";
 import React from "react";
 
 export const metadata = {
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 function Page() {
-	return <Dashboard />;
+	return <DashboardPage />;
 }
 
 export default Page;

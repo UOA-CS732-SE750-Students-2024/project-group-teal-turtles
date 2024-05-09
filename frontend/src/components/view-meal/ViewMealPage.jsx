@@ -16,14 +16,14 @@ import {
 	generateMealPrompt,
 	generateMealRemix,
 	generateMealStrict
-} from "@/helpers/dbCalls";
+} from "@/lib/dbCalls";
 import { useRouter } from "next/navigation";
 import { Stack } from "@mui/material";
 import useDataStore from "@/lib/store";
 import Image from "next/image";
-import StyledButton from "@/components/StyledButton/StyledButton";
+import StyledButton from "@/components/StyledButton";
 
-export default function ViewMeal() {
+export default function ViewMealPage() {
 	function View() {
 		const {
 			mealToRemix,
@@ -78,7 +78,6 @@ export default function ViewMeal() {
 									console.error(err);
 								});
 						} else if (searchParams.get("generateOption") === "Prompt") {
-							console.log(prompt);
 							generateMealPrompt(authToken, prompt)
 								.then((res) => {
 									afterResult(res.data.mealName, res.data.ingredients);
@@ -229,7 +228,7 @@ export default function ViewMeal() {
 							mx="50px"
 							sx={{ color: "primary.main" }}
 						>
-							{lastMeal === "" && !mealCurrentlyGenerating ? "Last Generated Recipe" : lastMeal}
+							{lastMeal === "" && !mealCurrentlyGenerating ? "Recipe" : lastMeal}
 						</Typography>
 						<Card
 							elevation={5}

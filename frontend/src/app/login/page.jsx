@@ -1,4 +1,4 @@
-import Login from "@/components/login/LoginPage";
+import LoginPage from "@/components/login/LoginPage";
 import React from "react";
 
 export const metadata = {
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 function Page() {
-	return <Login />;
+	return <LoginPage />;
 }
 
 export default Page;

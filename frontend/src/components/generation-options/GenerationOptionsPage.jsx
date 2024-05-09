@@ -7,7 +7,7 @@ import useDataStore from "@/lib/store";
 import { Suspense } from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { ExpandMore } from "@mui/icons-material";
-import StyledButton from "@/components/StyledButton/StyledButton";
+import StyledButton from "@/components/StyledButton";
 
 function GenerationOptionsPage() {
 	function Generation() {
@@ -167,6 +167,8 @@ function GenerationOptionsPage() {
 									sx={{
 										backgroundColor: "transparent",
 										color: "primary.main",
+										fontSize: "34px",
+										fontWeight: "bold",
 										".MuiOutlinedInput-notchedOutline": { borderStyle: "none" }
 									}}
 								>
@@ -175,15 +177,15 @@ function GenerationOptionsPage() {
 											key={index}
 											value={mealType}
 											sx={{
+												fontWeight: "bold",
+												fontSize: "22px",
 												color:
 													userParameters !== null && userParameters.mealType === mealType
 														? "primary.main"
 														: "secondary.dark"
 											}}
 										>
-											<Typography variant="h4" fontWeight="bold">
-												{mealType}
-											</Typography>
+											{mealType}
 										</MenuItem>
 									))}
 								</Select>
@@ -210,14 +212,26 @@ function GenerationOptionsPage() {
 									sx={{
 										backgroundColor: "transparent",
 										color: "primary.main",
+										fontSize: "34px",
+										fontWeight: "bold",
 										".MuiOutlinedInput-notchedOutline": { borderStyle: "none" }
 									}}
 								>
 									{numberOfPeopleOptions.map((number, index) => (
-										<MenuItem key={index} value={number} sx={{ justifyContent: "center" }}>
-											<Typography variant="h4" fontWeight="bold">
-												{number}
-											</Typography>
+										<MenuItem
+											key={index}
+											value={number}
+											sx={{
+												justifyContent: "center",
+												fontWeight: "bold",
+												fontSize: "22px",
+												color:
+													userParameters !== null && userParameters.numberOfPeople === number.toString()
+														? "primary.main"
+														: "secondary.dark"
+											}}
+										>
+											{number}
 										</MenuItem>
 									))}
 								</Select>
@@ -268,10 +282,8 @@ function GenerationOptionsPage() {
 										}}
 									>
 										{cuisines.map((cuisine, index) => (
-											<MenuItem key={index} value={cuisine}>
-												<Typography variant="h5" fontWeight="bold">
-													{cuisine}
-												</Typography>
+											<MenuItem key={index} value={cuisine} sx={{ fontWeight: "bold", fontSize: "18px" }}>
+												{cuisine}
 											</MenuItem>
 										))}
 									</Select>
@@ -309,10 +321,8 @@ function GenerationOptionsPage() {
 										}}
 									>
 										{dietaryRequirements.map((requirement, index) => (
-											<MenuItem key={index} value={requirement}>
-												<Typography variant="h5" fontWeight="bold">
-													{requirement}
-												</Typography>
+											<MenuItem key={index} value={requirement} sx={{ fontWeight: "bold", fontSize: "18px" }}>
+												{requirement}
 											</MenuItem>
 										))}
 									</Select>

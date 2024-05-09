@@ -4,7 +4,7 @@ import React from "react";
 import PantryTabs from "@/components/pantry/PantryTabs";
 import { Box, Stack } from "@mui/material";
 
-function Pantry() {
+function PantryPage() {
 	return (
 		<Stack width="100%" sx={{ backgroundColor: "background.paper" }}>
 			<Stack sx={{ minHeight: "calc(100vh - 70px)" }} alignItems="center" justifyContent="center">
@@ -23,4 +23,4 @@ function Pantry() {
 	);
 }
 
-export default Pantry;
+export default PantryPage;

@@ -1,4 +1,4 @@
-import ingredients from "@/ingredients.json";
+import ingredients from "@/lib/ingredients.json";
 import Fuse from "fuse.js";
 
 const fuse = new Fuse(ingredients, {
@@ -31,13 +31,3 @@ export const categorizeIngredients = (ingredients) => {
 export const extractIngredients = (categorizedIngredients, category) => {
 	return categorizedIngredients[category].map((key) => categorizeIngredients[key]);
 };
-
-// const extractCategories = () => {
-// 	const categories = new Set();
-// 	ingredients.forEach((ingredient) => {
-// 		ingredient.categories.forEach((category) => {
-// 			categories.add(category);
-// 		});
-// 	});
-// 	return Array.from(categories);
-// };

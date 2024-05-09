@@ -1,4 +1,4 @@
-import CreateAccount from "@/components/create-account/CreateAccountPage";
+import CreateAccountPage from "@/components/create-account/CreateAccountPage";
 import React from "react";
 
 export const metadata = {
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 function Page() {
-	return <CreateAccount />;
+	return <CreateAccountPage />;
 }
 
 export default Page;

@@ -1,4 +1,4 @@
-import DashboardGenerationCard from "@/components/DashboardGenerationPanel/DashboardGenerationCard";
+import DashboardGenerationCard from "@/components/dashboard/DashboardGenerationPanel/DashboardGenerationCard";
 import useDataStore from "@/lib/store";
 import { Box, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";

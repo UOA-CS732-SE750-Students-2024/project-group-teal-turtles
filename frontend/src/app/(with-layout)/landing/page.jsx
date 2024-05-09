@@ -1,4 +1,4 @@
-import Landing from "@/components/landing/LandingPage";
+import LandingPage from "@/components/landing/LandingPage";
 import React from "react";
 
 export const metadata = {
@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 function Page() {
-	return <Landing />;
+	return <LandingPage />;
 }
 
 export default Page;

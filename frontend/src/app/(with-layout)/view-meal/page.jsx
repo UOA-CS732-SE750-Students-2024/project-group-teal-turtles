@@ -1,11 +1,11 @@
-import ViewMeal from "@/components/view-meal/ViewMealPage";
+import ViewMealPage from "@/components/view-meal/ViewMealPage";
 import React from "react";
 
 export const metadata = {
-	title: "Generated Recipe - Intelligent Eats"
+	title: "Recipe - Intelligent Eats"
 };
 
 function Page() {
-	return <ViewMeal />;
+	return <ViewMealPage />;
 }
 export default Page;
