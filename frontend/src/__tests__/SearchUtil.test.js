@@ -6,7 +6,7 @@ describe("SearchUtil", () => {
 		it("should return correct search results", () => {
 			const searchTerm = "Apple";
 			const results = searchIngredients(searchTerm);
-			expect(results).toEqual(expect.arrayContaining([expect.objectContaining({ title: searchTerm })]));
+			expect(results).toEqual(expect.arrayContaining([expect.objectContaining({ title: "Apple" })]));
 		});
 
 		it("should return correct search results for a case-insensitive search", () => {
@@ -61,7 +61,7 @@ describe("SearchUtil", () => {
 					expect.objectContaining({ title: "Sugar" })
 				])
 			);
-			
+
 			expect(categorized).toHaveProperty("Spices");
 			expect(categorized.Spices).toEqual(expect.arrayContaining([expect.objectContaining({ title: "Cinnamon" })]));
 		});
