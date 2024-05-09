@@ -8,6 +8,7 @@ import ingredients from "../../ingredients.json";
 import { useState } from "react";
 import Fab from "@mui/material/Fab";
 import { Delete } from "@mui/icons-material";
+import { Stack } from "@mui/material";
 
 function TabPanel({ children, value, index }) {
 	return <div hidden={value !== index}>{value === index && <Box sx={{ p: 3 }}>{children}</Box>}</div>;
@@ -72,7 +73,7 @@ export default function PantryTabs() {
 				<Tab sx={tabStyles} label="Dairy" />
 			</Tabs>
 			<TabPanel value={value} index={0}>
-				<Box sx={{ display: "flex", justifyContent: "space-between", mt: 3, width: "40vw" }}>
+				<Stack spacing={2} sx={{ mt: 3, mb: 3, width: "40vw" }}>
 					<Typography variant="h5" fontWeight="bold" sx={{ color: "primary.dark" }}>
 						Your Ingredients
 					</Typography>
@@ -80,20 +81,20 @@ export default function PantryTabs() {
 						<Fab
 							onClick={() => setUserIngredients([])}
 							sx={{
-								width: "180px",
+								width: "150px",
 								backgroundColor: "background.paper",
-								height: "60px",
-								borderRadius: "30px",
+								height: "40px",
+								borderRadius: "20px",
 								color: "primary.dark"
 							}}
 						>
-							<Typography fontWeight="bold" textTransform="none" mr={1} variant="h6">
+							<Typography fontWeight="bold" textTransform="none" mr={1}>
 								Clear Pantry
 							</Typography>
 							<Delete />
 						</Fab>
 					) : null}
-				</Box>
+				</Stack>
 
 				{userIngredients && userIngredients.length > 0 ? (
 					<PantryGrid itemData={ingredientsPantry} {...pantryGridProps} />
