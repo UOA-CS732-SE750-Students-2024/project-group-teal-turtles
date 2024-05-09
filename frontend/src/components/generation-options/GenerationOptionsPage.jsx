@@ -9,7 +9,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { ExpandMore } from "@mui/icons-material";
 import StyledButton from "@/components/StyledButton/StyledButton";
 
-function GenerationOptions() {
+function GenerationOptionsPage() {
 	function Generation() {
 		const router = useRouter();
 		const { setUserParameters, userParameters, setPrompt, prompt, mealToRemix, setMealToRemix } = useDataStore();
@@ -274,4 +274,4 @@ function GenerationOptions() {
 		</Suspense>
 	);
 }
-export default GenerationOptions;
+export default GenerationOptionsPage;

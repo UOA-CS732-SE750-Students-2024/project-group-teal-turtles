@@ -1,8 +1,8 @@
-import GenerationOptions from "@/components/generation-options/GenerationOptions";
+import GenerationOptionsPage from "@/components/generation-options/GenerationOptionsPage";
 import React from "react";
 
 function Page() {
-	return <GenerationOptions />;
+	return <GenerationOptionsPage />;
 }
 
 export default Page;
