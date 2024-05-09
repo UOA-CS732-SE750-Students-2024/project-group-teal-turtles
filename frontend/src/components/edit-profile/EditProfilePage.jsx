@@ -3,7 +3,7 @@
 import IngredientSummary from "./IngredientSummary";
 import ProfileSummary from "./ProfileSummary";
 import { useRouter } from "next/navigation";
-import { Typography, Stack } from "@mui/material";
+import { Typography, Stack, Divider } from "@mui/material";
 import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
 import DisplayMeals from "./DisplayMeals";
@@ -87,6 +87,9 @@ function EditProfilePage() {
 					<ProfileSummary username={userName} email={userEmail} />
 					<StyledButton onClick={handleLogout} text="Logout" />
 				</Stack>
+				<Stack sx={{ py: 3 }}>
+					<Divider orientation="horizontal" variant="middle" width="600px" />
+				</Stack>
 				<Stack direction="row" spacing="5vh">
 					<Stack sx={{ alignItems: "center" }}>
 						<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
@@ -114,18 +117,21 @@ function EditProfilePage() {
 						</Stack>
 					)}
 				</Stack>
-				<Stack alignItems="center" spacing={2} width="1000px">
-					<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
-						Disliked Ingredients:
-					</Typography>
-					<IngredientSummary ingredients={userDislikedIngredients} />
+				<Stack alignItems="center" spacing={8} width="1000px">
+					<Divider orientation="horizontal" variant="middle" width="600px" />
+					<Stack alignItems="center" spacing={4}>
+						<Typography variant="h4" fontWeight="bold" sx={{ color: "primary.main" }}>
+							Disliked Ingredients:
+						</Typography>
+						<IngredientSummary ingredients={userDislikedIngredients} />
 
-					<QuickSearchModal
-						selectedIngredients={userDislikedIngredients}
-						setSelectedIngredients={setUserDislikedIngredients}
-						isOpen={isEditDislikedIngredients}
-						handleClose={handleCloseDislikedIngredients}
-					/>
+						<QuickSearchModal
+							selectedIngredients={userDislikedIngredients}
+							setSelectedIngredients={setUserDislikedIngredients}
+							isOpen={isEditDislikedIngredients}
+							handleClose={handleCloseDislikedIngredients}
+						/>
+					</Stack>
 				</Stack>
 				<StyledButton
 					onClick={() => {

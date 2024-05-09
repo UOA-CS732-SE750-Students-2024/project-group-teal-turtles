@@ -41,7 +41,7 @@ function GenerationOptionsPage() {
 			<Stack
 				height="calc(100vh - 70px)"
 				justifyContent="space-between"
-				paddingX="20vw"
+				px="20vw"
 				sx={{ backgroundColor: "background.paper" }}
 			>
 				<Stack alignItems="center">
@@ -248,7 +248,7 @@ function GenerationOptionsPage() {
 											fontSize: "24px",
 											height: "60px",
 											borderRadius: "30px",
-											paddingX: "20px"
+											px: "20px"
 										}
 									}}
 									sx={{ width: "75%" }}
@@ -276,7 +276,7 @@ function GenerationOptionsPage() {
 										sx={{
 											height: "60px",
 											borderRadius: "30px",
-											paddingX: "20px",
+											px: "20px",
 											fontSize: "24px",
 											fontWeight: "bold"
 										}}
@@ -315,7 +315,7 @@ function GenerationOptionsPage() {
 										sx={{
 											height: "60px",
 											borderRadius: "30px",
-											paddingX: "20px",
+											px: "20px",
 											fontSize: "24px",
 											fontWeight: "bold"
 										}}

@@ -23,7 +23,7 @@ function ResponsiveAppBar() {
 		{ name: "Dashboard", url: "/dashboard" },
 		{ name: "Generate", url: "/generation-options?generateOption=Basic" },
 		{ name: "Pantry", url: "/pantry" },
-		{ name: "Previous Recipe", url: "/view-meal" }
+		{ name: "Recipe", url: "/view-meal" }
 	];
 	const currentUrl = usePathname();
 	const router = useRouter();
