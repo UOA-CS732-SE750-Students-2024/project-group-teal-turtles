@@ -3,7 +3,7 @@ import { TextField, Button, Box } from "@mui/material";
 import SearchResults from "./SearchResults";
 import SelectedIngredients from "./SelectedIngredients";
 import allIngredients from "@/lib/ingredients.json";
-import { searchIngredients } from "../../../lib/SearchUtil";
+import { searchIngredients } from "@/lib/SearchUtil";
 import { addDislikedIngredient, removeDislikedIngredient } from "@/lib/dbCalls";
 import { getAuth } from "firebase/auth";
 
