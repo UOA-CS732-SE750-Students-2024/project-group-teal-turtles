@@ -53,9 +53,6 @@ export async function addGeneratedMeal(uid, generatedMeal) {
 	if (!user) {
 		throw { error: "User not found", status: 404 };
 	}
-	if (user.generatedMeals.includes(generatedMeal)) {
-		throw { error: "generatedMeal already exists in the user's generated meals", status: 400 };
-	}
 	return await User.findByIdAndUpdate(uid, { $addToSet: { generatedMeals: generatedMeal } });
 }
 
@@ -92,8 +89,12 @@ export async function setIngredientTypeList(uid, ingredientType, ingredients) {
 	return await User.findByIdAndUpdate(uid, { $set: { [`ingredients.${ingredientType}`]: ingredients } });
 }
 
-//not currently used
 export async function setDislikedIngredientsList(uid, dislikedIngredients) {
+	const user = await User.findById(uid);
+
+	if (!user) {
+		throw { error: "User not found", status: 404 };
+	}
 	return await User.findByIdAndUpdate(uid, { dislikedIngredients: dislikedIngredients });
 }
 

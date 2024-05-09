@@ -5,7 +5,8 @@ import {
 	setIngredients,
 	removeDislikedIngredient,
 	addDislikedIngredient,
-	getDislikedIngredients
+	getDislikedIngredients,
+	setDislikedIngredientsList
 } from "../../../data/user-dao.js";
 
 const router = Router();
@@ -96,6 +97,23 @@ router.get("/disliked", async (req, res) => {
 	try {
 		const dislikedIngredients = await getDislikedIngredients(req.uid);
 		res.json(dislikedIngredients);
+	} catch (err) {
+		return res.status(err.status).json({ error: err.error });
+	}
+});
+
+/*
+ * PUT /api/users/ingredients/disliked
+ * Sets all disliked ingredients for a certain user
+ */
+router.put("/disliked", async (req, res) => {
+	try {
+		const { dislikedIngredients } = req.body;
+		if (!dislikedIngredients) {
+			return res.status(400).json({ error: "dislikedIngredients are missing" });
+		}
+		await setDislikedIngredientsList(req.uid, dislikedIngredients);
+		return res.sendStatus(204);
 	} catch (err) {
 		return res.status(err.status).json({ error: err.error });
 	}

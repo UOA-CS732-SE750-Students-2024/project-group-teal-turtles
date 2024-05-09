@@ -12,15 +12,12 @@ function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 	const searchResults = searchTerm == "" ? allIngredients : searchIngredients(searchTerm);
 
 	const handleSelectIngredient = (ingredient) => {
-		return async () => {
+		return () => {
 			const isSelected = selectedIngredients.includes(ingredient);
-			const authToken = await getAuth().currentUser.getIdToken();
 			if (isSelected) {
 				setSelectedIngredients(selectedIngredients.filter((selected) => selected !== ingredient));
-				removeDislikedIngredient(authToken, ingredient);
 			} else {
 				setSelectedIngredients([...selectedIngredients, ingredient]);
-				addDislikedIngredient(authToken, ingredient);
 			}
 		};
 	};
