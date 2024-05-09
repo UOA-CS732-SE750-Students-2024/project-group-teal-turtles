@@ -162,24 +162,20 @@ export default function ViewMealPage() {
 		}
 
 		async function generateImage(mealName, ingredientsUser, ingredientsNeeded) {
-			const data = {
-				prompt: `4k, realistic, tasty looking dish, highly detailed, bokeh, cinemascope, moody, gorgeous, film grain, grainy, ${
-					mealName ?? ""
-				} on a plate, ingredients of dish ${ingredientsUser != null ? ingredientsUser.join(" ") : ""} ${
-					ingredientsNeeded != null ? ingredientsNeeded.join(" ") : ""
-				},`,
-				negative_prompt: "ugly, tiling, people, blurry, blurred, unappealing, background items",
-				img_width: 1024,
-				img_height: 1024,
-				base64: true
+			const mealData = {
+				mealName: mealName,
+				ingredientsUser: ingredientsUser,
+				ingredientsNeeded: ingredientsNeeded
 			};
-
 			try {
 				setLoading(true);
-				const response = await axios.post(process.env.NEXT_PUBLIC_SEGMIND_URL, data, {
-					headers: { "x-api-key": process.env.NEXT_PUBLIC_SEGMIND_API_KEY }
+				const authToken = await getAuth().currentUser.getIdToken();
+				const response = await axios.post(process.env.NEXT_PUBLIC_BACKEND_URL + "/generation/mealImage", mealData, {
+					headers: {
+						Authorization: authToken
+					}
 				});
-				setLastMealImage(response.data.image);
+				setLastMealImage(response.data);
 				setLoading(false);
 			} catch (error) {
 				setLoading(false);
