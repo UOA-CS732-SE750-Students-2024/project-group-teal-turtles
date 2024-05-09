@@ -1,3 +1,5 @@
+"use client";
+
 import CardWrapper from "@/components/CardWrapper/CardWrapper";
 import { Google } from "@mui/icons-material";
 import { Stack, Typography, Button, TextField, IconButton, Link, CircularProgress } from "@mui/material";
@@ -10,7 +12,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { handleGoogleLogin } from "@/app/auth-functions";
 
-function CreateAccount() {
+export default function CreateAccount() {
 	const [passwordVisible, setPasswordVisible] = useState(false);
 	const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
