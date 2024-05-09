@@ -1,16 +1,18 @@
-import IngredientSummary from "./IngredientSummary/IngredientSummary";
-import ProfileSummary from "./ProfileSummary/ProfileSummary";
+"use client";
+
+import IngredientSummary from "./IngredientSummary";
+import ProfileSummary from "./ProfileSummary";
 import { useRouter } from "next/navigation";
 import { Typography, Stack } from "@mui/material";
 import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
-import DisplayMeals from "./DisplayMeals/DisplayMeals";
-import { logout } from "@/app/auth-functions";
+import DisplayMeals from "./DisplayMeals";
+import { logout } from "@/lib/auth-functions";
 import { getAuth } from "firebase/auth";
 import { useState } from "react";
 
-import { saveIngredients, setDislikedIngredient } from "@/helpers/dbCalls";
-import StyledButton from "../StyledButton/StyledButton";
+import { saveIngredients, setDislikedIngredient } from "@/lib/dbCalls";
+import StyledButton from "../StyledButton";
 
 function EditProfilePage() {
 	const {

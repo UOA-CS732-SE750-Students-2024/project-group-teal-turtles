@@ -1,7 +1,7 @@
 import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from "@mui/material";
 import React from "react";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
-import { addFavMeal, removeFavMeal } from "@/helpers/dbCalls";
+import { addFavMeal, removeFavMeal } from "@/lib/dbCalls";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import useDataStore from "@/lib/store";

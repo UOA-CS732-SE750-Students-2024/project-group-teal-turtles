@@ -1,8 +1,8 @@
 import { TextField, IconButton, Stack } from "@mui/material";
 import SearchResults from "./SearchResults";
 import SelectedIngredients from "./SelectedIngredients";
-import allIngredients from "@/ingredients.json";
-import { searchIngredients } from "./SearchUtil";
+import allIngredients from "@/lib/ingredients.json";
+import { searchIngredients } from "@/lib/SearchUtil";
 import { Close, Search } from "@mui/icons-material";
 import { useState } from "react";
 

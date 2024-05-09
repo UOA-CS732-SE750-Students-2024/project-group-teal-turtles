@@ -1,4 +1,4 @@
-import { categorizeIngredients } from "@/components/edit-profile/QuickSearch/SearchUtil";
+import { categorizeIngredients } from "@/lib/SearchUtil";
 import { Divider, Stack, Typography } from "@mui/material";
 import DisplayIngredients from "@/components/edit-profile/QuickSearch/DisplayIngredients";
 
