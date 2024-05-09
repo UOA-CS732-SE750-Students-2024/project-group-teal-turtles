@@ -38,9 +38,17 @@ For backend cd to the backend file
 2. start server :
 
    ```bash
-   npm staart
+   npm start
    ```
 
    This will start the backend server at http://localhost:3000
 
 ## Production
+
+## Testing the Backend
+
+The backend can be tested by cd to backend folder and then
+
+```bash
+npm run test
+```
