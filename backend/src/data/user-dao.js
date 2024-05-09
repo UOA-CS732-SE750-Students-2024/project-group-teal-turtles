@@ -89,8 +89,12 @@ export async function setIngredientTypeList(uid, ingredientType, ingredients) {
 	return await User.findByIdAndUpdate(uid, { $set: { [`ingredients.${ingredientType}`]: ingredients } });
 }
 
-//not currently used
 export async function setDislikedIngredientsList(uid, dislikedIngredients) {
+	const user = await User.findById(uid);
+
+	if (!user) {
+		throw { error: "User not found", status: 404 };
+	}
 	return await User.findByIdAndUpdate(uid, { dislikedIngredients: dislikedIngredients });
 }
 
