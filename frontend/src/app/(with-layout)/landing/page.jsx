@@ -1,10 +1,12 @@
-import Landing from '@/components/landing/LandingPage'
-import React from 'react'
+import Landing from "@/components/landing/LandingPage";
+import React from "react";
+
+export const metadata = {
+	title: "Intelligent Eats"
+};
 
 function Page() {
-  return (
-	<Landing/>
-  )
+	return <Landing />;
 }
 
-export default Page
+export default Page;

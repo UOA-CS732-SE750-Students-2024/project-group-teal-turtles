@@ -262,7 +262,7 @@ export default function ViewMeal() {
 							)}
 
 							{lastRecipe !== "" && (
-								<Stack alignItems="center" sx={{ mt: 8 }} spacing="30px" paddingX="4vw">
+								<Stack alignItems="center" sx={{ mt: 8 }} spacing="30px" px="4vw">
 									{loading ? (
 										<Stack alignItems="center" spacing="30px">
 											<CircularProgress sx={{ mt: 4 }} size={50} />
@@ -288,27 +288,31 @@ export default function ViewMeal() {
 													style={{ borderRadius: 8 }}
 												/>
 											</Button>
-											<Stack flex={1} paddingX="4vw" spacing={3}>
-												<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
-													Ingredients {lastIngredientsNeeded.length > 0 && "needed from Pantry"}
+											<Stack flex={1} px="4vw" spacing={3}>
+												<Stack>
+													<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
+														Ingredients {lastIngredientsNeeded.length > 0 && "needed from Pantry"}
+													</Typography>
 													<Typography variant="h6" sx={{ color: "black" }}>
 														{lastIngredientsUser.join(", ")}
 													</Typography>
-												</Typography>
+												</Stack>
 												{lastIngredientsNeeded.length > 0 && (
-													<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
-														Ingredients needed outside Pantry
+													<Stack>
+														<Typography variant="h6" fontWeight="bold" sx={{ color: "primary.main" }}>
+															Ingredients needed outside Pantry
+														</Typography>
 														<Typography variant="h6" sx={{ color: "black" }}>
 															{lastIngredientsNeeded.join(", ")}
 														</Typography>
-													</Typography>
+													</Stack>
 												)}
 											</Stack>
 										</Stack>
 									) : (
 										<></>
 									)}
-									<Divider orientation="horizontal" variant="middle" width="90%" paddingX={10} />
+									<Divider orientation="horizontal" variant="middle" width="90%" px={10} />
 									<Stack
 										direction="row"
 										sx={{ display: "flex", alignItems: "flex-start", width: "100%" }}
@@ -337,7 +341,7 @@ export default function ViewMeal() {
 										</Stack>
 									</Stack>
 
-									<Divider orientation="horizontal" variant="middle" width="90%" paddingX={10} />
+									<Divider orientation="horizontal" variant="middle" width="90%" px={10} />
 
 									<Typography
 										fontWeight="bold"
@@ -351,7 +355,7 @@ export default function ViewMeal() {
 							)}
 
 							{lastMeal !== "" && (
-								<Stack alignItems="center" paddingX="4vw">
+								<Stack alignItems="center" px="4vw">
 									<Stack textAlign="center" sx={{ mt: 4 }}>
 										{lastMealImage !== "" && lastMeal !== "" && lastRecipe !== "" && (
 											<Stack direction="row" spacing={4}>
@@ -406,3 +410,5 @@ export default function ViewMeal() {
 		</Suspense>
 	);
 }
+
+export let title = "Generating recipe.";
