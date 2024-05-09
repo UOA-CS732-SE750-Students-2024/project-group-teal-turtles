@@ -31,7 +31,7 @@ export default function PantryGrid({ itemData, variant, onClick, selected }) {
 							sx={{
 								height: 150,
 								width: 150,
-								backgroundColor: alpha("background.paper", 0),
+								backgroundColor: alpha("#FFFFFF", 0),
 								alignItems: "center",
 								justifyContent: "center",
 								display: "flex",
