@@ -133,14 +133,11 @@ export default function ViewMeal() {
 		async function afterResult(mealName, userIngredients, ingredientsNeeded) {
 			const authToken = await getAuth().currentUser.getIdToken();
 
-			saveParameters(authToken, userParameters);
-
 			if (!userGeneratedMeals.includes(mealName)) {
+				saveParameters(authToken, userParameters);
 				addGeneratedMeal(authToken, mealName);
 				setUserGeneratedMeals([...userGeneratedMeals, mealName]);
 			}
-			// addGeneratedMeal(authToken, mealName);
-			// setUserGeneratedMeals([...userGeneratedMeals, mealName]);
 
 			setLastMeal(mealName);
 			setLastIngredientsUser(userIngredients);
@@ -198,13 +195,10 @@ export default function ViewMeal() {
 				setImageSize(smallerDimension);
 			}
 
-			// Call the function once to set initial size
 			handleResize();
 
-			// Attach event listener for resize
 			window.addEventListener("resize", handleResize);
 
-			// Cleanup
 			return () => {
 				window.removeEventListener("resize", handleResize);
 			};

@@ -18,7 +18,7 @@ function SelectedIngredients({ selectedIngredients, handleSelectIngredient }) {
 
 	return (
 		<>
-			<Divider>SELECTED</Divider>
+			<Divider sx={{ mb: "2vh" }}>SELECTED</Divider>
 			<DisplayIngredients
 				ingredients={ingredients}
 				selectedIngredients={selectedIngredients}

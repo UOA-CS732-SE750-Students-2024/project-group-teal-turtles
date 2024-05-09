@@ -2,7 +2,7 @@ import IngredientSummary from "./IngredientSummary/IngredientSummary";
 import ProfileSummary from "./ProfileSummary/ProfileSummary";
 import { Stack } from "@mui/system";
 import { useRouter } from "next/navigation";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, Box } from "@mui/material";
 import useDataStore from "@/lib/store";
 import QuickSearchModal from "./QuickSearch/QuickSearchModal";
 import EditUserInfoModal from "./EditUserInfo/EditUserInfoModal";
@@ -80,7 +80,7 @@ function EditProfilePage() {
 				direction="column"
 				spacing={4}
 				alignItems="center"
-				sx={{ width: "40%", margin: "0 auto", padding: "10vh" }}
+				sx={{ width: "100%", margin: "0 auto", padding: "10vh" }}
 			>
 				<>
 					<ProfileSummary username={userName} email={userEmail} />
@@ -88,56 +88,60 @@ function EditProfilePage() {
 						Logout
 					</Button>
 				</>
-				<>
-					<Typography variant="h5">Meal History </Typography>
+				<Box sx={{ display: "flex", flexDirection: "row" }}>
+					<Box sx={{ display: "flex", flexDirection: "column", mr: "20vh" }}>
+						<Typography variant="h5">Meal History </Typography>
 
-					<DisplayMeals
-						userFavouriteMeals={userFavouriteMeals}
-						setUserFavouriteMeals={setUserFavouriteMeals}
-						userGeneratedMeals={userGeneratedMeals.slice(-10).reverse()}
-						setUserGeneratedMeals={setUserGeneratedMeals}
-					/>
-				</>
-				<>
-					<Typography variant="h5">Favourite Meals</Typography>
+						<DisplayMeals
+							userFavouriteMeals={userFavouriteMeals}
+							setUserFavouriteMeals={setUserFavouriteMeals}
+							userGeneratedMeals={userGeneratedMeals.slice(-10).reverse()}
+							setUserGeneratedMeals={setUserGeneratedMeals}
+						/>
+					</Box>
+					<Box sx={{ display: "flex", flexDirection: "column" }}>
+						<Typography variant="h5">Favourite Meals</Typography>
 
-					<DisplayMeals
-						showFavouriteOnly={true}
-						userFavouriteMeals={userFavouriteMeals}
-						setUserFavouriteMeals={setUserFavouriteMeals}
-						userGeneratedMeals={userGeneratedMeals}
-						setUserGeneratedMeals={setUserGeneratedMeals}
-					/>
-				</>
+						<DisplayMeals
+							showFavouriteOnly={true}
+							userFavouriteMeals={userFavouriteMeals}
+							setUserFavouriteMeals={setUserFavouriteMeals}
+							userGeneratedMeals={userGeneratedMeals}
+							setUserGeneratedMeals={setUserGeneratedMeals}
+						/>
+					</Box>
+				</Box>
 				<>
-					<Typography variant="h5">Pantry</Typography>
-					<Button
-						variant="contained"
-						onClick={() => {
-							router.push("/pantry");
-						}}
-					>
-						Edit
-					</Button>
-					<IngredientSummary ingredients={userIngredients} />
-				</>
-				<>
-					<Typography variant="h5">Disliked Ingredients</Typography>
-					<Button
-						variant="contained"
-						onClick={() => {
-							setEditDislikedIngredients(true);
-						}}
-					>
-						Edit
-					</Button>
-					<IngredientSummary ingredients={userDislikedIngredients} />
-					<QuickSearchModal
-						selectedIngredients={userDislikedIngredients}
-						setSelectedIngredients={setUserDislikedIngredients}
-						isOpen={isEditDislikedIngredients}
-						handleClose={handleCloseDislikedIngredients}
-					/>
+					<>
+						<Typography variant="h5">Pantry</Typography>
+						<Button
+							variant="contained"
+							onClick={() => {
+								router.push("/pantry");
+							}}
+						>
+							Edit
+						</Button>
+						<IngredientSummary ingredients={userIngredients} />
+					</>
+					<>
+						<Typography variant="h5">Disliked Ingredients</Typography>
+						<Button
+							variant="contained"
+							onClick={() => {
+								setEditDislikedIngredients(true);
+							}}
+						>
+							Edit
+						</Button>
+						<IngredientSummary ingredients={userDislikedIngredients} />
+						<QuickSearchModal
+							selectedIngredients={userDislikedIngredients}
+							setSelectedIngredients={setUserDislikedIngredients}
+							isOpen={isEditDislikedIngredients}
+							handleClose={handleCloseDislikedIngredients}
+						/>
+					</>
 				</>
 			</Stack>
 		</Stack>

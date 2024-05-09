@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from "@mui/material";
+import { TextField, Button, Box } from "@mui/material";
 import SearchResults from "./SearchResults";
 import SelectedIngredients from "./SelectedIngredients";
 import allIngredients from "@/ingredients.json";
@@ -7,7 +7,7 @@ import { searchIngredients } from "./SearchUtil";
 import { addDislikedIngredient, removeDislikedIngredient } from "@/helpers/dbCalls";
 import { getAuth } from "firebase/auth";
 
-function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
+function QuickSearch({ selectedIngredients, setSelectedIngredients, handleClose }) {
 	const [searchTerm, setSearchTerm] = React.useState("");
 	const searchResults = searchTerm == "" ? allIngredients : searchIngredients(searchTerm);
 
@@ -24,12 +24,18 @@ function QuickSearch({ selectedIngredients, setSelectedIngredients }) {
 
 	return (
 		<>
-			<TextField
-				sx={{ width: "100%", mb: "2vh" }}
-				label="Search Term"
-				value={searchTerm}
-				onChange={(e) => setSearchTerm(e.target.value)}
-			/>
+			<Box sx={{ display: "flex", flexDirection: "row" }}>
+				<TextField
+					sx={{ width: "100%", mb: "2vh" }}
+					label="Search Term"
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+				/>
+				<Button sx={{ ml: "2vw", mb: "2vh" }} variant="contained" onClick={handleClose}>
+					Close
+				</Button>
+			</Box>
+
 			<SelectedIngredients selectedIngredients={selectedIngredients} handleSelectIngredient={handleSelectIngredient} />
 			<SearchResults
 				searchResults={searchResults}

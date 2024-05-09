@@ -13,7 +13,9 @@ function SearchResults({ searchResults, selectedIngredients, handleSelectIngredi
 		const ingredients = Object.values(categorizedResults[category]);
 		renderedResults.push(
 			<>
-				<Divider key={category}>{category.toUpperCase()}</Divider>
+				<Divider sx={{ mb: "2vh" }} key={category}>
+					{category.toUpperCase()}
+				</Divider>
 				<DisplayIngredients
 					ingredients={ingredients}
 					selectedIngredients={selectedIngredients}
