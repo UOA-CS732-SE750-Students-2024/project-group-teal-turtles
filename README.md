@@ -6,23 +6,26 @@ Whether you're craving comfort food classics, exotic international flavors, or h
 
 ### Usage
 
-TODO but something like this
+Intelligent Eats can be simply used as follows:
 
-sign in
+1. Create an account
+2. Follow the onboarding process to add ingredients and favourite meals
+3. On the Dashboard, select Basic generation
+4. Enter any additional requirements for your meal
+5. Click generate and have your generated meal served directly to you
 
-add ingredients to pantry
+You can share any generated meals with your friends and family via email by clicking the `Share` button at the bottom of the recipe
 
-add disliked ingredients etc
+If you liked your generated meal, you can add it to your favourites by clicking the `Add to favourites` button, also at the bottom of the recipe.
 
-pick from generation options
+Alternatively, adding or removing favourite meals is done on the profile page, accessed on the top left of the website. Here you can add any of the last 10 meals you generated or revisit them by clicking on them.
 
-it generates a meal
-
-favourite meals and checkout meal history to revisit old meals
+Adding or removing disliked ingredients is also done on the profile page. These ingredients will be avoided when generating meals and recipes.
 
 ## Running the project
 
 ### Prerequisites
+
 Get Node.js installed on your machine. You can download and install it from [here](https://nodejs.org/en/download/current)
 
 This project requires Node.js 20.12.2 or higher
@@ -32,6 +35,7 @@ This project requires Node.js 20.12.2 or higher
 0. Set up the `.env` file in the root directory. See `.env.local.example` for an example
 
 1. Navigate inside the frontend folder:
+
    ```bash
    cd frontend
    ```
@@ -63,6 +67,7 @@ This project requires Node.js 20.12.2 or higher
 ### Running the Backend
 
 1. Navigate inside the backend folder:
+
    ```bash
    cd backend
    ```
@@ -101,7 +106,7 @@ The backend logic is tests with jest
 npm run test
 ```
 
-#### PLaywright
+#### Playwright
 
 To test with playwright follow the following instructions
 These test some common user flows
@@ -120,7 +125,7 @@ TODO
 
 NodeJS + Express for backend
 NextJS + Jest for frontend
-Deployed using vercel
+Deployed using Vercel
 
 ### API usage
 
@@ -148,18 +153,22 @@ src/
 TODO
 
 ## Miscellaneous
+
 Check out the figma design file [here](https://www.figma.com/file/sqO8dyu3wTHNfGy3RJjkcR/750-wireframe?type=design&node-id=2%3A2&mode=design&t=eZQL2zIErd7BnnJH-1)
 
 Check out our project management tooling [here](https://trello.com/invite/750team1/ATTIe553059ddbcf84a85e1f14055027679b9EE006EB)
 
 ## Deployment
+
 Check out a live deployment here:
 https://project-group-teal-turtles.vercel.app/
 
 ## License
+
 This project is licensed under the MIT License.
 
 Contributors:
+
 - Nathan Bell
 - Troy Murdoch
 - Dan Chae
