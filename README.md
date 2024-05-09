@@ -127,14 +127,9 @@ src/
 TODO
 
 ## Miscellaneous
-Check out the figma design file here:
+Check out the figma design file [here](https://www.figma.com/file/sqO8dyu3wTHNfGy3RJjkcR/750-wireframe?type=design&node-id=2%3A2&mode=design&t=eZQL2zIErd7BnnJH-1)
 
-https://www.figma.com/file/sqO8dyu3wTHNfGy3RJjkcR/User-Flows?type=design&node-id=2-2&mode=design&t=8veaNQKVM63pYDdl-0
-
-Check out our project management tooling here:
-
-https://trello.com/invite/750team1/ATTIe553059ddbcf84a85e1f14055027679b9EE006EB
-
+Check out our project management tooling [here](https://trello.com/invite/750team1/ATTIe553059ddbcf84a85e1f14055027679b9EE006EB)
 
 ## Deployment
 Check out a live deployment here:
