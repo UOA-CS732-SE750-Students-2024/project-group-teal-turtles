@@ -1,8 +1,6 @@
 # COMPSCI 732 / SOFTENG 750 project - Team Teal Turtles
 
-Welcome to the project! I look forward to seeing your progress and your final results this semester!
-
-Your team members are:
+TEAM MEMBERS:
 
 - Nathan Bell
 - Troy Murdoch
@@ -12,37 +10,46 @@ Your team members are:
 
 ![](./group-image/Teal%20Turtles.webp)
 
-## What are we
+# Intelligent Eats
+
+Are you tired of staring into your fridge, wondering what to cook for dinner? Do you find yourself stuck in a culinary rut, repeating the same meals week after week? Well, worry no more! Introducing Intelligent-Eats, the revolutionary AI-generated meal service designed for you.
+
+Whether you're craving comfort food classics, exotic international flavors, or healthy, plant-based options, our AI algorithm has you covered.
 
 ## Usage
 
-## Software
+TODO but something like this
+sign in
+add ingredients to pantry
+add disliked ingredients etc
+pick from generation options
+it generates a meal
+favourite meals and checkout meal history to revisit old meals
 
-## Running the project
-
-## Front end
-
-## Back end
+# Software
 
 ## Pages
 
+TODO
+
 ## Tech Stack
 
-### API usage
+TODO
 
-## Setup
+## API usage
 
-Current technology for development
+TODO
 
-- Prettier for formatting
-- EScode for lining
+## Running the project
 
-### Prerequisites
+## Prerequisites
 Get Node.js installed on your machine. You can download and install it from [here](https://nodejs.org/en/download/current)
 
 This project requires Node.js 20.12.2 or higher
 
 ## Running the Frontend
+
+0. Set up the `.env` file in the root directory. See `.env.local.example` for an example
 
 1. Navigate inside the frontend folder:
    ```bash
@@ -73,6 +80,8 @@ This project requires Node.js 20.12.2 or higher
    npm run start
    ```
 
+   This will start the frontend server at http://localhost:3000
+
 ## Running the Backend
 
 1. Navigate inside the backend folder:
@@ -94,35 +103,49 @@ This project requires Node.js 20.12.2 or higher
 
    This will start the backend server at http://localhost:3000
 
-## Production
+## Testing
 
-## Testing the Frontend
+# Testing the Frontend
 
 TODO
 
-## Testing the Backend
+# Testing the Backend
 
-The backend can be tested by first cd to backend folder and then
+TODO
 
-```bash
-npm run test
+## Project Structure
+
+# Frontend
+
+Our repository structure is as follows:
+
+```
+public/
+   images/: Image resources
+src/
+   __test__: Contains JUnit tests for our utility files
+   app/: Directory containing page routes, using the routing system in NextJS
+   lib/: Contains everything that doesn't fit into the above, typically utility files
 ```
 
-### Project Structure
-The frontend project structure is as follows:
+# Backend
 
-```
-app/: Directory containing the routing logic and assembled React pages
-components/: Directory containing reusable React components
-constants/: Directory containing definitions of constants (like Typescript types for example)
-lib/: Directory containing any kind of utility file (basically anything that doesn't fit into the above)
-```
+TODO
 
-### Miscellaneous
-Check out the figma design file here!
+## Miscellaneous
+Check out the figma design file here:
 
-### Deployment
+https://www.figma.com/file/sqO8dyu3wTHNfGy3RJjkcR/User-Flows?type=design&node-id=2-2&mode=design&t=8veaNQKVM63pYDdl-0
 
-### License
+Check out our project management tooling here:
+
+https://trello.com/invite/750team1/ATTIe553059ddbcf84a85e1f14055027679b9EE006EB
+
+
+## Deployment
+Check out a live deployment here:
+https://project-group-teal-turtles.vercel.app/
+
+## License
 This project is licensed under the MIT License.
 
