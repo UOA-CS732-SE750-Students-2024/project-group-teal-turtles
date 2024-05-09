@@ -122,7 +122,11 @@ TODO
 ## Tech Stack
 
 NodeJS + Express for backend
-NextJS + Jest for frontend
+Jest for testing
+Deployed using google app engine
+
+NextJS for frontend
+Jest + Playwright for testing
 Deployed using vercel
 
 ### API usage
